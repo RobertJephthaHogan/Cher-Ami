@@ -34,21 +34,6 @@ class EmailRouter:
                 "data": result
             }
         
-        # user = await DatabaseOperations.UserOperations.retrieve_user(id)
-        # if user:
-        #     return {
-        #         "status_code": 200,
-        #         "response_type": "success",
-        #         "description": "User data retrieved successfully",
-        #         "data": user
-        #     }
-        # return {
-        #     "status_code": 200,
-        #     "response_type": "success",
-        #     "description": "User doesn't exist",
-        #     "data": {}
-        # }
-
     
     
     # @router.post("/send", response_model=Response)
