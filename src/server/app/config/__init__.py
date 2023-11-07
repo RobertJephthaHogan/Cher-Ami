@@ -32,7 +32,7 @@ class Settings(BaseSettings):
 
 async def initiate_database():
     client = AsyncIOMotorClient(Settings().DATABASE_URL)
-    await init_beanie(database=client.gateway_fitness,
+    await init_beanie(database=client.cher_ami,
                         document_models=[
                                             User,
                                             Email

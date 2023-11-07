@@ -20,7 +20,6 @@ class EmailRouter:
     async def testEmail():
         
         result = EmailService.sendEmail()
-        print('result', result)
         
         if not result:
             print("Dictionary is empty.")
@@ -43,12 +42,10 @@ class EmailRouter:
     
     @router.post("/send", response_model=Response)
     async def send_email(email: Email = Body(...)):
-        
-        print('email', email)
-        
+                
         result = EmailService(**vars(email)).sendEmail()
-        print('result', result)
         
+        # TODO: Encrypt password
         # email.password = hash_helper.encrypt(email.password)
         # new_email = await DatabaseOperations.EmailOperations.add_email(email)
         # print('new_email', new_email)
