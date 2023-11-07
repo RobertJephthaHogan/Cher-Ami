@@ -46,8 +46,8 @@ class EmailRouter:
         
         print('email', email)
         
-        # result = EmailService.sendEmail()
-        # print('result', result)
+        result = EmailService(**vars(email)).sendEmail()
+        print('result', result)
         
         # email.password = hash_helper.encrypt(email.password)
         # new_email = await DatabaseOperations.EmailOperations.add_email(email)

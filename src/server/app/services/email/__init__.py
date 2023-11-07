@@ -11,9 +11,12 @@ load_dotenv()
 
 class EmailService:
     
+    def __init__(self, **kwargs):
+        self.kwargs = kwargs
+
     
-    def sendEmail():
-        
+    def sendEmail(self):
+                
         email_sender = 'contact.rjh.ventures@gmail.com'
         email_password = os.getenv("GMAIL_TFA_PASSWORD")
         email_receiver = 'robertjephthahogan@gmail.com'
