@@ -1,11 +1,16 @@
 from fastapi import Body, APIRouter, HTTPException
+from passlib.context import CryptContext
 from beanie import PydanticObjectId
-from app.models.User import UpdateUserModel, User, UserData, UserSignIn
+from app.models.Email import UpdateEmailModel, Email
 from app.models.Response import Response
+from app.database import DatabaseOperations
 from .. import EmailService
 
 
 router = APIRouter()
+
+hash_helper = CryptContext(schemes=["bcrypt"])
+
 
 class EmailRouter:
     
@@ -36,18 +41,24 @@ class EmailRouter:
         
     
     
-    # @router.post("/send", response_model=Response)
-    # async def user_signup(user: User = Body(...)):
-    #     user_exists = await User.find_one(User.email == user.email)
-    #     if user_exists:
-    #         raise HTTPException(
-    #             status_code=409,
-    #             detail="User with email supplied already exists"
-    #         )
-    #     user.password = hash_helper.encrypt(user.password)
-    #     new_user = await DatabaseOperations.UserOperations.add_user(user)
-    #     print('new_user', new_user)
-    #     return new_user
+    @router.post("/send", response_model=Response)
+    async def send_email(email: Email = Body(...)):
+        
+        print('email', email)
+        
+        # result = EmailService.sendEmail()
+        # print('result', result)
+        
+        # email.password = hash_helper.encrypt(email.password)
+        # new_email = await DatabaseOperations.EmailOperations.add_email(email)
+        # print('new_email', new_email)
+        # return new_email
+        return {
+                "status_code": 200,
+                "response_type": "success",
+                "description": "Email sent successfully",
+                "data": email
+            }
 
     
     
