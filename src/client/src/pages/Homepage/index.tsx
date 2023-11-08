@@ -1,10 +1,12 @@
+import React from 'react'
+import './styles.css'
+import HomepageHeader from '../../components/HomepageHeader'
 
 
-
-export function Homepage() {
+export default function Homepage() {
     return (
-        <div>
-            Hello Homepage!
+        <div className='homepage'>
+            <HomepageHeader/>
         </div>
     )
 }

@@ -8,7 +8,7 @@ import { Button, Input , Form} from "antd";
 
 
 
-export function SignUp() {
+export default function SignUp() {
     
     const [userInfo, setUserInfo] = useState<any>({})
     const navigate = useNavigate();

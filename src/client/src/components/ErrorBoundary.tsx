@@ -3,7 +3,7 @@ import { useRouteError } from "react-router-dom";
 
 
 
-export function ErrorBoundary() {
+export default function ErrorBoundary() {
 
     const error : any = useRouteError()
 

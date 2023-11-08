@@ -5,7 +5,7 @@ import './styles.css'
 import { Button, Form, Input } from "antd"
 
 
-export function Login() {
+export default function Login() {
 
     const [loginInfo, setLoginInfo] = useState<any>({})
     const navigate = useNavigate()
