@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { userService } from "../../services";
 import { User } from "../../types";
 import './styles.css'
+import { Button, Input , Form} from "antd";
 
 
 
@@ -17,97 +18,128 @@ export function SignUp() {
         let workingObj = userInfo;
         workingObj[field] = value
         setUserInfo(workingObj)
+        console.log('workingObj', workingObj)
     }
 
+    function navigateTo(to: any) {
+        navigate(to)
+    }
 
-    function onSubmitSignup(new_user_data: any) {
-        new_user_data.preventDefault()
+    function onFinish(data: any) {
+        console.log('data', data)
+
         const user_to_add_obj = {
             'id': new ObjectID().toString(),
-            'firstName': userInfo?.firstName,
-            'lastName': userInfo?.lastName,
-            'email': userInfo?.email,
-            'password': userInfo?.password,
-            'phoneNumber': userInfo?.phoneNumber,
+            'firstName': data?.firstName,
+            'lastName': data?.lastName,
+            'email': data?.email,
+            'password': data?.password,
             'role': 'user',
-            'todos': [],
-            'accountsInfo': [],
-            'events': []
         }
 
         let to_add : User  = JSON.parse(JSON.stringify(user_to_add_obj));
   
+        console.log('to_add', to_add)
+
         userService.createNewUser(to_add).then((resp: any) => {
-            navigate('/login')
+            console.log('resp', resp)
+
+            if (resp?.status === 200) {
+                
+                console.log('success!')
+                navigate('/welcome')
+                setTimeout(() => navigateTo('/'), 3000);
+
+            } else {
+                console.log('error creating new user!')
+            }
+
+            //navigate('/login')
         })
+
     }
 
 
     return (
-        <div className='sign-up-wrapper'>
-            <div className='left-side'>
+        <div className='signup-component'>
+            <div className="signup-content">
 
-            </div>
-            <div className='right-side'>
-                <div className='form-container'>
-                    <form onSubmit={onSubmitSignup}>
-                        <div className='form-row'>
-                            <label> First Name: </label>
-                            <input
-                                name="firstName"
-                                id="firstName"
-                                type="text"
-                                value={userInfo?.firstName}
-                                onChange={(e) => onUserInfoChange(e?.target?.value, 'firstName')}
-                            />
-                        </div>
-                        <div className='form-row'>
-                            <label> Last Name: </label>
-                            <input
-                                name="lastName"
-                                id="lastName"
-                                type="text"
-                                value={userInfo?.lastName}
-                                onChange={(e) => onUserInfoChange(e?.target?.value, 'lastName')}
-                            />
-                        </div>
-                        <div className='form-row'>
-                            <label> Email: </label>
-                            <input
-                                name="email"
-                                id="email"
-                                type="text"
-                                value={userInfo?.email}
-                                onChange={(e) => onUserInfoChange(e?.target?.value, 'email')}
-                            />
-                        </div>
-                        <div className='form-row'>
-                            <label> Password: </label>
-                            <input
-                                name="password"
-                                id="password"
-                                type="text"
-                                value={userInfo?.password}
-                                onChange={(e) => onUserInfoChange(e?.target?.value, 'password')}
-                            />
-                        </div>
-                        <div className='form-row'>
-                            <label> Phone Number: </label>
-                            <input
-                                name="phoneNumber"
-                                id="phoneNumber"
-                                type="text"
-                                value={userInfo?.phoneNumber}
-                                onChange={(e) => onUserInfoChange(e?.target?.value, 'phoneNumber')}
-                            />
-                        </div>
-                        <div className='form-row'>
-                            <button type="submit" className='submit-btn hcp'>
-                                Submit
-                            </button>
-                        </div>
-                    </form>
+                <div className="signup-content-title-wrapper">
+                    <span className="signup-content-title">Sign Up</span>
                 </div>
+
+                <Form 
+                    className="signup-form"
+                    onFinish={onFinish}
+                >
+                    <Form.Item name="firstName" rules={[{ required: true }]} className="signup-form-item">
+                        <Input
+                            placeholder="First Name"
+                            className="signup-field"
+                            onChange={(e) => onUserInfoChange(e?.target?.value, 'firstName')}
+                        />
+                    </Form.Item>
+                    <Form.Item name="lastName" rules={[{ required: true }]} className="signup-form-item">
+                        <Input
+                            placeholder="Last Name"
+                            className="signup-field"
+                            onChange={(e) => onUserInfoChange(e?.target?.value, 'lastName')}
+                        />
+                    </Form.Item>
+                    <Form.Item name="email" rules={[{ required: true }]} className="signup-form-item">
+                        <Input
+                            placeholder="Email Address"
+                            className="signup-field"
+                            onChange={(e) => onUserInfoChange(e?.target?.value, 'email')}
+                        />
+                    </Form.Item>
+                    <Form.Item name="password" rules={[{ required: true }]} className="signup-form-item">
+                        <Input
+                            placeholder="Password"
+                            className="signup-field"
+                            onChange={(e) => onUserInfoChange(e?.target?.value, 'password')}
+                        />
+                    </Form.Item>
+                    <Form.Item 
+                        name="confirmPassword" 
+                        rules={[
+                            {
+                              required: true,
+                            },
+                            ({ getFieldValue }) => ({
+                                validator(_, value) {
+                                    if (!value || getFieldValue('password') === value) {
+                                        return Promise.resolve();
+                                    }
+                                    return Promise.reject(new Error('The new password that you entered do not match!'));
+                                },
+                            }),
+                          ]}
+                        dependencies={['password']} 
+                        className="signup-form-item"
+                    >
+                        <Input
+                            placeholder="Confirm Password"
+                            className="signup-field"
+                            onChange={(e) => onUserInfoChange(e?.target?.value, 'confirmPassword')}
+                        />
+                    </Form.Item>
+                    <div>
+                        <span className="terms-text">
+                            By creating an account, you agree to our <br/>
+                            Privacy Policy and Terms of Use.
+                        </span>
+                    </div>
+                    <div className="signup-btn-container">
+                        <Button
+                            className="signup-btn"
+                            htmlType="submit"
+                        >
+                            Sign up
+                        </Button>
+                    </div>
+                </Form>
+                
             </div>
         </div>
     )
