@@ -49,11 +49,6 @@ export function Login() {
                             />
                         </Form.Item>
                     </div>
-                    <div>
-                        <span className="forgot-password-text">
-                            Forgot Password?
-                        </span>
-                    </div>
                     <div className="login-btn-container">
                         <Button
                             className="login-btn"
@@ -61,6 +56,22 @@ export function Login() {
                         >
                             Login
                         </Button>
+                    </div>
+                    <div className="forgot-password-text-row">
+                        <span className="forgot-password-text">
+                            Forgot Password?
+                        </span>
+                    </div>
+                    <div className="sign-up-text-row">
+                        <span className="dont-have-acct-text">
+                            Don't have an account?
+                        </span>
+                        <span 
+                            className="sign-up-text"
+                            onClick={() => navigate('/signup')}
+                        >
+                            Sign Up
+                        </span>
                     </div>
                 </Form>
             </div>

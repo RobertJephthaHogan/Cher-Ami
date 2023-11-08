@@ -36,15 +36,6 @@
     margin-top: 20px
 }
 
-.forgot-password-text {
-    color: #ffffff;
-    font-size: 10px;
-}
-
-.forgot-password-text:hover {
-    cursor: pointer
-}
-
 .login-btn {
     background-color: var(--primary-blue);
     border-radius: 0;
@@ -61,4 +52,42 @@
 
 .login-form-item {
     margin: 0
+}
+
+.forgot-password-text-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px
+}
+
+.forgot-password-text {
+    color: #ffffff;
+    font-size: 10px;
+    text-decoration: underline;
+}
+
+.forgot-password-text:hover {
+    cursor: pointer
+}
+
+.sign-up-text-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px
+}
+
+.dont-have-acct-text {
+    color: #ffffff;
+    font-size: 10px;
+}
+
+.sign-up-text {
+    color: #ffffff;
+    font-size: 10px;
+    margin-left: 5px;
+    text-decoration: underline;
+}
+
+.sign-up-text:hover {
+    cursor: pointer
 }
