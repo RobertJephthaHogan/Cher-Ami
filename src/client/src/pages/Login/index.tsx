@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { userService } from "../../services"
 import './styles.css'
+import { Button, Form, Input } from "antd"
 
 
 export function Login() {
@@ -9,67 +10,59 @@ export function Login() {
     const [loginInfo, setLoginInfo] = useState<any>({})
     const navigate = useNavigate()
 
-
-    function handleLoginInfoChange(data: any, field: any) {
-        let workingObj = {...loginInfo}
-        workingObj[field] = data
-        setLoginInfo(workingObj)     
-    }
-
     
-    function dispatchLoginData(resp: any) {
-        console.log('resp', resp)
-		//store.dispatch(userActions.login(resp))
-    }
-
-
-    function onSubmitLogin(e : any) {
-        e.preventDefault()
-        userService.loginUser(loginInfo).then((resp: any) => {
-			dispatchLoginData(resp.data)
-			navigate('/dashboard')
-        })
+    function onFinish(data : any) {
+        console.log('data', data)
+        userService.loginUser(data)
+            .then((resp: any) => {
+                //store.dispatch(userActions.login(resp?.data))
+                //navigate('/dashboard')
+            })
+            .catch((er: any) => {
+                console.error('Error logging in user', er)
+            })
     }
 
 
     return (
         <div className="login-component">
-            <div className="left-side">
-
-            </div>
-            <div className="right-side">
-                <div className='login_access_panel'>
-                    <form onSubmit={onSubmitLogin}>
-                        <div className="form-row">
-                            <input
-                                name="username"
-                                id="username"
-                                type="text"
-                                onChange={(e) => handleLoginInfoChange(e?.target?.value, 'username')}
-                                className='mr-1'
-                            >  
-                            </input>
-                        </div>
-                        <div className="form-row">
-                            <input
-                                name="password"
-                                id="password"
-                                type="text"
-                                onChange={(e) => handleLoginInfoChange(e?.target?.value, 'password')}
-                                className='mr-1'
-                            >
-                            </input>
-                        </div>
-                        <div className="flex jc-sb">
-                            <button className="hcp" type="submit">
-                                Submit
-                            </button>
-                            <div>
-                                <span className='forgot_password_text'>Forgot Password?</span>
-                            </div>
-                        </div>
-                    </form>
+            <div className="login-content">
+                <div className="login-content-title-wrapper">
+                    <span className="login-content-title">Log in</span>
                 </div>
+                <Form 
+                    onFinish={onFinish}
+                >
+                    <div>
+                        <Form.Item name="username" rules={[{ required: true }]} className="login-form-item">
+                            <Input
+                                placeholder="Email Address"
+                                className="login-email-field"
+                            />
+                        </Form.Item>
+                    </div>
+                    <div>
+                        <Form.Item name="password" rules={[{ required: true }]} className="login-form-item">
+                            <Input
+                                placeholder="Password"
+                                className="login-password-field"
+                            />
+                        </Form.Item>
+                    </div>
+                    <div>
+                        <span className="forgot-password-text">
+                            Forgot Password?
+                        </span>
+                    </div>
+                    <div className="login-btn-container">
+                        <Button
+                            className="login-btn"
+                            htmlType="submit"
+                        >
+                            Login
+                        </Button>
+                    </div>
+                </Form>
             </div>
         </div>
     )
