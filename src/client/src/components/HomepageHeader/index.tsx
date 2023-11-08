@@ -1,13 +1,19 @@
 import React from 'react'
 import './styles.css'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function HomepageHeader() {
 
+    const navigate = useNavigate()
+
     return (
         <div className='hp-header'>
             <div className='hp-header-left'>
-                <div className='hp-header-left-content'>
+                <div 
+                    className='hp-header-left-content'
+                    onClick={() => navigate('/')}
+                >
                     <div className='hp-header-left-content-left'>
                         <div className='logo-img'>
 
