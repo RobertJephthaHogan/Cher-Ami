@@ -1,0 +1,32 @@
+
+
+
+
+/********/
+/* flex */
+/********/
+
+
+.flex {
+    display: flex;
+}
+
+.fl-gr-1 {
+    flex-grow: 1;
+}
+
+.jc-c {
+    justify-content: center;
+}
+
+.jc-sb {
+    justify-content: space-between;
+}
+
+.jc-sa {
+    justify-content: space-around;
+}
+
+.jc-se {
+    justify-content: space-evenly;
+}
