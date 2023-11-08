@@ -131,8 +131,15 @@ export function SignUp() {
                         </Button>
                     </div>
                     <div className="have-an-acct-row">
-                        <span className="have-an-acct-row-text">Already have an account?</span>
-                        <span className="login-text">Log in.</span>
+                        <span className="have-an-acct-row-text">
+                            Already have an account?
+                        </span>
+                        <span 
+                            className="login-text"
+                            onClick={() => navigate('/login')}
+                        >
+                            Log in.
+                        </span>
                     </div>
                     <div className="terms-text-row">
                         <span className="terms-text">
