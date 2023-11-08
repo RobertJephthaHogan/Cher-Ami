@@ -10,8 +10,5 @@ export type User = {
     email: any
     password: any
     phoneNumber: any
-    todos: any
-    events: any 
-    accountsInfo: any
     role: any
 }
