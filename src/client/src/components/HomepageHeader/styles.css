@@ -10,6 +10,10 @@
 
 .hp-header-left {
     width: 100%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-left: 200px
 }
 
 .hp-header-center {
@@ -48,4 +52,15 @@
 
 .h-item:hover {
     cursor: pointer;
+}
+
+.logo-img {
+    width: 45px;
+    height: 45px;
+    background-image: url('../../assets/images/inverted_carrier_pigeon_2.jpg'); 
+    background-size: cover;
+}
+
+.hp-header-left-title-container {
+    margin-left: 10px;
 }

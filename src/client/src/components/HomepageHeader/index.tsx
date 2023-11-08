@@ -9,7 +9,9 @@ export default function HomepageHeader() {
             <div className='hp-header-left'>
                 <div className='hp-header-left-content'>
                     <div className='hp-header-left-content-left'>
-                        img here
+                        <div className='logo-img'>
+
+                        </div>
                     </div>
                     <div className='hp-header-left-title-container'>
                         <div>
