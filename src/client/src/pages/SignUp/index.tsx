@@ -63,16 +63,14 @@ export function SignUp() {
     return (
         <div className='signup-component'>
             <div className="signup-content">
-
                 <div className="signup-content-title-wrapper">
                     <span className="signup-content-title">Sign Up</span>
                 </div>
-
                 <Form 
                     className="signup-form"
                     onFinish={onFinish}
                 >
-                    <Form.Item name="firstName" rules={[{ required: true }]} className="signup-form-item">
+                    <Form.Item name="firstName" rules={[{ required: false }]} className="signup-form-item">
                         <Input
                             placeholder="First Name"
                             className="signup-field"
@@ -124,12 +122,6 @@ export function SignUp() {
                             onChange={(e) => onUserInfoChange(e?.target?.value, 'confirmPassword')}
                         />
                     </Form.Item>
-                    <div>
-                        <span className="terms-text">
-                            By creating an account, you agree to our <br/>
-                            Privacy Policy and Terms of Use.
-                        </span>
-                    </div>
                     <div className="signup-btn-container">
                         <Button
                             className="signup-btn"
@@ -138,8 +130,17 @@ export function SignUp() {
                             Sign up
                         </Button>
                     </div>
+                    <div className="have-an-acct-row">
+                        <span className="have-an-acct-row-text">Already have an account?</span>
+                        <span className="login-text">Log in.</span>
+                    </div>
+                    <div className="terms-text-row">
+                        <span className="terms-text">
+                            By creating an account, you agree to our <br/>
+                            <span className="p-policy-text">Privacy Policy</span> and <span className="tou-text">Terms of Use</span>.
+                        </span>
+                    </div>
                 </Form>
-                
             </div>
         </div>
     )

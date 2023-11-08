@@ -53,9 +53,58 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+.have-an-acct-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.have-an-acct-row-text {
+    color: #ffffff;
+    font-size: 10px;
+}
+
+.login-text {
+    color: #ffffff;
+    font-size: 10px;
+    text-decoration: underline;
+    margin-left: 5px;
+}
+
+.login-text:hover {
+    cursor: pointer;
+}
+
+.terms-text-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
 .terms-text {
     color: #ffffff;
     font-size: 10px;
+    text-align: center;
+}
+
+.p-policy-text {
+    color: #ffffff;
+    font-size: 10px;
+    text-decoration: underline;
+}
+
+.p-policy-text:hover {
+    cursor: pointer;
+}
+
+.tou-text {
+    color: #ffffff;
+    font-size: 10px;
+    text-decoration: underline;
+}
+
+.tou-text:hover {
+    cursor: pointer;
 }
 
 .signup-form {
