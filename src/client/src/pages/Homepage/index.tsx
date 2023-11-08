@@ -1,7 +1,8 @@
+import React from 'react'
+import './styles.css'
 
 
-
-export function Homepage() {
+export default function Homepage() {
     return (
         <div>
             Hello Homepage!
