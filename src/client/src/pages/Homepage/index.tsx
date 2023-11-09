@@ -62,7 +62,7 @@ export default function Homepage() {
                     </div>
                 </div>
                 <div className='landing-section-right'>
-                    Right
+                    <div className='landing-img'></div>
                 </div>
             </div>
         </div>

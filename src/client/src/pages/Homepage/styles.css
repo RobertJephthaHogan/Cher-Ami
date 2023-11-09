@@ -69,3 +69,10 @@
 .landing-info-wrapper {
     margin: 0px 20px
 }
+
+.landing-img {
+    width: 575px;
+    height: 575px;
+    background-image: url('../../assets/images/carrier_pigeon_2_silhouette.jpeg'); 
+    background-size: cover;
+}
