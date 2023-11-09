@@ -2,6 +2,9 @@ import React from 'react'
 import './styles.css'
 import HomepageHeader from '../../components/HomepageHeader'
 import { Button } from 'antd'
+import ClockCircleOutlined from '@ant-design/icons/ClockCircleOutlined'
+import ClusterOutlined from '@ant-design/icons/ClusterOutlined'
+import TagOutlined from '@ant-design/icons/TagOutlined'
 
 
 export default function Homepage() {
@@ -30,7 +33,24 @@ export default function Homepage() {
                             </Button>
                         </div>
                         <div className='landing-section-info-container'>
-                            <div> Set up in less than 15 minutes</div>
+                            <div className='landing-info-wrapper'>
+                                <ClockCircleOutlined />
+                                <span className='landing-info-text'>
+                                    Set up in less than 15 minutes
+                                </span>
+                            </div>
+                            <div className='landing-info-wrapper'>
+                                <ClusterOutlined />
+                                <span className='landing-info-text'>
+                                    Omni-channel support
+                                </span>
+                            </div>
+                            <div className='landing-info-wrapper'>
+                                <TagOutlined />
+                                <span className='landing-info-text'>
+                                    Fairly and transparently priced
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>

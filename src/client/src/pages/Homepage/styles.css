@@ -58,5 +58,14 @@
 }
 
 .landing-section-info-container {
-    margin-top: 40px
+    margin-top: 40px;
+    display: flex;
+}
+
+.landing-info-text {
+    margin-left: 5px
+}
+
+.landing-info-wrapper {
+    margin: 0px 20px
 }
