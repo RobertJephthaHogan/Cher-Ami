@@ -5,9 +5,13 @@ import { Button } from 'antd'
 import ClockCircleOutlined from '@ant-design/icons/ClockCircleOutlined'
 import ClusterOutlined from '@ant-design/icons/ClusterOutlined'
 import TagOutlined from '@ant-design/icons/TagOutlined'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function Homepage() {
+
+    const navigate = useNavigate()
+
     return (
         <div className='homepage'>
             <HomepageHeader/>
@@ -28,7 +32,10 @@ export default function Homepage() {
                             </span>
                         </div>
                         <div className='landing-section-btn-container'>
-                            <Button type='primary'>
+                            <Button 
+                                type='primary'
+                                onClick={() => navigate("/signup")}
+                            >
                                 Get started for free
                             </Button>
                         </div>
