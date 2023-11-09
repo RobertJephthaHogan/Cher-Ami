@@ -127,4 +127,13 @@
 
 .start-for-free-text-container {
     margin-top: 20px;
+    color: var(--primary-blue);
+}
+
+.sff-btn:hover {
+    cursor: pointer;
+}
+
+.ml-10 {
+    margin-left: 10px;
 }

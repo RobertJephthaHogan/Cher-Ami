@@ -5,6 +5,7 @@ import { Button } from 'antd'
 import ClockCircleOutlined from '@ant-design/icons/ClockCircleOutlined'
 import ClusterOutlined from '@ant-design/icons/ClusterOutlined'
 import TagOutlined from '@ant-design/icons/TagOutlined'
+import RightOutlined from '@ant-design/icons/RightOutlined'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -94,9 +95,10 @@ export default function Homepage() {
                             </ul>
                         </div>
                         <div className='start-for-free-text-container'>
-                            <span className='start-for-free-text'>
+                            <span className='start-for-free-text sff-btn'>
                                 Start For Free
                             </span>
+                            <RightOutlined className='sff-btn ml-10'/>
                         </div>
                     </div>
                 </div>
