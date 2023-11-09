@@ -65,6 +65,45 @@ export default function Homepage() {
                     <div className='landing-img'></div>
                 </div>
             </div>
+            <div className='text-msg-section'>
+                <div className='text-msg-section-left'>
+                    <div className='text-msg-section-left-content'>
+                        <div>
+                            <span className='tm-section-pre-text'>
+                                Send Text Messages
+                            </span>
+                        </div>
+                        <div className='large-text-container'>
+                            <span className='tm-section-large-text'>
+                                Send mass alerts, updates, <br/>
+                                and marketing campaigns
+                            </span>
+                        </div>
+                        <div className='sub-text-container'>
+                            <span className='tm-section-sub-text'>
+                                Get instant results from text marketing campaigns with built-in scheduling <br/>
+                                and segmentation.
+                            </span>
+                        </div>
+                        <div className='details-text-container'>
+                            <ul className='tm-section-details-text'>
+                                <li>Personalize messages</li>
+                                <li>Filter by groups, tags, and keywords</li>
+                                <li>Schedule in advance</li>
+                                <li>Send recurring messages</li>
+                            </ul>
+                        </div>
+                        <div className='start-for-free-text-container'>
+                            <span className='start-for-free-text'>
+                                Start For Free
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div className='text-msg-section-right'>
+                    right
+                </div>
+            </div>
         </div>
     )
 }
