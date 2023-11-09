@@ -103,7 +103,9 @@ export default function Homepage() {
                     </div>
                 </div>
                 <div className='text-msg-section-right'>
-                    right
+                    <div className='text-msg-right-panel'>
+
+                    </div>
                 </div>
             </div>
         </div>

@@ -137,3 +137,9 @@
 .ml-10 {
     margin-left: 10px;
 }
+
+.text-msg-right-panel {
+    height: 450px;
+    width: 450px;
+    background-color: #188fff22;
+}
