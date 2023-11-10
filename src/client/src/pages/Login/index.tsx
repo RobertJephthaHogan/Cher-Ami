@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"
 import { userService } from "../../services"
 import './styles.css'
 import { Button, Form, Input } from "antd"
+import { store } from "../../redux/store"
+import userActions from "../../redux/actions/user"
 
 
 export default function Login() {
@@ -12,10 +14,9 @@ export default function Login() {
 
     
     function onFinish(data : any) {
-        console.log('data', data)
         userService.loginUser(data)
             .then((resp: any) => {
-                //store.dispatch(userActions.login(resp?.data))
+                store.dispatch(userActions.login(resp?.data))
                 navigate('/dashboard')
             })
             .catch((er: any) => {
