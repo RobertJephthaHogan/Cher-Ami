@@ -47,7 +47,10 @@ export default function HomepageHeader() {
                         About Us
                     </span>
                 </div>
-                <div className='header-item-container h-item'>
+                <div 
+                    className='header-item-container h-item'
+                    onClick={() => navigate("/login")}
+                >
                     <span className='header-item-text'>
                         Log In
                     </span>
