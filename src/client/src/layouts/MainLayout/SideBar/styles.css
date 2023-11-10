@@ -1,0 +1,27 @@
+
+
+
+
+
+.sidebar {
+    height: calc(100vh - var(--layout-header-height) );
+    width: 200px;
+    border-right: 1px solid #dfdfdf;
+    background-color: #1a1a1a;
+    padding-top: 10px;
+}
+
+.sidebar-row {
+    padding: 2px;
+    padding-left: 10px
+}
+
+.sidebar-row:hover {
+    background-color: #3d3d3d;
+    cursor: pointer;
+}
+
+.sidebar-row-title {
+    color: #ffffff;
+    font-size: 12px;
+}
