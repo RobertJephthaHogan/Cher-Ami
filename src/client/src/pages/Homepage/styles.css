@@ -143,3 +143,44 @@
     width: 450px;
     background-color: #188fff22;
 }
+
+.email-section {
+    min-height: 500px;
+    display: flex;
+    width: 100%;
+    margin-top: 100px
+}
+
+.email-section-left {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.email-section-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.email-left-panel {
+    height: 450px;
+    width: 450px;
+    background-color: #15ff0023;
+}
+
+.email-section-right-content {
+
+}
+
+.email-section-pre-text {
+    font-size: 14px;
+}
+
+.email-section-large-text {
+    font-size: 42px;
+}
+
+.email-section-sub-text {
+    font-size: 16px;
+}
