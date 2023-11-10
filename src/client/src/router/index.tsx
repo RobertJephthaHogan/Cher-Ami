@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import ErrorBoundary from "../components/ErrorBoundary";
 import Dashboard from "../pages/Dashboard";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 
 
@@ -26,10 +27,17 @@ export const router = createBrowserRouter([
             path: "/signup",
             element: <SignUp />,
         },
+      ],
+    },
+    {
+      path: "/",
+      element: <ProtectedRoutes />,
+      errorElement:<ErrorBoundary />,
+      children: [
         {
           path: "/dashboard",
           element: <Dashboard />,
-      },
+        },
       ],
     },
   ]);
