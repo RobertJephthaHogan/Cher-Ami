@@ -12,6 +12,7 @@ app = FastAPI()
 # Apply CORS Middleware / Allow Origins
 origins = [ 
            'http://localhost:3000',
+           'http://localhost:3005',
            'https://cher-ami.roberthogan.io',
            'https://www.cher-ami.roberthogan.io' 
         ]
