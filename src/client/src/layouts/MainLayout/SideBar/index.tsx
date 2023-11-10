@@ -12,6 +12,22 @@ export default function SideBar() {
             title: 'Dashboard',
             route: '/dashboard'
         },
+        {
+            title: 'Broadcasts',
+            route: '/broadcast'
+        },
+        {
+            title: 'Contacts',
+            route: '/contacts'
+        },
+        {
+            title: 'Inbox',
+            route: '/inbox'
+        },
+        {
+            title: 'Messages',
+            route: '/messages'
+        },
     ]
 
 
