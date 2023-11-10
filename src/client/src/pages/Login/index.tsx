@@ -16,7 +16,7 @@ export default function Login() {
         userService.loginUser(data)
             .then((resp: any) => {
                 //store.dispatch(userActions.login(resp?.data))
-                //navigate('/dashboard')
+                navigate('/dashboard')
             })
             .catch((er: any) => {
                 console.error('Error logging in user', er)
