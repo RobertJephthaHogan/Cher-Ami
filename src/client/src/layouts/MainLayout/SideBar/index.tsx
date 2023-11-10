@@ -12,22 +12,6 @@ export default function SideBar() {
             title: 'Dashboard',
             route: '/dashboard'
         },
-        {
-            title: 'My Workouts',
-            route: '/my-workouts'
-        },
-        {
-            title: 'My Nutrition',
-            route: '/my-nutrition'
-        },
-        {
-            title: 'Workout Plans',
-            route: '/workout-plans'
-        },
-        {
-            title: 'Nutrition Plans',
-            route: '/nutrition-plans'
-        },
     ]
 
 
