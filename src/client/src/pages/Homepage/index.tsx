@@ -108,6 +108,49 @@ export default function Homepage() {
                     </div>
                 </div>
             </div>
+            <div className='email-section'>
+                <div className='email-section-left'>
+                    <div className='email-left-panel'>
+
+                    </div>
+                </div>
+                <div className='email-section-right'>
+                    <div className='email-section-right-content'>
+                        <div>
+                            <span className='email-section-pre-text'>
+                                Send Emails
+                            </span>
+                        </div>
+                        <div className='large-text-container'>
+                            <span className='email-section-large-text'>
+                                Send promotions, surveys, <br/>
+                                and widgets when text <br/>
+                                wont cut it
+                            </span>
+                        </div>
+                        <div className='sub-text-container'>
+                            <span className='email-section-sub-text'>
+                                Sometimes a text isn't enough.  Send emails containing widgets, surveys,  <br/>
+                                and promotions with built in scheduling.
+                            </span>
+                        </div>
+                        <div className='details-text-container'>
+                            <ul className='email-section-details-text'>
+                                <li>Send widgets, surveys, and beautiful emails</li>
+                                <li>Filter by groups, tags, and keywords</li>
+                                <li>Schedule in advance</li>
+                                <li>Send recurring messages</li>
+                            </ul>
+                        </div>
+                        <div className='start-for-free-text-container'>
+                            <span className='start-for-free-text sff-btn'>
+                                Start For Free
+                            </span>
+                            <RightOutlined className='sff-btn ml-10'/>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
