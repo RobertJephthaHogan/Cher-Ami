@@ -51,9 +51,18 @@ export default function SideBar() {
                             onClick={() => navigate(item?.route)}
                             key={`sidebar-row-${i}`}
                         >
-                            <span className='sidebar-row-title'>
-                                {item?.title}
-                            </span>
+                            <div className='sidebar-row-content'>
+                                <div className='sidebar-row-icon-container'>
+                                    <span className='sidebar-icon'>
+                                        {item?.icon}
+                                    </span>
+                                </div>
+                                <div className='sidebar-row-icon-container'>
+                                    <span className='sidebar-row-title'>
+                                        {item?.title}
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     )
                 })

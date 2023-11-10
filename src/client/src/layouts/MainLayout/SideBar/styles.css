@@ -5,14 +5,16 @@
 
 .sidebar {
     height: calc(100vh - var(--layout-header-height) );
-    width: 200px;
+    width: 100px;
     border-right: 1px solid #dfdfdf;
     background-color: #1a1a1a;
 }
 
 .sidebar-row {
-    padding: 2px;
-    padding-left: 10px
+    padding: 10px 0px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #424242;
 }
 
 .sidebar-row:hover {
@@ -23,4 +25,19 @@
 .sidebar-row-title {
     color: #ffffff;
     font-size: 12px;
+}
+
+.sidebar-row-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-row-icon-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar-icon {
+    color: #ffffff;
 }
