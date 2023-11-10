@@ -23,14 +23,25 @@
     justify-content: start;
 }
 
-.layout-header-left-wrapper {
+.layout-header-left-content {
     display: flex;
-    flex-direction: column;
-    padding-left: 20px;
+    margin-left: 20px;
 }
 
-.layout-header-left-wrapper:hover {
+.layout-header-left-title-container {
+    margin-left: 10px;
+}
+
+.layout-header-left-content:hover {
     cursor: pointer;
+}
+
+.title-text-top {
+    color: #ffffff
+}
+
+.title-text-bottom {
+    color: #ffffff
 }
 
 .header-left-title-text {

@@ -51,20 +51,26 @@ export default function LayoutHeader() {
         <div className="layout-header">
             <div className='layout-header-left layout-header-cell'>
                 <div 
-                    className='layout-header-left-wrapper'
+                    className='layout-header-left-content'
                     onClick={() => navigate('/')}
                 >
-                    <span className='header-left-title-text'>
-                        <span className='header-left-title-bold'>
-                            Gateway
-                        </span>
-                        <span className='header-left-title-light'>
-                            Fitness
-                        </span>
-                    </span>
-                    <span className='header-left-subtitle-text'>
-                        The Gateway to a Healthier life
-                    </span>
+                    <div className='layout-header-left-content-left'>
+                        <div className='logo-img'>
+
+                        </div>
+                    </div>
+                    <div className='layout-header-left-title-container'>
+                        <div>
+                            <span  className='title-text-top'>
+                                Cher-Ami
+                            </span>
+                        </div>
+                        <div>
+                            <span className='title-text-bottom'>
+                                Technologies
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className='layout-header-center layout-header-cell'>
