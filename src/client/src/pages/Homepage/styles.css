@@ -69,3 +69,77 @@
 .landing-info-wrapper {
     margin: 0px 20px
 }
+
+.landing-img {
+    width: 575px;
+    height: 575px;
+    background-image: url('../../assets/images/carrier_pigeon_2_silhouette.jpeg'); 
+    background-size: cover;
+}
+
+.text-msg-section {
+    min-height: 500px;
+    display: flex;
+    width: 100%;
+}
+
+.text-msg-section-left {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.text-msg-section-left-content {
+
+}
+
+.text-msg-section-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.tm-section-pre-text {
+    font-size: 14px;
+}
+
+.large-text-container {
+    margin-top: 20px
+}
+
+.tm-section-large-text {
+    font-size: 42px;
+}
+
+.sub-text-container {
+    margin-top: 30px
+}
+
+.tm-section-sub-text {
+    font-size: 16px;
+}
+
+.details-text-container {
+    margin-top: 20px;
+    background-color: #F3F3F3;
+    padding: 5px;
+}
+
+.start-for-free-text-container {
+    margin-top: 20px;
+    color: var(--primary-blue);
+}
+
+.sff-btn:hover {
+    cursor: pointer;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.text-msg-right-panel {
+    height: 450px;
+    width: 450px;
+    background-color: #188fff22;
+}

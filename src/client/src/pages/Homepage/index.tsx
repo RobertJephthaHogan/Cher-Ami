@@ -5,6 +5,7 @@ import { Button } from 'antd'
 import ClockCircleOutlined from '@ant-design/icons/ClockCircleOutlined'
 import ClusterOutlined from '@ant-design/icons/ClusterOutlined'
 import TagOutlined from '@ant-design/icons/TagOutlined'
+import RightOutlined from '@ant-design/icons/RightOutlined'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -62,7 +63,49 @@ export default function Homepage() {
                     </div>
                 </div>
                 <div className='landing-section-right'>
-                    Right
+                    <div className='landing-img'></div>
+                </div>
+            </div>
+            <div className='text-msg-section'>
+                <div className='text-msg-section-left'>
+                    <div className='text-msg-section-left-content'>
+                        <div>
+                            <span className='tm-section-pre-text'>
+                                Send Text Messages
+                            </span>
+                        </div>
+                        <div className='large-text-container'>
+                            <span className='tm-section-large-text'>
+                                Send mass alerts, updates, <br/>
+                                and marketing campaigns
+                            </span>
+                        </div>
+                        <div className='sub-text-container'>
+                            <span className='tm-section-sub-text'>
+                                Get instant results from text marketing campaigns with built-in scheduling <br/>
+                                and segmentation.
+                            </span>
+                        </div>
+                        <div className='details-text-container'>
+                            <ul className='tm-section-details-text'>
+                                <li>Personalize messages</li>
+                                <li>Filter by groups, tags, and keywords</li>
+                                <li>Schedule in advance</li>
+                                <li>Send recurring messages</li>
+                            </ul>
+                        </div>
+                        <div className='start-for-free-text-container'>
+                            <span className='start-for-free-text sff-btn'>
+                                Start For Free
+                            </span>
+                            <RightOutlined className='sff-btn ml-10'/>
+                        </div>
+                    </div>
+                </div>
+                <div className='text-msg-section-right'>
+                    <div className='text-msg-right-panel'>
+
+                    </div>
                 </div>
             </div>
         </div>
