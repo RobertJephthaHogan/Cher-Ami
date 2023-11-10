@@ -95,7 +95,10 @@ export default function Homepage() {
                             </ul>
                         </div>
                         <div className='start-for-free-text-container'>
-                            <span className='start-for-free-text sff-btn'>
+                            <span 
+                                className='start-for-free-text sff-btn'
+                                onClick={() => navigate("/signup")}
+                            >
                                 Start For Free
                             </span>
                             <RightOutlined className='sff-btn ml-10'/>
@@ -142,7 +145,10 @@ export default function Homepage() {
                                 <li>Send recurring messages</li>
                             </ul>
                         </div>
-                        <div className='start-for-free-text-container'>
+                        <div 
+                            className='start-for-free-text-container'
+                            onClick={() => navigate("/signup")}
+                        >
                             <span className='start-for-free-text sff-btn'>
                                 Start For Free
                             </span>
