@@ -1,0 +1,13 @@
+
+
+
+
+
+.main-layout {
+    width: 100%;
+}
+
+.layout-body {
+    width: 100%;
+    display: flex;
+}
