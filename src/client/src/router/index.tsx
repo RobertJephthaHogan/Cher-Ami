@@ -11,6 +11,7 @@ import MainLayout from "../layouts/MainLayout";
 import Contacts from "../pages/Contacts";
 import Broadcasts from "../pages/Broadcasts";
 import Inbox from "../pages/Inbox";
+import Settings from "../pages/Settings";
 
 
 
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
 				{
 					path: "/inbox",
 					element: <Inbox />,
+				},
+				{
+					path: "/settings",
+					element: <Settings />,
 				},
 			],
         },
