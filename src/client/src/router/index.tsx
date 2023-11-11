@@ -8,6 +8,7 @@ import ErrorBoundary from "../components/ErrorBoundary";
 import Dashboard from "../pages/Dashboard";
 import ProtectedRoutes from "./ProtectedRoutes";
 import MainLayout from "../layouts/MainLayout";
+import Contacts from "../pages/Contacts";
 
 
 
@@ -36,15 +37,19 @@ export const router = createBrowserRouter([
       errorElement:<ErrorBoundary />,
       children: [
         {
-          path: "/",
-          element: <MainLayout />,
-          errorElement:<ErrorBoundary />,
-          children: [
-            {
-              path: "/dashboard",
-              element: <Dashboard />,
-            },
-          ],
+			path: "/",
+			element: <MainLayout />,
+			errorElement:<ErrorBoundary />,
+			children: [
+				{
+					path: "/dashboard",
+					element: <Dashboard />,
+				},
+				{
+					path: "/contacts",
+					element: <Contacts />,
+				},
+			],
         },
       ],
     },
