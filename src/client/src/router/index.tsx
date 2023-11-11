@@ -10,6 +10,7 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import MainLayout from "../layouts/MainLayout";
 import Contacts from "../pages/Contacts";
 import Broadcasts from "../pages/Broadcasts";
+import Inbox from "../pages/Inbox";
 
 
 
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
 				{
 					path: "/broadcast",
 					element: <Broadcasts />,
+				},
+				{
+					path: "/inbox",
+					element: <Inbox />,
 				},
 			],
         },
