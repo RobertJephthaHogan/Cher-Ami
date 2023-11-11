@@ -9,6 +9,7 @@ import Dashboard from "../pages/Dashboard";
 import ProtectedRoutes from "./ProtectedRoutes";
 import MainLayout from "../layouts/MainLayout";
 import Contacts from "../pages/Contacts";
+import Broadcasts from "../pages/Broadcasts";
 
 
 
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
 				{
 					path: "/contacts",
 					element: <Contacts />,
+				},
+				{
+					path: "/broadcast",
+					element: <Broadcasts />,
 				},
 			],
         },
