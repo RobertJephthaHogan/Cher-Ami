@@ -8,7 +8,10 @@ class User(Document):
     id: Optional[str] = Field(...)
     firstName: str = Field(...)
     lastName: str = Field(...)
-    email: EmailStr = Field(...)
+    sendFromEmail: EmailStr = Field(...)
+    receiveToEmail: EmailStr = Field(...)
+    sendFromPhone: str = Field(...)
+    receiveToPhone: str = Field(...)
     password: str = Field(...)
     role: str = Field(...)
 
@@ -21,7 +24,10 @@ class User(Document):
                 "id": "6276c8a63de1b5229336df5c",
                 "firstName": "John",
                 "lastName": "Doe",
-                "email": "user@user.dev",
+                "sendFromEmail": "john.sender@user.dev",
+                "receiveToEmail": "John@user.dev",
+                "sendFromPhone": "4041111111",
+                "receiveToPhone": "4042222222",
                 "password": "password",
                 "role": "user"
             }
@@ -42,7 +48,10 @@ class UserData(BaseModel):
     id: Optional[str] 
     firstName: str = Field(...)
     lastName: str = Field(...)
-    email: EmailStr = Field(...)
+    sendFromEmail: EmailStr = Field(...)
+    receiveToEmail: EmailStr = Field(...)
+    sendFromPhone: str = Field(...)
+    receiveToPhone: str = Field(...)
     password: str = Field(...)
     role: str = Field(...)
 
@@ -52,7 +61,10 @@ class UserData(BaseModel):
                 "id": "6276c8a63de1b5229336df5c",
                 "firstName": "John",
                 "lastName": "Doe",
-                "email": "user@user.dev",
+                "sendFromEmail": "john.sender@user.dev",
+                "receiveToEmail": "John@user.dev",
+                "sendFromPhone": "4041111111",
+                "receiveToPhone": "4042222222",
                 "password": "password",
                 "role": "user"
             }
@@ -63,7 +75,10 @@ class UpdateUserModel(BaseModel):
     id: Optional[str]
     firstName: Optional[str]
     lastName: Optional[str]
-    email: Optional[EmailStr]
+    sendFromEmail: Optional[EmailStr]
+    receiveToEmail: Optional[EmailStr]
+    sendFromPhone: Optional[str]
+    receiveToPhone: Optional[str]
     password: Optional[str]
     role: Optional[str]
 
@@ -73,7 +88,10 @@ class UpdateUserModel(BaseModel):
                 "id": "6276c8a63de1b5229336df5c",
                 "firstName": "John",
                 "lastName": "Doe",
-                "email": "user@user.dev",
+                "sendFromEmail": "john.sender@user.dev",
+                "receiveToEmail": "John@user.dev",
+                "sendFromPhone": "4041111111",
+                "receiveToPhone": "4042222222",
                 "password": "password",
                 "role": "user"
             }
