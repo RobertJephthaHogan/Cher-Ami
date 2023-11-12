@@ -4,6 +4,7 @@ from .config import initiate_database
 
 from app.services.user.routes import router as UserRouter
 from app.services.email.routes import router as EmailRouter
+from app.services.contact.routes import router as ContactRouter
 
 
 # Create the App
@@ -42,3 +43,4 @@ async def read_root():
 
 app.include_router(UserRouter, tags=["User"], prefix="/user")
 app.include_router(EmailRouter, tags=["Email"], prefix="/email")
+app.include_router(ContactRouter, tags=["Contact"], prefix="/contact")
