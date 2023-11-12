@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Any, Optional, Union
 from beanie import Document
 from fastapi.security import HTTPBasicCredentials
 from pydantic import BaseModel, EmailStr, Field
@@ -8,7 +8,7 @@ class User(Document):
     id: Optional[str] = Field(...)
     firstName: str = Field(...)
     lastName: str = Field(...)
-    sendFromEmail: EmailStr = Field(...)
+    sendFromEmail: Union[EmailStr, str] = Field(...)
     receiveToEmail: EmailStr = Field(...)
     sendFromPhone: str = Field(...)
     receiveToPhone: str = Field(...)
@@ -48,7 +48,7 @@ class UserData(BaseModel):
     id: Optional[str] 
     firstName: str = Field(...)
     lastName: str = Field(...)
-    sendFromEmail: EmailStr = Field(...)
+    sendFromEmail: Union[EmailStr, str] = Field(...)
     receiveToEmail: EmailStr = Field(...)
     sendFromPhone: str = Field(...)
     receiveToPhone: str = Field(...)
@@ -75,7 +75,7 @@ class UpdateUserModel(BaseModel):
     id: Optional[str]
     firstName: Optional[str]
     lastName: Optional[str]
-    sendFromEmail: Optional[EmailStr]
+    sendFromEmail: Optional[Union[EmailStr, str]]
     receiveToEmail: Optional[EmailStr]
     sendFromPhone: Optional[str]
     receiveToPhone: Optional[str]
