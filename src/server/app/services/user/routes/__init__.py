@@ -16,7 +16,7 @@ class UserRouter:
 
     @router.post("/login")
     async def user_login(user_credentials: UserSignIn = Body(...)):
-        user_exists = await User.find_one(User.email == user_credentials.username)
+        user_exists = await User.find_one(User.receiveToEmail == user_credentials.username)
         if user_exists:
             password = hash_helper.verify(
                 user_credentials.password, user_exists.password)
@@ -39,7 +39,7 @@ class UserRouter:
 
     @router.post("/new", response_model=UserData)
     async def user_signup(user: User = Body(...)):
-        user_exists = await User.find_one(User.email == user.email)
+        user_exists = await User.find_one(User.receiveToEmail == user.receiveToEmail)
         if user_exists:
             raise HTTPException(
                 status_code=409,

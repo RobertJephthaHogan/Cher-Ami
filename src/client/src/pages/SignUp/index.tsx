@@ -32,7 +32,10 @@ export default function SignUp() {
             'id': new ObjectID().toString(),
             'firstName': data?.firstName,
             'lastName': data?.lastName,
-            'email': data?.email,
+            'receiveToEmail': data?.email,
+            'sendFromEmail': '',
+            'receiveToPhone': '',
+            'sendFromPhone': '',
             'password': data?.password,
             'role': 'user',
         }
