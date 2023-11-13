@@ -112,6 +112,35 @@ export default function Settings() {
                     </div>
                 </div>
             </div>
+            <div className='ci-rt-section'>
+                <div className='ci-rt-title-container'>
+                    <span className='ci-rt-title-text'>
+                        Contact Information (receive to)
+                    </span>
+                </div>
+                <div className='ci-rt-info-container'>
+                    <span className='ci-rt-info-text'>
+                        The email and phone number you list in this section are the email and phone number we use to contact you. <br/>
+                        The email address you list below is also the email you will use to log in to your account. 
+                    </span>
+                </div>
+                <div className='acct-info-content'>
+                    <div className='aic-left'>
+                        <SettingsField
+                            fieldName={'receiveToEmail'}
+                            fieldLabel={'Receive To Email Address'}
+                            initialFieldValue={currentUser?.receiveToEmail}
+                        />
+                    </div>
+                    <div className='aic-right'>
+                        <SettingsField
+                            fieldName={'receiveToPhone'}
+                            fieldLabel={'Receive To Phone Number'}
+                            initialFieldValue={currentUser?.receiveToPhone}
+                        />
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

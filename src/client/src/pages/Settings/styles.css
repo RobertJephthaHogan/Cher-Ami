@@ -70,3 +70,38 @@
 .settings-field-input-row {
     margin-top: 10px;
 }
+
+.ci-rt-section {
+    padding: 30px 35px;
+}
+
+.ci-rt-title-container {
+    /* padding: 20px 0px; */
+    padding-bottom: 10px;
+}
+
+.ci-rt-title-text {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.ci-rt-info-text {
+    font-size: 14px;
+    color: #636363;
+}
+
+.acct-info-content {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+}
+
+
+.aic-left {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.aic-right {
+    width: 100%;
+}
