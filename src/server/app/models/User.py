@@ -7,7 +7,7 @@ from pydantic import BaseModel, EmailStr, Field
 class User(Document):
     id: Optional[str] = Field(...)
     firstName: str = Field(...)
-    lastName: str = Field(...)
+    lastOrBusinessName: str = Field(...)
     sendFromEmail: Union[EmailStr, str] = Field(...)
     receiveToEmail: EmailStr = Field(...)
     sendFromPhone: str = Field(...)
@@ -23,7 +23,7 @@ class User(Document):
             "example": {
                 "id": "6276c8a63de1b5229336df5c",
                 "firstName": "John",
-                "lastName": "Doe",
+                "lastOrBusinessName": "Doe",
                 "sendFromEmail": "john.sender@user.dev",
                 "receiveToEmail": "John@user.dev",
                 "sendFromPhone": "4041111111",
@@ -47,7 +47,7 @@ class UserSignIn(HTTPBasicCredentials):
 class UserData(BaseModel):
     id: Optional[str] 
     firstName: str = Field(...)
-    lastName: str = Field(...)
+    lastOrBusinessName: str = Field(...)
     sendFromEmail: Union[EmailStr, str] = Field(...)
     receiveToEmail: EmailStr = Field(...)
     sendFromPhone: str = Field(...)
@@ -60,7 +60,7 @@ class UserData(BaseModel):
             "example": {
                 "id": "6276c8a63de1b5229336df5c",
                 "firstName": "John",
-                "lastName": "Doe",
+                "lastOrBusinessName": "Doe",
                 "sendFromEmail": "john.sender@user.dev",
                 "receiveToEmail": "John@user.dev",
                 "sendFromPhone": "4041111111",
@@ -74,7 +74,7 @@ class UserData(BaseModel):
 class UpdateUserModel(BaseModel):
     id: Optional[str]
     firstName: Optional[str]
-    lastName: Optional[str]
+    lastOrBusinessName: Optional[str]
     sendFromEmail: Optional[Union[EmailStr, str]]
     receiveToEmail: Optional[EmailStr]
     sendFromPhone: Optional[str]
@@ -87,7 +87,7 @@ class UpdateUserModel(BaseModel):
             "example": {
                 "id": "6276c8a63de1b5229336df5c",
                 "firstName": "John",
-                "lastName": "Doe",
+                "lastOrBusinessName": "Doe",
                 "sendFromEmail": "john.sender@user.dev",
                 "receiveToEmail": "John@user.dev",
                 "sendFromPhone": "4041111111",
