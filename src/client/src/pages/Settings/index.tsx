@@ -141,6 +141,48 @@ export default function Settings() {
                     </div>
                 </div>
             </div>
+            <div className='ci-sf-section'>
+                <div className='ci-sf-title-container'>
+                    <span className='ci-sf-title-text'>
+                        Contact Information (send from)
+                    </span>
+                </div>
+                <div className='ci-sf-info-container'>
+                    <span className='ci-sf-info-text'>
+                        The email and phone number you list in this section are the email and phone number your emails, text <br/>
+                        messages, and phone calls will be sent from. 
+                    </span>
+                </div>
+                <div className='acct-info-content'>
+                    <div className='aic-left'>
+                        <SettingsField
+                            fieldName={'sendFromEmail'}
+                            fieldLabel={'Send From Email Address'}
+                            initialFieldValue={currentUser?.sendFromEmail}
+                        />
+                    </div>
+                    <div className='aic-right'>
+                        <SettingsField
+                            fieldName={'sendFromPhone'}
+                            fieldLabel={'Send From Phone Number'}
+                            initialFieldValue={currentUser?.sendFromPhone}
+                        />
+                    </div>
+                </div>
+                <div className='acct-info-content'>
+                    <div className='aic-left'>
+                        {/* TODO: Implement Send From Email Address Password */}
+                        <SettingsField
+                            fieldName={'sendFromEmail'}
+                            fieldLabel={'Send From Email Address Password'}
+                            initialFieldValue={currentUser?.sendFromEmail}
+                        />
+                    </div>
+                    <div className='aic-right'>
+                        {/* Place Holder */}
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
