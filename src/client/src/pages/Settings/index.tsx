@@ -10,31 +10,33 @@ import { Input } from 'antd'
 export default function Settings() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
-
     
-
-    function handleFieldChange(value: any) {
-        console.log('value', value)
-    }
-
-    function handleFieldSave(value: any) {
-        console.log('value', value)
-    }
 
 
     
     interface SettingsFieldProps {
         fieldName?: any
         fieldLabel?: any
-        handleFieldChange?: any
-        handleFieldSave?: any
+        initialFieldValue?: any
     }
 
     function SettingsField(props: SettingsFieldProps) {
 
-        const [editingMode, setEditingMode] = useState<boolean>(false)
-
+        const [editingMode, setEditingMode] = useState<any>(false)
+        const [alteredFields, setAlteredFields] = useState<any>('')
         const shouldFieldBeDisabled = !editingMode
+
+        function handleFieldChange(field: any, value: any) {
+            let workingObj: any = {}
+            workingObj[field] = value
+            setAlteredFields(workingObj)
+        }
+
+        function onSave() {
+            console.log('alteredFields', alteredFields)
+
+            setEditingMode(false)
+        }
 
         return (
             <div>
@@ -44,8 +46,10 @@ export default function Settings() {
                     </span>
                     <div className='edit-icon-wrapper'>
                         {
-                            editingMode ? (
-                                <SaveOutlined/>
+                            (editingMode) ? (
+                                <SaveOutlined
+                                    onClick={onSave}
+                                />
                             ) : (
                                 <EditOutlined
                                     onClick={() => setEditingMode(true)}
@@ -56,14 +60,18 @@ export default function Settings() {
                 </div>
                 <div className='settings-field-input-row'>
                     <Input
+                        defaultValue={props.initialFieldValue}
+                        value={alteredFields?.value}
                         disabled={shouldFieldBeDisabled}
                         placeholder={props.fieldLabel}
-                        onChange={props.handleFieldChange}
+                        onChange={(e) => handleFieldChange(props.fieldName, e?.target?.value)}
                     />
                 </div>
             </div>
         )
     }
+
+
 
     return (
         <div className='settings-page'>
@@ -92,8 +100,7 @@ export default function Settings() {
                         <SettingsField
                             fieldName={'firstName'}
                             fieldLabel={'First Name'}
-                            handleFieldChange={handleFieldChange}
-                            handleFieldSave={handleFieldSave}
+                            initialFieldValue={currentUser?.firstName}
                         />
                     </div>
                     <div className='gaic-right'>
