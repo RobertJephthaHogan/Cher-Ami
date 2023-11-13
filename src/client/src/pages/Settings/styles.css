@@ -27,3 +27,45 @@
     width: 95%;
     margin: auto;
 }
+
+.general-acct-info-section {
+    padding: 30px 35px;
+}
+
+.gaic-title-container {
+    padding: 20px 0px;
+}
+
+.gaic-title-text {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.general-acct-info-content {
+    display: flex;
+    width: 100%;
+}
+
+.gaic-left {
+    width: 100%;
+}
+
+.gaic-right {
+    width: 100%;
+}
+
+.settings-field-label-row {
+    display: flex;
+}
+
+.edit-icon-wrapper {
+    margin-left: 10px;
+}
+
+.edit-icon-wrapper:hover {
+    cursor: pointer;
+}
+
+.settings-field-input-row {
+    margin-top: 10px;
+}
