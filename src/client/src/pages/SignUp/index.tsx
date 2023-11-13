@@ -31,7 +31,7 @@ export default function SignUp() {
         const user_to_add_obj = {
             'id': new ObjectID().toString(),
             'firstName': data?.firstName,
-            'lastName': data?.lastName,
+            'lastOrBusinessName': data?.lastOrBusinessName,
             'receiveToEmail': data?.email,
             'sendFromEmail': '',
             'receiveToPhone': '',
@@ -80,11 +80,11 @@ export default function SignUp() {
                             onChange={(e) => onUserInfoChange(e?.target?.value, 'firstName')}
                         />
                     </Form.Item>
-                    <Form.Item name="lastName" rules={[{ required: true }]} className="signup-form-item">
+                    <Form.Item name="lastOrBusinessName" rules={[{ required: true }]} className="signup-form-item">
                         <Input
-                            placeholder="Last Name"
+                            placeholder="Last or Business Name"
                             className="signup-field"
-                            onChange={(e) => onUserInfoChange(e?.target?.value, 'lastName')}
+                            onChange={(e) => onUserInfoChange(e?.target?.value, 'lastOrBusinessName')}
                         />
                     </Form.Item>
                     <Form.Item name="email" rules={[{ required: true }]} className="signup-form-item">
