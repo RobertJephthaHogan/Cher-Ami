@@ -11,9 +11,7 @@ export default function Settings() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     
-
-
-    
+  
     interface SettingsFieldProps {
         fieldName?: any
         fieldLabel?: any
@@ -22,6 +20,7 @@ export default function Settings() {
 
     function SettingsField(props: SettingsFieldProps) {
 
+        const currentUser = useSelector((state: any) => state.user?.data ?? [])
         const [editingMode, setEditingMode] = useState<any>(false)
         const [alteredFields, setAlteredFields] = useState<any>('')
         const shouldFieldBeDisabled = !editingMode
@@ -34,6 +33,7 @@ export default function Settings() {
 
         function onSave() {
             console.log('alteredFields', alteredFields)
+            console.log('currentUser', currentUser)
 
             setEditingMode(false)
         }
@@ -104,7 +104,11 @@ export default function Settings() {
                         />
                     </div>
                     <div className='gaic-right'>
-                        right
+                        <SettingsField
+                            fieldName={'lastOrBusinessName'}
+                            fieldLabel={'Last Name'}
+                            initialFieldValue={currentUser?.lastOrBusinessName}
+                        />
                     </div>
                 </div>
             </div>
