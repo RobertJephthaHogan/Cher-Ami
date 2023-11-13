@@ -1,0 +1,29 @@
+
+
+
+.settings-page {
+    width: 100%;
+}
+
+.settings-topbar {
+    height: 100px;
+    width:  100%;
+}
+
+.settings-topbar-content {
+    padding: 30px 35px;
+}
+
+.topbar-path-container {
+    margin: 0px 10px;
+}
+
+.topbar-settings-text {
+    font-size: 20px;
+}
+
+.topbar-bottom-divider {
+    border-bottom: 1px solid #000000;
+    width: 95%;
+    margin: auto;
+}
