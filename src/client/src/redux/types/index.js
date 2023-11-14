@@ -3,6 +3,7 @@
 export const LOGIN = 'LOGIN'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+export const UPDATE_USER_DATA = 'UPDATE_USER_DATA'
 export const REFRESHON = 'REFRESHON'
 export const REFRESHOFF = 'REFRESHOFF'
 export const REFRESHTOKEN = 'REFRESHTOKEN'

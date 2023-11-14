@@ -46,6 +46,7 @@ export default function Settings() {
                 .updateUser(workingObj?._id, workingObj)
                 .then((resp:any) => {
                     console.log('resp', resp)
+                    store.dispatch(userActions.updateUserData(resp?.data?.data))
                 })
                 .catch((error: any) => {
                     console.log('error', error)
