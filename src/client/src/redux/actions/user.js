@@ -20,7 +20,6 @@ const userActions = {
 
             // Update the user data in localStorage as well
             let userData = JSON.parse(localStorage.getItem("user"))
-            console.log('userData', userData)
             userData['data'] = user
             localStorage.setItem("user", JSON.stringify(userData));
         }

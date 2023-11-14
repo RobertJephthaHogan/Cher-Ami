@@ -14,7 +14,6 @@ export default function userReducer(state = initialState.user, action) {
         case types.UPDATE_USER_DATA:
             return {
                 ...state, 
-                //accessToken: action?.payload?.access_token,
                 data: action?.payload
             }
         case types.REFRESHON:

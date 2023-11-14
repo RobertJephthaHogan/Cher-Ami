@@ -40,16 +40,13 @@ export default function Settings() {
             const entries = Object.entries(alteredFields)
             workingObj[entries?.[0]?.[0]] = entries?.[0]?.[1]
 
-            console.log('workingObj', workingObj)
-
             userService
                 .updateUser(workingObj?._id, workingObj)
                 .then((resp:any) => {
-                    console.log('resp', resp)
                     store.dispatch(userActions.updateUserData(resp?.data?.data))
                 })
                 .catch((error: any) => {
-                    console.log('error', error)
+                    console.error('error', error)
                 })
 
             setEditingMode(false)
