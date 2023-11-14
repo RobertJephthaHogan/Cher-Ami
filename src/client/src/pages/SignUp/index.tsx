@@ -18,7 +18,6 @@ export default function SignUp() {
         let workingObj = userInfo;
         workingObj[field] = value
         setUserInfo(workingObj)
-        console.log('workingObj', workingObj)
     }
 
     function navigateTo(to: any) {
@@ -26,7 +25,6 @@ export default function SignUp() {
     }
 
     function onFinish(data: any) {
-        console.log('data', data)
 
         const user_to_add_obj = {
             'id': new ObjectID().toString(),
@@ -43,14 +41,9 @@ export default function SignUp() {
 
         let to_add : User  = JSON.parse(JSON.stringify(user_to_add_obj));
   
-        console.log('to_add', to_add)
-
         userService.createNewUser(to_add).then((resp: any) => {
-            console.log('resp', resp)
 
             if (resp?.status === 200) {
-                
-                console.log('success!')
                 navigate('/welcome')
                 setTimeout(() => navigateTo('/'), 3000);
 
