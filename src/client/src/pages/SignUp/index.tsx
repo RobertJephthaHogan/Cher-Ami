@@ -34,6 +34,7 @@ export default function SignUp() {
             'lastOrBusinessName': data?.lastOrBusinessName,
             'receiveToEmail': data?.email,
             'sendFromEmail': '',
+            'sendFromEmailPassword': '',
             'receiveToPhone': '',
             'sendFromPhone': '',
             'password': data?.password,
