@@ -8,6 +8,7 @@ import { Input } from 'antd'
 import { userService } from '../../services'
 import userActions from '../../redux/actions/user'
 import { store } from '../../redux/store'
+import { openNotification } from '../../helpers/notifications'
 
 
 export default function Settings() {
@@ -44,6 +45,10 @@ export default function Settings() {
                 .updateUser(workingObj?._id, workingObj)
                 .then((resp:any) => {
                     store.dispatch(userActions.updateUserData(resp?.data?.data))
+                    openNotification(
+                        resp?.data?.response_type,
+                        `User Updated Successfully`
+                    )
                 })
                 .catch((error: any) => {
                     console.error('error', error)
