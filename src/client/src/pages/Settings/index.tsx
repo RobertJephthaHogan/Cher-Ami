@@ -5,6 +5,9 @@ import EditOutlined from '@ant-design/icons/EditOutlined'
 import SaveOutlined from '@ant-design/icons/SaveOutlined'
 import { useSelector } from 'react-redux'
 import { Input } from 'antd'
+import { userService } from '../../services'
+import userActions from '../../redux/actions/user'
+import { store } from '../../redux/store'
 
 
 export default function Settings() {
@@ -32,8 +35,21 @@ export default function Settings() {
         }
 
         function onSave() {
-            console.log('alteredFields', alteredFields)
-            console.log('currentUser', currentUser)
+
+            const workingObj = {...currentUser}
+            const entries = Object.entries(alteredFields)
+            workingObj[entries?.[0]?.[0]] = entries?.[0]?.[1]
+
+            console.log('workingObj', workingObj)
+
+            userService
+                .updateUser(workingObj?._id, workingObj)
+                .then((resp:any) => {
+                    console.log('resp', resp)
+                })
+                .catch((error: any) => {
+                    console.log('error', error)
+                })
 
             setEditingMode(false)
         }
