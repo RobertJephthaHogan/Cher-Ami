@@ -20,10 +20,6 @@ export default function SignUp() {
         setUserInfo(workingObj)
     }
 
-    function navigateTo(to: any) {
-        navigate(to)
-    }
-
     function onFinish(data: any) {
 
         const user_to_add_obj = {
@@ -45,7 +41,7 @@ export default function SignUp() {
 
             if (resp?.status === 200) {
                 navigate('/welcome')
-                setTimeout(() => navigateTo('/'), 3000);
+                setTimeout(() => navigate('/login'), 3000);
 
             } else {
                 console.log('error creating new user!')
