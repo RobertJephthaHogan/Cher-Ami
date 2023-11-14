@@ -9,6 +9,7 @@ class User(Document):
     firstName: str = Field(...)
     lastOrBusinessName: str = Field(...)
     sendFromEmail: Union[EmailStr, str] = Field(...)
+    sendFromEmailPassword: str = Field(...)
     receiveToEmail: EmailStr = Field(...)
     sendFromPhone: str = Field(...)
     receiveToPhone: str = Field(...)
@@ -25,6 +26,7 @@ class User(Document):
                 "firstName": "John",
                 "lastOrBusinessName": "Doe",
                 "sendFromEmail": "john.sender@user.dev",
+                "sendFromEmailPassword": "password",
                 "receiveToEmail": "John@user.dev",
                 "sendFromPhone": "4041111111",
                 "receiveToPhone": "4042222222",
@@ -49,6 +51,7 @@ class UserData(BaseModel):
     firstName: str = Field(...)
     lastOrBusinessName: str = Field(...)
     sendFromEmail: Union[EmailStr, str] = Field(...)
+    sendFromEmailPassword: str = Field(...)
     receiveToEmail: EmailStr = Field(...)
     sendFromPhone: str = Field(...)
     receiveToPhone: str = Field(...)
@@ -62,6 +65,7 @@ class UserData(BaseModel):
                 "firstName": "John",
                 "lastOrBusinessName": "Doe",
                 "sendFromEmail": "john.sender@user.dev",
+                "sendFromEmailPassword": "password",
                 "receiveToEmail": "John@user.dev",
                 "sendFromPhone": "4041111111",
                 "receiveToPhone": "4042222222",
@@ -76,6 +80,7 @@ class UpdateUserModel(BaseModel):
     firstName: Optional[str]
     lastOrBusinessName: Optional[str]
     sendFromEmail: Optional[Union[EmailStr, str]]
+    sendFromEmailPassword: Optional[str]
     receiveToEmail: Optional[EmailStr]
     sendFromPhone: Optional[str]
     receiveToPhone: Optional[str]
@@ -89,6 +94,7 @@ class UpdateUserModel(BaseModel):
                 "firstName": "John",
                 "lastOrBusinessName": "Doe",
                 "sendFromEmail": "john.sender@user.dev",
+                "sendFromEmailPassword": "password",
                 "receiveToEmail": "John@user.dev",
                 "sendFromPhone": "4041111111",
                 "receiveToPhone": "4042222222",
