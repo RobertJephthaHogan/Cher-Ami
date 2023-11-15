@@ -6,6 +6,7 @@ import UploadOutlined from '@ant-design/icons/UploadOutlined'
 
 export default function Contacts() {
 
+    const [batchAddModalOpen, setBatchAddModalOpen] = useState<boolean>(false)
     const [singleAddModalOpen, setSingleAddModalOpen] = useState<boolean>(false)
 
     return (
@@ -26,7 +27,10 @@ export default function Contacts() {
                         </span>
                     </div>
                     <div>
-                        <Button className='upload-button'>
+                        <Button 
+                            className='upload-button'
+                            onClick={() => setBatchAddModalOpen(true)}
+                        >
                             <UploadOutlined/>
                         </Button>
                         <Button 
@@ -37,7 +41,26 @@ export default function Contacts() {
                         </Button>
                     </div>
                 </div>
-                right
+                <div className='button-bar'>
+                    <Button>
+                        Download to CSV
+                    </Button>
+                    <Button>
+                        Send Email 
+                    </Button>
+                    <Button>
+                        Send Text 
+                    </Button>
+                    <Button>
+                        Send Phone Call 
+                    </Button>
+                </div>
+                <div className='search-bar-container'>
+                    Search Bar
+                </div>
+                <div className='table-container'>
+                    Table Container
+                </div>
             </div>
             
             <Modal 
@@ -47,6 +70,15 @@ export default function Contacts() {
                 onCancel={() => setSingleAddModalOpen(false)}
             >
                 Add Contact Here
+            </Modal>
+
+            <Modal 
+                title="Add Multiple Contacts" 
+                open={batchAddModalOpen} 
+                onOk={() => setBatchAddModalOpen(false)} 
+                onCancel={() => setSingleAddModalOpen(false)}
+            >
+                Add Multiple Contacts from upload here
             </Modal>
 
         </div>

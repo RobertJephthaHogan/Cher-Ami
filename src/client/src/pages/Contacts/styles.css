@@ -37,3 +37,9 @@
 .upload-button {
     margin-right: 15px;
 }
+
+.button-bar {
+    width: 100%;
+    background-color: #D9D9D9;
+    margin: 20px 0px;
+}
