@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import './styles.css'
 import { Button, DatePicker, Empty, Input } from 'antd'
 import PlusOutlined from '@ant-design/icons/PlusOutlined'
+import { ObjectID } from 'bson';
+import { useSelector } from 'react-redux';
+import { contactService } from '../../services/contact.service';
 
 
 const { TextArea } = Input;
@@ -14,6 +17,7 @@ interface ContactFormProps {
 
 export default function ContactForm(props: ContactFormProps) {
 
+    const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const [formValues, setFormValues] = useState<any>({
         tags: []
     })
@@ -33,6 +37,20 @@ export default function ContactForm(props: ContactFormProps) {
 
     function onFinish() {
         console.log('formValues', formValues)
+        
+        const dto = {...formValues}
+        dto['id'] = new ObjectID().toString()
+        dto['createdByUserId'] = currentUser?._id
+
+        console.log('dto', dto)
+
+        contactService.createContact(dto)
+            .then((resp:any) => {
+                console.log('resp', resp)
+            })
+            .catch((e: any) => {
+                console.log('error', e)
+            })
 
         //props.onCancel()
     }
