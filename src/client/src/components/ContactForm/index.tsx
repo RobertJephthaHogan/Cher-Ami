@@ -26,7 +26,6 @@ export default function ContactForm(props: ContactFormProps) {
     function handleFieldChange(field: string, value: any) {
         const workingObj = {...formValues}
         workingObj[field] = value
-        console.log('workingObj', workingObj)
         setFormValues(workingObj)
     }
 
@@ -36,13 +35,10 @@ export default function ContactForm(props: ContactFormProps) {
     }
 
     function onFinish() {
-        console.log('formValues', formValues)
         
         const dto = {...formValues}
         dto['id'] = new ObjectID().toString()
         dto['createdByUserId'] = currentUser?._id
-
-        console.log('dto', dto)
 
         contactService.createContact(dto)
             .then((resp:any) => {
