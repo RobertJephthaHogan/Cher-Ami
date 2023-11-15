@@ -7,7 +7,12 @@ import PlusOutlined from '@ant-design/icons/PlusOutlined'
 const { TextArea } = Input;
 
 
-export default function ContactForm() {
+interface ContactFormProps {
+    closeParent?: any
+    onCancel?: any
+}
+
+export default function ContactForm(props: ContactFormProps) {
 
     const [formValues, setFormValues] = useState<any>({
         tags: []
@@ -19,6 +24,17 @@ export default function ContactForm() {
         workingObj[field] = value
         console.log('workingObj', workingObj)
         setFormValues(workingObj)
+    }
+
+    function onCancel() {
+        setFormValues({tags: []})
+        props.onCancel()
+    }
+
+    function onFinish() {
+        console.log('formValues', formValues)
+
+        //props.onCancel()
     }
 
     interface TagInputProps {
@@ -106,6 +122,7 @@ export default function ContactForm() {
         )
     }
 
+
     return (
         <div className='contact-form'>
             <div className='contact-form-row'>
@@ -191,10 +208,16 @@ export default function ContactForm() {
                 </div>
             </div>
             <div className='btm-button-row'>
-                <Button className='cancel-btn'>
+                <Button 
+                    className='cancel-btn'
+                    onClick={onCancel}
+                >
                     Cancel
                 </Button>
-                <Button type='primary'>
+                <Button 
+                    type='primary'
+                    onClick={onFinish}
+                >
                     OK
                 </Button>
             </div>

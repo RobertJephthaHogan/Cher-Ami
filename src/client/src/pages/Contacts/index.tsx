@@ -73,7 +73,10 @@ export default function Contacts() {
                 onOk={() => setSingleAddModalOpen(false)} 
                 onCancel={() => setSingleAddModalOpen(false)}
             >
-                <ContactForm/>
+                <ContactForm
+                    closeParent={() => setSingleAddModalOpen(false)}
+                    onCancel={() => setSingleAddModalOpen(false)}
+                />
             </Modal>
 
             <Modal 
