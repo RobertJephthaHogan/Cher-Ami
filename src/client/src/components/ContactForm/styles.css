@@ -1,0 +1,18 @@
+
+
+.field-label-text {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.contact-form-row {
+    margin-top: 20px;
+}
+
+.field-label-input {
+    margin-top: 5px;
+}
+
+.datepicker-field {
+    width: 100%;
+}

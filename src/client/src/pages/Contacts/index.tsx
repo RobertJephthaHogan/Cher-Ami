@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './styles.css'
 import { Button, Input, Modal } from 'antd'
 import UploadOutlined from '@ant-design/icons/UploadOutlined'
+import ContactForm from '../../components/ContactForm'
 
 
 export default function Contacts() {
@@ -71,7 +72,7 @@ export default function Contacts() {
                 onOk={() => setSingleAddModalOpen(false)} 
                 onCancel={() => setSingleAddModalOpen(false)}
             >
-                Add Contact Here
+                <ContactForm/>
             </Modal>
 
             <Modal 
