@@ -1,0 +1,10 @@
+
+
+.contacts-page {
+    display: flex;
+}
+
+.cp-left-panel {
+    background-color: #F3F3F3;
+    width: 200px;
+}
