@@ -69,6 +69,7 @@ export default function Contacts() {
             <Modal 
                 title="Add Contact" 
                 open={singleAddModalOpen} 
+                footer={null}
                 onOk={() => setSingleAddModalOpen(false)} 
                 onCancel={() => setSingleAddModalOpen(false)}
             >

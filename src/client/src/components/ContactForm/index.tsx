@@ -190,6 +190,14 @@ export default function ContactForm() {
                     />
                 </div>
             </div>
+            <div className='btm-button-row'>
+                <Button className='cancel-btn'>
+                    Cancel
+                </Button>
+                <Button type='primary'>
+                    OK
+                </Button>
+            </div>
         </div>
     )
 }

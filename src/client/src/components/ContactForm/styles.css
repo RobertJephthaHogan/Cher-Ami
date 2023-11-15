@@ -47,3 +47,13 @@
 .tag-input-field {
     margin-right: 10px;
 }
+
+.btm-button-row {
+    margin-top: 20px;
+    display: flex;
+    justify-content: end;
+}
+
+.cancel-btn {
+    margin-right: 10px
+}
