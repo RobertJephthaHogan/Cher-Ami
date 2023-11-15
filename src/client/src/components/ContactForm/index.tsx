@@ -5,6 +5,7 @@ import PlusOutlined from '@ant-design/icons/PlusOutlined'
 import { ObjectID } from 'bson';
 import { useSelector } from 'react-redux';
 import { contactService } from '../../services/contact.service';
+import { openNotification } from '../../helpers/notifications';
 
 
 const { TextArea } = Input;
@@ -43,12 +44,16 @@ export default function ContactForm(props: ContactFormProps) {
         contactService.createContact(dto)
             .then((resp:any) => {
                 console.log('resp', resp)
+                openNotification(
+                    resp?.data?.response_type,
+                    `Contact Created Successfully`
+                )
             })
             .catch((e: any) => {
                 console.log('error', e)
             })
 
-        //props.onCancel()
+        props.onCancel()
     }
 
     interface TagInputProps {
