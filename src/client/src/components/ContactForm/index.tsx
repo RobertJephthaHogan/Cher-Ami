@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './styles.css'
 import { DatePicker, Input } from 'antd'
 
 
+const { TextArea } = Input;
+
+
 export default function ContactForm() {
+
+    const [formValues, setFormValues] = useState<any>()
+
+
+    function handleFieldChange(field: string, value: any) {
+        const workingObj = {...formValues}
+        workingObj[field] = value
+        console.log('workingObj', workingObj)
+        setFormValues(workingObj)
+    }
+
 
     return (
         <div>
@@ -12,7 +26,10 @@ export default function ContactForm() {
                     First Name
                 </span>
                 <div className='field-label-input'>
-                    <Input/>
+                    <Input
+                        placeholder='First Name'
+                        onChange={(e) => handleFieldChange('firstName', e?.target?.value)}
+                    />
                 </div>
             </div>
             <div className='contact-form-row'>
@@ -20,7 +37,10 @@ export default function ContactForm() {
                     Last or Business Name
                 </span>
                 <div className='field-label-input'>
-                    <Input/>
+                    <Input
+                        placeholder='Last or Business Name'
+                        onChange={(e) => handleFieldChange('lastOrBusinessName', e?.target?.value)}
+                    />
                 </div>
             </div>
             <div className='contact-form-row'>
@@ -28,7 +48,10 @@ export default function ContactForm() {
                     Email Address
                 </span>
                 <div className='field-label-input'>
-                    <Input/>
+                    <Input
+                        placeholder='Email Address'
+                        onChange={(e) => handleFieldChange('email', e?.target?.value)}
+                    />
                 </div>
             </div>
             <div className='contact-form-row'>
@@ -36,7 +59,10 @@ export default function ContactForm() {
                     Phone Number
                 </span>
                 <div className='field-label-input'>
-                    <Input/>
+                    <Input
+                        placeholder='Phone Number'
+                        onChange={(e) => handleFieldChange('phone', e?.target?.value)}
+                    />
                 </div>
             </div>
             <div className='contact-form-row'>
@@ -44,7 +70,14 @@ export default function ContactForm() {
                     DOB
                 </span>
                 <div className='field-label-input'>
-                    <DatePicker className='datepicker-field'/>
+                    <DatePicker 
+                        className='datepicker-field'
+                        onChange={
+                            (v) => handleFieldChange(
+                                'dob', v?.format('YYYY-MM-DD HH:mm:ss')
+                            )
+                        } 
+                    />
                 </div>
             </div>
             <div className='contact-form-row'>
@@ -52,7 +85,11 @@ export default function ContactForm() {
                     Notes
                 </span>
                 <div className='field-label-input'>
-                    <Input/>
+                    <TextArea 
+                        rows={4}
+                        placeholder='Notes'
+                        onChange={(e) => handleFieldChange('notes', e?.target?.value)}
+                    />
                 </div>
             </div>
             <div className='contact-form-row'>
