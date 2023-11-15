@@ -16,3 +16,12 @@
 .datepicker-field {
     width: 100%;
 }
+
+.add-tag-btn {
+    margin-top: 5px;
+}
+
+.contact-form {
+    max-height: 500px;
+    overflow-y: auto;
+}

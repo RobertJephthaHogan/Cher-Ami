@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './styles.css'
-import { DatePicker, Input } from 'antd'
+import { Button, DatePicker, Empty, Input } from 'antd'
+import PlusOutlined from '@ant-design/icons/PlusOutlined'
 
 
 const { TextArea } = Input;
@@ -8,7 +9,9 @@ const { TextArea } = Input;
 
 export default function ContactForm() {
 
-    const [formValues, setFormValues] = useState<any>()
+    const [formValues, setFormValues] = useState<any>({
+        tags: []
+    })
 
 
     function handleFieldChange(field: string, value: any) {
@@ -18,9 +21,69 @@ export default function ContactForm() {
         setFormValues(workingObj)
     }
 
+    interface TagInputProps {
+        tags?: any
+        handleFieldChange?: any
+    }
+
+    function TagInput(props: TagInputProps) {
+
+        const [inputMode, setInputMode] = useState<boolean>(false)
+        const [activeValue, setActiveValue] = useState<any>('')
+
+        function addTagToFormValues() {
+            const existingTags = [...props?.tags]
+            const newTags = [...existingTags, activeValue]
+            console.log('activeValue', activeValue)
+            console.log('newTags', newTags)
+            props.handleFieldChange('tags', newTags)
+        }
+
+        return (
+            <div>
+                {
+                    inputMode
+                    ? null
+                    : (
+                        <div>
+                            {
+                                props?.tags?.length
+                                ? "has tags"
+                                : <Empty/>
+                            }
+                        </div>
+                    )
+                }
+                
+                <div>
+                    {
+                        inputMode
+                        ? (
+                            <div>
+                                <Input 
+                                    placeholder='Add Tag'
+                                    onChange={(e) => setActiveValue(e?.target?.value)}
+                                />
+                                <Button onClick={() => addTagToFormValues()}>
+                                    <PlusOutlined/>
+                                </Button>
+                            </div>
+                        )
+                        : null
+                    }
+                </div>
+                <Button 
+                    className='add-tag-btn'
+                    onClick={() => setInputMode(true)}
+                >
+                    Add Tag <PlusOutlined/>
+                </Button>
+            </div>
+        )
+    }
 
     return (
-        <div>
+        <div className='contact-form'>
             <div className='contact-form-row'>
                 <span className='field-label-text'>
                     First Name
@@ -97,7 +160,10 @@ export default function ContactForm() {
                     Tags
                 </span>
                 <div className='field-label-input'>
-                    *Add Tags Input
+                    <TagInput
+                        tags={formValues?.tags}
+                        handleFieldChange={handleFieldChange}
+                    />
                 </div>
             </div>
         </div>
