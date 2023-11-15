@@ -25,3 +25,11 @@
     max-height: 500px;
     overflow-y: auto;
 }
+
+.contact-tag {
+    border: 1px solid #bbbbbb;
+    background-color: #eeeeee;
+    width: fit-content;
+    padding: 0px 10px;
+    border-radius: 5px;
+}

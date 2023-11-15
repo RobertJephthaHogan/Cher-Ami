@@ -39,6 +39,32 @@ export default function ContactForm() {
             props.handleFieldChange('tags', newTags)
         }
 
+        interface TagRendererProps {
+            tags?: any
+        }
+
+        function TagRenderer(props: TagRendererProps) {
+
+            console.log('props.tags', props.tags)
+
+            const tagNodes = props.tags?.map((tag: any) => {
+                return (
+                    <div 
+                        key={`${tag}`}
+                        className='contact-tag'
+                    >
+                        {tag}
+                    </div>
+                )
+            })
+
+            return (
+                <div>
+                    {tagNodes}
+                </div>
+            )
+        }
+
         return (
             <div>
                 {
@@ -48,7 +74,7 @@ export default function ContactForm() {
                         <div>
                             {
                                 props?.tags?.length
-                                ? "has tags"
+                                ? <TagRenderer tags={props?.tags}/>
                                 : <Empty/>
                             }
                         </div>
