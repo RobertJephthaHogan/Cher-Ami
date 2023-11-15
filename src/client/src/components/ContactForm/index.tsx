@@ -34,8 +34,6 @@ export default function ContactForm() {
         function addTagToFormValues() {
             const existingTags = [...props?.tags]
             const newTags = [...existingTags, activeValue]
-            console.log('activeValue', activeValue)
-            console.log('newTags', newTags)
             props.handleFieldChange('tags', newTags)
         }
 
@@ -44,8 +42,6 @@ export default function ContactForm() {
         }
 
         function TagRenderer(props: TagRendererProps) {
-
-            console.log('props.tags', props.tags)
 
             const tagNodes = props.tags?.map((tag: any) => {
                 return (
@@ -59,7 +55,7 @@ export default function ContactForm() {
             })
 
             return (
-                <div>
+                <div className='tag-node-container'>
                     {tagNodes}
                 </div>
             )
@@ -67,28 +63,23 @@ export default function ContactForm() {
 
         return (
             <div>
-                {
-                    inputMode
-                    ? null
-                    : (
-                        <div>
-                            {
-                                props?.tags?.length
-                                ? <TagRenderer tags={props?.tags}/>
-                                : <Empty/>
-                            }
-                        </div>
-                    )
-                }
+                <div>
+                    {
+                        props?.tags?.length
+                        ? <TagRenderer tags={props?.tags}/>
+                        : <Empty/>
+                    }
+                </div>
                 
                 <div>
                     {
                         inputMode
                         ? (
-                            <div>
+                            <div className='tag-input-row'>
                                 <Input 
                                     placeholder='Add Tag'
                                     onChange={(e) => setActiveValue(e?.target?.value)}
+                                    className='tag-input-field'
                                 />
                                 <Button onClick={() => addTagToFormValues()}>
                                     <PlusOutlined/>
@@ -98,12 +89,19 @@ export default function ContactForm() {
                         : null
                     }
                 </div>
-                <Button 
-                    className='add-tag-btn'
-                    onClick={() => setInputMode(true)}
-                >
-                    Add Tag <PlusOutlined/>
-                </Button>
+                
+                {
+                    inputMode
+                    ? null
+                    : (
+                        <Button 
+                            className='add-tag-btn'
+                            onClick={() => setInputMode(true)}
+                        >
+                            Add Tag <PlusOutlined/>
+                        </Button>
+                    )
+                }
             </div>
         )
     }
