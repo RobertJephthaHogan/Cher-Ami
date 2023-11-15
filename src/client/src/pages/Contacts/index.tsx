@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './styles.css'
-import { Button, Modal } from 'antd'
+import { Button, Input, Modal } from 'antd'
 import UploadOutlined from '@ant-design/icons/UploadOutlined'
 
 
@@ -56,7 +56,9 @@ export default function Contacts() {
                     </Button>
                 </div>
                 <div className='search-bar-container'>
-                    Search Bar
+                    <Input
+                        placeholder='Search Contacts...'
+                    />
                 </div>
                 <div className='table-container'>
                     Table Container
