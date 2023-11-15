@@ -1,5 +1,7 @@
 import React from 'react'
 import './styles.css'
+import { Button } from 'antd'
+import UploadOutlined from '@ant-design/icons/UploadOutlined'
 
 
 export default function Contacts() {
@@ -22,7 +24,12 @@ export default function Contacts() {
                         </span>
                     </div>
                     <div>
-                        Buttons
+                        <Button className='upload-button'>
+                            <UploadOutlined/>
+                        </Button>
+                        <Button type='primary'>
+                            Add Contact
+                        </Button>
                     </div>
                 </div>
                 right
