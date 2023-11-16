@@ -1,14 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles.css'
 import { Button, Input, Modal } from 'antd'
 import UploadOutlined from '@ant-design/icons/UploadOutlined'
 import ContactForm from '../../components/ContactForm'
+import { useSelector } from 'react-redux'
+import { store } from '../../redux/store'
+import contactActions from '../../redux/actions/contact'
 
 
 export default function Contacts() {
 
+    const currentUser = useSelector((state: any) => state.user?.data ?? [])
+    const userContacts = useSelector((state: any) => state.contacts?.queryResult ?? [])
     const [batchAddModalOpen, setBatchAddModalOpen] = useState<boolean>(false)
     const [singleAddModalOpen, setSingleAddModalOpen] = useState<boolean>(false)
+
+    useEffect(() => {
+        setComponentData()
+    }, [])
+
+    function setComponentData() {
+        store.dispatch(contactActions.setContacts(currentUser?._id))
+    }
 
     return (
         <div className='contacts-page'>

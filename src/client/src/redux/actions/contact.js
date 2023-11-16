@@ -5,7 +5,7 @@ import * as types from '../types'
 
 
 const contactActions = {
-    setContactss: (user_id) => {
+    setContacts: (user_id) => {
         return async (dispatch) => {
             return new Promise(async function (resolve, reject) {
                 contactService
