@@ -10,4 +10,5 @@ export default {
         theme: 'light',
     },
     widgets: {},
+    contacts: []
 }
