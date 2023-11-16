@@ -10,9 +10,23 @@ export default function ContactListUploader() {
     const [uploadedFile, setUploadedFile] = useState<any>(null)
 
 
+    
+  const customRequest = ({ file, onSuccess, onError }: any) => {
+    console.log('file', file)
+    console.log('onSuccess', onSuccess)
+    console.log('onError', onError)
+    // You can perform additional actions here if needed
+    setUploadedFile(file);
+
+    // Call the onSuccess or onError function based on the result
+    // For simplicity, we always call onSuccess in this example
+    onSuccess();
+  };
+
     const props: UploadProps = {
         name: 'file',
-        action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
+        customRequest,
+        //action: undefined,
         headers: {
           authorization: 'authorization-text',
         },
@@ -26,7 +40,7 @@ export default function ContactListUploader() {
             message.error(`${info.file.name} file upload failed.`);
           }
         },
-      };
+    };
 
     return (
         <div>

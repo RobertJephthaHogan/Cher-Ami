@@ -94,7 +94,7 @@ export default function Contacts() {
             </Modal>
 
             <Modal 
-                title="Add Multiple Contacts" 
+                title="Upload Contact List" 
                 open={batchAddModalOpen} 
                 onOk={() => setBatchAddModalOpen(false)} 
                 onCancel={() => setBatchAddModalOpen(false)}
