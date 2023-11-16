@@ -18,3 +18,8 @@ export const HIDE_LOADING = 'HIDE_LOADING'
 export const SHOW_ALERT = 'SHOW_ALERT'
 export const HIDE_ALERT = 'HIDE_ALERT'
 
+// Contacts
+export const SET_CONTACTS = 'SET_CONTACTS'
+export const ADD_CONTACT = 'ADD_CONTACT'
+export const DELETE_CONTACT = 'DELETE_CONTACT'
+export const UPDATE_CONTACT = 'UPDATE_CONTACT'

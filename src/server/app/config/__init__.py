@@ -7,6 +7,7 @@ from pydantic import BaseSettings
 
 from app.models.User import User
 from app.models.Email import Email
+from app.models.Contact import Contact
 
 
 # Load the environment variables
@@ -35,5 +36,6 @@ async def initiate_database():
     await init_beanie(database=client.cher_ami,
                         document_models=[
                                             User,
-                                            Email
+                                            Email,
+                                            Contact
                                         ])

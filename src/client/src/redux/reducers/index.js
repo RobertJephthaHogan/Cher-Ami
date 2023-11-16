@@ -3,12 +3,14 @@ import userReducer from './user'
 import settingsReducer from './settings'
 import initialState from '../initialState'
 import * as types from '../types'
+import contactReducer from './contact'
 //import widgetReducer from './widget'
 
 
 const appReducers = combineReducers({
   user:  userReducer,
   settings: settingsReducer,
+  contacts: contactReducer,
   //widgets: widgetReducer
 })
 
