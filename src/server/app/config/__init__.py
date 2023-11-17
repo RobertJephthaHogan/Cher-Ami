@@ -8,6 +8,7 @@ from pydantic import BaseSettings
 from app.models.User import User
 from app.models.Email import Email
 from app.models.Contact import Contact
+from app.models.ContactList import ContactList
 
 
 # Load the environment variables
@@ -37,5 +38,6 @@ async def initiate_database():
                         document_models=[
                                             User,
                                             Email,
-                                            Contact
+                                            Contact,
+                                            ContactList
                                         ])

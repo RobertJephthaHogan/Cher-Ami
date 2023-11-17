@@ -1,6 +1,6 @@
 import datetime
 from typing import Optional, Any, Union
-from fastapi import UploadFile
+from fastapi import File, UploadFile
 from beanie import Document
 from pydantic import BaseModel, EmailStr, Field
 
@@ -8,7 +8,7 @@ from pydantic import BaseModel, EmailStr, Field
 class ContactList(Document):
     id: Optional[str] = Field(...)
     name: str = Field(...)
-    file: UploadFile = Field(...)
+    file: Union[UploadFile, dict] = File(...)
     createdByUserId: str = Field(...)
     
     

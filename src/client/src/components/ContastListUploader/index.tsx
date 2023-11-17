@@ -5,6 +5,8 @@ import type { UploadProps } from 'antd';
 import { useSelector } from 'react-redux';
 import { ObjectID } from 'bson';
 import { contactListService } from '../../services/contactList.service';
+import axios from 'axios';
+import * as XLSX from "xlsx";
 
 
 
@@ -15,74 +17,76 @@ export default function ContactListUploader() {
 
 
     
-  const customRequest = ({ file, onSuccess, onError }: any) => {
-    console.log('file', file)
-    console.log('onSuccess', onSuccess)
-    console.log('onError', onError)
-    // You can perform additional actions here if needed
-    setUploadedFile(file);
+    const customRequest = async ({ file, onSuccess, onError }: any) => {
+        console.log('file', file)
+        console.log('type', file?.type)
 
-    // Call the onSuccess or onError function based on the result
-    // For simplicity, we always call onSuccess in this example
-    onSuccess();
+        setUploadedFile(file);
+        onSuccess();
 
-    const formData = new FormData();
-    formData.append('file', file as File);
+        if (file?.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+            // TODO: HANDLE SUBMISSION FROM EXCEL FILE TYPE
+        }
 
-    console.log('formData', formData)
+        const dto = {
+            id: new ObjectID().toString(),
+            name: 'test',
+            file: file,
+            createdByUserId: currentUser?._id,
+        }
 
-    if (file instanceof File) {
-        formData.append('file', file);
-        console.log("yes")
-    } else {
-        console.log("no")
-    }
+        console.log('dto', dto)
 
-    const dto = {
-        id: new ObjectID().toString(),
-        name: 'test',
-        file: file,
-        createdByUserId: currentUser?._id,
-    }
+        handleFileUpload(file)
 
-    console.log('dto', dto)
+        // contactListService.createContactList(dto)
+        //     .then((resp:any) => {
+        //         console.log('resp', resp)
+        //     })
+        //     .catch((er: any) => {
+        //         console.log('er', er)
+        //     })
 
-    contactListService.createContactList(dto)
-        .then((resp:any) => {
-            console.log('resp', resp)
-        })
-        .catch((er: any) => {
-            console.log('er', er)
-        })
-
-    console.log('formData', formData)
-
-
-  };
-
-    const props: UploadProps = {
-        name: 'file',
-        customRequest,
-        //action: undefined,
-        headers: {
-          authorization: 'authorization-text',
-        },
-        onChange(info) {
-          if (info.file.status !== 'uploading') {
-            console.log(info.file, info.fileList);
-          }
-          if (info.file.status === 'done') {
-            message.success(`${info.file.name} file uploaded successfully`);
-          } else if (info.file.status === 'error') {
-            message.error(`${info.file.name} file upload failed.`);
-          }
-        },
     };
+
+    const handleFileUpload = (file: any) => {
+        const reader = new FileReader();
+        reader.readAsBinaryString(file);
+        reader.onload = (e) => {
+            console.log('e', e)
+            const data = e?.target?.result;
+            const workbook = XLSX.read(data, { type: "binary", cellDates: true  });
+            const sheetName = workbook.SheetNames[0];
+            const sheet = workbook.Sheets[sheetName];
+            const parsedData = XLSX.utils.sheet_to_json(sheet);
+            console.log("parsedData", parsedData)
+            //setData(parsedData);
+        };
+    }
+
+    function handleChange(info: any) {
+
+        if (info.file.status !== 'uploading') {
+            console.log(info.file, info.fileList);
+        }
+        if (info.file.status === 'done') {
+            message.success(`${info.file.name} file uploaded successfully`);
+        } else if (info.file.status === 'error') {
+            message.error(`${info.file.name} file upload failed.`);
+        }
+
+    }
+
 
     return (
         <div>
             <div className='uploader-row'>
-                <Upload {...props}>
+                <Upload 
+                    onChange={handleChange}
+                    name='file'
+                    headers={{authorization: 'authorization-text',}}
+                    customRequest={customRequest}
+                >
                     <Button icon={<UploadOutlined />}>Click to Upload</Button>
                 </Upload>
             </div>
