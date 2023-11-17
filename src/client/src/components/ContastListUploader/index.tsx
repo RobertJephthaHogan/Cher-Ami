@@ -14,10 +14,10 @@ export default function ContactListUploader() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const [uploadedFile, setUploadedFile] = useState<any>(null)
-
+    const [parsedFileData, setParsedFileData] = useState<any>()
 
     
-    const customRequest = async ({ file, onSuccess, onError }: any) => {
+    const setFile = async ({ file, onSuccess, onError }: any) => {
         console.log('file', file)
         console.log('type', file?.type)
 
@@ -26,30 +26,12 @@ export default function ContactListUploader() {
 
         if (file?.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
             // TODO: HANDLE SUBMISSION FROM EXCEL FILE TYPE
+            handleXlsxFileUpload(file)
         }
-
-        const dto = {
-            id: new ObjectID().toString(),
-            name: 'test',
-            file: file,
-            createdByUserId: currentUser?._id,
-        }
-
-        console.log('dto', dto)
-
-        handleFileUpload(file)
-
-        // contactListService.createContactList(dto)
-        //     .then((resp:any) => {
-        //         console.log('resp', resp)
-        //     })
-        //     .catch((er: any) => {
-        //         console.log('er', er)
-        //     })
 
     };
 
-    const handleFileUpload = (file: any) => {
+    const handleXlsxFileUpload = (file: any) => {
         const reader = new FileReader();
         reader.readAsBinaryString(file);
         reader.onload = (e) => {
@@ -60,11 +42,11 @@ export default function ContactListUploader() {
             const sheet = workbook.Sheets[sheetName];
             const parsedData = XLSX.utils.sheet_to_json(sheet);
             console.log("parsedData", parsedData)
-            //setData(parsedData);
+            setParsedFileData(parsedData)
         };
     }
 
-    function handleChange(info: any) {
+    function handleFileChange(info: any) {
 
         if (info.file.status !== 'uploading') {
             console.log(info.file, info.fileList);
@@ -77,15 +59,35 @@ export default function ContactListUploader() {
 
     }
 
+    function onFinish() {
+
+        const dto = {
+            id: new ObjectID().toString(),
+            name: 'test',
+            file: uploadedFile,
+            createdByUserId: currentUser?._id,
+        }
+
+        console.log('dto', dto)
+
+        // contactListService.createContactList(dto)
+        //     .then((resp:any) => {
+        //         console.log('resp', resp)
+        //     })
+        //     .catch((er: any) => {
+        //         console.log('er', er)
+        //     })
+    }
+
 
     return (
         <div>
             <div className='uploader-row'>
                 <Upload 
-                    onChange={handleChange}
+                    onChange={handleFileChange}
                     name='file'
                     headers={{authorization: 'authorization-text',}}
-                    customRequest={customRequest}
+                    customRequest={setFile}
                 >
                     <Button icon={<UploadOutlined />}>Click to Upload</Button>
                 </Upload>
