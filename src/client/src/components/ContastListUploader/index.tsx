@@ -2,11 +2,15 @@ import { Button, Empty, Upload, message } from 'antd'
 import React, { useState } from 'react'
 import UploadOutlined from '@ant-design/icons/UploadOutlined'
 import type { UploadProps } from 'antd';
+import { useSelector } from 'react-redux';
+import { ObjectID } from 'bson';
+import { contactListService } from '../../services/contactList.service';
 
 
 
 export default function ContactListUploader() {
 
+    const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const [uploadedFile, setUploadedFile] = useState<any>(null)
 
 
@@ -21,6 +25,39 @@ export default function ContactListUploader() {
     // Call the onSuccess or onError function based on the result
     // For simplicity, we always call onSuccess in this example
     onSuccess();
+
+    const formData = new FormData();
+    formData.append('file', file as File);
+
+    console.log('formData', formData)
+
+    if (file instanceof File) {
+        formData.append('file', file);
+        console.log("yes")
+    } else {
+        console.log("no")
+    }
+
+    const dto = {
+        id: new ObjectID().toString(),
+        name: 'test',
+        file: file,
+        createdByUserId: currentUser?._id,
+    }
+
+    console.log('dto', dto)
+
+    contactListService.createContactList(dto)
+        .then((resp:any) => {
+            console.log('resp', resp)
+        })
+        .catch((er: any) => {
+            console.log('er', er)
+        })
+
+    console.log('formData', formData)
+
+
   };
 
     const props: UploadProps = {
