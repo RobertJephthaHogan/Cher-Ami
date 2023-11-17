@@ -26,7 +26,7 @@ class ContactList(Document):
         }
 
 
-class UpdateContactModel(BaseModel):
+class UpdateContactListModel(BaseModel):
     id: Optional[str]
     name: Optional[str]
     file: Optional[Union[UploadFile, str]]
