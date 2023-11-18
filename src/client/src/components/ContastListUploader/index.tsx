@@ -1,4 +1,4 @@
-import { Button, Empty, Upload, message } from 'antd'
+import { Button, Empty, Input, Upload, message } from 'antd'
 import React, { useState } from 'react'
 import UploadOutlined from '@ant-design/icons/UploadOutlined'
 import type { UploadProps } from 'antd';
@@ -7,6 +7,7 @@ import { ObjectID } from 'bson';
 import { contactListService } from '../../services/contactList.service';
 import axios from 'axios';
 import * as XLSX from "xlsx";
+import './styles.css'
 
 
 
@@ -14,6 +15,7 @@ export default function ContactListUploader() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const [uploadedFile, setUploadedFile] = useState<any>(null)
+    const [fileName, setFileName] = useState<any>('')
     const [parsedFileData, setParsedFileData] = useState<any>()
 
     
@@ -63,25 +65,39 @@ export default function ContactListUploader() {
 
         const dto = {
             id: new ObjectID().toString(),
-            name: 'test',
-            file: uploadedFile,
+            name: fileName,
+            file: parsedFileData,
             createdByUserId: currentUser?._id,
         }
 
         console.log('dto', dto)
 
-        // contactListService.createContactList(dto)
-        //     .then((resp:any) => {
-        //         console.log('resp', resp)
-        //     })
-        //     .catch((er: any) => {
-        //         console.log('er', er)
-        //     })
+        contactListService.createContactList(dto)
+            .then((resp:any) => {
+                console.log('resp', resp)
+            })
+            .catch((er: any) => {
+                console.log('er', er)
+            })
     }
 
 
     return (
         <div>
+            <div className='name-input-row'>
+                <div>
+                    <span>
+                        Contact List Name
+                    </span>
+                </div>
+                <div>
+                    <Input
+                        placeholder='Contact List Name'
+                        value={fileName}
+                        onChange={(e) => setFileName(e?.target?.value)}
+                    />
+                </div>
+            </div>
             <div className='uploader-row'>
                 <Upload 
                     onChange={handleFileChange}
@@ -104,6 +120,13 @@ export default function ContactListUploader() {
                         }
                     />
                 }
+            </div>
+            <div className='submission-row'>
+                <Button
+                    onClick={onFinish}
+                >
+                    Create Contact List
+                </Button>
             </div>
         </div>
     )

@@ -8,7 +8,7 @@ from pydantic import BaseModel, EmailStr, Field
 class ContactList(Document):
     id: Optional[str] = Field(...)
     name: str = Field(...)
-    file: Union[UploadFile, dict] = File(...)
+    file: Union[UploadFile, dict, list] = File(...)
     createdByUserId: str = Field(...)
     
     
