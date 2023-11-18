@@ -6,3 +6,4 @@ bcrypt
 pydantic[email]
 pydantic-settings
 pyjwt
+python-multipart

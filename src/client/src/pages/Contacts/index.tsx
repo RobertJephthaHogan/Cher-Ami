@@ -6,6 +6,7 @@ import ContactForm from '../../components/ContactForm'
 import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
 import contactActions from '../../redux/actions/contact'
+import ContactListUploader from '../../components/ContastListUploader'
 
 
 export default function Contacts() {
@@ -93,12 +94,13 @@ export default function Contacts() {
             </Modal>
 
             <Modal 
-                title="Add Multiple Contacts" 
+                title="Upload Contact List" 
                 open={batchAddModalOpen} 
                 onOk={() => setBatchAddModalOpen(false)} 
-                onCancel={() => setSingleAddModalOpen(false)}
+                onCancel={() => setBatchAddModalOpen(false)}
+                footer={null}
             >
-                Add Multiple Contacts from upload here
+                <ContactListUploader/>
             </Modal>
 
         </div>
