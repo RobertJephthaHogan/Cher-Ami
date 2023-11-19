@@ -63,7 +63,7 @@ const contactListActions = {
                     .then((resp) => {
                         openNotification(
                             resp?.data?.response_type,
-                            `Contact List ${contactID} Deleted Successfully`
+                            `Contact List ${contactListID} Deleted Successfully`
                         )
                         dispatch({ type: types.DELETE_CONTACT_LIST, contactListID })
                         return resolve(resp)

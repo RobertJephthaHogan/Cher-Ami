@@ -1,5 +1,5 @@
 import { Button, Empty, Input, Radio, Upload, message } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import UploadOutlined from '@ant-design/icons/UploadOutlined'
 import type { UploadProps } from 'antd';
 import { useSelector } from 'react-redux';
@@ -8,17 +8,31 @@ import { contactListService } from '../../services/contactList.service';
 import axios from 'axios';
 import * as XLSX from "xlsx";
 import './styles.css'
+import { store } from '../../redux/store';
+import contactActions from '../../redux/actions/contact';
+import contactListActions from '../../redux/actions/contactList';
 
 
 
 export default function ContactListUploader() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
+    const userContacts = useSelector((state: any) => state.contacts?.queryResult ?? [])
+    const userContactLists = useSelector((state: any) => state.contactLists?.queryResult ?? [])
     const [uploadType, setUploadType] = useState<'create' | 'add'>('create')
     const [uploadedFile, setUploadedFile] = useState<any>(null)
     const [fileName, setFileName] = useState<any>('')
     const [parsedFileData, setParsedFileData] = useState<any>()
 
+
+    useEffect(() => {
+        setComponentData()
+    }, [])
+
+    function setComponentData() {
+        store.dispatch(contactActions.setContacts(currentUser?._id))
+        store.dispatch(contactListActions.setContactLists(currentUser?._id))
+    }
     
     const setFile = async ({ file, onSuccess, onError }: any) => {
 
