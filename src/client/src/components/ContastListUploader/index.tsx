@@ -1,4 +1,4 @@
-import { Button, Empty, Input, Upload, message } from 'antd'
+import { Button, Empty, Input, Radio, Upload, message } from 'antd'
 import React, { useState } from 'react'
 import UploadOutlined from '@ant-design/icons/UploadOutlined'
 import type { UploadProps } from 'antd';
@@ -14,6 +14,7 @@ import './styles.css'
 export default function ContactListUploader() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
+    const [uploadType, setUploadType] = useState<'create' | 'add'>('create')
     const [uploadedFile, setUploadedFile] = useState<any>(null)
     const [fileName, setFileName] = useState<any>('')
     const [parsedFileData, setParsedFileData] = useState<any>()
@@ -84,6 +85,20 @@ export default function ContactListUploader() {
 
     return (
         <div>
+            <div className='upload-type-row'>
+                <div>
+                    Select Upload Type
+                </div>
+                <div>
+                    <Radio.Group 
+                        //onChange={(e) => handleInputChange('nutritionType', e?.target?.value)} 
+                        defaultValue={'create'}
+                    >
+                        <Radio value={'create'}>Create New Contact List</Radio>
+                        <Radio value={'add'}>Add To Existing Contact List</Radio>
+                    </Radio.Group>
+                </div>
+            </div>
             <div className='name-input-row'>
                 <div>
                     <span>
