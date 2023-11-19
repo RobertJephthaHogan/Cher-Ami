@@ -21,8 +21,6 @@ export default function ContactListUploader() {
 
     
     const setFile = async ({ file, onSuccess, onError }: any) => {
-        console.log('file', file)
-        console.log('type', file?.type)
 
         setUploadedFile(file);
         onSuccess();
@@ -38,7 +36,6 @@ export default function ContactListUploader() {
         const reader = new FileReader();
         reader.readAsBinaryString(file);
         reader.onload = (e) => {
-            console.log('e', e)
             const data = e?.target?.result;
             const workbook = XLSX.read(data, { type: "binary", cellDates: true  });
             const sheetName = workbook.SheetNames[0];
@@ -70,8 +67,6 @@ export default function ContactListUploader() {
             file: parsedFileData,
             createdByUserId: currentUser?._id,
         }
-
-        console.log('dto', dto)
 
         contactListService.createContactList(dto)
             .then((resp:any) => {
