@@ -1,5 +1,5 @@
 import { Button, Empty, Input, Radio, Upload, message } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import UploadOutlined from '@ant-design/icons/UploadOutlined'
 import type { UploadProps } from 'antd';
 import { useSelector } from 'react-redux';
@@ -8,21 +8,33 @@ import { contactListService } from '../../services/contactList.service';
 import axios from 'axios';
 import * as XLSX from "xlsx";
 import './styles.css'
+import { store } from '../../redux/store';
+import contactActions from '../../redux/actions/contact';
+import contactListActions from '../../redux/actions/contactList';
 
 
 
 export default function ContactListUploader() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
+    const userContacts = useSelector((state: any) => state.contacts?.queryResult ?? [])
+    const userContactLists = useSelector((state: any) => state.contactLists?.queryResult ?? [])
     const [uploadType, setUploadType] = useState<'create' | 'add'>('create')
     const [uploadedFile, setUploadedFile] = useState<any>(null)
     const [fileName, setFileName] = useState<any>('')
     const [parsedFileData, setParsedFileData] = useState<any>()
 
+
+    useEffect(() => {
+        setComponentData()
+    }, [])
+
+    function setComponentData() {
+        store.dispatch(contactActions.setContacts(currentUser?._id))
+        store.dispatch(contactListActions.setContactLists(currentUser?._id))
+    }
     
     const setFile = async ({ file, onSuccess, onError }: any) => {
-        console.log('file', file)
-        console.log('type', file?.type)
 
         setUploadedFile(file);
         onSuccess();
@@ -38,7 +50,6 @@ export default function ContactListUploader() {
         const reader = new FileReader();
         reader.readAsBinaryString(file);
         reader.onload = (e) => {
-            console.log('e', e)
             const data = e?.target?.result;
             const workbook = XLSX.read(data, { type: "binary", cellDates: true  });
             const sheetName = workbook.SheetNames[0];
@@ -70,8 +81,6 @@ export default function ContactListUploader() {
             file: parsedFileData,
             createdByUserId: currentUser?._id,
         }
-
-        console.log('dto', dto)
 
         contactListService.createContactList(dto)
             .then((resp:any) => {
