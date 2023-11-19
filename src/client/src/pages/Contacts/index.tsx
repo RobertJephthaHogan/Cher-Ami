@@ -7,12 +7,14 @@ import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
 import contactActions from '../../redux/actions/contact'
 import ContactListUploader from '../../components/ContastListUploader'
+import contactListActions from '../../redux/actions/contactList'
 
 
 export default function Contacts() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const userContacts = useSelector((state: any) => state.contacts?.queryResult ?? [])
+    const userContactLists = useSelector((state: any) => state.contactLists?.queryResult ?? [])
     const [batchAddModalOpen, setBatchAddModalOpen] = useState<boolean>(false)
     const [singleAddModalOpen, setSingleAddModalOpen] = useState<boolean>(false)
 
@@ -22,6 +24,7 @@ export default function Contacts() {
 
     function setComponentData() {
         store.dispatch(contactActions.setContacts(currentUser?._id))
+        store.dispatch(contactListActions.setContactLists(currentUser?._id))
     }
 
     return (
