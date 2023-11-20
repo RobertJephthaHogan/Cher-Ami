@@ -75,8 +75,7 @@ export default function ContactListUploader() {
 
     }
 
-    function onFinish() {
-
+    function createNewContactList() {
         const dto = {
             id: new ObjectID().toString(),
             name: fileName,
@@ -91,6 +90,10 @@ export default function ContactListUploader() {
             .catch((er: any) => {
                 console.log('er', er)
             })
+    }
+
+    function addContactsToExistingList() {
+        //TODO: ADD NEW CONTACTS TO EXISTING CONTACT LIST HANDLING
     }
 
 
@@ -174,13 +177,33 @@ export default function ContactListUploader() {
                     />
                 }
             </div>
-            <div className='submission-row'>
-                <Button
-                    onClick={onFinish}
-                >
-                    Create Contact List
-                </Button>
-            </div>
+            {
+                uploadType === 'add'
+                ? (
+                    <div className='submission-row'>
+                        <Button
+                            onClick={createNewContactList}
+                        >
+                            Create Contact List
+                        </Button>
+                    </div>
+                )
+                : null
+            }
+            {
+                uploadType === 'create'
+                ? (
+                    <div className='submission-row'>
+                        <Button
+                            onClick={addContactsToExistingList}
+                        >
+                            Add New Contacts
+                        </Button>
+                    </div>
+                )
+                : null
+            }
+            
         </div>
     )
 }
