@@ -22,6 +22,20 @@ export default function ContactLists() {
                     </Button>
                 </div>
             </div>
+            <div className='button-bar'>
+                    <Button>
+                        Download to CSV
+                    </Button>
+                    <Button>
+                        Send Email 
+                    </Button>
+                    <Button>
+                        Send Text 
+                    </Button>
+                    <Button>
+                        Send Phone Call 
+                    </Button>
+                </div>
             Contact Lists Content
         </div>
     )
