@@ -18,3 +18,22 @@
     border-top: 1px solid #dfdfdf;
     padding-top: 20px;
 }
+
+.contact-list-selector-row {
+    margin: 20px 0px
+}
+
+.select-upload-type-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.select-contact-list-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.contact-list-name-text {
+    font-size: 14px;
+    font-weight: 500;
+}

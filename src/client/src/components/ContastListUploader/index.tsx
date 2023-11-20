@@ -11,6 +11,7 @@ import './styles.css'
 import { store } from '../../redux/store';
 import contactActions from '../../redux/actions/contact';
 import contactListActions from '../../redux/actions/contactList';
+import ContactListSelector from '../ContactListSelector';
 
 
 
@@ -96,11 +97,13 @@ export default function ContactListUploader() {
         <div>
             <div className='upload-type-row'>
                 <div>
-                    Select Upload Type
+                    <span className='select-upload-type-text'>
+                        Select Upload Type
+                    </span>
                 </div>
                 <div>
                     <Radio.Group 
-                        //onChange={(e) => handleInputChange('nutritionType', e?.target?.value)} 
+                        onChange={(e) => setUploadType(e?.target?.value)} 
                         defaultValue={'create'}
                     >
                         <Radio value={'create'}>Create New Contact List</Radio>
@@ -108,9 +111,23 @@ export default function ContactListUploader() {
                     </Radio.Group>
                 </div>
             </div>
+            {
+                uploadType === 'add'
+                ? (
+                    <div className='contact-list-selector-row'>
+                        <span className='select-contact-list-text'>
+                            Select a Contact List
+                        </span>
+                        <div>
+                            <ContactListSelector/>
+                        </div>
+                    </div>
+                )
+                : null
+            }
             <div className='name-input-row'>
                 <div>
-                    <span>
+                    <span className='contact-list-name-text'>
                         Contact List Name
                     </span>
                 </div>
