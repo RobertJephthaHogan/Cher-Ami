@@ -24,6 +24,7 @@ export default function ContactListUploader() {
     const [uploadedFile, setUploadedFile] = useState<any>(null)
     const [fileName, setFileName] = useState<any>('')
     const [parsedFileData, setParsedFileData] = useState<any>()
+    const [selectedContactList, setSelectedContactList] = useState<any>()
 
 
     useEffect(() => {
@@ -111,6 +112,7 @@ export default function ContactListUploader() {
                     </Radio.Group>
                 </div>
             </div>
+
             {
                 uploadType === 'add'
                 ? (
@@ -119,26 +121,36 @@ export default function ContactListUploader() {
                             Select a Contact List
                         </span>
                         <div>
-                            <ContactListSelector/>
+                            <ContactListSelector
+                                onSelect={setSelectedContactList}
+                            />
                         </div>
                     </div>
                 )
                 : null
             }
-            <div className='name-input-row'>
-                <div>
-                    <span className='contact-list-name-text'>
-                        Contact List Name
-                    </span>
-                </div>
-                <div>
-                    <Input
-                        placeholder='Contact List Name'
-                        value={fileName}
-                        onChange={(e) => setFileName(e?.target?.value)}
-                    />
-                </div>
-            </div>
+
+            {
+                uploadType === 'create'
+                ? (
+                    <div className='name-input-row'>
+                        <div>
+                            <span className='contact-list-name-text'>
+                                Contact List Name
+                            </span>
+                        </div>
+                        <div>
+                            <Input
+                                placeholder='Contact List Name'
+                                value={fileName}
+                                onChange={(e) => setFileName(e?.target?.value)}
+                            />
+                        </div>
+                    </div>
+                )
+                : null
+            }
+            
             <div className='uploader-row'>
                 <Upload 
                     onChange={handleFileChange}

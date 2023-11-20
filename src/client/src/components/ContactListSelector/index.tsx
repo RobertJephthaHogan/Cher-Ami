@@ -6,7 +6,11 @@ import contactListActions from '../../redux/actions/contactList'
 
 
 
-export default function ContactListSelector() {
+interface ContactListSelectorProps {
+    onSelect?: any
+}
+
+export default function ContactListSelector(props: ContactListSelectorProps) {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const userContactLists = useSelector((state: any) => state.contactLists?.queryResult ?? [])
@@ -24,7 +28,10 @@ export default function ContactListSelector() {
     const rows = userContactLists?.map((cl:any) => {
         console.log('cl', cl)
         return (
-            <div className='contact-list-row'>
+            <div 
+                className='contact-list-row'
+                onClick={() => props.onSelect(cl)}
+            >
                 <span className='cl-name-text'>
                     {cl?.name}
                 </span>
