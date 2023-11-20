@@ -11,6 +11,7 @@ import './styles.css'
 import { store } from '../../redux/store';
 import contactActions from '../../redux/actions/contact';
 import contactListActions from '../../redux/actions/contactList';
+import ContactListSelector from '../ContactListSelector';
 
 
 
@@ -23,6 +24,7 @@ export default function ContactListUploader() {
     const [uploadedFile, setUploadedFile] = useState<any>(null)
     const [fileName, setFileName] = useState<any>('')
     const [parsedFileData, setParsedFileData] = useState<any>()
+    const [selectedContactList, setSelectedContactList] = useState<any>()
 
 
     useEffect(() => {
@@ -73,8 +75,7 @@ export default function ContactListUploader() {
 
     }
 
-    function onFinish() {
-
+    function createNewContactList() {
         const dto = {
             id: new ObjectID().toString(),
             name: fileName,
@@ -91,16 +92,22 @@ export default function ContactListUploader() {
             })
     }
 
+    function addContactsToExistingList() {
+        //TODO: ADD NEW CONTACTS TO EXISTING CONTACT LIST HANDLING
+    }
+
 
     return (
         <div>
             <div className='upload-type-row'>
                 <div>
-                    Select Upload Type
+                    <span className='select-upload-type-text'>
+                        Select Upload Type
+                    </span>
                 </div>
                 <div>
                     <Radio.Group 
-                        //onChange={(e) => handleInputChange('nutritionType', e?.target?.value)} 
+                        onChange={(e) => setUploadType(e?.target?.value)} 
                         defaultValue={'create'}
                     >
                         <Radio value={'create'}>Create New Contact List</Radio>
@@ -108,20 +115,45 @@ export default function ContactListUploader() {
                     </Radio.Group>
                 </div>
             </div>
-            <div className='name-input-row'>
-                <div>
-                    <span>
-                        Contact List Name
-                    </span>
-                </div>
-                <div>
-                    <Input
-                        placeholder='Contact List Name'
-                        value={fileName}
-                        onChange={(e) => setFileName(e?.target?.value)}
-                    />
-                </div>
-            </div>
+
+            {
+                uploadType === 'add'
+                ? (
+                    <div className='contact-list-selector-row'>
+                        <span className='select-contact-list-text'>
+                            Select a Contact List
+                        </span>
+                        <div>
+                            <ContactListSelector
+                                onSelect={setSelectedContactList}
+                            />
+                        </div>
+                    </div>
+                )
+                : null
+            }
+
+            {
+                uploadType === 'create'
+                ? (
+                    <div className='name-input-row'>
+                        <div>
+                            <span className='contact-list-name-text'>
+                                Contact List Name
+                            </span>
+                        </div>
+                        <div>
+                            <Input
+                                placeholder='Contact List Name'
+                                value={fileName}
+                                onChange={(e) => setFileName(e?.target?.value)}
+                            />
+                        </div>
+                    </div>
+                )
+                : null
+            }
+            
             <div className='uploader-row'>
                 <Upload 
                     onChange={handleFileChange}
@@ -145,13 +177,33 @@ export default function ContactListUploader() {
                     />
                 }
             </div>
-            <div className='submission-row'>
-                <Button
-                    onClick={onFinish}
-                >
-                    Create Contact List
-                </Button>
-            </div>
+            {
+                uploadType === 'add'
+                ? (
+                    <div className='submission-row'>
+                        <Button
+                            onClick={createNewContactList}
+                        >
+                            Create Contact List
+                        </Button>
+                    </div>
+                )
+                : null
+            }
+            {
+                uploadType === 'create'
+                ? (
+                    <div className='submission-row'>
+                        <Button
+                            onClick={addContactsToExistingList}
+                        >
+                            Add New Contacts
+                        </Button>
+                    </div>
+                )
+                : null
+            }
+            
         </div>
     )
 }
