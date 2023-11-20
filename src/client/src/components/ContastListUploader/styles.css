@@ -37,3 +37,21 @@
     font-size: 14px;
     font-weight: 500;
 }
+
+.contact-list-selector {
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+}
+
+.contact-list-row {
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.contact-list-row:hover {
+    background-color: #f4f4f4;
+    cursor: pointer;
+}
+
+.cl-name-text {
+    margin-left: 10px;
+}
