@@ -6,6 +6,7 @@ import SoundOutlined from '@ant-design/icons/SoundOutlined'
 import UserOutlined from '@ant-design/icons/UserOutlined'
 import InboxOutlined from '@ant-design/icons/InboxOutlined'
 import MessageOutlined from '@ant-design/icons/MessageOutlined'
+import TeamOutlined from '@ant-design/icons/TeamOutlined'
 
 
 export default function SideBar() {
@@ -27,6 +28,11 @@ export default function SideBar() {
             title: 'Contacts',
             route: '/contacts',
             icon: <UserOutlined />
+        },
+        {
+            title: 'Contact Lists',
+            route: '/contact-lists',
+            icon: <TeamOutlined />
         },
         {
             title: 'Inbox',
