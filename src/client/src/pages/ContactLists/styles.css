@@ -1,0 +1,32 @@
+
+
+
+
+.contact-lists-component {
+    width: 100%;
+    padding: 20px;
+}
+
+.cl-topbar {
+    display: flex;
+    width: 100%;
+}
+
+.cl-topbar-left {
+    width: 100%;
+}
+
+.cl-topbar-right {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.cl-title-text {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.cncl-btn {
+    margin-right: 10px
+}
