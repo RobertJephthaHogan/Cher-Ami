@@ -2,11 +2,12 @@ import React from 'react'
 import './styles.css'
 import { useNavigate } from 'react-router'
 import DashboardOutlined from '@ant-design/icons/DashboardOutlined'
-import SoundOutlined from '@ant-design/icons/SoundOutlined'
+import MailOutlined from '@ant-design/icons/MailOutlined'
 import UserOutlined from '@ant-design/icons/UserOutlined'
 import InboxOutlined from '@ant-design/icons/InboxOutlined'
 import MessageOutlined from '@ant-design/icons/MessageOutlined'
 import TeamOutlined from '@ant-design/icons/TeamOutlined'
+import PhoneOutlined from '@ant-design/icons/PhoneOutlined'
 
 
 export default function SideBar() {
@@ -18,11 +19,6 @@ export default function SideBar() {
             title: 'Dashboard',
             route: '/dashboard',
             icon: <DashboardOutlined />
-        },
-        {
-            title: 'Broadcasts',
-            route: '/broadcast',
-            icon: <SoundOutlined />
         },
         {
             title: 'Contacts',
@@ -40,9 +36,19 @@ export default function SideBar() {
             icon: <InboxOutlined />
         },
         {
-            title: 'Messages',
-            route: '/messages',
+            title: 'Email',
+            route: '/email',
+            icon: <MailOutlined />
+        },
+        {
+            title: 'Text',
+            route: '/text',
             icon: <MessageOutlined />
+        },
+        {
+            title: 'Call',
+            route: '/call',
+            icon: <PhoneOutlined />
         },
     ]
 
