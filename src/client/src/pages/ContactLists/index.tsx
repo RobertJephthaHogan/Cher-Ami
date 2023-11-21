@@ -46,7 +46,6 @@ export default function ContactLists() {
 
     function onDelete(record: any) {
 
-        console.log('record', record)
         contactListService.deleteContactList(record?.id)
             .then((resp: any) => {
                 console.log('resp', resp)
