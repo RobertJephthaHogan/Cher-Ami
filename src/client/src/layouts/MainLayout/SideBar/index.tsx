@@ -7,6 +7,7 @@ import UserOutlined from '@ant-design/icons/UserOutlined'
 import InboxOutlined from '@ant-design/icons/InboxOutlined'
 import MessageOutlined from '@ant-design/icons/MessageOutlined'
 import TeamOutlined from '@ant-design/icons/TeamOutlined'
+import PhoneOutlined from '@ant-design/icons/PhoneOutlined'
 
 
 export default function SideBar() {
@@ -43,6 +44,11 @@ export default function SideBar() {
             title: 'Text',
             route: '/text',
             icon: <MessageOutlined />
+        },
+        {
+            title: 'Call',
+            route: '/call',
+            icon: <PhoneOutlined />
         },
     ]
 

@@ -14,6 +14,7 @@ import Inbox from "../pages/Inbox";
 import Settings from "../pages/Settings";
 import ContactLists from "../pages/ContactLists";
 import TextMessage from "../pages/TextMessage";
+import PhoneCall from "../pages/PhoneCall";
 
 
 
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
         {
 					path: "/text",
 					element: <TextMessage />,
+				},
+        {
+					path: "/call",
+					element: <PhoneCall />,
 				},
 				{
 					path: "/inbox",
