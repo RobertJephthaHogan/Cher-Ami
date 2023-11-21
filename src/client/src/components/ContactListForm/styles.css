@@ -1,0 +1,24 @@
+
+
+
+
+.name-input-row {
+    margin-bottom: 20px;
+}
+
+.contact-list-name-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.contact-list-form {
+    padding-top: 30px
+}
+
+.submission-row {
+    display: flex;
+    justify-content: end;
+    margin-top: 20px;
+    border-top: 1px solid #dfdfdf;
+    padding-top: 20px;
+}

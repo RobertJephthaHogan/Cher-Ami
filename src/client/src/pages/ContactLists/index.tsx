@@ -139,6 +139,7 @@ export default function ContactLists() {
                 title='Create New Contact List'
                 open={newCLModalOpen}
                 onCancel={() => setNewCLModalOpen(false)}
+                footer={null}
             >
                 <ContactListForm/>
             </Modal>

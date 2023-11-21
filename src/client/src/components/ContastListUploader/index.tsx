@@ -167,7 +167,7 @@ export default function ContactListUploader() {
             <div className='uploader-workspace'>
                 {
                     uploadedFile
-                    ? "Display here"
+                    ? null
                     : <Empty
                         description={
                             <span>
@@ -178,7 +178,7 @@ export default function ContactListUploader() {
                 }
             </div>
             {
-                uploadType === 'add'
+                uploadType === 'create'
                 ? (
                     <div className='submission-row'>
                         <Button
@@ -191,7 +191,7 @@ export default function ContactListUploader() {
                 : null
             }
             {
-                uploadType === 'create'
+                uploadType === 'add'
                 ? (
                     <div className='submission-row'>
                         <Button
