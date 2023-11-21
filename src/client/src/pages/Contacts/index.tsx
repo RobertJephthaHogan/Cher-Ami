@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import './styles.css'
-import { Button, Input, Modal, Space, Table, Tag  } from 'antd'
+import { Button, Input, Modal, Popconfirm, Space, Table, Tag  } from 'antd'
 import type { ColumnsType } from 'antd/es/table';
 import UploadOutlined from '@ant-design/icons/UploadOutlined'
 import ContactForm from '../../components/ContactForm'
@@ -9,93 +9,8 @@ import { store } from '../../redux/store'
 import contactActions from '../../redux/actions/contact'
 import ContactListUploader from '../../components/ContastListUploader'
 import contactListActions from '../../redux/actions/contactList'
-
-
-
-
-
-
-
-interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
-}
-  
-const columns: ColumnsType<DataType> = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      render: (text) => <a>{text}</a>,
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-    {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
-        <>
-          {tags.map((tag) => {
-            let color = tag.length > 5 ? 'geekblue' : 'green';
-            if (tag === 'loser') {
-              color = 'volcano';
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (_, record) => (
-        <Space size="middle">
-          <a>Invite {record.name}</a>
-          <a>Delete</a>
-        </Space>
-      ),
-    },
-];
-  
-const data: DataType[] = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
-];
+import { contactService } from '../../services/contact.service';
+import { openNotification } from '../../helpers/notifications';
 
 
 
@@ -107,15 +22,119 @@ export default function Contacts() {
     const userContactLists = useSelector((state: any) => state.contactLists?.queryResult ?? [])
     const [batchAddModalOpen, setBatchAddModalOpen] = useState<boolean>(false)
     const [singleAddModalOpen, setSingleAddModalOpen] = useState<boolean>(false)
+    const [tableData, setTableData] = useState<any>([])
+
 
     useEffect(() => {
         setComponentData()
     }, [])
 
+    useMemo(() => {
+
+        const formattedTableData = userContacts?.map((contact: any) => {
+            return (
+                {
+                    ...contact
+                }
+            )
+        }) || []
+
+        setTableData(formattedTableData)
+
+    }, [userContacts])
+
     function setComponentData() {
         store.dispatch(contactActions.setContacts(currentUser?._id))
         store.dispatch(contactListActions.setContactLists(currentUser?._id))
     }
+
+    function onDelete(record: any) {
+        contactService.deleteContact(record?.id)
+            .then((resp: any) => {
+                console.log('resp', resp)
+                openNotification(
+                    resp?.data?.response_type,
+                    `Contact ${resp?.data?.data?._id} Deleted Successfully`
+                )
+                setTimeout(function() {
+                    store.dispatch(contactActions.setContacts(currentUser?._id))
+                }, 500);
+            })
+            .catch((er: any) => {
+                console.log(er)
+            })
+    }
+
+    const columns: any = [
+        {
+            title: 'First Name',
+            dataIndex: 'firstName',
+            key: 'firstName',
+        },
+        {
+            title: 'Last or Business Name',
+            dataIndex: 'lastOrBusinessName',
+            key: 'lastOrBusinessName',
+        },
+        {
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email',
+        },
+        {
+            title: 'Phone',
+            dataIndex: 'phone',
+            key: 'phone',
+        },
+        {
+            title: 'Date of Birth',
+            dataIndex: 'dob',
+            key: 'dob',
+        },
+        {
+            title: 'Tags',
+            key: 'tags',
+            dataIndex: 'tags',
+            render: (_: any, { tags }: any) => (
+                <>
+                {tags.map((tag: any) => {
+                    let color = tag.length > 5 ? 'geekblue' : 'green';
+
+                    return (
+                        <Tag color={color} key={tag}>
+                            {tag.toUpperCase()}
+                        </Tag>
+                    );
+                })}
+                </>
+            ),
+        },
+        {
+            title: 'Notes',
+            dataIndex: 'notes',
+            key: 'notes',
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (_: any, record: any) => (
+                <Space size="middle">
+                    <Popconfirm
+                        placement="bottom"
+                        title={'Are you sure you want to delete this contact?'}
+                        description={'This action is not reversible'}
+                        okText="Yes"
+                        cancelText="No"
+                        onConfirm={() => onDelete(record)}
+                        // onCancel={cancel}
+                    >
+                        <a>Delete</a>
+                    </Popconfirm>
+                </Space>
+            ),
+        },
+    ];
+
 
     return (
         <div className='contacts-page'>
@@ -169,7 +188,10 @@ export default function Contacts() {
                     />
                 </div>
                 <div className='table-container'>
-                    <Table columns={columns} dataSource={data} />
+                    <Table 
+                        columns={columns} 
+                        dataSource={tableData} 
+                    />
                 </div>
             </div>
             

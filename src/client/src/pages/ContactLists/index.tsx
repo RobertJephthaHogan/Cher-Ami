@@ -46,7 +46,6 @@ export default function ContactLists() {
 
     function onDelete(record: any) {
 
-        console.log('record', record)
         contactListService.deleteContactList(record?.id)
             .then((resp: any) => {
                 console.log('resp', resp)
@@ -85,18 +84,18 @@ export default function ContactLists() {
             key: 'action',
             render: (_: any, record: any) => (
                 <Space size="middle">
-                <Popconfirm
-                    placement="bottom"
-                    title={'Are you sure you want to delete this contact list?'}
-                    description={'This action is not reversible'}
-                    okText="Yes"
-                    cancelText="No"
-                    onConfirm={() => onDelete(record)}
-                    // onCancel={cancel}
-                >
-                    <a>Delete</a>
-                </Popconfirm>
-                <a>Add Contacts</a>
+                    <Popconfirm
+                        placement="bottom"
+                        title={'Are you sure you want to delete this contact list?'}
+                        description={'This action is not reversible'}
+                        okText="Yes"
+                        cancelText="No"
+                        onConfirm={() => onDelete(record)}
+                        // onCancel={cancel}
+                    >
+                        <a>Delete</a>
+                    </Popconfirm>
+                    <a>Add Contacts</a>
                 </Space>
             ),
         },
