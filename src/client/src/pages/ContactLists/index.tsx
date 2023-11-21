@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
 import contactListActions from '../../redux/actions/contactList'
 import ContactListForm from '../../components/ContactListForm';
+import { contactListService } from '../../services/contactList.service';
+import { openNotification } from '../../helpers/notifications';
 
 
   
@@ -41,6 +43,25 @@ export default function ContactLists() {
     function setComponentData() {
         store.dispatch(contactListActions.setContactLists(currentUser?._id))
     }
+
+    function onDelete(record: any) {
+
+        console.log('record', record)
+        contactListService.deleteContactList(record?.id)
+            .then((resp: any) => {
+                console.log('resp', resp)
+                openNotification(
+                    resp?.data?.response_type,
+                    `Contact List ${resp?.data?.data?._id} Deleted Successfully`
+                )
+                setTimeout(function() {
+                    store.dispatch(contactListActions.setContactLists(currentUser?._id))
+                }, 500);
+            })
+            .catch((er: any) => {
+                console.log(er)
+            })
+    }
     
     const columns: any = [
         {
@@ -70,7 +91,7 @@ export default function ContactLists() {
                     description={'This action is not reversible'}
                     okText="Yes"
                     cancelText="No"
-                    // onConfirm={confirm}
+                    onConfirm={() => onDelete(record)}
                     // onCancel={cancel}
                 >
                     <a>Delete</a>
