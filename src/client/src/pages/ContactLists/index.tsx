@@ -1,114 +1,89 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import './styles.css'
-import { Button, Input, Modal, Space, Table, Tag  } from 'antd'
+import { Button, Input, Modal, Popconfirm, Space, Table, Tag  } from 'antd'
 import type { ColumnsType } from 'antd/es/table';
 import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
 import contactListActions from '../../redux/actions/contactList'
 
 
-
-
-interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
-}
   
-const columns: ColumnsType<DataType> = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      render: (text) => <a>{text}</a>,
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-    {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
-        <>
-          {tags.map((tag) => {
-            let color = tag.length > 5 ? 'geekblue' : 'green';
-            if (tag === 'loser') {
-              color = 'volcano';
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (_, record) => (
-        <Space size="middle">
-          <a>Invite {record.name}</a>
-          <a>Delete</a>
-        </Space>
-      ),
-    },
-];
-  
-const data: DataType[] = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
-];
-
 export default function ContactLists() {
     
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const userContactLists = useSelector((state: any) => state.contactLists?.queryResult ?? [])
     const [newCLModalOpen, setNewCLModalOpen] = useState<boolean>(false)
     const [updateCLModalOpen, setUpdateCLModalOpen] = useState<boolean>(false)
+    const [tableData, setTableData] = useState<any>([])
 
 
     useEffect(() => {
         setComponentData()
     }, [])
 
+    useMemo(() => {
+
+        const formattedTableData = userContactLists?.map((row: any) => {
+            return (
+                {
+                    name: row?.name,
+                    id: row?.id,
+                    file: row?.file?.length
+                }
+            )
+        }) || []
+
+        setTableData(formattedTableData)
+
+    }, [userContactLists])
+
     function setComponentData() {
         store.dispatch(contactListActions.setContactLists(currentUser?._id))
     }
+    
+    const columns: any = [
+        {
+            title: 'Name',
+            dataIndex: 'name',
+            key: 'name',
+            render: (text: any) => <a>{text}</a>,
+        },
+        {
+            title: 'ID',
+            dataIndex: 'id',
+            key: 'id',
+        },
+        {
+            title: 'Number of Contacts',
+            dataIndex: 'file',
+            key: 'file',
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (_: any, record: any) => (
+                <Space size="middle">
+                <Popconfirm
+                    placement="bottom"
+                    title={'Are you sure you want to delete this contact list?'}
+                    description={'This action is not reversible'}
+                    okText="Yes"
+                    cancelText="No"
+                    // onConfirm={confirm}
+                    // onCancel={cancel}
+                >
+                    <a>Delete</a>
+                </Popconfirm>
+                <a>Add Contacts</a>
+                </Space>
+            ),
+        },
+    ];
 
 
     return (
         <div className='contact-lists-component'>
+
             <div className='cl-topbar'>
                 <div className='cl-topbar-left'>
                     <span className='cl-title-text'>
@@ -130,6 +105,7 @@ export default function ContactLists() {
                     </Button>
                 </div>
             </div>
+
             <div className='button-bar'>
                 <Button>
                     Download to CSV
@@ -144,6 +120,7 @@ export default function ContactLists() {
                     Send Phone Call 
                 </Button>
             </div>
+
             <div className='search-bar-container'>
                 <Input
                     placeholder='Search Contact Lists...'
@@ -151,13 +128,12 @@ export default function ContactLists() {
             </div>
 
             <div className='table-container'>
-                <Table columns={columns} dataSource={data} />
+                <Table 
+                    columns={columns} 
+                    dataSource={tableData} 
+                />
             </div>
-
             
-
-            Contact Lists Content
-
             <Modal
                 title='Create New Contact List'
                 open={newCLModalOpen}
