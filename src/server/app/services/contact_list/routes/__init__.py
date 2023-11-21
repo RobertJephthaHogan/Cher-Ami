@@ -64,7 +64,6 @@ async def get_contact_lists():
 
 @router.post("/new", response_description="Contact List data added into the database", response_model=Response)
 async def add_contact_list_data(contact_list: ContactList = Body(...)):
-    print('contact_list', contact_list)
     new_contact_list = await ContactListOperations.add_contact_list(contact_list)
     return {
         "status_code": 200,

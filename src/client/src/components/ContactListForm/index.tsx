@@ -11,7 +11,11 @@ import contactListActions from '../../redux/actions/contactList';
 import { store } from '../../redux/store';
 
 
-export default function ContactListForm() {
+interface ContactListFormProps {
+    closeParent?: any
+}
+
+export default function ContactListForm(props: ContactListFormProps) {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const [uploadedFile, setUploadedFile] = useState<any>(null)
@@ -71,6 +75,7 @@ export default function ContactListForm() {
                     resp?.data?.response_type,
                     `Contact List ${resp?.data?.data?._id} Created Successfully`
                 )
+                props.closeParent()
                 setTimeout(function() {
                     store.dispatch(contactListActions.setContactLists(currentUser?._id))
                 }, 500);

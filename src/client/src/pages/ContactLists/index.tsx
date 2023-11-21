@@ -141,7 +141,9 @@ export default function ContactLists() {
                 onCancel={() => setNewCLModalOpen(false)}
                 footer={null}
             >
-                <ContactListForm/>
+                <ContactListForm
+                    closeParent={() => setNewCLModalOpen(false)}
+                />
             </Modal>
 
             <Modal
