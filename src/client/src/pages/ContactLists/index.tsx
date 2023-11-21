@@ -5,6 +5,7 @@ import type { ColumnsType } from 'antd/es/table';
 import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
 import contactListActions from '../../redux/actions/contactList'
+import ContactListForm from '../../components/ContactListForm';
 
 
   
@@ -138,8 +139,11 @@ export default function ContactLists() {
                 title='Create New Contact List'
                 open={newCLModalOpen}
                 onCancel={() => setNewCLModalOpen(false)}
+                footer={null}
             >
-                Create New Contact List Modal
+                <ContactListForm
+                    closeParent={() => setNewCLModalOpen(false)}
+                />
             </Modal>
 
             <Modal
