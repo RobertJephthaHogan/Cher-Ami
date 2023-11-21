@@ -40,8 +40,8 @@ export default function SideBar() {
             icon: <MailOutlined />
         },
         {
-            title: 'Messages',
-            route: '/messages',
+            title: 'Text',
+            route: '/text',
             icon: <MessageOutlined />
         },
     ]

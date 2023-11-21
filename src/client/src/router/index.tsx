@@ -13,6 +13,7 @@ import Email from "../pages/Email";
 import Inbox from "../pages/Inbox";
 import Settings from "../pages/Settings";
 import ContactLists from "../pages/ContactLists";
+import TextMessage from "../pages/TextMessage";
 
 
 
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
 				{
 					path: "/email",
 					element: <Email />,
+				},
+        {
+					path: "/text",
+					element: <TextMessage />,
 				},
 				{
 					path: "/inbox",
