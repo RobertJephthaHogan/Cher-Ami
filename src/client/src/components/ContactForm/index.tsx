@@ -6,6 +6,9 @@ import { ObjectID } from 'bson';
 import { useSelector } from 'react-redux';
 import { contactService } from '../../services/contact.service';
 import { openNotification } from '../../helpers/notifications';
+import { store } from '../../redux/store';
+import contactActions from '../../redux/actions/contact';
+import dayjs from 'dayjs';
 
 
 const { TextArea } = Input;
@@ -48,12 +51,17 @@ export default function ContactForm(props: ContactFormProps) {
                     resp?.data?.response_type,
                     `Contact Created Successfully`
                 )
+                props.onCancel()
+                setTimeout(function() {
+                    store.dispatch(contactActions.setContacts(currentUser?._id))
+                }, 500);
+                setFormValues({tags: []})
             })
             .catch((e: any) => {
                 console.log('error', e)
             })
 
-        props.onCancel()
+        
     }
 
     interface TagInputProps {
@@ -152,6 +160,7 @@ export default function ContactForm(props: ContactFormProps) {
                     <Input
                         placeholder='First Name'
                         onChange={(e) => handleFieldChange('firstName', e?.target?.value)}
+                        value={formValues?.firstName}
                     />
                 </div>
             </div>
@@ -163,6 +172,7 @@ export default function ContactForm(props: ContactFormProps) {
                     <Input
                         placeholder='Last or Business Name'
                         onChange={(e) => handleFieldChange('lastOrBusinessName', e?.target?.value)}
+                        value={formValues?.lastOrBusinessName}
                     />
                 </div>
             </div>
@@ -174,6 +184,7 @@ export default function ContactForm(props: ContactFormProps) {
                     <Input
                         placeholder='Email Address'
                         onChange={(e) => handleFieldChange('email', e?.target?.value)}
+                        value={formValues?.email}
                     />
                 </div>
             </div>
@@ -185,6 +196,7 @@ export default function ContactForm(props: ContactFormProps) {
                     <Input
                         placeholder='Phone Number'
                         onChange={(e) => handleFieldChange('phone', e?.target?.value)}
+                        value={formValues?.phone}
                     />
                 </div>
             </div>
@@ -200,6 +212,7 @@ export default function ContactForm(props: ContactFormProps) {
                                 'dob', v?.format('YYYY-MM-DD HH:mm:ss')
                             )
                         } 
+                        value={dayjs(formValues?.dob)}
                     />
                 </div>
             </div>
@@ -212,6 +225,7 @@ export default function ContactForm(props: ContactFormProps) {
                         rows={4}
                         placeholder='Notes'
                         onChange={(e) => handleFieldChange('notes', e?.target?.value)}
+                        value={formValues?.notes}
                     />
                 </div>
             </div>
