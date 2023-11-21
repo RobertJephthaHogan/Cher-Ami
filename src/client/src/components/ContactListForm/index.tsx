@@ -19,6 +19,7 @@ export default function ContactListForm(props: ContactListFormProps) {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const [uploadedFile, setUploadedFile] = useState<any>(null)
+    const [fileList, setFileList] = useState<any>([])
     const [fileName, setFileName] = useState<any>('')
     const [parsedFileData, setParsedFileData] = useState<any>()
 
@@ -27,6 +28,7 @@ export default function ContactListForm(props: ContactListFormProps) {
 
         setUploadedFile(file);
         onSuccess();
+        setFileList([file])
 
         if (file?.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
             // TODO: HANDLE SUBMISSION FROM EXCEL FILE TYPE
@@ -79,6 +81,9 @@ export default function ContactListForm(props: ContactListFormProps) {
                 setTimeout(function() {
                     store.dispatch(contactListActions.setContactLists(currentUser?._id))
                 }, 500);
+                setFileName('')
+                setParsedFileData(undefined)
+                setUploadedFile(null)
             })
             .catch((er: any) => {
                 console.log('er', er)
@@ -109,6 +114,7 @@ export default function ContactListForm(props: ContactListFormProps) {
                     name='file'
                     headers={{authorization: 'authorization-text',}}
                     customRequest={setFile}
+                    fileList={fileList}
                 >
                     <Button icon={<UploadOutlined />}>Click to Upload</Button>
                 </Upload>
