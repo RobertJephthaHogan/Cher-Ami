@@ -1,12 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles.css'
-import { Button, Modal } from 'antd'
+import { Button, Input, Modal } from 'antd'
+import { useSelector } from 'react-redux'
+import { store } from '../../redux/store'
+import contactListActions from '../../redux/actions/contactList'
 
 
 export default function ContactLists() {
-
+    
+    const currentUser = useSelector((state: any) => state.user?.data ?? [])
+    const userContactLists = useSelector((state: any) => state.contactLists?.queryResult ?? [])
     const [newCLModalOpen, setNewCLModalOpen] = useState<boolean>(false)
     const [updateCLModalOpen, setUpdateCLModalOpen] = useState<boolean>(false)
+
+
+    useEffect(() => {
+        setComponentData()
+    }, [])
+
+    function setComponentData() {
+        store.dispatch(contactListActions.setContactLists(currentUser?._id))
+    }
+
 
     return (
         <div className='contact-lists-component'>
@@ -44,6 +59,11 @@ export default function ContactLists() {
                 <Button>
                     Send Phone Call 
                 </Button>
+            </div>
+            <div className='search-bar-container'>
+                <Input
+                    placeholder='Search Contact Lists...'
+                />
             </div>
 
             Contact Lists Content
