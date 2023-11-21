@@ -9,7 +9,7 @@ import Dashboard from "../pages/Dashboard";
 import ProtectedRoutes from "./ProtectedRoutes";
 import MainLayout from "../layouts/MainLayout";
 import Contacts from "../pages/Contacts";
-import Broadcasts from "../pages/Broadcasts";
+import Email from "../pages/Email";
 import Inbox from "../pages/Inbox";
 import Settings from "../pages/Settings";
 import ContactLists from "../pages/ContactLists";
@@ -58,8 +58,8 @@ export const router = createBrowserRouter([
 					element: <ContactLists />,
 				},
 				{
-					path: "/broadcast",
-					element: <Broadcasts />,
+					path: "/email",
+					element: <Email />,
 				},
 				{
 					path: "/inbox",
