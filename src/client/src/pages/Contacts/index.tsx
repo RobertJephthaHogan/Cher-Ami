@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import './styles.css'
 import { Button, Input, Modal, Space, Table, Tag  } from 'antd'
 import type { ColumnsType } from 'antd/es/table';
@@ -16,64 +16,8 @@ import contactListActions from '../../redux/actions/contactList'
 
 
 
-interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
-}
   
-const columns: ColumnsType<DataType> = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      render: (text) => <a>{text}</a>,
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-    {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
-        <>
-          {tags.map((tag) => {
-            let color = tag.length > 5 ? 'geekblue' : 'green';
-            if (tag === 'loser') {
-              color = 'volcano';
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (_, record) => (
-        <Space size="middle">
-          <a>Invite {record.name}</a>
-          <a>Delete</a>
-        </Space>
-      ),
-    },
-];
-  
-const data: DataType[] = [
+const data: any = [
     {
         key: '1',
         name: 'John Brown',
@@ -107,15 +51,98 @@ export default function Contacts() {
     const userContactLists = useSelector((state: any) => state.contactLists?.queryResult ?? [])
     const [batchAddModalOpen, setBatchAddModalOpen] = useState<boolean>(false)
     const [singleAddModalOpen, setSingleAddModalOpen] = useState<boolean>(false)
+    const [tableData, setTableData] = useState<any>([])
+
+    console.log('userContacts', userContacts)
 
     useEffect(() => {
         setComponentData()
     }, [])
 
+    useMemo(() => {
+        
+        const formattedTableData = userContacts?.map((contact: any) => {
+            return (
+                {
+                    ...contact
+                }
+            )
+        }) || []
+
+        setTableData(formattedTableData)
+
+    }, [userContacts])
+
     function setComponentData() {
         store.dispatch(contactActions.setContacts(currentUser?._id))
         store.dispatch(contactListActions.setContactLists(currentUser?._id))
     }
+
+    
+
+    const columns: any = [
+        {
+            title: 'First Name',
+            dataIndex: 'firstName',
+            key: 'firstName',
+        },
+        {
+            title: 'Last or Business Name',
+            dataIndex: 'lastOrBusinessName',
+            key: 'lastOrBusinessName',
+        },
+        {
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email',
+        },
+        {
+            title: 'Phone',
+            dataIndex: 'phone',
+            key: 'phone',
+        },
+        {
+            title: 'Date of Birth',
+            dataIndex: 'dob',
+            key: 'dob',
+        },
+        {
+            title: 'Tags',
+            key: 'tags',
+            dataIndex: 'tags',
+            render: (_: any, { tags }: any) => (
+                <>
+                {tags.map((tag: any) => {
+                    let color = tag.length > 5 ? 'geekblue' : 'green';
+                    if (tag === 'loser') {
+                    color = 'volcano';
+                    }
+                    return (
+                    <Tag color={color} key={tag}>
+                        {tag.toUpperCase()}
+                    </Tag>
+                    );
+                })}
+                </>
+            ),
+        },
+        {
+            title: 'Notes',
+            dataIndex: 'notes',
+            key: 'notes',
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (_: any, record: any) => (
+                <Space size="middle">
+                <a>Invite {record.name}</a>
+                <a>Delete</a>
+                </Space>
+            ),
+        },
+    ];
+
 
     return (
         <div className='contacts-page'>
@@ -169,7 +196,10 @@ export default function Contacts() {
                     />
                 </div>
                 <div className='table-container'>
-                    <Table columns={columns} dataSource={data} />
+                    <Table 
+                        columns={columns} 
+                        dataSource={tableData} 
+                    />
                 </div>
             </div>
             
