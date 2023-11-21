@@ -6,6 +6,9 @@ import * as XLSX from "xlsx";
 import { contactListService } from '../../services/contactList.service';
 import UploadOutlined from '@ant-design/icons/UploadOutlined'
 import './styles.css'
+import { openNotification } from '../../helpers/notifications';
+import contactListActions from '../../redux/actions/contactList';
+import { store } from '../../redux/store';
 
 
 export default function ContactListForm() {
@@ -64,7 +67,13 @@ export default function ContactListForm() {
 
         contactListService.createContactList(dto)
             .then((resp:any) => {
-                console.log('resp', resp)
+                openNotification(
+                    resp?.data?.response_type,
+                    `Contact List ${resp?.data?.data?._id} Created Successfully`
+                )
+                setTimeout(function() {
+                    store.dispatch(contactListActions.setContactLists(currentUser?._id))
+                }, 500);
             })
             .catch((er: any) => {
                 console.log('er', er)
