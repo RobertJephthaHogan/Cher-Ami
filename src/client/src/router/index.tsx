@@ -12,6 +12,7 @@ import Contacts from "../pages/Contacts";
 import Broadcasts from "../pages/Broadcasts";
 import Inbox from "../pages/Inbox";
 import Settings from "../pages/Settings";
+import ContactLists from "../pages/ContactLists";
 
 
 
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
 				{
 					path: "/contacts",
 					element: <Contacts />,
+				},
+        {
+					path: "/contact-lists",
+					element: <ContactLists />,
 				},
 				{
 					path: "/broadcast",
