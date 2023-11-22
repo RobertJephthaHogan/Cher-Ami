@@ -1,11 +1,83 @@
 import React from 'react'
-
+import NotificationOutlined from '@ant-design/icons/NotificationOutlined'
+import SendOutlined from '@ant-design/icons/SendOutlined'
+import MailOutlined from '@ant-design/icons/MailOutlined'
+import './styles.css'
 
 
 export default function Email() {
 
     return (
-        <div>
+        <div className='email-component'>
+            <div className='email-component-title-bar'>
+                <span className='email-component-title'>
+                    Email Campaigns
+                </span>
+            </div>
+            <div className='email-data-bar'>
+                <div className='data-bar-info-container'>
+                    <div className='data-bar-info-card'>
+                        <div className='dbic-left'>
+                            <span>
+                                <NotificationOutlined
+                                    className='dbic-logo'
+                                />
+                            </span>
+                        </div>
+                        <div className='dbic-right'>
+                            <div className='dbic-right-content'>
+                                <span className='dbic-main-text'>
+                                    Total Email Campaigns
+                                </span>
+                                <span className='dbic-sub-text'>
+                                    14
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='data-bar-info-card'>
+                        <div className='dbic-left'>
+                            <span>
+                                <SendOutlined
+                                    className='dbic-logo'
+                                />
+                            </span>
+                        </div>
+                        <div className='dbic-right'>
+                            <div className='dbic-right-content'>
+                                <span className='dbic-main-text'>
+                                    Emails Sent
+                                </span>
+                                <span className='dbic-sub-text'>
+                                    124,031
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='data-bar-info-card'>
+                        <div className='dbic-left'>
+                            <span>
+                                <MailOutlined
+                                    className='dbic-logo'
+                                />
+                            </span>
+                        </div>
+                        <div className='dbic-right'>
+                            <div className='dbic-right-content'>
+                                <span className='dbic-main-text'>
+                                    Contacts Accessible Via Email
+                                </span>
+                                <span className='dbic-sub-text'>
+                                    18,213
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='data-bar-actions-container'>
+                    buttons
+                </div>
+            </div>
             Email
         </div>
     )
