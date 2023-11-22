@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.css'
 import { Button, Input, Select } from 'antd'
-import ContactListSelector from '../ContactListSelector';
+import ContactListMultiselect from '../ContactListMultiselect';
 
 
 
@@ -83,7 +83,7 @@ export default function EmailCampaignBuilder() {
                     </span>
                 </div>
                 <div>
-                    <ContactListSelector/>
+                    <ContactListMultiselect/>
                 </div>
                 TODO: Create Contact List Multiselect
             </div>
