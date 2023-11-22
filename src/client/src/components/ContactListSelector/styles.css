@@ -1,0 +1,27 @@
+
+
+
+
+
+.contact-list-row {
+    border-bottom: 1px solid #dfdfdf;
+}
+
+
+.contact-list-row:hover {
+    background-color: #f4f4f4;
+    cursor: pointer;
+}
+
+.selected-row {
+    background-color: #57a3d92f !important;
+}
+
+.cl-name-text {
+    margin-left: 10px;
+}
+
+.contact-list-selector {
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+}

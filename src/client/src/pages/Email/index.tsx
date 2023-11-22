@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import NotificationOutlined from '@ant-design/icons/NotificationOutlined'
 import SendOutlined from '@ant-design/icons/SendOutlined'
 import MailOutlined from '@ant-design/icons/MailOutlined'
 import './styles.css'
-import { Button } from 'antd'
+import { Button, Modal } from 'antd'
+import EmailCampaignBuilder from '../../components/EmailCampaignBuilder'
 
 
 export default function Email() {
+
+    const [cnecModalOpen, setCnecModalOpen] = useState<any>()
 
     return (
         <div className='email-component'>
@@ -77,13 +80,28 @@ export default function Email() {
                 </div>
                 <div className='data-bar-actions-container'>
                     <div className='data-bar-actions-card'>
-                        <Button type='primary' className='cnec-btn'>
+                        <Button 
+                            type='primary' 
+                            className='cnec-btn'
+                            onClick={() => setCnecModalOpen(true)}
+                        >
                             Create New Email Campaign
                         </Button>
                     </div>
                 </div>
             </div>
+
             Email
+
+            <Modal 
+                title="Email Campaign Builder" 
+                open={cnecModalOpen} 
+                onOk={() => setCnecModalOpen(false)} 
+                onCancel={() => setCnecModalOpen(false)}
+                footer={null}
+            >
+                <EmailCampaignBuilder/>
+            </Modal>
         </div>
     )
 }
