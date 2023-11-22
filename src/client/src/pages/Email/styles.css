@@ -1,0 +1,87 @@
+
+
+.email-component {
+    width: 100%;
+}
+
+.email-component-title-bar {
+    margin: 20px 50px;
+}
+
+.email-component-title {
+    font-size: 25px;
+}
+
+.email-data-bar {
+    display: flex;
+    padding: 0px 50px;
+}
+
+.data-bar-info-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 40px; 
+    width: 80%;
+}
+
+.data-bar-actions-container {
+    width: 20%;
+}
+
+.data-bar-info-card {
+    border: 1px solid #dfdfdf;
+    display: flex;
+    min-height: 100px;
+    border-radius: 10px;
+}
+
+.dbic-left {
+    background-color: #ECF6FD;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dbic-right {
+    width: 70%;
+    display: flex;
+    align-items: center;
+}
+
+.dbic-right-content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.dbic-logo {
+    font-size: 50px;
+}
+
+.dbic-main-text {
+    font-size: 14px;
+    color: #9A9A9A;
+}
+
+.dbic-sub-text {
+    font-size: 20px;
+    color: #000000;
+    font-weight: 700;
+}
+
+.data-bar-actions-container {
+    padding: 0px 20px;
+}
+
+.data-bar-actions-card {
+    border: 1px solid #dfdfdf;
+    border-radius: 10px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.cnec-btn {
+    margin-top: 10px
+}
