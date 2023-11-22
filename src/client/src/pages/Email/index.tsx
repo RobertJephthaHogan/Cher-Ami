@@ -3,6 +3,7 @@ import NotificationOutlined from '@ant-design/icons/NotificationOutlined'
 import SendOutlined from '@ant-design/icons/SendOutlined'
 import MailOutlined from '@ant-design/icons/MailOutlined'
 import './styles.css'
+import { Button } from 'antd'
 
 
 export default function Email() {
@@ -75,7 +76,11 @@ export default function Email() {
                     </div>
                 </div>
                 <div className='data-bar-actions-container'>
-                    buttons
+                    <div className='data-bar-actions-card'>
+                        <Button type='primary' className='cnec-btn'>
+                            Create New Email Campaign
+                        </Button>
+                    </div>
                 </div>
             </div>
             Email

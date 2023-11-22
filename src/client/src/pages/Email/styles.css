@@ -69,3 +69,19 @@
     color: #000000;
     font-weight: 700;
 }
+
+.data-bar-actions-container {
+    padding: 0px 20px;
+}
+
+.data-bar-actions-card {
+    border: 1px solid #dfdfdf;
+    border-radius: 10px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.cnec-btn {
+    margin-top: 10px
+}
