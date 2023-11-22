@@ -42,6 +42,8 @@ class EmailRouter:
     
     @router.post("/send", response_model=Response)
     async def send_email(email: Email = Body(...)):
+        
+        print('email', email)
                 
         result = EmailService(**vars(email)).sendEmail()
         
@@ -50,6 +52,24 @@ class EmailRouter:
         # new_email = await DatabaseOperations.EmailOperations.add_email(email)
         # print('new_email', new_email)
         # return new_email
+        
+        if not result:
+            print("Dictionary is empty.")
+            return {
+                "status_code": 200,
+                "response_type": "success",
+                "description": "Email sent successfully",
+                "data": result
+            }
+        else:
+            print("Dictionary is not empty.")
+            return {
+                "status_code": 500,
+                "response_type": "error",
+                "description": "Email could not be sent",
+                "data": result
+            }
+        
         return {
                 "status_code": 200,
                 "response_type": "success",
