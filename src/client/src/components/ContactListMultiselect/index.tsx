@@ -10,7 +10,7 @@ export default function ContactListMultiselect() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const userContactLists = useSelector((state: any) => state.contactLists?.queryResult ?? [])
-    const [selected, setSelected] = useState<any>()    
+    const [selected, setSelected] = useState<any>([])    
 
     useEffect(() => {
         setComponentData()
@@ -20,14 +20,31 @@ export default function ContactListMultiselect() {
         store.dispatch(contactListActions.setContactLists(currentUser?._id))
     }
 
+    function toggleSelection(checked: any, cl: any ) {
+        console.log('checked', checked)
+        console.log('cl', cl)
+
+        if (checked === true) {
+            //ToDo: add contactlist to selected
+            setSelected([...selected, cl?.id])
+        }
+
+        if (checked === false) {
+            //ToDo: add contactlist to selected
+            const workingArray = [...selected]
+            let newArray = workingArray.filter((item: any) => item !== cl?.id);
+            setSelected(newArray)
+        }
+    }
+
+
     const rows = userContactLists?.map((cl:any, i: any) => {
         return (
-            <div 
-                className={`cl-ms-row`}
-                //onClick={() => onRowSelect(cl, i)}
-            >
+            <div className={`cl-ms-row`}>
                 <div>
-                    <Checkbox/>
+                    <Checkbox
+                        onClick={(e) => toggleSelection((e.target as HTMLInputElement)?.checked, cl)}
+                    />
                 </div>
                 <div>
                     <span className='cl-name-text'>
