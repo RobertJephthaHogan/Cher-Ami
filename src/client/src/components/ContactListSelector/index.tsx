@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
 import contactActions from '../../redux/actions/contact'
 import contactListActions from '../../redux/actions/contactList'
-
+import './styles.css'
 
 
 interface ContactListSelectorProps {
