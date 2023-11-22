@@ -1,0 +1,21 @@
+
+
+
+
+.email-campaign-builder {
+    padding-top: 20px;
+}
+
+.input-label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.campaign-input-row {
+    margin: 10px 0px
+}
+
+.submission-btn-row {
+    display: flex;
+    justify-content: end;
+}

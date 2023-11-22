@@ -4,6 +4,7 @@ import SendOutlined from '@ant-design/icons/SendOutlined'
 import MailOutlined from '@ant-design/icons/MailOutlined'
 import './styles.css'
 import { Button, Modal } from 'antd'
+import EmailCampaignBuilder from '../../components/EmailCampaignBuilder'
 
 
 export default function Email() {
@@ -93,13 +94,13 @@ export default function Email() {
             Email
 
             <Modal 
-                title="Upload Contact List" 
+                title="Email Campaign Builder" 
                 open={cnecModalOpen} 
                 onOk={() => setCnecModalOpen(false)} 
                 onCancel={() => setCnecModalOpen(false)}
                 footer={null}
             >
-                Content
+                <EmailCampaignBuilder/>
             </Modal>
         </div>
     )
