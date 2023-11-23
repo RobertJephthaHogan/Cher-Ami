@@ -21,8 +21,6 @@ export default function ContactListMultiselect() {
     }
 
     function toggleSelection(checked: any, cl: any ) {
-        console.log('checked', checked)
-        console.log('cl', cl)
 
         if (checked === true) {
             //ToDo: add contactlist to selected
@@ -44,6 +42,7 @@ export default function ContactListMultiselect() {
                 <div>
                     <Checkbox
                         onClick={(e) => toggleSelection((e.target as HTMLInputElement)?.checked, cl)}
+                        value={selected.includes(cl?.id)}
                     />
                 </div>
                 <div>
