@@ -85,7 +85,6 @@ export default function EmailCampaignBuilder() {
                 <div>
                     <ContactListMultiselect/>
                 </div>
-                TODO: Create Contact List Multiselect
             </div>
 
             <div className='campaign-input-row'>

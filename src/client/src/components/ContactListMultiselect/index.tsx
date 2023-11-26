@@ -38,11 +38,14 @@ export default function ContactListMultiselect() {
 
     const rows = userContactLists?.map((cl:any, i: any) => {
         return (
-            <div className={`cl-ms-row`}>
+            <div 
+                className={`cl-ms-row`}
+                key={`cl-ms-row-${i}`}
+            >
                 <div>
                     <Checkbox
                         onClick={(e) => toggleSelection((e.target as HTMLInputElement)?.checked, cl)}
-                        value={selected.includes(cl?.id)}
+                        checked={selected.includes(cl?.id)}
                     />
                 </div>
                 <div>
