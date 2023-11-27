@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './styles.css'
 import { Button, Input, Select } from 'antd'
 import ContactListMultiselect from '../ContactListMultiselect';
@@ -11,9 +11,19 @@ const { TextArea } = Input;
 
 export default function EmailCampaignBuilder() {
 
+    const [fieldValues, setFieldValues] = useState<any>({})
+
 
     const filterOption = (input: string, option?: { label: string; value: string }) =>
         (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+
+    
+    function onChange(field: string, value: any) {
+        const workingObj = {...fieldValues}
+        workingObj[field] = value
+        console.log('workingObj', workingObj)
+        setFieldValues(workingObj)
+    }
 
 
     return (
@@ -28,6 +38,8 @@ export default function EmailCampaignBuilder() {
                 <div>
                     <Input
                         placeholder='Title...'
+                        onChange={(e) => onChange('title', e?.target?.value)}
+                        value={fieldValues?.title}
                     />
                 </div>
             </div>
@@ -43,7 +55,8 @@ export default function EmailCampaignBuilder() {
                         showSearch
                         placeholder="Select a 'send from' email"
                         optionFilterProp="children"
-                        //onChange={onChange}
+                        onChange={(v) => onChange('sendFromEmail', v)}
+                        value={fieldValues?.sendFromEmail}
                         //onSearch={onSearch}
                         filterOption={filterOption}
                         options={[
@@ -71,7 +84,11 @@ export default function EmailCampaignBuilder() {
                     </span>
                 </div>
                 <div>
-                    <TextArea rows={4} />
+                    <TextArea 
+                        rows={4} 
+                        onChange={(e) => onChange('emailBody', e?.target?.value)}
+                        value={fieldValues?.emailBody}
+                    />
 
                 </div>
             </div>
@@ -83,7 +100,9 @@ export default function EmailCampaignBuilder() {
                     </span>
                 </div>
                 <div>
-                    <ContactListMultiselect/>
+                    <ContactListMultiselect
+                        onChange={onChange}
+                    />
                 </div>
             </div>
 

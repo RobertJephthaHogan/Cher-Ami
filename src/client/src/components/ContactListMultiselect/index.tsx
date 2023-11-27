@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
 import contactListActions from '../../redux/actions/contactList'
@@ -6,7 +6,11 @@ import { Checkbox } from 'antd'
 import './styles.css'
 
 
-export default function ContactListMultiselect() {
+interface ContactListMultiselectProps {
+    onChange?: any
+}
+
+export default function ContactListMultiselect(props: ContactListMultiselectProps) {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const userContactLists = useSelector((state: any) => state.contactLists?.queryResult ?? [])
@@ -20,15 +24,17 @@ export default function ContactListMultiselect() {
         store.dispatch(contactListActions.setContactLists(currentUser?._id))
     }
 
+    useMemo(() => {
+        props?.onChange('contactLists', selected)
+    }, [selected])
+
     function toggleSelection(checked: any, cl: any ) {
 
         if (checked === true) {
-            //ToDo: add contactlist to selected
             setSelected([...selected, cl?.id])
         }
 
         if (checked === false) {
-            //ToDo: add contactlist to selected
             const workingArray = [...selected]
             let newArray = workingArray.filter((item: any) => item !== cl?.id);
             setSelected(newArray)
