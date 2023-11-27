@@ -5,6 +5,7 @@ import ContactListMultiselect from '../ContactListMultiselect';
 import FrequencySelector from '../FrequencySelector';
 import { ObjectID } from 'bson';
 import { useSelector } from 'react-redux';
+import { openNotification } from '../../helpers/notifications';
 
 
 
@@ -39,16 +40,12 @@ export default function EmailCampaignBuilder() {
     }
 
     function requiredFieldVerifier(formData: any) {
-        console.log('formData', formData)
 
         const title = fieldChecker(formData?.title)
         const sendFromEmail = fieldChecker(formData?.sendFromEmail)
         const emailBody = fieldChecker(formData?.emailBody)
         const recipientContactLists = fieldChecker(formData?.recipientContactLists)
         const frequency = fieldChecker(formData?.frequency)
-
-        console.log('title', title)
-        console.log('sendFromEmail', sendFromEmail)
 
         let status = 'success'
         if (
@@ -75,8 +72,6 @@ export default function EmailCampaignBuilder() {
     }
 
     function onFinish() {
-        console.log('onFinish')
-        console.log('fieldValues', fieldValues)
 
         setSubmissionAttempted(true)
 
@@ -92,15 +87,28 @@ export default function EmailCampaignBuilder() {
 
         console.log('verification', verification)
 
-        if (fieldValues?.frequency?.frequencyType === 'oneTime') {
-            //TODO: One-time Email Campaign onFinish handling
-            console.log('oneTime')
+        if (verification?.status === 'success') { // If there were no field verification errors
+            
+            if (fieldValues?.frequency?.frequencyType === 'oneTime') {
+                //TODO: One-time Email Campaign onFinish handling
+                console.log('oneTime')
+            }
+    
+            if (fieldValues?.frequency?.frequencyType === 'recurring') {
+                //TODO: Recurring Email Campaign onFinish handling
+                console.log('recurring')
+            }
+
         }
 
-        if (fieldValues?.frequency?.frequencyType === 'recurring') {
-            //TODO: Recurring Email Campaign onFinish handling
-            console.log('recurring')
+        if (verification?.status === 'error') {
+            console.log('error')
+            openNotification(
+                'Error',
+                `Check all required fields`
+            )
         }
+        
     }
 
 
