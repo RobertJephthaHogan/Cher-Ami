@@ -1,0 +1,12 @@
+
+
+
+.cl-ms-row {
+    display: flex;
+    padding-left: 10px
+}
+
+.contact-list-multiselect {
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+}

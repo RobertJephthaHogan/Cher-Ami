@@ -29,7 +29,7 @@ export default function Contacts() {
         setComponentData()
     }, [])
 
-    useMemo(() => {
+    useEffect(() => {
 
         const formattedTableData = userContacts?.map((contact: any) => {
             return (

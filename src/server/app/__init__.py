@@ -6,6 +6,7 @@ from app.services.user.routes import router as UserRouter
 from app.services.email.routes import router as EmailRouter
 from app.services.contact.routes import router as ContactRouter
 from app.services.contact_list.routes import router as ContactListRouter
+from app.services.email_campaign.routes import router as EmailCampaignRouter
 
 
 # Create the App
@@ -46,3 +47,4 @@ app.include_router(UserRouter, tags=["User"], prefix="/user")
 app.include_router(EmailRouter, tags=["Email"], prefix="/email")
 app.include_router(ContactRouter, tags=["Contact"], prefix="/contact")
 app.include_router(ContactListRouter, tags=["Contact List"], prefix="/contact_list")
+app.include_router(EmailCampaignRouter, tags=["Email Campaign"], prefix="/email_campaign")
