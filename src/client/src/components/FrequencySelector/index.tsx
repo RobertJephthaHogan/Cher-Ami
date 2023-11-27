@@ -1,29 +1,50 @@
 import { DatePicker, Radio } from 'antd'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import './styles.css'
 
 
-export default function FrequencySelector() {
+interface FrequencySelectorProps {
+    onChange?: any
+}
 
-    const [frequencyType, setFrequencyTpe] = useState<any>('single')
+export default function FrequencySelector(props: FrequencySelectorProps) {
+
+    const [frequencyType, setFrequencyTpe] = useState<any>('oneTime')
+    const [sendDate, setSendDate] = useState<any>()
+
+    console.log('sendDate', sendDate)
+
+    useMemo(() => {
+
+        const frequencyFormValues = {
+            frequencyType: frequencyType,
+            sendDate,
+            sendInitial: true,
+            recurrence: {}
+        }
+
+        props.onChange('frequency', frequencyFormValues)
+
+    }, [frequencyType, sendDate])
 
     return (
         <div className='frequency-selector'>
             <div className='fs-radio-group-row'>
                 <Radio.Group 
                     onChange={(e) => setFrequencyTpe(e?.target?.value)} 
-                    defaultValue={'single'}
+                    defaultValue={'oneTime'}
                 >
-                    <Radio value={'single'}>One Time</Radio>
+                    <Radio value={'oneTime'}>One Time</Radio>
                     <Radio value={'recurring'}>Recurring</Radio>
                 </Radio.Group>
             </div>
             {
-                frequencyType === 'single'
+                frequencyType === 'oneTime'
                 ? (
                     <div className='datepicker-row'>
                         <DatePicker
                             showTime
+                            onChange={(v) => setSendDate(v?.format('YYYY-MM-DD HH:mm:ss'))}
                         />
                     </div>
                 )

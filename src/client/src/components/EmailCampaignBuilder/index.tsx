@@ -114,7 +114,9 @@ export default function EmailCampaignBuilder() {
                     </span>
                 </div>
                 <div>
-                    <FrequencySelector/>
+                    <FrequencySelector
+                        onChange={onChange}
+                    />
                 </div>
             </div>
 
