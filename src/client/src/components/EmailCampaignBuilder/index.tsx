@@ -6,6 +6,7 @@ import FrequencySelector from '../FrequencySelector';
 import { ObjectID } from 'bson';
 import { useSelector } from 'react-redux';
 import { openNotification } from '../../helpers/notifications';
+import { emailCampaignService } from '../../services/emailCampaign.service';
 
 
 
@@ -92,6 +93,15 @@ export default function EmailCampaignBuilder() {
             if (fieldValues?.frequency?.frequencyType === 'oneTime') {
                 //TODO: One-time Email Campaign onFinish handling
                 console.log('oneTime')
+
+                emailCampaignService?.createEmailCampaign(dto)
+                    .then((resp: any) => {
+                        console.log('resp')
+                    })
+                    .catch((er: any) => {
+                        console.log('error', er)
+                    })
+
             }
     
             if (fieldValues?.frequency?.frequencyType === 'recurring') {
@@ -165,16 +175,16 @@ export default function EmailCampaignBuilder() {
                         filterOption={filterOption}
                         options={[
                         {
-                            value: 'jack',
-                            label: 'Jack',
+                            value: 'jack@gmail.com',
+                            label: 'Jack@gmail.com',
                         },
                         {
-                            value: 'lucy',
-                            label: 'Lucy',
+                            value: 'lucy@gmail.com',
+                            label: 'Lucy@gmail.com',
                         },
                         {
-                            value: 'tom',
-                            label: 'Tom',
+                            value: 'tom@gmail.com',
+                            label: 'Tom@gmail.com',
                         },
                         ]}
                     />
