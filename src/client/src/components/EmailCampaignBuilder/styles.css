@@ -19,3 +19,8 @@
     display: flex;
     justify-content: end;
 }
+
+.required-field-error {
+    color: #ff0000;
+    margin-left: 20px
+}

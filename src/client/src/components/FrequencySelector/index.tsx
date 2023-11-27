@@ -12,7 +12,6 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
     const [frequencyType, setFrequencyTpe] = useState<any>('oneTime')
     const [sendDate, setSendDate] = useState<any>()
 
-    console.log('sendDate', sendDate)
 
     useMemo(() => {
 
@@ -27,6 +26,7 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
 
     }, [frequencyType, sendDate])
 
+    
     return (
         <div className='frequency-selector'>
             <div className='fs-radio-group-row'>

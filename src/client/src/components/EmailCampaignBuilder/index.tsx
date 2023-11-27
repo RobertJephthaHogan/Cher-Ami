@@ -16,7 +16,8 @@ export default function EmailCampaignBuilder() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const [fieldValues, setFieldValues] = useState<any>({})
-
+    const [submissionAttempted, setSubmissionAttempted] = useState<boolean>(false)
+    const [verificationData, setVerificationData] = useState<any>()
 
     const filterOption = (input: string, option?: { label: string; value: string }) =>
         (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
@@ -25,13 +26,59 @@ export default function EmailCampaignBuilder() {
     function onChange(field: string, value: any) {
         const workingObj = {...fieldValues}
         workingObj[field] = value
-        console.log('workingObj', workingObj)
         setFieldValues(workingObj)
+    }
+
+    function fieldChecker(value: any) {
+
+        if (value == undefined || null) {
+            return 'error'
+        }
+        
+        return value
+    }
+
+    function requiredFieldVerifier(formData: any) {
+        console.log('formData', formData)
+
+        const title = fieldChecker(formData?.title)
+        const sendFromEmail = fieldChecker(formData?.sendFromEmail)
+        const emailBody = fieldChecker(formData?.emailBody)
+        const recipientContactLists = fieldChecker(formData?.recipientContactLists)
+        const frequency = fieldChecker(formData?.frequency)
+
+        console.log('title', title)
+        console.log('sendFromEmail', sendFromEmail)
+
+        let status = 'success'
+        if (
+            title === 'error'
+            || sendFromEmail === 'error'
+            || emailBody === 'error'
+            || recipientContactLists === 'error'
+            || frequency === 'error'
+        ) {
+            status = 'error'
+        }
+        const verificationObject = {
+            status,
+            data: {
+                title,
+                sendFromEmail,
+                emailBody,
+                recipientContactLists,
+                frequency
+            }
+        }
+        setVerificationData(verificationObject)
+        return verificationObject
     }
 
     function onFinish() {
         console.log('onFinish')
         console.log('fieldValues', fieldValues)
+
+        setSubmissionAttempted(true)
 
         const dto = {
             id: new ObjectID().toString(),
@@ -40,6 +87,10 @@ export default function EmailCampaignBuilder() {
         }
 
         console.log('dto', dto)
+
+        const verification = requiredFieldVerifier(dto)
+
+        console.log('verification', verification)
 
         if (fieldValues?.frequency?.frequencyType === 'oneTime') {
             //TODO: One-time Email Campaign onFinish handling
@@ -61,6 +112,15 @@ export default function EmailCampaignBuilder() {
                     <span className='input-label'>
                         Campaign Title
                     </span>
+                    {
+                        (submissionAttempted && (verificationData?.data?.title === 'error'))
+                        ? (
+                            <span className='required-field-error'>
+                                * A title is required
+                            </span>
+                        )
+                        : null
+                    }
                 </div>
                 <div>
                     <Input
@@ -76,6 +136,15 @@ export default function EmailCampaignBuilder() {
                     <span className='input-label'>
                         Send From Email
                     </span>
+                    {
+                        (submissionAttempted && (verificationData?.data?.sendFromEmail === 'error'))
+                        ? (
+                            <span className='required-field-error'>
+                                * A send-from email is required
+                            </span>
+                        )
+                        : null
+                    }
                 </div>
                 <div>
                     <Select
@@ -109,6 +178,15 @@ export default function EmailCampaignBuilder() {
                     <span className='input-label'>
                         Email Body
                     </span>
+                    {
+                        (submissionAttempted && (verificationData?.data?.emailBody === 'error'))
+                        ? (
+                            <span className='required-field-error'>
+                                * An email body is required
+                            </span>
+                        )
+                        : null
+                    }
                 </div>
                 <div>
                     <TextArea 
@@ -125,6 +203,15 @@ export default function EmailCampaignBuilder() {
                     <span className='input-label'>
                         Select Recipients
                     </span>
+                    {
+                        (submissionAttempted && (verificationData?.data?.recipientContactLists === 'error'))
+                        ? (
+                            <span className='required-field-error'>
+                                * At least one contact list is required
+                            </span>
+                        )
+                        : null
+                    }
                 </div>
                 <div>
                     <ContactListMultiselect
