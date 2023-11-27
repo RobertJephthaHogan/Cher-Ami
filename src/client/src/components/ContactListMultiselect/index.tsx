@@ -25,7 +25,7 @@ export default function ContactListMultiselect(props: ContactListMultiselectProp
     }
 
     useMemo(() => {
-        props?.onChange('contactLists', selected)
+        props?.onChange('recipientContactLists', selected)
     }, [selected])
 
     function toggleSelection(checked: any, cl: any ) {
