@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './styles.css'
 import { Button, Input, Select } from 'antd'
 import ContactListMultiselect from '../ContactListMultiselect';
+import FrequencySelector from '../FrequencySelector';
 
 
 
@@ -113,7 +114,7 @@ export default function EmailCampaignBuilder() {
                     </span>
                 </div>
                 <div>
-                    TODO: Frequency Selector Here
+                    <FrequencySelector/>
                 </div>
             </div>
 
