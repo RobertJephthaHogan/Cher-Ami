@@ -3,6 +3,8 @@ import './styles.css'
 import { Button, Input, Select } from 'antd'
 import ContactListMultiselect from '../ContactListMultiselect';
 import FrequencySelector from '../FrequencySelector';
+import { ObjectID } from 'bson';
+import { useSelector } from 'react-redux';
 
 
 
@@ -12,6 +14,7 @@ const { TextArea } = Input;
 
 export default function EmailCampaignBuilder() {
 
+    const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const [fieldValues, setFieldValues] = useState<any>({})
 
 
@@ -24,6 +27,29 @@ export default function EmailCampaignBuilder() {
         workingObj[field] = value
         console.log('workingObj', workingObj)
         setFieldValues(workingObj)
+    }
+
+    function onFinish() {
+        console.log('onFinish')
+        console.log('fieldValues', fieldValues)
+
+        const dto = {
+            id: new ObjectID().toString(),
+            ...fieldValues,
+            createdByUserId: currentUser?._id,
+        }
+
+        console.log('dto', dto)
+
+        if (fieldValues?.frequency?.frequencyType === 'oneTime') {
+            //TODO: One-time Email Campaign onFinish handling
+            console.log('oneTime')
+        }
+
+        if (fieldValues?.frequency?.frequencyType === 'recurring') {
+            //TODO: Recurring Email Campaign onFinish handling
+            console.log('recurring')
+        }
     }
 
 
@@ -121,7 +147,9 @@ export default function EmailCampaignBuilder() {
             </div>
 
             <div className='submission-btn-row'>
-                <Button>
+                <Button
+                    onClick={onFinish}
+                >
                     Create Email Campaign
                 </Button>
             </div>
