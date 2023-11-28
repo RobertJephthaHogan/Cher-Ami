@@ -12,10 +12,15 @@
 }
 
 .campaign-input-row {
-    margin: 10px 0px
+    margin: 15px 0px
 }
 
 .submission-btn-row {
     display: flex;
     justify-content: end;
+}
+
+.required-field-error {
+    color: #ff0000;
+    margin-left: 20px
 }
