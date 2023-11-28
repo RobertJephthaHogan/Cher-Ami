@@ -12,4 +12,5 @@ export default {
     widgets: {},
     contacts: [],
     contactLists: [],
+    emailCampaigns: [],
 }

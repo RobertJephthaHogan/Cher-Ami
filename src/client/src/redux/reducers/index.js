@@ -5,6 +5,7 @@ import initialState from '../initialState'
 import * as types from '../types'
 import contactReducer from './contact'
 import contactListReducer from './contactList'
+import emailCampaignReducer from './emailCampaign'
 //import widgetReducer from './widget'
 
 
@@ -13,6 +14,7 @@ const appReducers = combineReducers({
   settings: settingsReducer,
   contacts: contactReducer,
   contactLists: contactListReducer,
+  emailCampaigns: emailCampaignReducer,
   //widgets: widgetReducer
 })
 

@@ -1,15 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NotificationOutlined from '@ant-design/icons/NotificationOutlined'
 import SendOutlined from '@ant-design/icons/SendOutlined'
 import MailOutlined from '@ant-design/icons/MailOutlined'
 import './styles.css'
 import { Button, Modal } from 'antd'
 import EmailCampaignBuilder from '../../components/EmailCampaignBuilder'
+import { useSelector } from 'react-redux'
+import { store } from '../../redux/store'
+import emailCampaignActions from '../../redux/actions/emailCampaign'
 
 
 export default function Email() {
-
+    const currentUser = useSelector((state: any) => state.user?.data ?? [])
+    const userEmailCampaigns = useSelector((state: any) => state.emailCampaigns?.queryResult ?? [])
     const [cnecModalOpen, setCnecModalOpen] = useState<any>()
+
+    
+    useEffect(() => {
+        setComponentData()
+    }, [])
+
+    function setComponentData() {
+        store.dispatch(emailCampaignActions.setEmailCampaigns(currentUser?._id))
+    }
+
+    console.log('userEmailCampaigns', userEmailCampaigns)
 
     return (
         <div className='email-component'>
