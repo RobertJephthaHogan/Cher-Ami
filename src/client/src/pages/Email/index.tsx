@@ -25,7 +25,6 @@ export default function Email() {
         store.dispatch(emailCampaignActions.setEmailCampaigns(currentUser?._id))
     }
 
-    console.log('userEmailCampaigns', userEmailCampaigns)
 
     useMemo(() => {
         setTableData(userEmailCampaigns)
