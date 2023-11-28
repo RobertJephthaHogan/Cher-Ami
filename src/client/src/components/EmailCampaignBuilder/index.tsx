@@ -8,13 +8,18 @@ import { useSelector } from 'react-redux';
 import { openNotification } from '../../helpers/notifications';
 import { emailCampaignService } from '../../services/emailCampaign.service';
 import dayjs from 'dayjs';
+import { store } from '../../redux/store';
+import emailCampaignActions from '../../redux/actions/emailCampaign';
 
 
 const { TextArea } = Input;
 
 
+interface EmailCampaignBuilderProps {
+    closeParent?: any
+}
 
-export default function EmailCampaignBuilder() {
+export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const [fieldValues, setFieldValues] = useState<any>({})
@@ -99,6 +104,15 @@ export default function EmailCampaignBuilder() {
                 emailCampaignService?.createEmailCampaign(dto)
                     .then((resp: any) => {
                         console.log('resp')
+                        openNotification(
+                            resp?.data?.response_type,
+                            `Email Campaign Created Successfully`
+                        )
+                        props.closeParent()
+                        setTimeout(function() {
+                            store.dispatch(emailCampaignActions.setEmailCampaigns(currentUser?._id))
+                        }, 500);
+                        setFieldValues({})
                     })
                     .catch((er: any) => {
                         console.log('error', er)
@@ -236,6 +250,7 @@ export default function EmailCampaignBuilder() {
                 <div>
                     <ContactListMultiselect
                         onChange={onChange}
+                        selected={fieldValues?.recipientContactLists}
                     />
                 </div>
             </div>

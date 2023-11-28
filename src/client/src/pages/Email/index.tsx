@@ -210,7 +210,9 @@ export default function Email() {
                 onCancel={() => setCnecModalOpen(false)}
                 footer={null}
             >
-                <EmailCampaignBuilder/>
+                <EmailCampaignBuilder
+                    closeParent={() => setCnecModalOpen(false)}
+                />
             </Modal>
         </div>
     )

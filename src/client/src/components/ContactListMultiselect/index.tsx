@@ -8,6 +8,7 @@ import './styles.css'
 
 interface ContactListMultiselectProps {
     onChange?: any
+    selected?: any
 }
 
 export default function ContactListMultiselect(props: ContactListMultiselectProps) {
