@@ -7,7 +7,7 @@ import { ObjectID } from 'bson';
 import { useSelector } from 'react-redux';
 import { openNotification } from '../../helpers/notifications';
 import { emailCampaignService } from '../../services/emailCampaign.service';
-
+import dayjs from 'dayjs';
 
 
 const { TextArea } = Input;
@@ -79,6 +79,8 @@ export default function EmailCampaignBuilder() {
         const dto = {
             id: new ObjectID().toString(),
             ...fieldValues,
+            status: 'pending',
+            creationTime: dayjs().format(),
             createdByUserId: currentUser?._id,
         }
 
