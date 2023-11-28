@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import NotificationOutlined from '@ant-design/icons/NotificationOutlined'
 import SendOutlined from '@ant-design/icons/SendOutlined'
 import MailOutlined from '@ant-design/icons/MailOutlined'
@@ -15,7 +15,7 @@ export default function Email() {
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const userEmailCampaigns = useSelector((state: any) => state.emailCampaigns?.queryResult ?? [])
     const [cnecModalOpen, setCnecModalOpen] = useState<any>()
-
+    const [tableData, setTableData] = useState<any>([])
     
     useEffect(() => {
         setComponentData()
@@ -26,6 +26,10 @@ export default function Email() {
     }
 
     console.log('userEmailCampaigns', userEmailCampaigns)
+
+    useMemo(() => {
+        setTableData(userEmailCampaigns)
+    }, [userEmailCampaigns])
 
     const columns: any = [
         // {
@@ -192,7 +196,10 @@ export default function Email() {
                     </span>
                 </div> */}
                 <div className='email-component-table-container'>
-                    <Table dataSource={data} columns={columns} />
+                    <Table 
+                        dataSource={tableData} 
+                        columns={columns} 
+                    />
                 </div>
             </div>
 
