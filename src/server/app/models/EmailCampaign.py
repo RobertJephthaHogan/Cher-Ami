@@ -11,6 +11,8 @@ class EmailCampaign(Document):
     emailBody: str = Field(...)
     recipientContactLists: List[Any] = Field(...)
     frequency: Dict[Any, Any]
+    status: str = Field(...)
+    creationTime: datetime.datetime = Field(...)
     createdByUserId: str = Field(...)
     
     
@@ -26,6 +28,8 @@ class EmailCampaign(Document):
                 "emailBody": "This is a basic email body",
                 "recipientContactLists": [],
                 "frequency": {},
+                "status": 'sent',
+                "creationTime": "2023-11-21T16:10:15-05:00",
                 "createdByUserId": "wwv45yw4gw45w76nr657eu",
             }
         }
@@ -38,6 +42,8 @@ class UpdateEmailCampaignModel(BaseModel):
     emailBody: Optional[str]
     recipientContactLists: Optional[List[Any]]
     frequency: Optional[Dict[Any, Any]]
+    status: Optional[str]
+    creationTime: Optional[datetime.datetime]
     createdByUserId: Optional[str]
 
     class Config:
@@ -49,6 +55,8 @@ class UpdateEmailCampaignModel(BaseModel):
                 "emailBody": "This is a basic email body",
                 "recipientContactLists": [],
                 "frequency": {},
+                "status": 'sent',
+                "creationTime": "2023-11-21T16:10:15-05:00",
                 "createdByUserId": "wwv45yw4gw45w76nr657eu",
             }
         }

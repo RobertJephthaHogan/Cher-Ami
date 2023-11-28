@@ -25,7 +25,6 @@ export default function Email() {
         store.dispatch(emailCampaignActions.setEmailCampaigns(currentUser?._id))
     }
 
-    console.log('userEmailCampaigns', userEmailCampaigns)
 
     useMemo(() => {
         setTableData(userEmailCampaigns)
@@ -210,7 +209,9 @@ export default function Email() {
                 onCancel={() => setCnecModalOpen(false)}
                 footer={null}
             >
-                <EmailCampaignBuilder/>
+                <EmailCampaignBuilder
+                    closeParent={() => setCnecModalOpen(false)}
+                />
             </Modal>
         </div>
     )

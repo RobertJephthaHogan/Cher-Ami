@@ -25,7 +25,6 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
         props.onChange('frequency', frequencyFormValues)
 
     }, [frequencyType, sendDate])
-
     
     return (
         <div className='frequency-selector'>
@@ -44,7 +43,8 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
                     <div className='datepicker-row'>
                         <DatePicker
                             showTime
-                            onChange={(v) => setSendDate(v?.format('YYYY-MM-DD HH:mm:ss'))}
+                            //onChange={(v) => setSendDate(v?.format('YYYY-MM-DD HH:mm:ss'))}
+                            onChange={(v) => setSendDate(v?.format())}
                         />
                     </div>
                 )
