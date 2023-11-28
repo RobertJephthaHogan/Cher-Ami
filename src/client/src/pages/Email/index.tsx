@@ -28,75 +28,80 @@ export default function Email() {
     console.log('userEmailCampaigns', userEmailCampaigns)
 
     const columns: any = [
+        // {
+        //     title: 'ID',
+        //     dataIndex: 'id',
+        //     key: 'id',
+        // },
         {
-          title: 'Name',
-          dataIndex: 'name',
-          key: 'name',
-          render: (text: any) => <a>{text}</a>,
+            title: 'Title',
+            dataIndex: 'title',
+            key: 'title',
         },
         {
-          title: 'Age',
-          dataIndex: 'age',
-          key: 'age',
+            title: 'Send From Email',
+            dataIndex: 'sendFromEmail',
+            key: 'sendFromEmail',
+        },
+        // {
+        //     title: 'Email Body',
+        //     dataIndex: 'emailBody',
+        //     key: 'emailBody',
+        // },
+        {
+            title: 'Recipient Contact Lists',
+            key: 'recipientContactLists',
+            dataIndex: 'recipientContactLists',
+            render: (_: any, { recipientContactLists }: any) => (
+              <>
+                {recipientContactLists?.map((tag: any) => {
+                  let color = tag.length > 5 ? 'geekblue' : 'green';
+                  if (tag === 'loser') {
+                    color = 'volcano';
+                  }
+                  return (
+                    <Tag color={color} key={tag}>
+                      {tag.toUpperCase()}
+                    </Tag>
+                  );
+                })}
+              </>
+            ),
         },
         {
-          title: 'Address',
-          dataIndex: 'address',
-          key: 'address',
+            title: 'Frequency',
+            key: 'frequency',
+            render: (_: any, record: any) => (
+                <Tag>
+                    {record?.frequency?.frequencyType}
+                </Tag>
+            ),
         },
         {
-          title: 'Tags',
-          key: 'tags',
-          dataIndex: 'tags',
-          render: (_: any, { tags }: any) => (
-            <>
-              {tags.map((tag: any) => {
-                let color = tag.length > 5 ? 'geekblue' : 'green';
-                if (tag === 'loser') {
-                  color = 'volcano';
-                }
-                return (
-                  <Tag color={color} key={tag}>
-                    {tag.toUpperCase()}
-                  </Tag>
-                );
-              })}
-            </>
-          ),
+            title: 'Action',
+            key: 'action',
+            render: (_: any, record: any) => (
+                <Space size="middle">
+                    <a>Details</a>
+                    <a>Use as Template</a>
+                </Space>
+            ),
         },
-        {
-          title: 'Action',
-          key: 'action',
-          render: (_: any, record: any) => (
-            <Space size="middle">
-              <a>Invite {record.name}</a>
-              <a>Delete</a>
-            </Space>
-          ),
-        },
-      ];
+    ];
       
     const data: any = [
         {
           key: '1',
-          name: 'John Brown',
-          age: 32,
+          title: 'Mock Title',
+          sendFromEmail: 'mockEmail@gmail.com',
+          emailBody: 'body',
+          recipientContactLists: [ 'list 1', 'list 2'],
+          frequency: {
+            frequencyType: 'oneTime',
+            sendDate: '',
+            sendInitial: true
+          },
           address: 'New York No. 1 Lake Park',
-          tags: ['nice', 'developer'],
-        },
-        {
-          key: '2',
-          name: 'Jim Green',
-          age: 42,
-          address: 'London No. 1 Lake Park',
-          tags: ['loser'],
-        },
-        {
-          key: '3',
-          name: 'Joe Black',
-          age: 32,
-          address: 'Sydney No. 1 Lake Park',
-          tags: ['cool', 'teacher'],
         },
     ];
 
@@ -187,7 +192,7 @@ export default function Email() {
                     </span>
                 </div> */}
                 <div className='email-component-table-container'>
-                    <Table dataSource={data} columns={columns} />;
+                    <Table dataSource={data} columns={columns} />
                 </div>
             </div>
 
