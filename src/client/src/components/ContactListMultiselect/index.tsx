@@ -15,7 +15,6 @@ export default function ContactListMultiselect(props: ContactListMultiselectProp
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const userContactLists = useSelector((state: any) => state.contactLists?.queryResult ?? [])
-    const [selected, setSelected] = useState<any>([])    
 
     useEffect(() => {
         setComponentData()
@@ -25,20 +24,17 @@ export default function ContactListMultiselect(props: ContactListMultiselectProp
         store.dispatch(contactListActions.setContactLists(currentUser?._id))
     }
 
-    useMemo(() => {
-        props?.onChange('recipientContactLists', selected)
-    }, [selected])
 
     function toggleSelection(checked: any, cl: any ) {
 
         if (checked === true) {
-            setSelected([...selected, cl?.id])
+            props?.onChange('recipientContactLists', [...props.selected, cl?.id])
         }
 
         if (checked === false) {
-            const workingArray = [...selected]
+            const workingArray = [...props.selected]
             let newArray = workingArray.filter((item: any) => item !== cl?.id);
-            setSelected(newArray)
+            props?.onChange('recipientContactLists', newArray)
         }
     }
 
@@ -52,7 +48,7 @@ export default function ContactListMultiselect(props: ContactListMultiselectProp
                 <div>
                     <Checkbox
                         onClick={(e) => toggleSelection((e.target as HTMLInputElement)?.checked, cl)}
-                        checked={selected.includes(cl?.id)}
+                        checked={props.selected?.includes(cl?.id)}
                     />
                 </div>
                 <div>

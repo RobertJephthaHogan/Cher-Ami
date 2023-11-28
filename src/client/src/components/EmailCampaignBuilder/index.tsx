@@ -22,7 +22,9 @@ interface EmailCampaignBuilderProps {
 export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
-    const [fieldValues, setFieldValues] = useState<any>({})
+    const [fieldValues, setFieldValues] = useState<any>({
+        recipientContactLists: []
+    })
     const [submissionAttempted, setSubmissionAttempted] = useState<boolean>(false)
     const [verificationData, setVerificationData] = useState<any>()
 
@@ -112,7 +114,9 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
                         setTimeout(function() {
                             store.dispatch(emailCampaignActions.setEmailCampaigns(currentUser?._id))
                         }, 500);
-                        setFieldValues({})
+                        setFieldValues({
+                            recipientContactLists: []
+                        })
                     })
                     .catch((er: any) => {
                         console.log('error', er)
