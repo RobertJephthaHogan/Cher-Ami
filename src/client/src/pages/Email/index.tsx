@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import NotificationOutlined from '@ant-design/icons/NotificationOutlined'
 import SendOutlined from '@ant-design/icons/SendOutlined'
 import MailOutlined from '@ant-design/icons/MailOutlined'
 import './styles.css'
-import { Button, Modal } from 'antd'
+import { Button, Modal, Space, Table, Tag } from 'antd'
 import EmailCampaignBuilder from '../../components/EmailCampaignBuilder'
 import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
@@ -11,10 +11,11 @@ import emailCampaignActions from '../../redux/actions/emailCampaign'
 
 
 export default function Email() {
+
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const userEmailCampaigns = useSelector((state: any) => state.emailCampaigns?.queryResult ?? [])
     const [cnecModalOpen, setCnecModalOpen] = useState<any>()
-
+    const [tableData, setTableData] = useState<any>([])
     
     useEffect(() => {
         setComponentData()
@@ -25,6 +26,88 @@ export default function Email() {
     }
 
     console.log('userEmailCampaigns', userEmailCampaigns)
+
+    useMemo(() => {
+        setTableData(userEmailCampaigns)
+    }, [userEmailCampaigns])
+
+    const columns: any = [
+        // {
+        //     title: 'ID',
+        //     dataIndex: 'id',
+        //     key: 'id',
+        // },
+        {
+            title: 'Title',
+            dataIndex: 'title',
+            key: 'title',
+        },
+        {
+            title: 'Send From Email',
+            dataIndex: 'sendFromEmail',
+            key: 'sendFromEmail',
+        },
+        // {
+        //     title: 'Email Body',
+        //     dataIndex: 'emailBody',
+        //     key: 'emailBody',
+        // },
+        {
+            title: 'Recipient Contact Lists',
+            key: 'recipientContactLists',
+            dataIndex: 'recipientContactLists',
+            render: (_: any, { recipientContactLists }: any) => (
+              <>
+                {recipientContactLists?.map((tag: any) => {
+                  let color = tag.length > 5 ? 'geekblue' : 'green';
+                  if (tag === 'loser') {
+                    color = 'volcano';
+                  }
+                  return (
+                    <Tag color={color} key={tag}>
+                      {tag.toUpperCase()}
+                    </Tag>
+                  );
+                })}
+              </>
+            ),
+        },
+        {
+            title: 'Frequency',
+            key: 'frequency',
+            render: (_: any, record: any) => (
+                <Tag>
+                    {record?.frequency?.frequencyType}
+                </Tag>
+            ),
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (_: any, record: any) => (
+                <Space size="middle">
+                    <a>Details</a>
+                    <a>Use as Template</a>
+                </Space>
+            ),
+        },
+    ];
+      
+    const data: any = [
+        {
+          key: '1',
+          title: 'Mock Title',
+          sendFromEmail: 'mockEmail@gmail.com',
+          emailBody: 'body',
+          recipientContactLists: [ 'list 1', 'list 2'],
+          frequency: {
+            frequencyType: 'oneTime',
+            sendDate: '',
+            sendInitial: true
+          },
+          address: 'New York No. 1 Lake Park',
+        },
+    ];
 
     return (
         <div className='email-component'>
@@ -106,7 +189,19 @@ export default function Email() {
                 </div>
             </div>
 
-            Email
+            <div className='email-component-body'>
+                {/* <div>
+                    <span>
+                        Email Campaigns
+                    </span>
+                </div> */}
+                <div className='email-component-table-container'>
+                    <Table 
+                        dataSource={tableData} 
+                        columns={columns} 
+                    />
+                </div>
+            </div>
 
             <Modal 
                 title="Email Campaign Builder" 
