@@ -4,7 +4,7 @@ import HomeOutlined from '@ant-design/icons/HomeOutlined'
 import EditOutlined from '@ant-design/icons/EditOutlined'
 import SaveOutlined from '@ant-design/icons/SaveOutlined'
 import { useSelector } from 'react-redux'
-import { Input, Table } from 'antd'
+import { Input, Popconfirm, Space, Table } from 'antd'
 import { userService } from '../../services'
 import userActions from '../../redux/actions/user'
 import { store } from '../../redux/store'
@@ -114,6 +114,25 @@ export default function Settings() {
           title: 'Email Address Label',
           dataIndex: 'emailAddressLabel',
           key: 'emailAddressLabel',
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (_: any, record: any) => (
+                <Space size="middle">
+                    <Popconfirm
+                        placement="bottom"
+                        title={'Are you sure you want to delete this contact?'}
+                        description={'This action is not reversible'}
+                        okText="Yes"
+                        cancelText="No"
+                        //onConfirm={() => onDelete(record)}
+                        // onCancel={cancel}
+                    >
+                        <a>Delete</a>
+                    </Popconfirm>
+                </Space>
+            ),
         },
     ];
 
