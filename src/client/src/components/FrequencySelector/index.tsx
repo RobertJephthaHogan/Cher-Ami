@@ -33,6 +33,9 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
 
     }, [frequencyType, sendDate, frequencyInterval, intervalSendDays])
     
+    useMemo(() => {
+        setIntervalSendDays([])
+    }, [frequencyInterval])
 
     return (
         <div className='frequency-selector'>
