@@ -109,6 +109,28 @@ export default function Settings() {
     }, [currentUser?.sendFromEmailAddresses])
 
 
+    function onDeleteSFEmailAddress(data: any, i: any) {
+
+        const workingUser = {...currentUser}
+        const workingSfEmailADdresses = [...currentUser?.sendFromEmailAddresses]
+        workingSfEmailADdresses.splice(i, 1) // removes object at index i
+        
+        workingUser['sendFromEmailAddresses'] = workingSfEmailADdresses
+
+        userService
+        .updateUser(workingUser?._id, workingUser)
+        .then((resp:any) => {
+            store.dispatch(userActions.updateUserData(resp?.data?.data))
+            openNotification(
+                resp?.data?.response_type,
+                `User Updated Successfully`
+            )
+        })
+        .catch((error: any) => {
+            console.error('error', error)
+        })
+    }
+
     const emailAddressesDataSource = [
         {
           key: '1',
@@ -137,7 +159,7 @@ export default function Settings() {
         {
             title: 'Action',
             key: 'action',
-            render: (_: any, record: any) => (
+            render: (_: any, record: any, i: any) => (
                 <Space size="middle">
                     <Popconfirm
                         placement="bottom"
@@ -145,7 +167,7 @@ export default function Settings() {
                         description={'This action is not reversible'}
                         okText="Yes"
                         cancelText="No"
-                        //onConfirm={() => onDelete(record)}
+                        onConfirm={() => onDeleteSFEmailAddress(record, i)}
                         // onCancel={cancel}
                     >
                         <a>Delete</a>
