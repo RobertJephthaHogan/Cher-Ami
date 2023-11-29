@@ -9,6 +9,7 @@ import { userService } from '../../services'
 import userActions from '../../redux/actions/user'
 import { store } from '../../redux/store'
 import { openNotification } from '../../helpers/notifications'
+import SFEmailAddressForm from '../../features/settings/SFEmailAddressForm'
 
 
 export default function Settings() {
@@ -302,7 +303,7 @@ export default function Settings() {
                 onOk={() => setNewSendFromEmailModalOpen(false)} 
                 onCancel={() => setNewSendFromEmailModalOpen(false)}
             >
-                Add new send-from email modal
+                <SFEmailAddressForm/>
             </Modal>
 
 
