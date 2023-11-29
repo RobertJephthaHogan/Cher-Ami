@@ -6,7 +6,6 @@ const useAuth = () => {
 	const _user = localStorage.getItem("user")
 	if (_user) {
 		user = JSON.parse(_user)
-		console.log('user', user)
 	}
 	if (user?.data?.role) {
 		return {

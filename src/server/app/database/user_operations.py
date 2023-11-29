@@ -30,7 +30,7 @@ class UserOperations:
         user = await user_collection.get(str(id))
         if user:
             await user.update(update_query)
-            return user
+            return data
         return False
 
 

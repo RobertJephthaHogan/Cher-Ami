@@ -2,11 +2,15 @@ import { Button, Input } from 'antd'
 import React, { useState } from 'react'
 import './styles.css'
 import { useSelector } from 'react-redux'
+import { userService } from '../../../services'
+import { store } from '../../../redux/store'
+import { openNotification } from '../../../helpers/notifications'
+import userActions from '../../../redux/actions/user'
 
 
 export default function SFEmailAddressForm() {
     
-    const currentUser = useSelector((state: any) => state.user?.data ?? [])
+    const currentUser = useSelector((state: any) => state.user?.data ?? {})
     const [formValues, setFormValues] = useState<any>({})
 
     function onChange(fieldName: string, value: any) {
@@ -17,8 +21,29 @@ export default function SFEmailAddressForm() {
     }
 
     function onFinish() {
-        
+
+        const workingUser = {...currentUser}
+        const updatedSfEmails = [...currentUser?.sendFromEmailAddresses, formValues]
+        workingUser['sendFromEmailAddresses'] = updatedSfEmails
+
+        userService
+            .updateUser(workingUser?._id, workingUser)
+            .then((resp:any) => {
+                console.log('resp', resp)
+                store.dispatch(userActions.updateUserData(resp?.data?.data))
+                openNotification(
+                    resp?.data?.response_type,
+                    `User Updated Successfully`
+                )
+            })
+            .catch((error: any) => {
+                console.error('error', error)
+            })
+
+
     }
+
+    console.log('currentUser',currentUser)
 
     return (
         <div className='sf-email-address-form'>
