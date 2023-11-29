@@ -72,13 +72,13 @@ class UserRouter:
     @router.put("/{id}", response_model=Response)
     async def update_user(id: PydanticObjectId, updated_user: UpdateUserModel = Body(...)):
         new_entry = await DatabaseOperations.UserOperations.update_user(id, updated_user)
-        new_entry.id = id # TODO: Figure out obj id error
+        user_exists  = await User.get(str(id)) # Obj id error on return fix
         if new_entry:
             return {
                 "status_code": 200,
                 "response_type": "success",
                 "description": "User with ID: {} updated".format(id),
-                "data": new_entry
+                "data": user_exists
             }
         return {
             "status_code": 500,
