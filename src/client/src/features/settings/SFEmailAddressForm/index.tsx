@@ -32,7 +32,6 @@ export default function SFEmailAddressForm(props: SFEmailAddressFormProps) {
         userService
             .updateUser(workingUser?._id, workingUser)
             .then((resp:any) => {
-                console.log('resp', resp)
                 store.dispatch(userActions.updateUserData(resp?.data?.data))
                 openNotification(
                     resp?.data?.response_type,

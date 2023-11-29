@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import './styles.css'
 import HomeOutlined from '@ant-design/icons/HomeOutlined'
 import EditOutlined from '@ant-design/icons/EditOutlined'
@@ -16,6 +16,7 @@ export default function Settings() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const [newSendFromEmailModalOpen, setNewSendFromEmailModalOpen] = useState<boolean>(false)
+    const [sfEmailAddressTableData, setSfEmailAddressTableData] = useState<any>()
   
     interface SettingsFieldProps {
         fieldName?: any
@@ -91,6 +92,23 @@ export default function Settings() {
         )
     }
 
+
+    useMemo(() => {
+
+        const tData = currentUser?.sendFromEmailAddresses?.map((adr: any, i: any) => {
+            return (
+                {
+                    key: i,
+                    ...adr
+                }
+            )
+        })
+
+        setSfEmailAddressTableData(tData)
+
+    }, [currentUser?.sendFromEmailAddresses])
+
+
     const emailAddressesDataSource = [
         {
           key: '1',
@@ -100,7 +118,7 @@ export default function Settings() {
         },
     ];
       
-      const emailAddressesColumns = [
+    const emailAddressesColumns = [
         {
           title: 'Email Address',
           dataIndex: 'emailAddress',
@@ -272,7 +290,7 @@ export default function Settings() {
                 </div>
                 <div className='acct-info-content'>
                     <Table 
-                        dataSource={emailAddressesDataSource} 
+                        dataSource={sfEmailAddressTableData} 
                         columns={emailAddressesColumns} 
                     />
                 </div>
