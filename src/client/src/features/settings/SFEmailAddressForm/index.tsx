@@ -48,8 +48,6 @@ export default function SFEmailAddressForm(props: SFEmailAddressFormProps) {
 
     }
 
-    console.log('currentUser',currentUser)
-
     return (
         <div className='sf-email-address-form'>
             <div>

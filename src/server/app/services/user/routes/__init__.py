@@ -72,6 +72,7 @@ class UserRouter:
     @router.put("/{id}", response_model=Response)
     async def update_user(id: PydanticObjectId, updated_user: UpdateUserModel = Body(...)):
         new_entry = await DatabaseOperations.UserOperations.update_user(id, updated_user)
+        new_entry.id = id
         if new_entry:
             return {
                 "status_code": 200,
