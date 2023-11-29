@@ -23,16 +23,15 @@ export default function SignUp() {
     function onFinish(data: any) {
 
         const user_to_add_obj = {
-            'id': new ObjectID().toString(),
-            'firstName': data?.firstName,
-            'lastOrBusinessName': data?.lastOrBusinessName,
-            'receiveToEmail': data?.email,
-            'sendFromEmail': '',
-            'sendFromEmailPassword': '',
-            'receiveToPhone': '',
-            'sendFromPhone': '',
-            'password': data?.password,
-            'role': 'user',
+            id: new ObjectID().toString(),
+            firstName: data?.firstName,
+            lastOrBusinessName: data?.lastOrBusinessName,
+            receiveToEmail: data?.email,
+            receiveToPhone: '',
+            sendFromEmailAddresses: [],
+            sendFromPhoneNumbers: [],
+            password: data?.password,
+            role: 'user',
         }
 
         let to_add : User  = JSON.parse(JSON.stringify(user_to_add_obj));

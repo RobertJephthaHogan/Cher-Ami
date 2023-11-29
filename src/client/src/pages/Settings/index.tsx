@@ -1,20 +1,22 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import './styles.css'
 import HomeOutlined from '@ant-design/icons/HomeOutlined'
 import EditOutlined from '@ant-design/icons/EditOutlined'
 import SaveOutlined from '@ant-design/icons/SaveOutlined'
 import { useSelector } from 'react-redux'
-import { Input } from 'antd'
+import { Button, Input, Modal, Popconfirm, Space, Table } from 'antd'
 import { userService } from '../../services'
 import userActions from '../../redux/actions/user'
 import { store } from '../../redux/store'
 import { openNotification } from '../../helpers/notifications'
+import SFEmailAddressForm from '../../features/settings/SFEmailAddressForm'
 
 
 export default function Settings() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
-    
+    const [newSendFromEmailModalOpen, setNewSendFromEmailModalOpen] = useState<boolean>(false)
+    const [sfEmailAddressTableData, setSfEmailAddressTableData] = useState<any>()
   
     interface SettingsFieldProps {
         fieldName?: any
@@ -89,6 +91,124 @@ export default function Settings() {
             </div>
         )
     }
+
+
+    useMemo(() => {
+
+        const tData = currentUser?.sendFromEmailAddresses?.map((adr: any, i: any) => {
+            return (
+                {
+                    key: i,
+                    ...adr
+                }
+            )
+        })
+
+        setSfEmailAddressTableData(tData)
+
+    }, [currentUser?.sendFromEmailAddresses])
+
+
+    function onDeleteSFEmailAddress(data: any, i: any) {
+
+        const workingUser = {...currentUser}
+        const workingSfEmailADdresses = [...currentUser?.sendFromEmailAddresses]
+        workingSfEmailADdresses.splice(i, 1) // removes object at index i
+        
+        workingUser['sendFromEmailAddresses'] = workingSfEmailADdresses
+
+        userService
+        .updateUser(workingUser?._id, workingUser)
+        .then((resp:any) => {
+            store.dispatch(userActions.updateUserData(resp?.data?.data))
+            openNotification(
+                resp?.data?.response_type,
+                `User Updated Successfully`
+            )
+        })
+        .catch((error: any) => {
+            console.error('error', error)
+        })
+    }
+
+    const emailAddressesDataSource = [
+        {
+          key: '1',
+          emailAddress: 'sendingEmailOne@gmail.com',
+          emailAddressPassword: 'superSecretEncryptedPassword',
+          emailAddressLabel: 'Primary Email Address',
+        },
+    ];
+      
+    const emailAddressesColumns = [
+        {
+          title: 'Email Address',
+          dataIndex: 'emailAddress',
+          key: 'emailAddress',
+        },
+        {
+          title: 'Email Address Password',
+          dataIndex: 'emailAddressPassword',
+          key: 'emailAddressPassword',
+        },
+        {
+          title: 'Email Address Label',
+          dataIndex: 'emailAddressLabel',
+          key: 'emailAddressLabel',
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (_: any, record: any, i: any) => (
+                <Space size="middle">
+                    <Popconfirm
+                        placement="bottom"
+                        title={'Are you sure you want to delete this contact?'}
+                        description={'This action is not reversible'}
+                        okText="Yes"
+                        cancelText="No"
+                        onConfirm={() => onDeleteSFEmailAddress(record, i)}
+                        // onCancel={cancel}
+                    >
+                        <a>Delete</a>
+                    </Popconfirm>
+                </Space>
+            ),
+        },
+    ];
+
+    const dataSource = [
+        {
+          key: '1',
+          name: 'Mike',
+          age: 32,
+          address: '10 Downing Street',
+        },
+        {
+          key: '2',
+          name: 'John',
+          age: 42,
+          address: '10 Downing Street',
+        },
+    ];
+      
+      const columns = [
+        {
+          title: 'Name',
+          dataIndex: 'name',
+          key: 'name',
+        },
+        {
+          title: 'Age',
+          dataIndex: 'age',
+          key: 'age',
+        },
+        {
+          title: 'Address',
+          dataIndex: 'address',
+          key: 'address',
+        },
+    ];
 
 
 
@@ -172,36 +292,63 @@ export default function Settings() {
                         messages, and phone calls will be sent from. 
                     </span>
                 </div>
-                <div className='acct-info-content'>
-                    <div className='aic-left'>
-                        <SettingsField
-                            fieldName={'sendFromEmail'}
-                            fieldLabel={'Send From Email Address'}
-                            initialFieldValue={currentUser?.sendFromEmail}
-                        />
-                    </div>
-                    <div className='aic-right'>
-                        <SettingsField
-                            fieldName={'sendFromPhone'}
-                            fieldLabel={'Send From Phone Number'}
-                            initialFieldValue={currentUser?.sendFromPhone}
-                        />
-                    </div>
+                <div className='ci-sf-section-subtitle-container'>
+                    <span>
+                        Email Addresses
+                    </span>
+                </div>
+                <div className='ci-sf-info-container'>
+                    <span className='ci-sf-info-text'>
+                    The email address information you add to this section will be used to send your emails. The sending email  <br/>
+                    address, and its corresponding password are required.
+                    </span>
+                </div>
+                <div className='ci-sf-btn-container'>
+                    <Button
+                        onClick={() => setNewSendFromEmailModalOpen(true)}
+                    >
+                        Add Send-from Email Address
+                    </Button>
                 </div>
                 <div className='acct-info-content'>
-                    <div className='aic-left'>
-                        {/* TODO: Implement Send From Email Address Password */}
-                        <SettingsField
-                            fieldName={'sendFromEmail'}
-                            fieldLabel={'Send From Email Address Password'}
-                            initialFieldValue={currentUser?.sendFromEmail}
-                        />
-                    </div>
-                    <div className='aic-right'>
-                        {/* Place Holder */}
-                    </div>
+                    <Table 
+                        dataSource={sfEmailAddressTableData} 
+                        columns={emailAddressesColumns} 
+                    />
+                </div>
+                <div className='ci-sf-section-subtitle-container'>
+                    <span>
+                        Phone Numbers
+                    </span>
+                </div>
+                <div className='ci-sf-info-container'>
+                    <span className='ci-sf-info-text'>
+                    The phone number information you add to this section will be used to send your texts and phone calls. The sending phone   <br/>
+                    number, and its corresponding password are required.
+                    </span>
+                </div>
+                <div className='acct-info-content'>
+                    <Table 
+                        dataSource={dataSource} 
+                        columns={columns} 
+                    />
                 </div>
             </div>
+
+
+            <Modal 
+                title="Add New Send-from Email Address" 
+                open={newSendFromEmailModalOpen} 
+                footer={null}
+                onOk={() => setNewSendFromEmailModalOpen(false)} 
+                onCancel={() => setNewSendFromEmailModalOpen(false)}
+            >
+                <SFEmailAddressForm
+                    closeParent={() => setNewSendFromEmailModalOpen(false)}
+                />
+            </Modal>
+
+
         </div>
     )
 }

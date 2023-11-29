@@ -13,7 +13,9 @@ export default function MainLayout() {
 
             <div className="layout-body">
                 <SideBar/>
-                <Outlet/>
+                <div className="layout-outlet-wrapper">
+                    <Outlet/>
+                </div>
             </div>
         </div>
     )

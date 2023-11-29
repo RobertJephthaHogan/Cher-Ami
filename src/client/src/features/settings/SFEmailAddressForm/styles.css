@@ -1,0 +1,19 @@
+
+
+.sfeaf-input-label {
+    font-weight: 500;
+}
+
+.sf-email-address-form {
+    margin-top: 20px
+}
+
+.sfeaf-input-label-wrapper {
+    margin: 5px 0px
+}
+
+.submit-btn-wrapper {
+    margin-top : 20px;
+    display: flex;
+    justify-content: end;
+}

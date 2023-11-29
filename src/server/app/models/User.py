@@ -8,11 +8,10 @@ class User(Document):
     id: Optional[str] = Field(...)
     firstName: str = Field(...)
     lastOrBusinessName: str = Field(...)
-    sendFromEmail: Union[EmailStr, str] = Field(...)
-    sendFromEmailPassword: str = Field(...)
     receiveToEmail: EmailStr = Field(...)
-    sendFromPhone: str = Field(...)
     receiveToPhone: str = Field(...)
+    sendFromEmailAddresses: list = Field(...)
+    sendFromPhoneNumbers: list = Field(...)
     password: str = Field(...)
     role: str = Field(...)
 
@@ -25,11 +24,10 @@ class User(Document):
                 "id": "6276c8a63de1b5229336df5c",
                 "firstName": "John",
                 "lastOrBusinessName": "Doe",
-                "sendFromEmail": "john.sender@user.dev",
-                "sendFromEmailPassword": "password",
                 "receiveToEmail": "John@user.dev",
-                "sendFromPhone": "4041111111",
                 "receiveToPhone": "4042222222",
+                "sendFromEmailAddresses": [],
+                "sendFromPhoneNumbers": [],
                 "password": "password",
                 "role": "user"
             }
@@ -50,11 +48,10 @@ class UserData(BaseModel):
     id: Optional[str] 
     firstName: str = Field(...)
     lastOrBusinessName: str = Field(...)
-    sendFromEmail: Union[EmailStr, str] = Field(...)
-    sendFromEmailPassword: str = Field(...)
     receiveToEmail: EmailStr = Field(...)
-    sendFromPhone: str = Field(...)
     receiveToPhone: str = Field(...)
+    sendFromEmailAddresses: list = Field(...)
+    sendFromPhoneNumbers: list = Field(...)
     password: str = Field(...)
     role: str = Field(...)
 
@@ -64,11 +61,10 @@ class UserData(BaseModel):
                 "id": "6276c8a63de1b5229336df5c",
                 "firstName": "John",
                 "lastOrBusinessName": "Doe",
-                "sendFromEmail": "john.sender@user.dev",
-                "sendFromEmailPassword": "password",
                 "receiveToEmail": "John@user.dev",
-                "sendFromPhone": "4041111111",
                 "receiveToPhone": "4042222222",
+                "sendFromEmailAddresses": [],
+                "sendFromPhoneNumbers": [],
                 "password": "password",
                 "role": "user"
             }
@@ -79,11 +75,10 @@ class UpdateUserModel(BaseModel):
     id: Optional[str]
     firstName: Optional[str]
     lastOrBusinessName: Optional[str]
-    sendFromEmail: Optional[Union[EmailStr, str]]
-    sendFromEmailPassword: Optional[str]
     receiveToEmail: Optional[EmailStr]
-    sendFromPhone: Optional[str]
     receiveToPhone: Optional[str]
+    sendFromEmailAddresses: Optional[list]
+    sendFromPhoneNumbers: Optional[list]
     password: Optional[str]
     role: Optional[str]
 
@@ -93,11 +88,10 @@ class UpdateUserModel(BaseModel):
                 "id": "6276c8a63de1b5229336df5c",
                 "firstName": "John",
                 "lastOrBusinessName": "Doe",
-                "sendFromEmail": "john.sender@user.dev",
-                "sendFromEmailPassword": "password",
                 "receiveToEmail": "John@user.dev",
-                "sendFromPhone": "4041111111",
                 "receiveToPhone": "4042222222",
+                "sendFromEmailAddresses": [],
+                "sendFromPhoneNumbers": [],
                 "password": "password",
                 "role": "user"
             }
