@@ -33,7 +33,6 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
     useEffect(() => {
 
         const sfEmailOptions = currentUser?.sendFromEmailAddresses?.map((op: any) => {
-            console.log('op', op)
             return (
                 {
                     label: op?.emailAddress,
