@@ -303,7 +303,9 @@ export default function Settings() {
                 onOk={() => setNewSendFromEmailModalOpen(false)} 
                 onCancel={() => setNewSendFromEmailModalOpen(false)}
             >
-                <SFEmailAddressForm/>
+                <SFEmailAddressForm
+                    closeParent={() => setNewSendFromEmailModalOpen(false)}
+                />
             </Modal>
 
 

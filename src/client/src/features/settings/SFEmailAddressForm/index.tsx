@@ -8,7 +8,11 @@ import { openNotification } from '../../../helpers/notifications'
 import userActions from '../../../redux/actions/user'
 
 
-export default function SFEmailAddressForm() {
+interface SFEmailAddressFormProps {
+    closeParent?: any
+}
+
+export default function SFEmailAddressForm(props: SFEmailAddressFormProps) {
     
     const currentUser = useSelector((state: any) => state.user?.data ?? {})
     const [formValues, setFormValues] = useState<any>({})
@@ -16,7 +20,6 @@ export default function SFEmailAddressForm() {
     function onChange(fieldName: string, value: any) {
         const workingObj = {...formValues}
         workingObj[fieldName] = value
-        console.log('workingObj', workingObj)
         setFormValues(workingObj)
     }
 
@@ -35,6 +38,8 @@ export default function SFEmailAddressForm() {
                     resp?.data?.response_type,
                     `User Updated Successfully`
                 )
+                props.closeParent()
+                setFormValues({})
             })
             .catch((error: any) => {
                 console.error('error', error)
