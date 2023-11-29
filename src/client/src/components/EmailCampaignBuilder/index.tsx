@@ -137,6 +137,7 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
             if (fieldValues?.frequency?.frequencyType === 'recurring') {
                 //TODO: Recurring Email Campaign onFinish handling
                 console.log('recurring')
+                console.log('dto', dto)
             }
 
         }

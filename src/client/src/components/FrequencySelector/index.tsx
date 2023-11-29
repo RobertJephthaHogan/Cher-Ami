@@ -31,7 +31,7 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
 
         props.onChange('frequency', frequencyFormValues)
 
-    }, [frequencyType, sendDate])
+    }, [frequencyType, sendDate, frequencyInterval, intervalSendDays])
     
 
     return (
@@ -71,7 +71,11 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
                             />
                         </div>
                         <div>
-                            Interval Send Days
+                            <IntervalSendDaysSelector
+                                frequencyInterval={frequencyInterval}
+                                setIntervalSendDays={setIntervalSendDays}
+                                intervalSendDays={intervalSendDays}
+                            />
                         </div>
                         <div>
                             Start Date
@@ -99,38 +103,169 @@ function FrequencyTypeSelector(props: FrequencyTypeSelectorProps) {
     
     return (
         <div className='frequency-type-selector'>
-            <div 
-                className={`frequency-type-option ${
-                    props.frequencyInterval === 'daily' ? 'selected-fto': ''
-                }`}
-                onClick={() => props.setFrequencyInterval('daily')}
-            >
-                Daily
+            <div>
+                <span className='frequency-type-selector-text'>
+                    Recurrence Interval
+                </span>
             </div>
-            <div 
-                className={`frequency-type-option ${
-                    props.frequencyInterval === 'weekly' ? 'selected-fto': ''
-                }`}
-                onClick={() => props.setFrequencyInterval('weekly')}
-            >
-                Weekly
+            <div className='frequency-type-selector-content'>
+                <div 
+                    className={`frequency-type-option ${
+                        props.frequencyInterval === 'daily' ? 'selected-fto': ''
+                    }`}
+                    onClick={() => props.setFrequencyInterval('daily')}
+                >
+                    Daily
+                </div>
+                <div 
+                    className={`frequency-type-option ${
+                        props.frequencyInterval === 'weekly' ? 'selected-fto': ''
+                    }`}
+                    onClick={() => props.setFrequencyInterval('weekly')}
+                >
+                    Weekly
+                </div>
+                <div 
+                    className={`frequency-type-option ${
+                        props.frequencyInterval === 'monthly' ? 'selected-fto': ''
+                    }`}
+                    onClick={() => props.setFrequencyInterval('monthly')}
+                >
+                    Monthly
+                </div>
+                <div 
+                    className={`frequency-type-option ${
+                        props.frequencyInterval === 'yearly' ? 'selected-fto': ''
+                    }`}
+                    onClick={() =>props.setFrequencyInterval('yearly')}
+                >
+                    Yearly
+                </div>
             </div>
-            <div 
-                className={`frequency-type-option ${
-                    props.frequencyInterval === 'monthly' ? 'selected-fto': ''
-                }`}
-                onClick={() => props.setFrequencyInterval('monthly')}
-            >
-                Monthly
-            </div>
-            <div 
-                className={`frequency-type-option ${
-                    props.frequencyInterval === 'yearly' ? 'selected-fto': ''
-                }`}
-                onClick={() =>props.setFrequencyInterval('yearly')}
-            >
-                Yearly
-            </div>
+        </div>
+    )
+}
+
+
+interface IntervalSendDaysSelectorProps {
+    frequencyInterval?: any
+    setIntervalSendDays?: any
+    intervalSendDays?: any
+}
+
+function IntervalSendDaysSelector(props: IntervalSendDaysSelectorProps) {
+
+    function handleSendDaysChange(day: any) {
+
+        const workingArr = [...props.intervalSendDays]
+        const exists = workingArr?.find((item: any) => item === day)
+
+        if (!exists) {
+            // If not in intervalSendDays, add it 
+            workingArr.push(day)
+            props.setIntervalSendDays(workingArr)
+        }
+        if (exists) {
+            // If in intervalSendDays, remove it 
+            const newDays = workingArr.filter((item: any) => item !== exists)
+            props.setIntervalSendDays(newDays)
+        }
+
+    }
+
+    function isSelectedDay(day: any) {
+        return props.intervalSendDays?.find((item: any) => item === day)
+    }
+
+    return (
+        <div>
+
+
+            {
+                props.frequencyInterval === 'weekly'
+                ? (
+                    <div className='weekly-send-days-selector'>
+                        <div 
+                            className={`sdo ${
+                                isSelectedDay('monday') ? 'selected-sdo' : ''
+                            }`} 
+                            onClick={() => handleSendDaysChange('monday')}
+                        >
+                            Mon
+                        </div>
+                        <div 
+                            className={`sdo ${
+                                isSelectedDay('tuesday') ? 'selected-sdo' : ''
+                            }`} 
+                            onClick={() => handleSendDaysChange('tuesday')}
+                        >
+                            Tue
+                        </div>
+                        <div 
+                            className={`sdo ${
+                                isSelectedDay('wednesday') ? 'selected-sdo' : ''
+                            }`} 
+                            onClick={() => handleSendDaysChange('wednesday')}
+                            >
+                            Wed
+                        </div>
+                        <div 
+                            className={`sdo ${
+                                isSelectedDay('thursday') ? 'selected-sdo' : ''
+                            }`} 
+                            onClick={() => handleSendDaysChange('thursday')}
+                        >
+                            Thu
+                        </div>
+                        <div 
+                            className={`sdo ${
+                                isSelectedDay('friday') ? 'selected-sdo' : ''
+                            }`} 
+                            onClick={() => handleSendDaysChange('friday')}
+                        >
+                            Fri
+                        </div>
+                        <div 
+                            className={`sdo ${
+                                isSelectedDay('saturday') ? 'selected-sdo' : ''
+                            }`} 
+                            onClick={() => handleSendDaysChange('saturday')}
+                        >
+                            Sat
+                        </div>
+                        <div 
+                            className={`sdo ${
+                                isSelectedDay('sunday') ? 'selected-sdo' : ''
+                            }`} 
+                            onClick={() => handleSendDaysChange('sunday')}
+                        >
+                            Sun
+                        </div>
+                    </div>
+                ) : null
+            }
+
+
+            {
+                props.frequencyInterval === 'monthly'
+                ? (
+                    <div>
+                        'monthly'
+                    </div>
+                ) : null
+            }
+
+
+            {
+                props.frequencyInterval === 'yearly'
+                ? (
+                    <div>
+                        Coming soon!
+                    </div>
+                ) : null
+            }
+
+
         </div>
     )
 }
