@@ -4,7 +4,7 @@ import HomeOutlined from '@ant-design/icons/HomeOutlined'
 import EditOutlined from '@ant-design/icons/EditOutlined'
 import SaveOutlined from '@ant-design/icons/SaveOutlined'
 import { useSelector } from 'react-redux'
-import { Input, Popconfirm, Space, Table } from 'antd'
+import { Button, Input, Modal, Popconfirm, Space, Table } from 'antd'
 import { userService } from '../../services'
 import userActions from '../../redux/actions/user'
 import { store } from '../../redux/store'
@@ -14,7 +14,7 @@ import { openNotification } from '../../helpers/notifications'
 export default function Settings() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
-    
+    const [newSendFromEmailModalOpen, setNewSendFromEmailModalOpen] = useState<boolean>(false)
   
     interface SettingsFieldProps {
         fieldName?: any
@@ -262,6 +262,13 @@ export default function Settings() {
                     address, and its corresponding password are required.
                     </span>
                 </div>
+                <div className='ci-sf-btn-container'>
+                    <Button
+                        onClick={() => setNewSendFromEmailModalOpen(true)}
+                    >
+                        Add Send-from Email Address
+                    </Button>
+                </div>
                 <div className='acct-info-content'>
                     <Table 
                         dataSource={emailAddressesDataSource} 
@@ -286,6 +293,19 @@ export default function Settings() {
                     />
                 </div>
             </div>
+
+
+            <Modal 
+                title="Add New Send-from Email Address" 
+                open={newSendFromEmailModalOpen} 
+                footer={null}
+                onOk={() => setNewSendFromEmailModalOpen(false)} 
+                onCancel={() => setNewSendFromEmailModalOpen(false)}
+            >
+                Add new send-from email modal
+            </Modal>
+
+
         </div>
     )
 }
