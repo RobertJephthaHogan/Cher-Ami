@@ -90,6 +90,33 @@ export default function Settings() {
         )
     }
 
+    const emailAddressesDataSource = [
+        {
+          key: '1',
+          emailAddress: 'sendingEmailOne@gmail.com',
+          emailAddressPassword: 'superSecretEncryptedPassword',
+          emailAddressLabel: 'Primary Email Address',
+        },
+    ];
+      
+      const emailAddressesColumns = [
+        {
+          title: 'Email Address',
+          dataIndex: 'emailAddress',
+          key: 'emailAddress',
+        },
+        {
+          title: 'Email Address Password',
+          dataIndex: 'emailAddressPassword',
+          key: 'emailAddressPassword',
+        },
+        {
+          title: 'Email Address Label',
+          dataIndex: 'emailAddressLabel',
+          key: 'emailAddressLabel',
+        },
+    ];
+
     const dataSource = [
         {
           key: '1',
@@ -218,8 +245,8 @@ export default function Settings() {
                 </div>
                 <div className='acct-info-content'>
                     <Table 
-                        dataSource={dataSource} 
-                        columns={columns} 
+                        dataSource={emailAddressesDataSource} 
+                        columns={emailAddressesColumns} 
                     />
                 </div>
                 <div className='ci-sf-section-subtitle-container'>
