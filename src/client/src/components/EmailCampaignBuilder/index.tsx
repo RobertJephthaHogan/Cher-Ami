@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles.css'
 import { Button, Input, Select } from 'antd'
 import ContactListMultiselect from '../ContactListMultiselect';
@@ -22,11 +22,29 @@ interface EmailCampaignBuilderProps {
 export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
+    const [sendFromEmailOptions, setSendFromEmailOptions] = useState<any>([])
     const [fieldValues, setFieldValues] = useState<any>({
         recipientContactLists: []
     })
     const [submissionAttempted, setSubmissionAttempted] = useState<boolean>(false)
     const [verificationData, setVerificationData] = useState<any>()
+
+
+    useEffect(() => {
+
+        const sfEmailOptions = currentUser?.sendFromEmailAddresses?.map((op: any) => {
+            console.log('op', op)
+            return (
+                {
+                    label: op?.emailAddress,
+                    value: op?.emailAddress
+                }
+            )
+        }) || []
+
+        setSendFromEmailOptions(sfEmailOptions)
+
+    }, [])
 
     const filterOption = (input: string, option?: { label: string; value: string }) =>
         (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
@@ -91,18 +109,11 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
             createdByUserId: currentUser?._id,
         }
 
-        console.log('dto', dto)
-
         const verification = requiredFieldVerifier(dto)
-
-        console.log('verification', verification)
 
         if (verification?.status === 'success') { // If there were no field verification errors
             
             if (fieldValues?.frequency?.frequencyType === 'oneTime') {
-                //TODO: One-time Email Campaign onFinish handling
-                console.log('oneTime')
-
                 emailCampaignService?.createEmailCampaign(dto)
                     .then((resp: any) => {
                         console.log('resp')
@@ -193,20 +204,7 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
                         value={fieldValues?.sendFromEmail}
                         //onSearch={onSearch}
                         filterOption={filterOption}
-                        options={[
-                        {
-                            value: 'jack@gmail.com',
-                            label: 'Jack@gmail.com',
-                        },
-                        {
-                            value: 'lucy@gmail.com',
-                            label: 'Lucy@gmail.com',
-                        },
-                        {
-                            value: 'tom@gmail.com',
-                            label: 'Tom@gmail.com',
-                        },
-                        ]}
+                        options={sendFromEmailOptions}
                     />
                 </div>
             </div>
