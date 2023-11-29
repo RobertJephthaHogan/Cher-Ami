@@ -8,11 +8,13 @@ import EmailCampaignBuilder from '../../components/EmailCampaignBuilder'
 import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
 import emailCampaignActions from '../../redux/actions/emailCampaign'
+import contactListActions from '../../redux/actions/contactList'
 
 
 export default function Email() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
+    const userContactLists = useSelector((state: any) => state.contactLists?.queryResult ?? [])
     const userEmailCampaigns = useSelector((state: any) => state.emailCampaigns?.queryResult ?? [])
     const [cnecModalOpen, setCnecModalOpen] = useState<any>()
     const [tableData, setTableData] = useState<any>([])
@@ -23,6 +25,7 @@ export default function Email() {
 
     function setComponentData() {
         store.dispatch(emailCampaignActions.setEmailCampaigns(currentUser?._id))
+        store.dispatch(contactListActions.setContactLists(currentUser?._id))
     }
 
 
@@ -58,13 +61,11 @@ export default function Email() {
             render: (_: any, { recipientContactLists }: any) => (
               <>
                 {recipientContactLists?.map((tag: any) => {
-                  let color = tag.length > 5 ? 'geekblue' : 'green';
-                  if (tag === 'loser') {
-                    color = 'volcano';
-                  }
+                  let color = 'geekblue'
+                  const matchingContactList = userContactLists?.find((cl: any) => cl?.id === tag)
                   return (
                     <Tag color={color} key={tag}>
-                      {tag.toUpperCase()}
+                      {matchingContactList?.name ? matchingContactList?.name : tag}
                     </Tag>
                   );
                 })}
