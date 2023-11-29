@@ -4,7 +4,7 @@ import HomeOutlined from '@ant-design/icons/HomeOutlined'
 import EditOutlined from '@ant-design/icons/EditOutlined'
 import SaveOutlined from '@ant-design/icons/SaveOutlined'
 import { useSelector } from 'react-redux'
-import { Input } from 'antd'
+import { Input, Table } from 'antd'
 import { userService } from '../../services'
 import userActions from '../../redux/actions/user'
 import { store } from '../../redux/store'
@@ -90,6 +90,39 @@ export default function Settings() {
         )
     }
 
+    const dataSource = [
+        {
+          key: '1',
+          name: 'Mike',
+          age: 32,
+          address: '10 Downing Street',
+        },
+        {
+          key: '2',
+          name: 'John',
+          age: 42,
+          address: '10 Downing Street',
+        },
+    ];
+      
+      const columns = [
+        {
+          title: 'Name',
+          dataIndex: 'name',
+          key: 'name',
+        },
+        {
+          title: 'Age',
+          dataIndex: 'age',
+          key: 'age',
+        },
+        {
+          title: 'Address',
+          dataIndex: 'address',
+          key: 'address',
+        },
+    ];
+
 
 
     return (
@@ -172,34 +205,39 @@ export default function Settings() {
                         messages, and phone calls will be sent from. 
                     </span>
                 </div>
-                <div className='acct-info-content'>
-                    <div className='aic-left'>
-                        <SettingsField
-                            fieldName={'sendFromEmail'}
-                            fieldLabel={'Send From Email Address'}
-                            initialFieldValue={currentUser?.sendFromEmail}
-                        />
-                    </div>
-                    <div className='aic-right'>
-                        <SettingsField
-                            fieldName={'sendFromPhone'}
-                            fieldLabel={'Send From Phone Number'}
-                            initialFieldValue={currentUser?.sendFromPhone}
-                        />
-                    </div>
+                <div className='ci-sf-section-subtitle-container'>
+                    <span>
+                        Email Addresses
+                    </span>
+                </div>
+                <div className='ci-sf-info-container'>
+                    <span className='ci-sf-info-text'>
+                    The email address information you add to this section will be used to send your emails. The sending email  <br/>
+                    address, and its corresponding password are required.
+                    </span>
                 </div>
                 <div className='acct-info-content'>
-                    <div className='aic-left'>
-                        {/* TODO: Implement Send From Email Address Password */}
-                        <SettingsField
-                            fieldName={'sendFromEmail'}
-                            fieldLabel={'Send From Email Address Password'}
-                            initialFieldValue={currentUser?.sendFromEmail}
-                        />
-                    </div>
-                    <div className='aic-right'>
-                        {/* Place Holder */}
-                    </div>
+                    <Table 
+                        dataSource={dataSource} 
+                        columns={columns} 
+                    />
+                </div>
+                <div className='ci-sf-section-subtitle-container'>
+                    <span>
+                        Phone Numbers
+                    </span>
+                </div>
+                <div className='ci-sf-info-container'>
+                    <span className='ci-sf-info-text'>
+                    The phone number information you add to this section will be used to send your texts and phone calls. The sending phone   <br/>
+                    number, and its corresponding password are required.
+                    </span>
+                </div>
+                <div className='acct-info-content'>
+                    <Table 
+                        dataSource={dataSource} 
+                        columns={columns} 
+                    />
                 </div>
             </div>
         </div>
