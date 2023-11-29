@@ -11,3 +11,9 @@
     width: 100%;
     display: flex;
 }
+
+.layout-outlet-wrapper {
+    width: 100%;
+    overflow: auto;
+    height: calc(100vh - var(--layout-header-height) )
+}
