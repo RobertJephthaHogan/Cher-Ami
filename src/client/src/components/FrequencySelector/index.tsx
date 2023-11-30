@@ -232,9 +232,71 @@ function IntervalSendDaysSelector(props: IntervalSendDaysSelectorProps) {
         )
     }
 
+    function MonthlySendDaysSelector() {
+
+        let daysArray = [];
+        for (let i = 1; i <= 31; i++) {
+            daysArray.push(i);
+        }
+
+        return (
+            <div className='monthly-send-days-selector'>
+                {
+                    daysArray?.map((day: any) => {
+
+                        return (
+                            <div
+                                className={`msdo ${
+                                    isSelectedDay(day) ? 'selected-msdo' : ''
+                                }`} 
+                                onClick={() => handleSendDaysChange(day)}
+                            >
+                                {day}
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        )
+
+    }
+
     return (
         <div>
 
+            <div className='sds-title-bar'>
+                <span className='send-days-selector-text'>
+                    Select Recurring Days of 
+                </span>
+                {
+                    props.frequencyInterval === 'weekly'
+                    ? (
+                        <span className='send-days-selector-interval-text'>
+                            Week
+                        </span>
+                    ) : null
+                }
+
+
+                {
+                    props.frequencyInterval === 'monthly'
+                    ? (
+                        <span className='send-days-selector-interval-text'>
+                            Month
+                        </span>
+                    ) : null
+                }
+
+                {
+                    props.frequencyInterval === 'yearly'
+                    ? (
+                        <span className='send-days-selector-interval-text'>
+                            Year
+                        </span>
+                    ) : null
+                }
+                
+            </div>
 
             {
                 props.frequencyInterval === 'weekly'
@@ -247,8 +309,8 @@ function IntervalSendDaysSelector(props: IntervalSendDaysSelectorProps) {
             {
                 props.frequencyInterval === 'monthly'
                 ? (
-                    <div className='monthly-send-days-selector'>
-                        'monthly'
+                    <div>
+                        <MonthlySendDaysSelector/>
                     </div>
                 ) : null
             }
