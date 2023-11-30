@@ -96,3 +96,20 @@
 .sds-title-bar {
     margin-top: 10px
 }
+
+.row {
+    display: flex;
+}
+
+.start-date-selector {
+    margin-top: 10px
+}
+
+.start-date-title {
+    font-weight: 500;
+    margin-right: 10px
+}
+
+.initial-checkbox-container {
+    margin-left: 50px
+}

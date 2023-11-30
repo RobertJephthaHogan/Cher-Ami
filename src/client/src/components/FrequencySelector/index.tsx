@@ -1,5 +1,6 @@
-import { DatePicker, Radio } from 'antd'
+import { Checkbox, DatePicker, Radio } from 'antd'
 import React, { useEffect, useMemo, useState } from 'react'
+import dayjs from 'dayjs';
 import './styles.css'
 
 
@@ -13,25 +14,35 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
     const [sendDate, setSendDate] = useState<any>()
     const [frequencyInterval, setFrequencyInterval] = useState<'daily' | 'weekly' | 'monthly' | 'yearly'>('weekly')
     const [intervalSendDays, setIntervalSendDays] = useState<any>([])
-
+    const [shouldSendInitial, setShouldSendInitial] = useState<boolean>(false)
+    const [campaignStartDate, setCampaignStartDate] = useState<any>(undefined)
+    const [campaignEndDate, setCampaignEndDate] = useState<any>(undefined)
 
     useEffect(() => {
 
         const frequencyFormValues = {
             frequencyType: frequencyType,
             sendDate,
-            sendInitial: true,
+            sendInitial: shouldSendInitial,
             recurrence: {
                 frequencyInterval,
                 intervalSendDays,
-                startDate: null,
-                endDate: null,
+                startDate: campaignStartDate,
+                endDate: campaignEndDate,
             }
         }
 
         props.onChange('frequency', frequencyFormValues)
 
-    }, [frequencyType, sendDate, frequencyInterval, intervalSendDays])
+    }, [
+        frequencyType, 
+        sendDate, 
+        frequencyInterval, 
+        intervalSendDays,
+        shouldSendInitial,
+        campaignStartDate,
+        campaignEndDate
+    ])
     
     useMemo(() => {
         setIntervalSendDays([])
@@ -81,7 +92,12 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
                             />
                         </div>
                         <div>
-                            Start Date
+                            <StartDateSelector
+                                shouldSendInitial={shouldSendInitial}
+                                setShouldSendInitial={setShouldSendInitial}
+                                campaignStartDate={campaignStartDate}
+                                setCampaignStartDate={setCampaignStartDate}
+                            />
                         </div>
                         <div>
                             End Date
@@ -326,6 +342,63 @@ function IntervalSendDaysSelector(props: IntervalSendDaysSelectorProps) {
             }
 
 
+        </div>
+    )
+}
+
+
+interface StartDateSelectorProps {
+    shouldSendInitial?: any
+    setShouldSendInitial?: any
+    campaignStartDate?: any
+    setCampaignStartDate?: any
+}
+
+function StartDateSelector(props: StartDateSelectorProps) {
+
+    const [disableStartDatePicker, setDisableStartDatePicker] = useState<boolean>(false)
+
+    function onCheck(e: any) {
+        const sendInitialChecked = e?.target?.checked
+        setDisableStartDatePicker(sendInitialChecked)
+
+        props.setShouldSendInitial(e.target?.checked)
+        
+        if (sendInitialChecked) {
+            props.setCampaignStartDate(dayjs().format())
+        }
+        
+    }
+
+    function onStartDateChange(v: any) {
+        props.setCampaignStartDate(v?.format())
+    }
+
+    return (
+        <div className='start-date-selector'>
+            <div>
+                <span className='start-date-title'>
+                    Start Date
+                </span>
+            </div>
+            <div className='row'>
+                <div>
+                    <DatePicker
+                        value={dayjs(props.campaignStartDate)}
+                        onChange={(v) => onStartDateChange(v)}
+                        disabled={disableStartDatePicker}
+                    />
+                </div>
+                <div className='initial-checkbox-container'>
+                    <span className='start-date-title'>
+                        Send initial
+                    </span>
+                    <Checkbox
+                        checked={props.shouldSendInitial}
+                        onChange={(e) => onCheck(e)}
+                    />
+                </div>
+            </div>
         </div>
     )
 }
