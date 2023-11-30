@@ -33,7 +33,6 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
     useEffect(() => {
 
         const sfEmailOptions = currentUser?.sendFromEmailAddresses?.map((op: any) => {
-            console.log('op', op)
             return (
                 {
                     label: op?.emailAddress,
@@ -138,6 +137,7 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
             if (fieldValues?.frequency?.frequencyType === 'recurring') {
                 //TODO: Recurring Email Campaign onFinish handling
                 console.log('recurring')
+                console.log('dto', dto)
             }
 
         }
