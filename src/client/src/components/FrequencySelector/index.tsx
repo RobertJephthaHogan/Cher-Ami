@@ -180,6 +180,58 @@ function IntervalSendDaysSelector(props: IntervalSendDaysSelectorProps) {
         return props.intervalSendDays?.find((item: any) => item === day)
     }
 
+
+    function WeeklySendDaysSelector() {
+        const weekData = [
+            {
+                title: 'monday',
+                code: 'Mon'
+            },
+            {
+                title: 'tuesday',
+                code: 'Tue'
+            },
+            {
+                title: 'wednesday',
+                code: 'Wed'
+            },
+            {
+                title: 'thursday',
+                code: 'Thur'
+            },
+            {
+                title: 'friday',
+                code: 'Fri'
+            },
+            {
+                title: 'saturday',
+                code: 'Sat'
+            },
+            {
+                title: 'sunday',
+                code: 'Sun'
+            },
+        ]
+        return (
+            <div className='weekly-send-days-selector'>
+                {
+                    weekData?.map((day: any) => {
+                        return (
+                            <div
+                                className={`sdo ${
+                                    isSelectedDay(day?.title) ? 'selected-sdo' : ''
+                                }`} 
+                                onClick={() => handleSendDaysChange(day?.title)}
+                            >
+                                {day?.code}
+                            </div>
+                        )
+                    }) || []
+                }
+            </div>
+        )
+    }
+
     return (
         <div>
 
@@ -187,64 +239,7 @@ function IntervalSendDaysSelector(props: IntervalSendDaysSelectorProps) {
             {
                 props.frequencyInterval === 'weekly'
                 ? (
-                    <div className='weekly-send-days-selector'>
-                        <div 
-                            className={`sdo ${
-                                isSelectedDay('monday') ? 'selected-sdo' : ''
-                            }`} 
-                            onClick={() => handleSendDaysChange('monday')}
-                        >
-                            Mon
-                        </div>
-                        <div 
-                            className={`sdo ${
-                                isSelectedDay('tuesday') ? 'selected-sdo' : ''
-                            }`} 
-                            onClick={() => handleSendDaysChange('tuesday')}
-                        >
-                            Tue
-                        </div>
-                        <div 
-                            className={`sdo ${
-                                isSelectedDay('wednesday') ? 'selected-sdo' : ''
-                            }`} 
-                            onClick={() => handleSendDaysChange('wednesday')}
-                            >
-                            Wed
-                        </div>
-                        <div 
-                            className={`sdo ${
-                                isSelectedDay('thursday') ? 'selected-sdo' : ''
-                            }`} 
-                            onClick={() => handleSendDaysChange('thursday')}
-                        >
-                            Thu
-                        </div>
-                        <div 
-                            className={`sdo ${
-                                isSelectedDay('friday') ? 'selected-sdo' : ''
-                            }`} 
-                            onClick={() => handleSendDaysChange('friday')}
-                        >
-                            Fri
-                        </div>
-                        <div 
-                            className={`sdo ${
-                                isSelectedDay('saturday') ? 'selected-sdo' : ''
-                            }`} 
-                            onClick={() => handleSendDaysChange('saturday')}
-                        >
-                            Sat
-                        </div>
-                        <div 
-                            className={`sdo ${
-                                isSelectedDay('sunday') ? 'selected-sdo' : ''
-                            }`} 
-                            onClick={() => handleSendDaysChange('sunday')}
-                        >
-                            Sun
-                        </div>
-                    </div>
+                    <WeeklySendDaysSelector/>
                 ) : null
             }
 
@@ -252,7 +247,7 @@ function IntervalSendDaysSelector(props: IntervalSendDaysSelectorProps) {
             {
                 props.frequencyInterval === 'monthly'
                 ? (
-                    <div>
+                    <div className='monthly-send-days-selector'>
                         'monthly'
                     </div>
                 ) : null

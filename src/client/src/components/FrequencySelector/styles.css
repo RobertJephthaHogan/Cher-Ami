@@ -58,3 +58,8 @@
 .selected-sdo {
     background-color: #f0f0f0 !important;
 }
+
+.monthly-send-days-selector {
+    display: flex;
+    margin-top: 10px
+}
