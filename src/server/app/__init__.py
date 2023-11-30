@@ -7,7 +7,7 @@ from app.services.email.routes import router as EmailRouter
 from app.services.contact.routes import router as ContactRouter
 from app.services.contact_list.routes import router as ContactListRouter
 from app.services.email_campaign.routes import router as EmailCampaignRouter
-
+from app.services.recurring_email_campaign.routes import router as RecurringEmailCampaignRouter
 
 # Create the App
 app = FastAPI()
@@ -48,3 +48,4 @@ app.include_router(EmailRouter, tags=["Email"], prefix="/email")
 app.include_router(ContactRouter, tags=["Contact"], prefix="/contact")
 app.include_router(ContactListRouter, tags=["Contact List"], prefix="/contact_list")
 app.include_router(EmailCampaignRouter, tags=["Email Campaign"], prefix="/email_campaign")
+app.include_router(RecurringEmailCampaignRouter, tags=["Recurring Email Campaign"], prefix="/recurring_email_campaign")
