@@ -114,3 +114,11 @@
 .initial-checkbox-container {
     margin-left: 50px
 }
+
+.end-date-selector {
+    margin-top: 20px;
+}
+
+.end-date-title {
+    font-weight: 500;
+}

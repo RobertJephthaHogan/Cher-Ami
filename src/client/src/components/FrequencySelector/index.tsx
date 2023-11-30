@@ -27,6 +27,7 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
             recurrence: {
                 frequencyInterval,
                 intervalSendDays,
+                sendInitial: shouldSendInitial,
                 startDate: campaignStartDate,
                 endDate: campaignEndDate,
             }
@@ -416,8 +417,18 @@ interface EndDateSelectorProps {
 function EndDateSelector(props: EndDateSelectorProps) {
 
     return (
-        <div>
-            End Date Selector
+        <div className='end-date-selector'>
+            <div>
+                <span className='end-date-title'>
+                    End Date
+                </span>
+                <div>
+                    <DatePicker
+                        value={dayjs(props.campaignEndDate)}
+                        onChange={(v) => props.setCampaignEndDate(v?.format())}
+                    />
+                </div>
+            </div>
         </div>
     )
 }
