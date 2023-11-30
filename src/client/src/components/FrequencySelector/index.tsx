@@ -100,7 +100,10 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
                             />
                         </div>
                         <div>
-                            End Date
+                            <EndDateSelector
+                                campaignEndDate={campaignEndDate}
+                                setCampaignEndDate={setCampaignEndDate}
+                            />
                         </div>
                     </div>
                 )
@@ -380,8 +383,6 @@ function StartDateSelector(props: StartDateSelectorProps) {
                 <span className='start-date-title'>
                     Start Date
                 </span>
-            </div>
-            <div className='row'>
                 <div>
                     <DatePicker
                         value={dayjs(props.campaignStartDate)}
@@ -389,16 +390,34 @@ function StartDateSelector(props: StartDateSelectorProps) {
                         disabled={disableStartDatePicker}
                     />
                 </div>
-                <div className='initial-checkbox-container'>
-                    <span className='start-date-title'>
-                        Send initial
-                    </span>
+            </div>
+            <div className='initial-checkbox-container'>
+                <span className='start-date-title'>
+                    Start immediately
+                </span>
+                <div>
                     <Checkbox
                         checked={props.shouldSendInitial}
                         onChange={(e) => onCheck(e)}
                     />
                 </div>
             </div>
+        </div>
+    )
+}
+
+
+
+interface EndDateSelectorProps {
+    campaignEndDate?: any
+    setCampaignEndDate?: any
+}
+
+function EndDateSelector(props: EndDateSelectorProps) {
+
+    return (
+        <div>
+            End Date Selector
         </div>
     )
 }
