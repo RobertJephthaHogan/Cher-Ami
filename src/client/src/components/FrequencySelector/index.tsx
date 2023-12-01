@@ -242,6 +242,7 @@ function IntervalSendDaysSelector(props: IntervalSendDaysSelectorProps) {
                                     isSelectedDay(day?.title) ? 'selected-sdo' : ''
                                 }`} 
                                 onClick={() => handleSendDaysChange(day?.title)}
+                                key={day?.title}
                             >
                                 {day?.code}
                             </div>
@@ -270,6 +271,7 @@ function IntervalSendDaysSelector(props: IntervalSendDaysSelectorProps) {
                                     isSelectedDay(day) ? 'selected-msdo' : ''
                                 }`} 
                                 onClick={() => handleSendDaysChange(day)}
+                                key={day}
                             >
                                 {day}
                             </div>
