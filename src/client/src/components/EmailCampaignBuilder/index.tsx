@@ -28,6 +28,7 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
     })
     const [submissionAttempted, setSubmissionAttempted] = useState<boolean>(false)
     const [verificationData, setVerificationData] = useState<any>()
+    const [frequencyVerificationData, setFrequencyVerificationData] = useState<any>()
 
 
     useEffect(() => {
@@ -69,7 +70,7 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
         const title = fieldChecker(formData?.title)
         const sendFromEmail = fieldChecker(formData?.sendFromEmail)
         const emailBody = fieldChecker(formData?.emailBody)
-        const recipientContactLists = fieldChecker(formData?.recipientContactLists)
+        const recipientContactLists = formData?.recipientContactLists?.length ? formData?.recipientContactLists : 'error'
         const frequency = fieldChecker(formData?.frequency)
 
         let status = 'success'
@@ -96,6 +97,67 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
         return verificationObject
     }
 
+    function frequencyVerifier(formData: any) {
+
+        let status = 'success'
+
+        const freqInterval = formData?.frequency?.frequencyType
+
+        if (freqInterval === 'oneTime') {
+
+            const sendDate = fieldChecker(formData?.frequency?.sendDate)
+            const sendOtInitial = fieldChecker(formData?.frequency?.sendOtInitial)
+
+            if (
+                sendDate === 'error'
+                || sendOtInitial === 'error'
+            ) {
+                status = 'error'
+            }
+
+            const freqVerificationObject = {
+                status,
+                data: {
+                    sendDate,
+                    sendOtInitial,
+                    frequencyInterval : 'n/a',
+                    intervalSendDays : 'n/a',
+                    sendRecInitial : 'n/a',
+                    startDate : 'n/a',
+                    endDate : 'n/a',
+                }
+            }
+
+            console.log('ot freqVerificationObject obj', freqVerificationObject)
+            setFrequencyVerificationData(freqVerificationObject)
+
+            return freqVerificationObject
+
+        }
+
+        if (freqInterval === 'recurring') {
+            console.log('freqInterval recurring')
+
+            const freqVerificationObject = {
+                status,
+                data: {
+                    sendDate : 'n/a',
+                    sendOtInitial : 'n/a',
+                    frequencyInterval : 'n/a',
+                    intervalSendDays : 'n/a',
+                    sendRecInitial : 'n/a',
+                    startDate : 'n/a',
+                    endDate : 'n/a',
+                }
+            }
+            console.log('ot freqVerificationObject obj', freqVerificationObject)
+            setFrequencyVerificationData(freqVerificationObject)
+
+            return freqVerificationObject
+        }
+        return {message: 'something went wrong here'}
+    }
+
     function onFinish() {
 
         setSubmissionAttempted(true)
@@ -108,9 +170,17 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
             createdByUserId: currentUser?._id,
         }
 
-        const verification = requiredFieldVerifier(dto)
+        console.log('dto', dto)
 
-        if (verification?.status === 'success') { // If there were no field verification errors
+        const verification = requiredFieldVerifier(dto)
+        const frequencyVerification : any = frequencyVerifier(dto)
+
+        console.log('frequencyVerification', frequencyVerification)
+
+        if (
+            (verification?.status === 'success') // If there were no field verification errors
+            && (frequencyVerification?.status === 'success') // and there were no frequency field verification errors
+        ) { 
             
             if (fieldValues?.frequency?.frequencyType === 'oneTime') {
                 emailCampaignService?.createEmailCampaign(dto)
@@ -266,6 +336,8 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
                 <div>
                     <FrequencySelector
                         onChange={onChange}
+                        submissionAttempted={submissionAttempted}
+                        frequencyVerificationData={frequencyVerificationData}
                     />
                 </div>
             </div>

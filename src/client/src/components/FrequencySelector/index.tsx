@@ -6,6 +6,8 @@ import './styles.css'
 
 interface FrequencySelectorProps {
     onChange?: any
+    submissionAttempted?: any
+    frequencyVerificationData?: any
 }
 
 export default function FrequencySelector(props: FrequencySelectorProps) {
@@ -23,11 +25,11 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
         const frequencyFormValues = {
             frequencyType: frequencyType,
             sendDate,
-            sendInitial: shouldSendInitial,
+            sendOtInitial: shouldSendInitial,
             recurrence: {
                 frequencyInterval,
                 intervalSendDays,
-                sendInitial: shouldSendInitial,
+                sendRecInitial: shouldSendInitial,
                 startDate: campaignStartDate,
                 endDate: campaignEndDate,
             }
@@ -65,11 +67,21 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
                 frequencyType === 'oneTime'
                 ? (
                     <div className='datepicker-row'>
-                        <DatePicker
-                            showTime
-                            //onChange={(v) => setSendDate(v?.format('YYYY-MM-DD HH:mm:ss'))}
-                            onChange={(v) => setSendDate(v?.format())}
-                        />
+                        {
+                            (props.submissionAttempted && (props.frequencyVerificationData?.data?.sendDate === 'error'))
+                            ? (
+                                <span className='required-freq-field-error'>
+                                    * A send date is required for a one-time email
+                                </span>
+                            )
+                            : null
+                        }
+                        <div>
+                            <DatePicker
+                                showTime
+                                onChange={(v) => setSendDate(v?.format())}
+                            />
+                        </div>
                     </div>
                 )
                 : null

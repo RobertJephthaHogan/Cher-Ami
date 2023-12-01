@@ -122,3 +122,7 @@
 .end-date-title {
     font-weight: 500;
 }
+
+.required-freq-field-error {
+    color: #ff0000;
+}
