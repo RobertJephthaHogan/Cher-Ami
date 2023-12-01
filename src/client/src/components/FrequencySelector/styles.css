@@ -103,7 +103,7 @@
 
 .start-date-selector {
     margin-top: 30px;
-    display: flex;
+    /* display: flex; */
 }
 
 .start-date-title {
@@ -121,4 +121,12 @@
 
 .end-date-title {
     font-weight: 500;
+}
+
+.required-freq-field-error {
+    color: #ff0000;
+}
+
+.start-date-selector-inputs {
+    display: flex;
 }
