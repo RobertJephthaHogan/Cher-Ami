@@ -31,9 +31,10 @@ export default function Contacts() {
 
     useEffect(() => {
 
-        const formattedTableData = userContacts?.map((contact: any) => {
+        const formattedTableData = userContacts?.map((contact: any, i: any) => {
             return (
                 {
+                    key: i,
                     ...contact
                 }
             )
