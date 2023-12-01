@@ -26,9 +26,10 @@ export default function ContactLists() {
 
     useMemo(() => {
 
-        const formattedTableData = userContactLists?.map((row: any) => {
+        const formattedTableData = userContactLists?.map((row: any, i: any) => {
             return (
                 {
+                    key: i,
                     name: row?.name,
                     id: row?.id,
                     file: row?.file?.length
