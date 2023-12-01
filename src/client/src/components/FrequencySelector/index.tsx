@@ -95,6 +95,8 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
                             <FrequencyTypeSelector
                                 setFrequencyInterval={setFrequencyInterval}
                                 frequencyInterval={frequencyInterval}
+                                frequencyVerificationData={props.frequencyVerificationData}
+                                submissionAttempted={props.submissionAttempted}
                             />
                         </div>
                         <div>
@@ -102,6 +104,8 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
                                 frequencyInterval={frequencyInterval}
                                 setIntervalSendDays={setIntervalSendDays}
                                 intervalSendDays={intervalSendDays}
+                                frequencyVerificationData={props.frequencyVerificationData}
+                                submissionAttempted={props.submissionAttempted}
                             />
                         </div>
                         <div>
@@ -110,12 +114,16 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
                                 setShouldSendInitial={setShouldSendInitial}
                                 campaignStartDate={campaignStartDate}
                                 setCampaignStartDate={setCampaignStartDate}
+                                frequencyVerificationData={props.frequencyVerificationData}
+                                submissionAttempted={props.submissionAttempted}
                             />
                         </div>
                         <div>
                             <EndDateSelector
                                 campaignEndDate={campaignEndDate}
                                 setCampaignEndDate={setCampaignEndDate}
+                                frequencyVerificationData={props.frequencyVerificationData}
+                                submissionAttempted={props.submissionAttempted}
                             />
                         </div>
                     </div>
@@ -131,6 +139,8 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
 interface FrequencyTypeSelectorProps {
     setFrequencyInterval?: any
     frequencyInterval?: any
+    frequencyVerificationData?: any
+    submissionAttempted?: any
 }
 
 function FrequencyTypeSelector(props: FrequencyTypeSelectorProps) {
@@ -142,6 +152,15 @@ function FrequencyTypeSelector(props: FrequencyTypeSelectorProps) {
                 <span className='frequency-type-selector-text'>
                     Recurrence Interval
                 </span>
+                {
+                    (props.submissionAttempted && (props.frequencyVerificationData?.data?.frequencyInterval === 'error'))
+                    ? (
+                        <span className='required-freq-field-error'>
+                            * A frequency interval is required
+                        </span>
+                    )
+                    : null
+                }
             </div>
             <div className='frequency-type-selector-content'>
                 <div 
@@ -186,6 +205,8 @@ interface IntervalSendDaysSelectorProps {
     frequencyInterval?: any
     setIntervalSendDays?: any
     intervalSendDays?: any
+    frequencyVerificationData?: any
+    submissionAttempted?: any
 }
 
 function IntervalSendDaysSelector(props: IntervalSendDaysSelectorProps) {
@@ -310,8 +331,6 @@ function IntervalSendDaysSelector(props: IntervalSendDaysSelectorProps) {
                         </span>
                     ) : null
                 }
-
-
                 {
                     props.frequencyInterval === 'monthly'
                     ? (
@@ -320,7 +339,6 @@ function IntervalSendDaysSelector(props: IntervalSendDaysSelectorProps) {
                         </span>
                     ) : null
                 }
-
                 {
                     props.frequencyInterval === 'yearly'
                     ? (
@@ -329,7 +347,17 @@ function IntervalSendDaysSelector(props: IntervalSendDaysSelectorProps) {
                         </span>
                     ) : null
                 }
-                
+                <div>
+                    {
+                        (props.submissionAttempted && (props.frequencyVerificationData?.data?.intervalSendDays === 'error'))
+                        ? (
+                            <span className='required-freq-field-error'>
+                                * You must select at least one day within your recurrence interval
+                            </span>
+                        )
+                        : null
+                    }
+                </div>
             </div>
 
             {
@@ -370,6 +398,8 @@ interface StartDateSelectorProps {
     setShouldSendInitial?: any
     campaignStartDate?: any
     setCampaignStartDate?: any
+    frequencyVerificationData?: any
+    submissionAttempted?: any
 }
 
 function StartDateSelector(props: StartDateSelectorProps) {
@@ -395,26 +425,39 @@ function StartDateSelector(props: StartDateSelectorProps) {
     return (
         <div className='start-date-selector'>
             <div>
-                <span className='start-date-title'>
-                    Start Date
-                </span>
-                <div>
-                    <DatePicker
-                        value={dayjs(props.campaignStartDate)}
-                        onChange={(v) => onStartDateChange(v)}
-                        disabled={disableStartDatePicker}
-                    />
-                </div>
+                {
+                    (props.submissionAttempted && (props.frequencyVerificationData?.data?.startDate === 'error'))
+                    ? (
+                        <span className='required-freq-field-error'>
+                            * Recurring email campaigns must have a start date
+                        </span>
+                    )
+                    : null
+                }
             </div>
-            <div className='initial-checkbox-container'>
-                <span className='start-date-title'>
-                    Start immediately
-                </span>
+            <div className='start-date-selector-inputs'>
                 <div>
-                    <Checkbox
-                        checked={props.shouldSendInitial}
-                        onChange={(e) => onCheck(e)}
-                    />
+                    <span className='start-date-title'>
+                        Start Date
+                    </span>
+                    <div>
+                        <DatePicker
+                            value={dayjs(props.campaignStartDate)}
+                            onChange={(v) => onStartDateChange(v)}
+                            disabled={disableStartDatePicker}
+                        />
+                    </div>
+                </div>
+                <div className='initial-checkbox-container'>
+                    <span className='start-date-title'>
+                        Start immediately
+                    </span>
+                    <div>
+                        <Checkbox
+                            checked={props.shouldSendInitial}
+                            onChange={(e) => onCheck(e)}
+                        />
+                    </div>
                 </div>
             </div>
         </div>
@@ -426,6 +469,8 @@ function StartDateSelector(props: StartDateSelectorProps) {
 interface EndDateSelectorProps {
     campaignEndDate?: any
     setCampaignEndDate?: any
+    frequencyVerificationData?: any
+    submissionAttempted?: any
 }
 
 function EndDateSelector(props: EndDateSelectorProps) {
@@ -433,6 +478,17 @@ function EndDateSelector(props: EndDateSelectorProps) {
     return (
         <div className='end-date-selector'>
             <div>
+                <div>
+                    {
+                        (props.submissionAttempted && (props.frequencyVerificationData?.data?.endDate === 'error'))
+                        ? (
+                            <span className='required-freq-field-error'>
+                                * Recurring email campaigns must have an end date
+                            </span>
+                        )
+                        : null
+                    }
+                </div>
                 <span className='end-date-title'>
                     End Date
                 </span>

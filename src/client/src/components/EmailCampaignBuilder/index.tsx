@@ -128,7 +128,6 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
                 }
             }
 
-            console.log('ot freqVerificationObject obj', freqVerificationObject)
             setFrequencyVerificationData(freqVerificationObject)
 
             return freqVerificationObject
@@ -136,21 +135,39 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
         }
 
         if (freqInterval === 'recurring') {
-            console.log('freqInterval recurring')
+
+            const frequencyInterval = fieldChecker(formData?.frequency?.recurrence?.frequencyInterval)
+            const intervalSendDays = formData?.frequency?.recurrence?.intervalSendDays?.length 
+                ? formData?.frequency?.recurrence?.intervalSendDays 
+                : 'error'
+            const sendRecInitial = fieldChecker(formData?.frequency?.recurrence?.sendRecInitial)
+            const startDate = fieldChecker(formData?.frequency?.recurrence?.startDate)
+            const endDate = fieldChecker(formData?.frequency?.recurrence?.endDate)
+
+            
+            if (
+                frequencyInterval === 'error'
+                || intervalSendDays === 'error'
+                || sendRecInitial === 'error'
+                || startDate === 'error'
+                || endDate === 'error'
+            ) {
+                status = 'error'
+            }
 
             const freqVerificationObject = {
                 status,
                 data: {
                     sendDate : 'n/a',
                     sendOtInitial : 'n/a',
-                    frequencyInterval : 'n/a',
-                    intervalSendDays : 'n/a',
-                    sendRecInitial : 'n/a',
-                    startDate : 'n/a',
-                    endDate : 'n/a',
+                    frequencyInterval,
+                    intervalSendDays,
+                    sendRecInitial,
+                    startDate,
+                    endDate,
                 }
             }
-            console.log('ot freqVerificationObject obj', freqVerificationObject)
+
             setFrequencyVerificationData(freqVerificationObject)
 
             return freqVerificationObject
@@ -170,12 +187,10 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
             createdByUserId: currentUser?._id,
         }
 
-        console.log('dto', dto)
 
         const verification = requiredFieldVerifier(dto)
         const frequencyVerification : any = frequencyVerifier(dto)
 
-        console.log('frequencyVerification', frequencyVerification)
 
         if (
             (verification?.status === 'success') // If there were no field verification errors
