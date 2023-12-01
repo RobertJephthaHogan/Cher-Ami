@@ -30,7 +30,16 @@ export default function Email() {
 
 
     useMemo(() => {
-        setTableData(userEmailCampaigns)
+        const formattedTableData = userEmailCampaigns?.map((ec: any, i: any) => {
+
+            return (
+                {
+                    key: i,
+                    ...ec
+                }
+            )
+        }) || []
+        setTableData(formattedTableData)
     }, [userEmailCampaigns])
 
     const columns: any = [
