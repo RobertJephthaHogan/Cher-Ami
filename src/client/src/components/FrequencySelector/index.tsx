@@ -19,6 +19,8 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
     const [shouldSendInitial, setShouldSendInitial] = useState<boolean>(false)
     const [campaignStartDate, setCampaignStartDate] = useState<any>(undefined)
     const [campaignEndDate, setCampaignEndDate] = useState<any>(undefined)
+    const [disableStartDatePicker, setDisableStartDatePicker] = useState<boolean>(false)
+
 
     useEffect(() => {
 
@@ -51,6 +53,18 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
         setIntervalSendDays([])
     }, [frequencyInterval])
 
+    function onCheck(e: any) {
+        const sendInitialChecked = e?.target?.checked
+        setDisableStartDatePicker(sendInitialChecked)
+
+        setShouldSendInitial(e.target?.checked)
+        
+        if (sendInitialChecked) {
+            setSendDate(dayjs().format())
+        }
+        
+    }
+
     return (
         <div className='frequency-selector'>
             <div className='fs-radio-group-row'>
@@ -76,11 +90,37 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
                             )
                             : null
                         }
-                        <div>
-                            <DatePicker
-                                showTime
-                                onChange={(v) => setSendDate(v?.format())}
-                            />
+                        <div className='send-date-selector-inputs'>
+                            <div>
+                                <div>
+                                    <span className='start-date-title'>
+                                        Send Date
+                                    </span>
+                                </div>
+                                <div>
+                                    <DatePicker
+                                        showTime
+                                        disabled={disableStartDatePicker}
+                                        value={
+                                            sendDate
+                                            ? dayjs(sendDate)
+                                            : undefined
+                                        }
+                                        onChange={(v) => setSendDate(v?.format())}
+                                    />
+                                </div>
+                            </div>
+                            <div className='initial-checkbox-container'>
+                                <span className='start-date-title'>
+                                    Start immediately
+                                </span>
+                                <div>
+                                    <Checkbox
+                                        checked={shouldSendInitial}
+                                        onChange={(e) => onCheck(e)}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )
