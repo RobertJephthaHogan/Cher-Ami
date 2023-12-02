@@ -182,7 +182,9 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
         const dto = {
             id: new ObjectID().toString(),
             ...fieldValues,
-            status: 'pending',
+            status: {
+                title: 'pending'
+            },
             creationTime: dayjs().format(),
             createdByUserId: currentUser?._id,
         }

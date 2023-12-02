@@ -1,5 +1,5 @@
 import datetime
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Union
 from beanie import Document
 from pydantic import BaseModel, EmailStr, Field
 
@@ -11,7 +11,7 @@ class EmailCampaign(Document):
     emailBody: str = Field(...)
     recipientContactLists: List[Any] = Field(...)
     frequency: Dict[Any, Any]
-    status: str = Field(...)
+    status: Union[str, Dict[Any, Any]] = Field(...)
     creationTime: datetime.datetime = Field(...)
     createdByUserId: str = Field(...)
     
@@ -28,7 +28,9 @@ class EmailCampaign(Document):
                 "emailBody": "This is a basic email body",
                 "recipientContactLists": [],
                 "frequency": {},
-                "status": 'sent',
+                "status": {
+                    "title": 'sent'
+                    },
                 "creationTime": "2023-11-21T16:10:15-05:00",
                 "createdByUserId": "wwv45yw4gw45w76nr657eu",
             }
@@ -42,7 +44,7 @@ class UpdateEmailCampaignModel(BaseModel):
     emailBody: Optional[str]
     recipientContactLists: Optional[List[Any]]
     frequency: Optional[Dict[Any, Any]]
-    status: Optional[str]
+    status: Optional[Union[str, Dict[Any, Any]]]
     creationTime: Optional[datetime.datetime]
     createdByUserId: Optional[str]
 
@@ -55,7 +57,9 @@ class UpdateEmailCampaignModel(BaseModel):
                 "emailBody": "This is a basic email body",
                 "recipientContactLists": [],
                 "frequency": {},
-                "status": 'sent',
+                "status": {
+                    "title": 'sent'
+                    },
                 "creationTime": "2023-11-21T16:10:15-05:00",
                 "createdByUserId": "wwv45yw4gw45w76nr657eu",
             }
