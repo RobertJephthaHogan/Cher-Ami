@@ -23,7 +23,6 @@ class EmailOperations:
 
     
     async def retrieve_emails_for_user(user_id) -> List[Email]:
-        print('user_id', user_id)
         emails = await email_collection.find(Email.createdByUserId == user_id).to_list()
         return emails
 
