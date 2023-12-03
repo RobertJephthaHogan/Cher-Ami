@@ -24,11 +24,16 @@ class EmailCampaignService:
         
         if shouldSendInitial:
             # send the one time email campaign immediately
-            # send all the emails and keep track of the results
+            # send all the emails and store resusts in statis object
+            try:
+                result = await self.dispatchEmailCampaign(campaign_data)
+            except Exception as ex:
+                # If an error happens while dispatching the email campaign, set status to 'error'
+                db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_data.id)   
+                edited = db_campaign.__dict__
+                edited['status']['title'] = 'error'
+                updated_campaign = await EmailCampaignOperations.update_email_campaign_data(campaign_data.id, edited)
             
-            result = await self.dispatchEmailCampaign(campaign_data)
-            
-            # then update the status data of the email campaign in the db
             
         
         if not shouldSendInitial:
@@ -94,6 +99,11 @@ class EmailCampaignService:
             result = EmailService(**email_data).sendEmail()
             results.append(result)
 
+        # Once the Campaign is sent to recipients, set status to 'sent'
+        db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_data.id)   
+        edited = db_campaign.__dict__
+        edited['status']['title'] = 'sent'
+        updated_campaign = await EmailCampaignOperations.update_email_campaign_data(campaign_data.id, edited)
 
         print('results', results)        
         

@@ -68,6 +68,7 @@ export default function Email() {
 
                 const tagMap : any = {
                     'pending': 'default',
+                    'in-progress': 'yellow',
                     'sent': 'green',
                     'scheduled': 'yellow',
                     'error': 'red',
