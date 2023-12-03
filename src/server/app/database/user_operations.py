@@ -16,8 +16,8 @@ class UserOperations:
         return user
 
 
-    async def retrieve_user(user: User) -> User:
-        user = await user_collection.get(str(user))
+    async def retrieve_user(user_id: PydanticObjectId) -> User:
+        user = await user_collection.get(str(user_id))
         if user:
             return user
 

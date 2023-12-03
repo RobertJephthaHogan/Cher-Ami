@@ -18,6 +18,8 @@ export default function Email() {
     const userEmailCampaigns = useSelector((state: any) => state.emailCampaigns?.queryResult ?? [])
     const [cnecModalOpen, setCnecModalOpen] = useState<any>()
     const [tableData, setTableData] = useState<any>([])
+
+    console.log('tableData', tableData)
     
     useEffect(() => {
         setComponentData()
@@ -57,6 +59,27 @@ export default function Email() {
             title: 'Send From Email',
             dataIndex: 'sendFromEmail',
             key: 'sendFromEmail',
+        },
+        {
+            title: 'Status',
+            dataIndex: 'status',
+            key: 'status',
+            render: (_: any, record: any) => {
+
+                const tagMap : any = {
+                    'pending': 'default',
+                    'in-progress': 'yellow',
+                    'sent': 'green',
+                    'scheduled': 'yellow',
+                    'error': 'red',
+                }
+
+                return (
+                    <Tag color={tagMap[record?.status?.title]}>
+                        {record?.status?.title}
+                    </Tag>
+                )
+            },
         },
         // {
         //     title: 'Email Body',

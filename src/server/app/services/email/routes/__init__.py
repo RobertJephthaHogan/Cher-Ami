@@ -19,7 +19,7 @@ class EmailRouter:
     @router.get("/test", response_description="Test sending and email", response_model=Response)
     async def testEmail():
         
-        result = EmailService.sendEmail()
+        result = EmailService.testSendEmail()
         
         if not result:
             print("Dictionary is empty.")

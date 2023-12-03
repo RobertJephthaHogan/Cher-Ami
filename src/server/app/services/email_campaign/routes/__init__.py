@@ -5,6 +5,7 @@ from app.models.Response import Response
 from app.database.email_campaign_operations import EmailCampaignOperations
 from app.models.EmailCampaign import EmailCampaign, UpdateEmailCampaignModel
 from app.models.Response import Response200, Response404
+from .. import EmailCampaignService
 
 
 router = APIRouter()
@@ -64,12 +65,18 @@ async def get_email_campaigns():
 
 @router.post("/new", response_description="Email Campaign data added into the database", response_model=Response)
 async def add_email_campaign_data(email_campaign: EmailCampaign = Body(...)):
-    new_email_campaign = await EmailCampaignOperations.add_email_campaign(email_campaign)
+    
+    print("email campaign data", email_campaign)
+
+    nec = await EmailCampaignService().create_one_time_email_campaign(email_campaign)
+    
+    #new_email_campaign = await EmailCampaignOperations.add_email_campaign(email_campaign)
+    
     return {
         "status_code": 200,
         "response_type": "success",
         "description": "Email Campaign created successfully",
-        "data": new_email_campaign
+        "data": nec
     }
 
 

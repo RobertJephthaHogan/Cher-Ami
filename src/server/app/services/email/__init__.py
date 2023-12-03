@@ -14,8 +14,9 @@ class EmailService:
     def __init__(self, **kwargs):
         self.kwargs = kwargs
 
-    
-    def sendEmail(self):
+            
+            
+    def testSendEmail(self):
                 
         email_sender = 'contact.rjh.ventures@gmail.com'
         email_password = os.getenv("GMAIL_TFA_PASSWORD")
@@ -45,6 +46,42 @@ class EmailService:
             except Exception as e:
                 print('error', e)
                 return {'error': e}
+            
+            
+    def sendEmail(self):
+        
+        print('vars (self.kwargs)', self.kwargs)
+                
+        email_sender = self.kwargs['emailSender']
+        email_password = self.kwargs['emailPassword']
+        email_receiver = self.kwargs['emailRecipient']
+        
+        subject = 'This is the email subject'
+        
+        body = self.kwargs['body']
+                
+        em = EmailMessage()
+        em['From'] = email_sender
+        em['To'] = email_receiver
+        em['Subject'] = subject
+        em.set_content(body)
+        
+        context = ssl.create_default_context()
+        
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+            try:
+                smtp.login(email_sender, email_password)
+                resp = smtp.sendmail(email_sender, email_receiver, em.as_string())
+                return {
+                    'status': 'success',
+                    'data': resp
+                }
+            except Exception as e:
+                print('error', e)
+                return {
+                    'status': 'error',
+                    'data': e
+                }
                        
     
     pass
