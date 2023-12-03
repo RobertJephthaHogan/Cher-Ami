@@ -24,7 +24,7 @@ class EmailCampaignService:
         
         if shouldSendInitial:
             # send the one time email campaign immediately
-            # send all the emails and store results in status object
+            
             try:
                 result = await self.dispatchEmailCampaign(campaign_data)
             except Exception as ex:
@@ -98,7 +98,8 @@ class EmailCampaignService:
             
             result = EmailService(**email_data).sendEmail()
             results.append(result)
-        
+            
+        # store dispatch results in the campaigns status object
         def count_statuses(data_list):
             success_count = 0
             error_count = 0
