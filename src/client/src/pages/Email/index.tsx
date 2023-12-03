@@ -19,7 +19,6 @@ export default function Email() {
     const [cnecModalOpen, setCnecModalOpen] = useState<any>()
     const [tableData, setTableData] = useState<any>([])
 
-    console.log('tableData', tableData)
     
     useEffect(() => {
         setComponentData()

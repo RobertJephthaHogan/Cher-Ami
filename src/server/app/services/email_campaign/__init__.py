@@ -24,7 +24,7 @@ class EmailCampaignService:
         
         if shouldSendInitial:
             # send the one time email campaign immediately
-            # send all the emails and store resusts in statis object
+            
             try:
                 result = await self.dispatchEmailCampaign(campaign_data)
             except Exception as ex:
@@ -98,11 +98,34 @@ class EmailCampaignService:
             
             result = EmailService(**email_data).sendEmail()
             results.append(result)
+            
+        # store dispatch results in the campaigns status object
+        def count_statuses(data_list):
+            success_count = 0
+            error_count = 0
+
+            for item in data_list:
+                status = item.get('status', None)
+                if status == 'success':
+                    success_count += 1
+                elif status == 'error':
+                    error_count += 1
+
+            return {
+                'successes': success_count, 
+                'errors': error_count
+            }
+                
+        statusData = {
+            'info': count_statuses(results),
+            'results': results
+        }
 
         # Once the Campaign is sent to recipients, set status to 'sent'
         db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_data.id)   
         edited = db_campaign.__dict__
         edited['status']['title'] = 'sent'
+        edited['status']['data'] = statusData
         updated_campaign = await EmailCampaignOperations.update_email_campaign_data(campaign_data.id, edited)
 
         print('results', results)        
