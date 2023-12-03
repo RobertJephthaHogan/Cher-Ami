@@ -49,19 +49,17 @@ class EmailService:
             
             
     def sendEmail(self):
+        
+        print('vars (self.kwargs)', self.kwargs)
                 
-        email_sender = 'contact.rjh.ventures@gmail.com'
-        email_password = os.getenv("GMAIL_TFA_PASSWORD")
-        email_receiver = 'robertjephthahogan@gmail.com'
+        email_sender = self.kwargs['emailSender']
+        email_password = self.kwargs['emailPassword']
+        email_receiver = self.kwargs['emailRecipient']
         
         subject = 'This is the email subject'
         
-        body = """
-        This is the body of the email content. It worked!
-        """
-        
-        print("Sending Email")
-        
+        body = self.kwargs['body']
+                
         em = EmailMessage()
         em['From'] = email_sender
         em['To'] = email_receiver
@@ -74,10 +72,16 @@ class EmailService:
             try:
                 smtp.login(email_sender, email_password)
                 resp = smtp.sendmail(email_sender, email_receiver, em.as_string())
-                return resp
+                return {
+                    'status': 'success',
+                    'data': resp
+                }
             except Exception as e:
                 print('error', e)
-                return {'error': e}
+                return {
+                    'status': 'error',
+                    'data': e
+                }
                        
     
     pass
