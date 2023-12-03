@@ -11,6 +11,7 @@ from app.models.Contact import Contact
 from app.models.ContactList import ContactList
 from app.models.EmailCampaign import EmailCampaign
 from app.models.RecurringEmailCampaign import RecurringEmailCampaign
+from app.models.ScheduledService import ScheduledService
 
 # Load the environment variables
 load_dotenv()
@@ -42,5 +43,6 @@ async def initiate_database():
                                             Contact,
                                             ContactList,
                                             EmailCampaign,
-                                            RecurringEmailCampaign
+                                            RecurringEmailCampaign,
+                                            ScheduledService
                                         ])
