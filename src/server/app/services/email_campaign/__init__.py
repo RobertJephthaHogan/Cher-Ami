@@ -35,6 +35,7 @@ class EmailCampaignService:
                 db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_data.id)   
                 edited = db_campaign.__dict__
                 edited['status']['title'] = 'error'
+                edited['status']['data'] = ex
                 updated_campaign = await EmailCampaignOperations.update_email_campaign_data(campaign_data.id, edited)
             
         
