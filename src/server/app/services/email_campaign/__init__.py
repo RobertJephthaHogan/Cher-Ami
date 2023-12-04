@@ -53,6 +53,7 @@ class EmailCampaignService:
             'action': 'send-scheduled-one-time-email-campaign',
             'createdByUserId': campaign_data.createdByUserId,
             'target_id': campaign_data.id,
+            'executed': False,
             'time': campaign_data.frequency.get('sendDate')
         }
         
