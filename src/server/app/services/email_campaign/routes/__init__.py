@@ -66,8 +66,6 @@ async def get_email_campaigns():
 @router.post("/new", response_description="Email Campaign data added into the database", response_model=Response)
 async def add_email_campaign_data(email_campaign: EmailCampaign = Body(...)):
     
-    print("email campaign data", email_campaign)
-
     nec = await EmailCampaignService().create_one_time_email_campaign(email_campaign)
     
     #new_email_campaign = await EmailCampaignOperations.add_email_campaign(email_campaign)

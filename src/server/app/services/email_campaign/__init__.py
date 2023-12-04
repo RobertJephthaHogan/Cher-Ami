@@ -55,6 +55,7 @@ class EmailCampaignService:
             'createdByUserId': campaign_data.createdByUserId,
             'target_id': campaign_data.id,
             'executed': False,
+            'status': 'pending',
             'time': campaign_data.frequency.get('sendDate')
         }
         
@@ -149,8 +150,6 @@ class EmailCampaignService:
         edited['status']['title'] = 'sent'
         edited['status']['data'] = statusData
         updated_campaign = await EmailCampaignOperations.update_email_campaign_data(campaign_data.id, edited)
-
-        print('results', results)        
         
         return {}
     

@@ -44,11 +44,11 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
                 updated_campaign = await EmailCampaignOperations.update_email_campaign_data(ec_to_send.id, edited)
                 
                 # If an error happens while dispatching the scheduled email campaign, set scheduled service status to 'error'
-                # executed_service = ScheduledServiceOperations.retrieve_scheduled_service(service_id)
-                # edited = db_campaign.__dict__
-                # edited['executed'] = False
-                # edited['status'] = 'error'
-                # updated_service = await ScheduledServiceOperations.update_scheduled_service_data(edited.id, edited)
+                executed_service = ScheduledServiceOperations.retrieve_scheduled_service(service_id)
+                edited = db_campaign.__dict__
+                edited['executed'] = False
+                edited['status'] = 'error'
+                updated_service = await ScheduledServiceOperations.update_scheduled_service_data(edited.id, edited)
             
             
             
