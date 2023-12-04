@@ -39,9 +39,6 @@ class EmailCampaignService:
             
         
         if not shouldSendInitial:
-            print('Schedule the email to be sent')
-            print('by adding an entry to the schedules services table')
-            
             # Schedule the one time email campaign
             # then update the status data of the email campaign in the db
             scheduled_campaign = await self.scheduleEmailCampaign(campaign_data)
@@ -59,9 +56,15 @@ class EmailCampaignService:
             'time': campaign_data.frequency.get('sendDate')
         }
         
-        dto_class = ScheduledService(**dto)
+        ss_instance = ScheduledService(**dto)
         
-        scheduled_campaign = await ScheduledServiceOperations.add_scheduled_service(dto_class)
+        scheduled_campaign = await ScheduledServiceOperations.add_scheduled_service(ss_instance)
+        
+        # update the campaign status to 'scheduled' once scheduled
+        db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_data.id)   
+        edited = db_campaign.__dict__
+        edited['status']['title'] = 'scheduled'
+        updated_campaign = await EmailCampaignOperations.update_email_campaign_data(campaign_data.id, edited)
                 
         return {}
     
