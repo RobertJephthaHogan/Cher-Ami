@@ -32,6 +32,8 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
                 executed_service = await ScheduledServiceOperations.retrieve_scheduled_service(service_id)
                 edited = executed_service.__dict__
                 edited['executed'] = True
+                edited['status']['title'] = 'executed'
+                edited['status']['data'] = {}
                 updated_service = await ScheduledServiceOperations.update_scheduled_service_data(service_id, edited)
                 
             except Exception as ex:
