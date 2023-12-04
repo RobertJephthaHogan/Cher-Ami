@@ -42,7 +42,9 @@ async def startup_event():
     ScheduledServiceService().startScheduler()
     print("Service Scheduler Started")
     
-
+@app.on_event("shutdown")
+def shutdown_event():
+    ScheduledServiceService().shutdownScheduler()
 
 # Root Render
 @app.get("/", tags=["Root"])
