@@ -49,9 +49,7 @@ class EmailService:
             
             
     def sendEmail(self):
-        
-        print('vars (self.kwargs)', self.kwargs)
-                
+                        
         email_sender = self.kwargs['emailSender']
         email_password = self.kwargs['emailPassword']
         email_receiver = self.kwargs['emailRecipient']

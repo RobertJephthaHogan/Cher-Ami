@@ -20,8 +20,11 @@ class ScheduledServiceOperations:
     async def retrieve_all_scheduled_services() -> List[ScheduledService]:
         scheduled_services = await scheduled_service_collection.all().to_list()
         return scheduled_services
-
     
+    async def retrieve_unexecuted_scheduled_services() -> List[ScheduledService]:
+        scheduled_services = await scheduled_service_collection.find({'executed': False}).to_list()
+        return scheduled_services
+
     async def retrieve_scheduled_services_for_user(user_id) -> List[ScheduledService]:
         scheduled_services = await scheduled_service_collection.find(ScheduledService.createdByUserId == user_id).to_list()
         return scheduled_services

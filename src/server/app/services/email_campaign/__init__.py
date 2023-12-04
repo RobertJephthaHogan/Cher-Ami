@@ -1,8 +1,11 @@
 from datetime import datetime
+from bson import ObjectId
 from app.database.email_campaign_operations import EmailCampaignOperations
 from app.services.email import EmailService
 from app.database.contact_list_operations import ContactListOperations
 from app.database.user_operations import UserOperations
+from app.database.scheduled_service_operations import ScheduledServiceOperations
+from app.models.ScheduledService import ScheduledService
 
 
 
@@ -32,21 +35,44 @@ class EmailCampaignService:
                 db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_data.id)   
                 edited = db_campaign.__dict__
                 edited['status']['title'] = 'error'
+                edited['status']['data'] = ex
                 updated_campaign = await EmailCampaignOperations.update_email_campaign_data(campaign_data.id, edited)
-            
             
         
         if not shouldSendInitial:
-            print('Schedule the email to be sent')
-            print('by adding an entry to the schedules services table')
-            
             # Schedule the one time email campaign
             # then update the status data of the email campaign in the db
-        
-        
+            scheduled_campaign = await self.scheduleEmailCampaign(campaign_data)
         
         return new_email_campaign
     
+    
+    async def scheduleEmailCampaign(self, campaign_data):
+        
+        dto = {
+            'id': str(ObjectId()),
+            'action': 'send-scheduled-one-time-email-campaign',
+            'createdByUserId': campaign_data.createdByUserId,
+            'target_id': campaign_data.id,
+            'executed': False,
+            'status': {
+                    'title': 'pending',
+                    'data': {},
+                    },
+            'time': campaign_data.frequency.get('sendDate')
+        }
+        
+        ss_instance = ScheduledService(**dto)
+        
+        scheduled_campaign = await ScheduledServiceOperations.add_scheduled_service(ss_instance)
+        
+        # update the campaign status to 'scheduled' once scheduled
+        db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_data.id)   
+        edited = db_campaign.__dict__
+        edited['status']['title'] = 'scheduled'
+        updated_campaign = await EmailCampaignOperations.update_email_campaign_data(campaign_data.id, edited)
+                
+        return {}
     
     
     
@@ -127,8 +153,6 @@ class EmailCampaignService:
         edited['status']['title'] = 'sent'
         edited['status']['data'] = statusData
         updated_campaign = await EmailCampaignOperations.update_email_campaign_data(campaign_data.id, edited)
-
-        print('results', results)        
         
         return {}
     

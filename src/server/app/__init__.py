@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+from app.services.scheduled_service import ScheduledServiceService
 from .config import initiate_database
 
 from app.services.user.routes import router as UserRouter
@@ -32,9 +34,17 @@ app.add_middleware(
 # Start Up Events
 @app.on_event("startup")
 async def startup_event():
-    await initiate_database()
     print("Starting Server...")
-
+    print("Initiating Database...")
+    await initiate_database()
+    print("Database Initiated")
+    print("Starting Service Scheduler...")
+    ScheduledServiceService().startScheduler()
+    print("Service Scheduler Started")
+    
+@app.on_event("shutdown")
+def shutdown_event():
+    ScheduledServiceService().shutdownScheduler()
 
 # Root Render
 @app.get("/", tags=["Root"])
@@ -43,7 +53,7 @@ async def read_root():
 
 
 
-
+# Add service routers to app router
 app.include_router(UserRouter, tags=["User"], prefix="/user")
 app.include_router(EmailRouter, tags=["Email"], prefix="/email")
 app.include_router(ContactRouter, tags=["Contact"], prefix="/contact")
