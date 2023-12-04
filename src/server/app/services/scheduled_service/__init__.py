@@ -31,3 +31,4 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
     def shutdownScheduler(self):
         scheduler = BackgroundScheduler()
         scheduler.shutdown()
+        
