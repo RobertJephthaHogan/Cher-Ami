@@ -43,7 +43,7 @@ async def read_root():
 
 
 
-
+# Add service routers to app router
 app.include_router(UserRouter, tags=["User"], prefix="/user")
 app.include_router(EmailRouter, tags=["Email"], prefix="/email")
 app.include_router(ContactRouter, tags=["Contact"], prefix="/contact")
