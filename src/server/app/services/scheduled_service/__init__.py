@@ -17,7 +17,6 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
         scheduler.add_job(self.check_scheduled_tasks, "interval", seconds=10)  # Check every 10 seconds
         scheduler.start()
         
-    
     def perform_scheduled_task(self, service_id: int, action: str):
         # Implement your scheduled task logic here
         print(f"Performing task for service {service_id}: {action} at {datetime.now()}")
@@ -29,4 +28,6 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
             if current_time >= task_time:
                 self.perform_scheduled_task(service["id"], service["action"])
     
-    
+    def shutdownScheduler(self):
+        scheduler = BackgroundScheduler()
+        scheduler.shutdown()
