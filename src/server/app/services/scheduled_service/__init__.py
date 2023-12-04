@@ -6,10 +6,6 @@ from app.database.email_campaign_operations import EmailCampaignOperations
 from app.services.email_campaign import EmailCampaignService
 
 
-# Mock data
-mocked_scheduled_services = [
-    {"id": 1, "date_time": "2023-12-02 10:30:00", "action": "send_email"},
-]
 
 
 class ScheduledServiceService: # as agonizing as this class name is, I'll continue to follow the convention I have been 
@@ -81,7 +77,12 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
             
             if current_time >= task_time:
                 await self.perform_scheduled_task(service.id, service.action, service.target_id)
-            
+        
+        # Mock data
+        # mocked_scheduled_services = [
+        #     {"id": 1, "date_time": "2023-12-02 10:30:00", "action": "send_email"},
+        # ]
+                
         # for service in mocked_scheduled_services:
         #     task_time = datetime.strptime(service["date_time"], "%Y-%m-%d %H:%M:%S")
         #     if current_time >= task_time:
