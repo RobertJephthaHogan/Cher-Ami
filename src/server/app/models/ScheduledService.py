@@ -10,6 +10,7 @@ class ScheduledService(Document):
     createdByUserId: str = Field(...)
     target_id: str = Field(...)
     executed: bool = Field(...)
+    status: str = Field(...)
     time: datetime.datetime = Field(...)
     
     
@@ -24,6 +25,7 @@ class ScheduledService(Document):
                 "createdByUserId": "wwv45yw4gw45w76nr657eu",
                 "target_id": "123",
                 "executed": False,
+                "status": "pending",
                 "time": "2022-12-22T16:09:23.443Z",
             }
         }
@@ -35,6 +37,7 @@ class UpdateScheduledServiceModel(BaseModel):
     createdByUserId: Optional[str]
     target_id: Optional[str]
     executed: Optional[bool]
+    status: Optional[str]
     time: Optional[datetime.datetime]
 
     class Config:
@@ -45,6 +48,7 @@ class UpdateScheduledServiceModel(BaseModel):
                 "createdByUserId": "wwv45yw4gw45w76nr657eu",
                 "target_id": "123",
                 "executed": False,
+                "status": "error",
                 "time": "2022-12-22T16:09:23.443Z",
             }
         }
