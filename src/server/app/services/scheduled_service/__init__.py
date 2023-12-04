@@ -47,7 +47,10 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
                 executed_service = ScheduledServiceOperations.retrieve_scheduled_service(service_id)
                 edited = db_campaign.__dict__
                 edited['executed'] = False
-                edited['status'] = 'error'
+                edited['status'] = {
+                    'title': 'error',
+                    'data': ex,
+                    },
                 updated_service = await ScheduledServiceOperations.update_scheduled_service_data(edited.id, edited)
             
             

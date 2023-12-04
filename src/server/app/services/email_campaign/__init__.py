@@ -55,7 +55,10 @@ class EmailCampaignService:
             'createdByUserId': campaign_data.createdByUserId,
             'target_id': campaign_data.id,
             'executed': False,
-            'status': 'pending',
+            'status': {
+                    'title': 'pending',
+                    'data': {},
+                    },
             'time': campaign_data.frequency.get('sendDate')
         }
         
