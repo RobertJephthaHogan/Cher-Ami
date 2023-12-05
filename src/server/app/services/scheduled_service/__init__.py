@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 from app.database.scheduled_service_operations import ScheduledServiceOperations
 from app.database.email_campaign_operations import EmailCampaignOperations
 from app.services.email_campaign import EmailCampaignService
+from app.helpers import Helpers
 
 
 
@@ -29,31 +30,15 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
                 c = await EmailCampaignService().dispatchEmailCampaign(ec_to_send)
                 
                 # after sending successfully, update the scheduled service to executed
-                executed_service = await ScheduledServiceOperations.retrieve_scheduled_service(service_id)
-                edited = executed_service.__dict__
-                edited['executed'] = True
-                edited['status']['title'] = 'executed'
-                edited['status']['data'] = {}
-                updated_service = await ScheduledServiceOperations.update_scheduled_service_data(service_id, edited)
+                await Helpers.set_scheduled_service_executed(service_id)
                 
             except Exception as ex:
                 print('ex', ex)
                 # If an error happens while dispatching the email campaign, set email campaign status to 'error'
-                db_campaign = await EmailCampaignOperations.retrieve_email_campaign(ec_to_send.id)   
-                edited = db_campaign.__dict__
-                edited['status']['title'] = 'error'
-                edited['status']['data'] = ex
-                updated_campaign = await EmailCampaignOperations.update_email_campaign_data(ec_to_send.id, edited)
+                await Helpers.set_email_campaign_error(target_id, ex)
                 
                 # If an error happens while dispatching the scheduled email campaign, set scheduled service status to 'error'
-                executed_service = ScheduledServiceOperations.retrieve_scheduled_service(service_id)
-                edited = db_campaign.__dict__
-                edited['executed'] = False
-                edited['status'] = {
-                    'title': 'error',
-                    'data': ex,
-                    },
-                updated_service = await ScheduledServiceOperations.update_scheduled_service_data(edited.id, edited)
+                await Helpers.set_scheduled_service_error(service_id, ex)
             
             
             
