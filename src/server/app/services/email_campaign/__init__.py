@@ -28,8 +28,6 @@ class EmailCampaignService:
         print('campaign_frequency_type', campaign_frequency_type)
         
         
-        
-        
         if campaign_frequency_type == 'oneTime':
             # After email campaign is created, Check if send initial is true
             shouldSendInitial = campaign_data.frequency.get('sendOtInitial')

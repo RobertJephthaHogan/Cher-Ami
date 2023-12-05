@@ -199,33 +199,24 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
             && (frequencyVerification?.status === 'success') // and there were no frequency field verification errors
         ) { 
             
-            if (fieldValues?.frequency?.frequencyType === 'oneTime') {
-                emailCampaignService?.createEmailCampaign(dto)
-                    .then((resp: any) => {
-                        console.log('resp')
-                        openNotification(
-                            resp?.data?.response_type,
-                            `Email Campaign Created Successfully`
-                        )
-                        props.closeParent()
-                        setTimeout(function() {
-                            store.dispatch(emailCampaignActions.setEmailCampaigns(currentUser?._id))
-                        }, 500);
-                        setFieldValues({
-                            recipientContactLists: []
-                        })
+            emailCampaignService?.createEmailCampaign(dto)
+                .then((resp: any) => {
+                    console.log('resp')
+                    openNotification(
+                        resp?.data?.response_type,
+                        `Email Campaign Created Successfully`
+                    )
+                    props.closeParent()
+                    setTimeout(function() {
+                        store.dispatch(emailCampaignActions.setEmailCampaigns(currentUser?._id))
+                    }, 500);
+                    setFieldValues({
+                        recipientContactLists: []
                     })
-                    .catch((er: any) => {
-                        console.log('error', er)
-                    })
-
-            }
-    
-            if (fieldValues?.frequency?.frequencyType === 'recurring') {
-                //TODO: Recurring Email Campaign onFinish handling
-                console.log('recurring')
-                console.log('dto', dto)
-            }
+                })
+                .catch((er: any) => {
+                    console.log('error', er)
+                })
 
         }
 
