@@ -58,9 +58,14 @@ class EmailCampaignService:
             print('shouldSendInitial', shouldSendInitial)
             
             if shouldSendInitial:
-                # send the one time email campaign immediately
+                
                 try:
+                    # send the one time email campaign immediately
                     result = await self.dispatchEmailCampaign(campaign_data)
+                    # set the campaign status to 'active'
+                    await Helpers.set_email_campaign_active(campaign_data.id, result)
+                    # schedule the next occurrence of the campaign
+                    
                 except Exception as ex:
                     # If an error happens while dispatching the email campaign, set status to 'error'
                     await Helpers.set_email_campaign_error(campaign_data.id, ex)

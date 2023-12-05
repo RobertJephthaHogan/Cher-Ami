@@ -33,12 +33,17 @@ class Helpers:
         edited['status']['title'] = 'error'
         edited['status']['data'] = error_data
         await EmailCampaignOperations.update_email_campaign_data(campaign_id, edited)
-        pass
     
     async def set_email_campaign_sent(campaign_id, status_data):
         db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_id)   
         edited = db_campaign.__dict__
         edited['status']['title'] = 'sent'
         edited['status']['data'] = status_data
-        updated_campaign = await EmailCampaignOperations.update_email_campaign_data(campaign_id, edited)
-        pass
+        await EmailCampaignOperations.update_email_campaign_data(campaign_id, edited)
+    
+    async def set_email_campaign_active(campaign_id, first_iteration_results):
+        db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_id)   
+        edited = db_campaign.__dict__
+        edited['status']['title'] = 'active'
+        edited['status']['occurrence_results'] = [first_iteration_results]
+        await EmailCampaignOperations.update_email_campaign_data(campaign_id, edited)
