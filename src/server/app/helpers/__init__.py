@@ -35,3 +35,10 @@ class Helpers:
         await EmailCampaignOperations.update_email_campaign_data(campaign_id, edited)
         pass
     
+    async def set_email_campaign_sent(campaign_id, status_data):
+        db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_id)   
+        edited = db_campaign.__dict__
+        edited['status']['title'] = 'sent'
+        edited['status']['data'] = status_data
+        updated_campaign = await EmailCampaignOperations.update_email_campaign_data(campaign_id, edited)
+        pass

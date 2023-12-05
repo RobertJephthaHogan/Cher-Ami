@@ -57,9 +57,15 @@ class EmailCampaignService:
             
             if shouldSendInitial:
                 # send the one time email campaign immediately
+                try:
+                    result = await self.dispatchEmailCampaign(campaign_data)
+                except Exception as ex:
+                    # If an error happens while dispatching the email campaign, set status to 'error'
+                    await Helpers.set_email_campaign_error(campaign_data.id, ex)
+                
                 # then schedule the next occurrence of the campaign
                 
-                pass
+                
             
             if not shouldSendInitial:
                 # schedule the first occurrence of the campaign after the start date
@@ -171,7 +177,7 @@ class EmailCampaignService:
                 'errors': error_count
             }
                 
-        statusData = {
+        status_data = {
             'info': count_statuses(results),
             'results': results
         }
@@ -180,7 +186,7 @@ class EmailCampaignService:
         db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_data.id)   
         edited = db_campaign.__dict__
         edited['status']['title'] = 'sent'
-        edited['status']['data'] = statusData
+        edited['status']['data'] = status_data
         updated_campaign = await EmailCampaignOperations.update_email_campaign_data(campaign_data.id, edited)
         
         return {}
