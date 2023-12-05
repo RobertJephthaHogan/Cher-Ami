@@ -1,6 +1,6 @@
 from fastapi import FastAPI, BackgroundTasks
 from apscheduler.schedulers.asyncio  import AsyncIOScheduler
-from datetime import datetime
+from datetime import datetime, timezone
 from app.database.scheduled_service_operations import ScheduledServiceOperations
 from app.database.email_campaign_operations import EmailCampaignOperations
 from app.services.email_campaign import EmailCampaignService
@@ -72,15 +72,20 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
 
     async def check_scheduled_tasks(self):
         
-        current_time = datetime.now()
+        current_time = datetime.now().astimezone(timezone.utc) # current time in utc
         
         scheduled_services = await ScheduledServiceOperations.retrieve_unexecuted_scheduled_services()
                 
         for service in scheduled_services:
-            task_time = service.time
-            is_past_task_time = current_time >= task_time
+            task_time = service.time 
             
-            if current_time >= task_time:
+            # force utc compare
+            current_time = current_time.replace(tzinfo=None)
+            task_time = task_time.replace(tzinfo=None)
+             
+            is_past_task_time = current_time >= task_time         
+               
+            if is_past_task_time:
                 await self.perform_scheduled_task(service.id, service.action, service.target_id)
         
         # Mock data
