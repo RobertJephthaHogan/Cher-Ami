@@ -17,7 +17,7 @@ class EmailCampaignService:
     
     
     
-    async def create_one_time_email_campaign(self, campaign_data):
+    async def create_email_campaign(self, campaign_data):
         
         # Create the emailCampaign entry in db no matter what, then change status accordingly
         new_email_campaign = await EmailCampaignOperations.add_email_campaign(campaign_data)
