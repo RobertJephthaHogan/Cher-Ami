@@ -35,11 +35,7 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
             except Exception as ex:
                 print('ex', ex)
                 # If an error happens while dispatching the email campaign, set email campaign status to 'error'
-                db_campaign = await EmailCampaignOperations.retrieve_email_campaign(ec_to_send.id)   
-                edited = db_campaign.__dict__
-                edited['status']['title'] = 'error'
-                edited['status']['data'] = ex
-                updated_campaign = await EmailCampaignOperations.update_email_campaign_data(ec_to_send.id, edited)
+                await Helpers.set_email_campaign_error(target_id, ex)
                 
                 # If an error happens while dispatching the scheduled email campaign, set scheduled service status to 'error'
                 await Helpers.set_scheduled_service_error(service_id, ex)

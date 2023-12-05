@@ -3,6 +3,7 @@
 
 
 from app.database.scheduled_service_operations import ScheduledServiceOperations
+from app.database.email_campaign_operations import EmailCampaignOperations
 
 
 class Helpers:
@@ -26,5 +27,11 @@ class Helpers:
         await ScheduledServiceOperations.update_scheduled_service_data(edited.id, edited)
         
     
-    
+    async def set_email_campaign_error(campaign_id, error_data):
+        db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_id)   
+        edited = db_campaign.__dict__
+        edited['status']['title'] = 'error'
+        edited['status']['data'] = error_data
+        await EmailCampaignOperations.update_email_campaign_data(campaign_id, edited)
+        pass
     
