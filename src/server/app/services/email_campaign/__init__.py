@@ -6,6 +6,7 @@ from app.database.contact_list_operations import ContactListOperations
 from app.database.user_operations import UserOperations
 from app.database.scheduled_service_operations import ScheduledServiceOperations
 from app.models.ScheduledService import ScheduledService
+from app.helpers import Helpers
 
 
 
@@ -38,11 +39,7 @@ class EmailCampaignService:
                     result = await self.dispatchEmailCampaign(campaign_data)
                 except Exception as ex:
                     # If an error happens while dispatching the email campaign, set status to 'error'
-                    db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_data.id)   
-                    edited = db_campaign.__dict__
-                    edited['status']['title'] = 'error'
-                    edited['status']['data'] = ex
-                    updated_campaign = await EmailCampaignOperations.update_email_campaign_data(campaign_data.id, edited)
+                    await Helpers.set_email_campaign_error(campaign_data.id, ex)
                 
             
             if not shouldSendInitial:
