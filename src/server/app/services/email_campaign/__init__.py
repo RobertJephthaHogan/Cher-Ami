@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from bson import ObjectId
 from app.database.email_campaign_operations import EmailCampaignOperations
 from app.services.email import EmailService
@@ -21,6 +21,7 @@ class EmailCampaignService:
         
         # Create the emailCampaign entry in db no matter what, then change status accordingly
         new_email_campaign = await EmailCampaignOperations.add_email_campaign(campaign_data)
+        print('new_email_campaign', new_email_campaign)
         
         # After email campaign is created, Check if send initial is true
         shouldSendInitial = campaign_data.frequency.get('sendOtInitial')
@@ -49,6 +50,10 @@ class EmailCampaignService:
     
     async def scheduleEmailCampaign(self, campaign_data):
         
+        
+        service_time = datetime.fromisoformat(campaign_data.frequency.get('sendDate')).astimezone(timezone.utc)
+        print('service_time', service_time)
+        
         dto = {
             'id': str(ObjectId()),
             'action': 'send-scheduled-one-time-email-campaign',
@@ -59,12 +64,16 @@ class EmailCampaignService:
                     'title': 'pending',
                     'data': {},
                     },
-            'time': campaign_data.frequency.get('sendDate')
+            'time': service_time
         }
-        
+                
         ss_instance = ScheduledService(**dto)
-        
+        # print('ss_instance', ss_instance)
+        # print('ss_instance.time', ss_instance.time)
+                
         scheduled_campaign = await ScheduledServiceOperations.add_scheduled_service(ss_instance)
+        # print('scheduled_campaign', scheduled_campaign)
+        # print('scheduled_campaign.time', scheduled_campaign.time)
         
         # update the campaign status to 'scheduled' once scheduled
         db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_data.id)   
