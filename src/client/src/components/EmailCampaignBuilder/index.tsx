@@ -143,6 +143,7 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
             const sendRecInitial = fieldChecker(formData?.frequency?.recurrence?.sendRecInitial)
             const startDate = fieldChecker(formData?.frequency?.recurrence?.startDate)
             const endDate = fieldChecker(formData?.frequency?.recurrence?.endDate)
+            const sendTime = fieldChecker(formData?.frequency?.recurrence?.sendTime)
 
             
             if (
@@ -151,6 +152,7 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
                 || sendRecInitial === 'error'
                 || startDate === 'error'
                 || endDate === 'error'
+                || sendTime === 'error'
             ) {
                 status = 'error'
             }
@@ -165,6 +167,7 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
                     sendRecInitial,
                     startDate,
                     endDate,
+                    sendTime,
                 }
             }
 
