@@ -29,12 +29,11 @@ class EmailCampaignService:
         
         
         if campaign_frequency_type == 'oneTime':
-            # After email campaign is created, Check if send initial is true
+            
             shouldSendInitial = campaign_data.frequency.get('sendOtInitial')
             
             if shouldSendInitial:
                 # send the one time email campaign immediately
-                
                 try:
                     result = await self.dispatchEmailCampaign(campaign_data)
                 except Exception as ex:
@@ -48,7 +47,6 @@ class EmailCampaignService:
             
             if not shouldSendInitial:
                 # Schedule the one time email campaign
-                # then update the status data of the email campaign in the db
                 scheduled_campaign = await self.scheduleEmailCampaign(campaign_data)
             
             
@@ -56,6 +54,21 @@ class EmailCampaignService:
             
         
         if campaign_frequency_type == 'recurring':
+            
+            shouldSendInitial = campaign_data.frequency['recurrence']['sendRecInitial']
+            print('shouldSendInitial', shouldSendInitial)
+            
+            if shouldSendInitial:
+                # send the one time email campaign immediately
+                # then schedule the next occurrence of the campaign
+                
+                pass
+            
+            if not shouldSendInitial:
+                # schedule the first occurrence of the campaign after the start date
+                
+                pass
+            
             
             pass
         
