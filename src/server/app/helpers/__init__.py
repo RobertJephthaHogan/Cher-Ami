@@ -66,7 +66,7 @@ class Helpers:
             # Add the next date to the result list
             next_dates.append(next_date)
 
-        # Generate dates for the next two weeks for each weekday
+        # Generate dates for the next week for each weekday
         result_dates = []
         for next_date in next_dates:
             result_dates.append(next_date.strftime('%Y-%m-%d'))
