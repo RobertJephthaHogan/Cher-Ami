@@ -86,6 +86,26 @@ class Helpers:
             return None
         
         
+    def find_next_monthly_series_occurrence(series_days):
+        current_date = datetime.now()
+        result_dates = []
+
+        for number in series_days:
+            target_date = current_date.replace(day=number)
+
+            if target_date < current_date:
+                # If the target date has already passed in the current month,
+                # set it to the same day in the next month
+                if current_date.month == 12:
+                    target_date = target_date.replace(month=1, year=current_date.year + 1)
+                else:
+                    target_date = target_date.replace(month=current_date.month + 1)
+
+
+            result_dates.append(target_date)
+
+        return min(result_dates)
+        
         
         
     
