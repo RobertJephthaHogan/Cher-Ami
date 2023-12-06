@@ -19,6 +19,7 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
     const [shouldSendInitial, setShouldSendInitial] = useState<boolean>(false)
     const [campaignStartDate, setCampaignStartDate] = useState<any>(undefined)
     const [campaignEndDate, setCampaignEndDate] = useState<any>(undefined)
+    const [campaignSendTime, setCampaignSendTime] = useState<any>(undefined)
     const [disableStartDatePicker, setDisableStartDatePicker] = useState<boolean>(false)
 
 
@@ -34,6 +35,7 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
                 sendRecInitial: shouldSendInitial,
                 startDate: campaignStartDate,
                 endDate: campaignEndDate,
+                sendTime: campaignSendTime
             }
         }
 
@@ -46,7 +48,8 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
         intervalSendDays,
         shouldSendInitial,
         campaignStartDate,
-        campaignEndDate
+        campaignEndDate,
+        campaignSendTime
     ])
     
     useMemo(() => {
@@ -162,6 +165,14 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
                             <EndDateSelector
                                 campaignEndDate={campaignEndDate}
                                 setCampaignEndDate={setCampaignEndDate}
+                                frequencyVerificationData={props.frequencyVerificationData}
+                                submissionAttempted={props.submissionAttempted}
+                            />
+                        </div>
+                        <div>
+                            <SendTimeSelector
+                                campaignSendTime={campaignSendTime}
+                                setCampaignSendTime={setCampaignSendTime}
                                 frequencyVerificationData={props.frequencyVerificationData}
                                 submissionAttempted={props.submissionAttempted}
                             />
@@ -536,6 +547,44 @@ function EndDateSelector(props: EndDateSelectorProps) {
                     <DatePicker
                         value={dayjs(props.campaignEndDate)}
                         onChange={(v) => props.setCampaignEndDate(v?.format())}
+                    />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+interface SendTimeSelectorProps {
+    campaignSendTime?: any
+    setCampaignSendTime?: any
+    frequencyVerificationData?: any
+    submissionAttempted?: any
+}
+
+function SendTimeSelector(props: SendTimeSelectorProps) {
+
+    return (
+        <div className='send-time-selector'>
+            <div>
+                <div>
+                    {
+                        (props.submissionAttempted && (props.frequencyVerificationData?.data?.sendTime === 'error'))
+                        ? (
+                            <span className='required-freq-field-error'>
+                                * Recurring email campaigns must have a send time
+                            </span>
+                        )
+                        : null
+                    }
+                </div>
+                <span className='end-date-title'>
+                    Send Time
+                </span>
+                <div>
+                    <DatePicker
+                        picker='time'
+                        value={dayjs(props.campaignSendTime)}
+                        onChange={(v) => props.setCampaignSendTime(v?.format())}
                     />
                 </div>
             </div>

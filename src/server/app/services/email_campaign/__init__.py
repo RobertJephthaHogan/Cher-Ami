@@ -6,6 +6,8 @@ from app.database.contact_list_operations import ContactListOperations
 from app.database.user_operations import UserOperations
 from app.database.scheduled_service_operations import ScheduledServiceOperations
 from app.models.ScheduledService import ScheduledService
+from app.helpers import Helpers
+from app.services.scheduled_service.scheduler import ServiceScheduler
 
 
 
@@ -17,42 +19,84 @@ class EmailCampaignService:
     
     
     
-    async def create_one_time_email_campaign(self, campaign_data):
+    async def create_email_campaign(self, campaign_data):
         
         # Create the emailCampaign entry in db no matter what, then change status accordingly
         new_email_campaign = await EmailCampaignOperations.add_email_campaign(campaign_data)
-        print('new_email_campaign', new_email_campaign)
         
-        # After email campaign is created, Check if send initial is true
-        shouldSendInitial = campaign_data.frequency.get('sendOtInitial')
+        print('campaign_data', campaign_data)
         
-        if shouldSendInitial:
-            # send the one time email campaign immediately
+        campaign_frequency_type = campaign_data.frequency.get('frequencyType')
+        print('campaign_frequency_type', campaign_frequency_type)
+        
+        
+        if campaign_frequency_type == 'oneTime':
             
-            try:
-                result = await self.dispatchEmailCampaign(campaign_data)
-            except Exception as ex:
-                # If an error happens while dispatching the email campaign, set status to 'error'
-                db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_data.id)   
-                edited = db_campaign.__dict__
-                edited['status']['title'] = 'error'
-                edited['status']['data'] = ex
-                updated_campaign = await EmailCampaignOperations.update_email_campaign_data(campaign_data.id, edited)
+            shouldSendInitial = campaign_data.frequency.get('sendOtInitial')
+            
+            if shouldSendInitial:
+                # send the one time email campaign immediately
+                try:
+                    result = await self.dispatchEmailCampaign(campaign_data)
+                    # Once the Campaign is sent to recipients, set status to 'sent'
+                    await Helpers.set_email_campaign_sent(campaign_data.id, result)
+                except Exception as ex:
+                    # If an error happens while dispatching the email campaign, set status to 'error'
+                    await Helpers.set_email_campaign_error(campaign_data.id, ex)
+                
+            
+            if not shouldSendInitial:
+                # Schedule the one time email campaign
+                scheduled_campaign = await self.scheduleEmailCampaign(campaign_data)
+            
+            
+            
             
         
-        if not shouldSendInitial:
-            # Schedule the one time email campaign
-            # then update the status data of the email campaign in the db
-            scheduled_campaign = await self.scheduleEmailCampaign(campaign_data)
+        if campaign_frequency_type == 'recurring':
+            
+            shouldSendInitial = campaign_data.frequency['recurrence']['sendRecInitial']
+            print('shouldSendInitial', shouldSendInitial)
+            
+            if shouldSendInitial:
+                
+                try:
+                    # send the one time email campaign immediately
+                    result = await self.dispatchEmailCampaign(campaign_data)
+                    
+                    # set the campaign status to 'active'
+                    await Helpers.set_email_campaign_active(campaign_data.id, result)
+                    
+                    # schedule the next occurrence of the campaign
+                    await ServiceScheduler.schedule_next_campaign_occurrence('email', campaign_data)
+                    
+                    
+                    
+                except Exception as ex:
+                    print('ex', ex)
+                    # If an error happens while dispatching the email campaign, set status to 'error'
+                    await Helpers.set_email_campaign_error(campaign_data.id, ex)
+                
+                # then schedule the next occurrence of the campaign
+                
+                
+            
+            if not shouldSendInitial:
+                # schedule the first occurrence of the campaign after the start date
+                
+                pass
+            
+            
+            pass
+        
+        
         
         return new_email_campaign
     
     
     async def scheduleEmailCampaign(self, campaign_data):
-        
-        
+
         service_time = datetime.fromisoformat(campaign_data.frequency.get('sendDate')).astimezone(timezone.utc)
-        print('service_time', service_time)
         
         dto = {
             'id': str(ObjectId()),
@@ -68,12 +112,8 @@ class EmailCampaignService:
         }
                 
         ss_instance = ScheduledService(**dto)
-        # print('ss_instance', ss_instance)
-        # print('ss_instance.time', ss_instance.time)
                 
         scheduled_campaign = await ScheduledServiceOperations.add_scheduled_service(ss_instance)
-        # print('scheduled_campaign', scheduled_campaign)
-        # print('scheduled_campaign.time', scheduled_campaign.time)
         
         # update the campaign status to 'scheduled' once scheduled
         db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_data.id)   
@@ -151,19 +191,11 @@ class EmailCampaignService:
                 'errors': error_count
             }
                 
-        statusData = {
+        status_data = {
             'info': count_statuses(results),
-            'results': results
         }
-
-        # Once the Campaign is sent to recipients, set status to 'sent'
-        db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_data.id)   
-        edited = db_campaign.__dict__
-        edited['status']['title'] = 'sent'
-        edited['status']['data'] = statusData
-        updated_campaign = await EmailCampaignOperations.update_email_campaign_data(campaign_data.id, edited)
         
-        return {}
+        return status_data
     
     
     

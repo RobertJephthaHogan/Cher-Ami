@@ -134,3 +134,7 @@
 .send-date-selector-inputs {
     display: flex;
 }
+
+.send-time-selector {
+    margin-top: 20px;
+}
