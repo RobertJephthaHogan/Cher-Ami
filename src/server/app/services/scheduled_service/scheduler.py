@@ -14,9 +14,6 @@ class ServiceScheduler:
         frequency_interval = recurrence_data.get('frequencyInterval')
         interval_send_days = recurrence_data.get('intervalSendDays')
         
-        print('frequency_interval', frequency_interval)
-        print('interval_send_days', interval_send_days)
-        
         occurrence_data = {
             'id': str(ObjectId()),
             'createdByUserId': campaign_data.createdByUserId,
@@ -37,9 +34,22 @@ class ServiceScheduler:
         elif frequency_interval == "weekly":
             
             
-            next_upcoming = Helpers.closest_weekday(interval_send_days)
-            print('next_upcoming', next_upcoming)
+            next_upcoming_date_string = Helpers.find_next_weekly_series_occurrence(interval_send_days)
+            print('next_upcoming_date_string', next_upcoming_date_string)
             
+            send_time = recurrence_data.get('sendTime')
+            print('send_time', send_time)
+            
+            date_obj = datetime.strptime(next_upcoming_date_string, '%Y-%m-%d')
+            time_obj = datetime.fromisoformat(send_time)
+            
+            print('date_obj', date_obj)
+            new_date = date_obj.date()
+
+            new_time = time_obj.time()
+            
+            new_datetime = datetime.combine(new_date, new_time)
+            print('new_datetime', new_datetime)
             
             print('TODO: WEEKLY HANDLING')
             

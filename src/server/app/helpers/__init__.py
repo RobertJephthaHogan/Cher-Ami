@@ -46,24 +46,47 @@ class Helpers:
         edited['status']['occurrence_results'] = [first_iteration_results]
         await EmailCampaignOperations.update_email_campaign_data(campaign_id, edited)
             
-    def closest_weekday(weekdays):
+    def find_next_weekly_series_occurrence(weekdays):
         # Get the current day of the week (0 = Monday, 1 = Tuesday, ..., 6 = Sunday)
+        current_date = datetime.now(timezone.utc)
         current_day = datetime.now(timezone.utc).weekday()
 
         # Convert weekday names to their corresponding indices
         weekday_indices = {'monday': 0, 'tuesday': 1, 'wednesday': 2, 'thursday': 3, 'friday': 4, 'saturday': 5, 'sunday': 6}
 
-        # Find the closest future occurrence of each weekday
-        closest_dates = {}
+        # Find the next occurrence of each weekday in the input array
+        next_dates = []
         for weekday in weekdays:
-            target_day = weekday_indices[weekday.lower()]
-            days_until_target = (target_day - current_day + 7) % 7
-            closest_dates[weekday] = datetime.now(timezone.utc) + timedelta(days=days_until_target)
+            # Calculate the difference in days between the desired weekday and the current weekday
+            days_until_next = (weekday_indices[weekday.lower()] - current_date.weekday() + 7) % 7
 
-        # Find the overall closest date
-        closest_date = min(closest_dates.values())
+            # Calculate the date of the next occurrence
+            next_date = current_date + timedelta(days=days_until_next)
 
-        return closest_date
+            # Add the next date to the result list
+            next_dates.append(next_date)
+
+        # Generate dates for the next two weeks for each weekday
+        result_dates = []
+        for next_date in next_dates:
+            result_dates.append(next_date.strftime('%Y-%m-%d'))
+            #next_date += timedelta(days=7)
+            
+        sorted_dates = sorted(result_dates, key=lambda x: datetime.strptime(x, '%Y-%m-%d'))
+
+        # Get today's date
+        today = datetime.now().date()
+
+        # Filter out today's date and find the soonest upcoming date
+        upcoming_dates = [date for date in sorted_dates if datetime.strptime(date, '%Y-%m-%d').date() > today]
+
+        if upcoming_dates:
+            return min(upcoming_dates) # return soonest upcoming date in series
+        else:
+            return None
+        
+        
+        
         
     
     
