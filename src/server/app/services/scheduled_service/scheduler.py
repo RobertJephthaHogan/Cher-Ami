@@ -71,7 +71,25 @@ class ServiceScheduler:
             
             
         elif frequency_interval == "monthly":
-            print('TODO: MONTHLY HANDLING')
+            
+            # Get the next upcoming date in the campaign series
+            next_upcoming_date_string = Helpers.find_next_monthly_series_occurrence(interval_send_days) 
+            print('next_upcoming_date_string', next_upcoming_date_string)
+            
+            # set send time from the campaign data
+            send_time = recurrence_data.get('sendTime')
+            
+            # format the date and time so they can be combined
+            date_obj = datetime.strptime(str(next_upcoming_date_string), "%Y-%m-%d %H:%M:%S.%f")
+            time_obj = datetime.fromisoformat(send_time)
+            new_date = date_obj.date()
+            new_time = time_obj.time()
+            time_zone_info = time_obj.tzinfo
+            
+            # Combine send date and time to get datetime to send the next occurrence
+            campaign_occurrence_datetime = datetime.combine(new_date, new_time, time_zone_info)
+            occurrence_data['time'] = campaign_occurrence_datetime
+            
         
         elif frequency_interval == "yearly":
             print('TODO: YEARLY HANDLING')
