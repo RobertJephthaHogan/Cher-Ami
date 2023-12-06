@@ -137,7 +137,7 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
         if (freqInterval === 'recurring') {
 
             const frequencyInterval = fieldChecker(formData?.frequency?.recurrence?.frequencyInterval)
-            const intervalSendDays = formData?.frequency?.recurrence?.intervalSendDays?.length 
+            let intervalSendDays = formData?.frequency?.recurrence?.intervalSendDays?.length 
                 ? formData?.frequency?.recurrence?.intervalSendDays 
                 : 'error'
             const sendRecInitial = fieldChecker(formData?.frequency?.recurrence?.sendRecInitial)
@@ -145,6 +145,11 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
             const endDate = fieldChecker(formData?.frequency?.recurrence?.endDate)
             const sendTime = fieldChecker(formData?.frequency?.recurrence?.sendTime)
 
+            if (frequencyInterval == 'daily') {
+                intervalSendDays = ['success']
+            }
+
+                
             
             if (
                 frequencyInterval === 'error'

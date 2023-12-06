@@ -31,7 +31,24 @@ class ServiceScheduler:
         
         # determine the next occurrence details based on recurrence data
         if frequency_interval == "daily":
-            print('TODO: DAILY HANDLING')
+            
+            today = datetime.now().date()
+            tomorrow = str(today + timedelta(days=1))
+            
+            # set send time from the campaign data
+            send_time = recurrence_data.get('sendTime')
+            
+            # format the date and time so they can be combined
+            date_obj = datetime.strptime(tomorrow, '%Y-%m-%d')
+            time_obj = datetime.fromisoformat(send_time)
+            new_date = date_obj.date()
+            new_time = time_obj.time()
+            time_zone_info = time_obj.tzinfo
+            
+            # Combine send date and time to get datetime to send the next occurrence
+            campaign_occurrence_datetime = datetime.combine(new_date, new_time, time_zone_info)
+            occurrence_data['time'] = campaign_occurrence_datetime
+            
             
         elif frequency_interval == "weekly":
             
@@ -50,7 +67,6 @@ class ServiceScheduler:
             
             # Combine send date and time to get datetime to send the next occurrence
             campaign_occurrence_datetime = datetime.combine(new_date, new_time, time_zone_info)
-                        
             occurrence_data['time'] = campaign_occurrence_datetime
             
             
@@ -61,18 +77,15 @@ class ServiceScheduler:
             print('TODO: YEARLY HANDLING')
         
         
-        # then set service action based on campaign type
-        print('campaign_type', campaign_type)
-        
+        # then set service action based on campaign type        
         if campaign_type == 'email':
-            # Add send-recurring-email-campaign as action
             occurrence_data['action'] = 'send-recurring-email-campaign'
             
         if campaign_type == 'text':
-            pass
+            occurrence_data['action'] = 'send-recurring-text-campaign'
         
         if campaign_type == 'call':
-            pass
+            occurrence_data['action'] = 'send-recurring-call-campaign'
         
         ss_instance = ScheduledService(**occurrence_data)
                 
