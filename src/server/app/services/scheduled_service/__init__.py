@@ -73,8 +73,6 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
                 await self.perform_scheduled_task(service.id, service.action, service.target_id)
         
     
-
-    
     def shutdownScheduler(self):
         scheduler = AsyncIOScheduler()
         scheduler.shutdown()

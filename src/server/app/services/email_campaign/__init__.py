@@ -68,7 +68,7 @@ class EmailCampaignService:
                     await Helpers.set_email_campaign_active(campaign_data.id, result)
                     
                     # schedule the next occurrence of the campaign
-                    await ServiceScheduler.schedule_next_campaign_occurrence(campaign_data)
+                    await ServiceScheduler.schedule_next_campaign_occurrence('email', campaign_data)
                     
                     
                     
