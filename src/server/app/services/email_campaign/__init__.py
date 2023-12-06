@@ -7,6 +7,7 @@ from app.database.user_operations import UserOperations
 from app.database.scheduled_service_operations import ScheduledServiceOperations
 from app.models.ScheduledService import ScheduledService
 from app.helpers import Helpers
+from app.services.scheduled_service.scheduler import ServiceScheduler
 
 
 
@@ -62,11 +63,17 @@ class EmailCampaignService:
                 try:
                     # send the one time email campaign immediately
                     result = await self.dispatchEmailCampaign(campaign_data)
+                    
                     # set the campaign status to 'active'
                     await Helpers.set_email_campaign_active(campaign_data.id, result)
+                    
                     # schedule the next occurrence of the campaign
+                    await ServiceScheduler.schedule_next_campaign_occurrence(campaign_data)
+                    
+                    
                     
                 except Exception as ex:
+                    print('ex', ex)
                     # If an error happens while dispatching the email campaign, set status to 'error'
                     await Helpers.set_email_campaign_error(campaign_data.id, ex)
                 
