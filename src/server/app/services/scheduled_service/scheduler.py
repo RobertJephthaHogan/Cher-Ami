@@ -61,9 +61,7 @@ class ServiceScheduler:
             print('TODO: YEARLY HANDLING')
         
         
-        # then set service action based on campaign type
-        print('campaign_type', campaign_type)
-        
+        # then set service action based on campaign type        
         if campaign_type == 'email':
             # Add send-recurring-email-campaign as action
             occurrence_data['action'] = 'send-recurring-email-campaign'
