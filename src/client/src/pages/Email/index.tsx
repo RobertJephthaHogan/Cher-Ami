@@ -69,6 +69,7 @@ export default function Email() {
                     'pending': 'default',
                     'in-progress': 'yellow',
                     'sent': 'green',
+                    'complete': 'green',
                     'active': 'blue',
                     'scheduled': 'yellow',
                     'error': 'red',
