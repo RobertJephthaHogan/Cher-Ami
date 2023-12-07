@@ -11,10 +11,7 @@ class ServiceScheduler:
     async def schedule_next_campaign_occurrence(campaign_type, campaign_data):
         
         recurrence_data = campaign_data.frequency.get('recurrence')
-        print('recurrence_data', recurrence_data)
-        
         end_date = recurrence_data['endDate']
-        print('end_date', end_date)
         
         frequency_interval = recurrence_data.get('frequencyInterval')
         interval_send_days = recurrence_data.get('intervalSendDays')
@@ -95,7 +92,6 @@ class ServiceScheduler:
             
             # Get the next upcoming date in the campaign series
             next_upcoming_date_string = Helpers.find_next_monthly_series_occurrence(interval_send_days) 
-            print('next_upcoming_date_string', next_upcoming_date_string)
             
             # set send time from the campaign data
             send_time = recurrence_data.get('sendTime')
@@ -145,10 +141,7 @@ class ServiceScheduler:
         
         # Use start date of the campaign to anchor initial occurrence
         start_date = campaign_data.frequency['recurrence']['startDate']
-        print('start_date', start_date)
-        
         recurrence_data = campaign_data.frequency.get('recurrence')
-        print('recurrence_data', recurrence_data)
         
         frequency_interval = recurrence_data.get('frequencyInterval')
         interval_send_days = recurrence_data.get('intervalSendDays')
