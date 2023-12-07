@@ -111,7 +111,6 @@ class ServiceScheduler:
         
         
         
-        
     async def schedule_initial_campaign_occurrence(campaign_type, campaign_data):
         
         # Use start date of the campaign to anchor initial occurrence
@@ -145,7 +144,6 @@ class ServiceScheduler:
             start_date_as_date = datetime.strptime(start_date, "%Y-%m-%dT%H:%M:%S%z")
             
             # format the date and time so they can be combined
-            #date_obj = datetime.strptime(str(send_time_as_date), '%Y-%m-%d')
             time_obj = datetime.fromisoformat(send_time)
             new_date = start_date_as_date.date()
             new_time = time_obj.time()
