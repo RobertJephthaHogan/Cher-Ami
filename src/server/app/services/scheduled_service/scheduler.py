@@ -175,6 +175,27 @@ class ServiceScheduler:
             # Combine send date and time to get datetime to send the next occurrence
             campaign_occurrence_datetime = datetime.combine(new_date, new_time, time_zone_info)
             occurrence_data['time'] = campaign_occurrence_datetime
+            
+        elif frequency_interval == "monthly":
+            
+            start_date_as_date = datetime.strptime(start_date, "%Y-%m-%dT%H:%M:%S%z")
+            
+            # Get the next upcoming date in the campaign series
+            initial_date_string = Helpers.find_initial_monthly_series_occurrence(start_date_as_date, interval_send_days) 
+            
+            # set send time from the campaign data
+            send_time = recurrence_data.get('sendTime')
+            
+            # format the date and time so they can be combined
+            date_obj = datetime.strptime(str(initial_date_string), "%Y-%m-%d %H:%M:%S%z")
+            time_obj = datetime.fromisoformat(send_time)
+            new_date = date_obj.date()
+            new_time = time_obj.time()
+            time_zone_info = time_obj.tzinfo
+            
+            # Combine send date and time to get datetime to send the next occurrence
+            campaign_occurrence_datetime = datetime.combine(new_date, new_time, time_zone_info)
+            occurrence_data['time'] = campaign_occurrence_datetime
         
         
         # then set service action based on campaign type        

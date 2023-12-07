@@ -148,6 +148,25 @@ class Helpers:
             result_dates.append(target_date)
 
         return min(result_dates)
+    
+    def find_initial_monthly_series_occurrence(start_date, series_days):
+        result_dates = []
+
+        for number in series_days:
+            target_date = start_date.replace(day=number)
+
+            if target_date < start_date:
+                # If the target date has already passed in the current month,
+                # set it to the same day in the next month
+                if start_date.month == 12:
+                    target_date = target_date.replace(month=1, year=start_date.year + 1)
+                else:
+                    target_date = target_date.replace(month=start_date.month + 1)
+
+
+            result_dates.append(target_date)
+
+        return min(result_dates)
         
         
         
