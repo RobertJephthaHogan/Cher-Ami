@@ -8,11 +8,13 @@ interface FrequencySelectorProps {
     onChange?: any
     submissionAttempted?: any
     frequencyVerificationData?: any
+    resetMode?: any
+    setResetMode?: any
 }
 
 export default function FrequencySelector(props: FrequencySelectorProps) {
 
-    const [frequencyType, setFrequencyTpe] = useState<any>('oneTime')
+    const [frequencyType, setFrequencyType] = useState<any>('oneTime')
     const [sendDate, setSendDate] = useState<any>()
     const [frequencyInterval, setFrequencyInterval] = useState<'daily' | 'weekly' | 'monthly' | 'yearly'>('weekly')
     const [intervalSendDays, setIntervalSendDays] = useState<any>([])
@@ -56,6 +58,23 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
         setIntervalSendDays([])
     }, [frequencyInterval])
 
+    useEffect(() => {
+
+        if (props.resetMode) {
+            setFrequencyType('oneTime')
+            setSendDate(undefined)
+            setFrequencyInterval('weekly')
+            setIntervalSendDays([])
+            setShouldSendInitial(false)
+            setCampaignStartDate(undefined)
+            setCampaignEndDate(undefined)
+            setCampaignSendTime(undefined)
+            setDisableStartDatePicker(false)
+            props.setResetMode(false)
+        }
+
+    }, [props.resetMode])
+
     function onCheck(e: any) {
         const sendInitialChecked = e?.target?.checked
         setDisableStartDatePicker(sendInitialChecked)
@@ -72,7 +91,7 @@ export default function FrequencySelector(props: FrequencySelectorProps) {
         <div className='frequency-selector'>
             <div className='fs-radio-group-row'>
                 <Radio.Group 
-                    onChange={(e) => setFrequencyTpe(e?.target?.value)} 
+                    onChange={(e) => setFrequencyType(e?.target?.value)} 
                     defaultValue={'oneTime'}
                 >
                     <Radio value={'oneTime'}>One Time</Radio>

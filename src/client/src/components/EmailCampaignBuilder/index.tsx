@@ -29,6 +29,7 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
     const [submissionAttempted, setSubmissionAttempted] = useState<boolean>(false)
     const [verificationData, setVerificationData] = useState<any>()
     const [frequencyVerificationData, setFrequencyVerificationData] = useState<any>()
+    const [resetMode, setResetMode] = useState<boolean>(false)
 
 
     useEffect(() => {
@@ -221,6 +222,9 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
                     setFieldValues({
                         recipientContactLists: []
                     })
+                    setFrequencyVerificationData({})
+                    setVerificationData({})
+                    setResetMode(true)
                 })
                 .catch((er: any) => {
                     console.log('error', er)
@@ -351,6 +355,8 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
                 </div>
                 <div>
                     <FrequencySelector
+                        resetMode={resetMode}
+                        setResetMode={setResetMode}
                         onChange={onChange}
                         submissionAttempted={submissionAttempted}
                         frequencyVerificationData={frequencyVerificationData}
