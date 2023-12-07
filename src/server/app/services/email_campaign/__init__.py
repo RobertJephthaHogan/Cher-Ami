@@ -63,7 +63,7 @@ class EmailCampaignService:
                 try:
                     # send the one time email campaign immediately
                     result = await self.dispatchEmailCampaign(campaign_data)
-                    
+
                     # set the campaign status to 'active'
                     await Helpers.set_email_campaign_active(campaign_data.id, result)
                     
@@ -85,6 +85,9 @@ class EmailCampaignService:
                 # schedule the first occurrence of the campaign after the start date
                 try:
                     await ServiceScheduler.schedule_initial_campaign_occurrence('email', campaign_data)
+                    
+                    # set the campaign status to 'scheduled'
+                    await Helpers.set_email_campaign_scheduled(campaign_data.id)
                 except Exception as ex:
                     print('ex', ex)
                     # If an error happens while scheduling the initial the email campaign, set status to 'error'

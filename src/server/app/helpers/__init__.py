@@ -45,6 +45,12 @@ class Helpers:
         edited['status']['title'] = 'active'
         edited['status']['occurrence_results'] = [first_iteration_results]
         await EmailCampaignOperations.update_email_campaign_data(campaign_id, edited)
+        
+    async def set_email_campaign_scheduled(campaign_id):
+        db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_id)   
+        edited = db_campaign.__dict__
+        edited['status']['title'] = 'scheduled'
+        await EmailCampaignOperations.update_email_campaign_data(campaign_id, edited)
             
     def find_next_weekly_series_occurrence(weekdays):
         # Get the current day of the week (0 = Monday, 1 = Tuesday, ..., 6 = Sunday)
