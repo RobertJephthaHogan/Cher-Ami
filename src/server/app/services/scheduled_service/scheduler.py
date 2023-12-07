@@ -13,6 +13,9 @@ class ServiceScheduler:
         recurrence_data = campaign_data.frequency.get('recurrence')
         print('recurrence_data', recurrence_data)
         
+        end_date = recurrence_data['endDate']
+        print('end_date', end_date)
+        
         frequency_interval = recurrence_data.get('frequencyInterval')
         interval_send_days = recurrence_data.get('intervalSendDays')
         
@@ -47,7 +50,15 @@ class ServiceScheduler:
             
             # Combine send date and time to get datetime to send the next occurrence
             campaign_occurrence_datetime = datetime.combine(new_date, new_time, time_zone_info)
-            occurrence_data['time'] = campaign_occurrence_datetime
+            
+            # determine if campaign should be ended if the next campaign time is after the end date
+            end_date_as_date = datetime.strptime(end_date, "%Y-%m-%dT%H:%M:%S%z")
+            should_end_campaign = campaign_occurrence_datetime > end_date_as_date
+            
+            if should_end_campaign:
+                return {'status': 'should end campaign'}
+            else:
+                occurrence_data['time'] = campaign_occurrence_datetime
             
             
         elif frequency_interval == "weekly":
