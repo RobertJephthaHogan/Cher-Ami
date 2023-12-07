@@ -83,8 +83,12 @@ class EmailCampaignService:
             
             if not shouldSendInitial:
                 # schedule the first occurrence of the campaign after the start date
-                
-                pass
+                try:
+                    await ServiceScheduler.schedule_initial_campaign_occurrence('email', campaign_data)
+                except Exception as ex:
+                    print('ex', ex)
+                    # If an error happens while scheduling the initial the email campaign, set status to 'error'
+                    await Helpers.set_email_campaign_error(campaign_data.id, ex)
             
             
             pass
