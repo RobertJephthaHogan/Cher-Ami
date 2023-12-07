@@ -51,6 +51,22 @@ class Helpers:
         edited = db_campaign.__dict__
         edited['status']['title'] = 'scheduled'
         await EmailCampaignOperations.update_email_campaign_data(campaign_id, edited)
+    
+    async def set_campaign_complete(campaign_type, campaign_id):
+        if campaign_type == 'email':
+            db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_id)   
+            edited = db_campaign.__dict__
+            edited['status']['title'] = 'complete'
+            await EmailCampaignOperations.update_email_campaign_data(campaign_id, edited)
+            
+        if campaign_type == 'text':
+            #TODO: Update text campaign to complete when services are created
+            pass
+        
+        if campaign_type == 'call':
+            #TODO: Update text campaign to complete when services are created
+            pass
+        
             
     def find_next_weekly_series_occurrence(weekdays):
        

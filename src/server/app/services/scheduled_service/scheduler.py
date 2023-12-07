@@ -56,6 +56,8 @@ class ServiceScheduler:
             should_end_campaign = campaign_occurrence_datetime > end_date_as_date
             
             if should_end_campaign:
+                # TODO: set campaign status to 'complete'
+                await Helpers.set_campaign_complete(campaign_type, campaign_data.id)
                 return {'status': 'should end campaign'}
             else:
                 occurrence_data['time'] = campaign_occurrence_datetime
