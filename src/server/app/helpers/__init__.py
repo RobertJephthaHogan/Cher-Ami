@@ -18,12 +18,12 @@ class Helpers:
         await ScheduledServiceOperations.update_scheduled_service_data(service_id, edited)
         
     async def set_scheduled_service_error(service_id, error_data):
-        executed_service = ScheduledServiceOperations.retrieve_scheduled_service(service_id)
+        executed_service = await ScheduledServiceOperations.retrieve_scheduled_service(service_id)
         edited = executed_service.__dict__
         edited['executed'] = False
         edited['status']['title'] = 'error'
         edited['status']['data'] = error_data
-        await ScheduledServiceOperations.update_scheduled_service_data(edited.id, edited)
+        await ScheduledServiceOperations.update_scheduled_service_data(edited['id'], edited)
         
     async def set_email_campaign_error(campaign_id, error_data):
         db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_id)   
@@ -45,6 +45,17 @@ class Helpers:
         edited['status']['title'] = 'active'
         edited['status']['occurrence_results'] = [first_iteration_results]
         await EmailCampaignOperations.update_email_campaign_data(campaign_id, edited)
+        
+    async def add_results_to_email_campaign(email_campaign, occurrence_results):
+        #TODO: RESUME HERE: ADD RESULTS TO EMAIL CAMPAIGN
+        edited = email_campaign.__dict__
+        edited['status']['title'] = 'active' # ensure campaign is now set to active
+        existing_results = edited['status'].get('occurrence_results', [])
+        existing_results.append(occurrence_results)
+        edited['status']['occurrence_results'] = existing_results
+        await EmailCampaignOperations.update_email_campaign_data(email_campaign.id, edited)
+        
+        
         
     async def set_email_campaign_scheduled(campaign_id):
         db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_id)   

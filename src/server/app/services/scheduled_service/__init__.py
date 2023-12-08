@@ -5,6 +5,7 @@ from app.database.scheduled_service_operations import ScheduledServiceOperations
 from app.database.email_campaign_operations import EmailCampaignOperations
 from app.services.email_campaign import EmailCampaignService
 from app.helpers import Helpers
+from app.services.scheduled_service.scheduler import ServiceScheduler
 
 
 
@@ -47,9 +48,31 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
         
         elif action == 'send-recurring-email-campaign':
             # TODO: Send recurring email campaign instance, 
-            # Set executed to true for the executed scheduled service
-            # schedule the next instance of the campaign if before the campaign end date
-            pass
+            
+            # get email campaign data from db using target_id
+            ec_to_send = await EmailCampaignOperations.retrieve_email_campaign(target_id)
+             
+            # send the campaign
+            try:
+                result = await EmailCampaignService().dispatchEmailCampaign(ec_to_send)
+                
+                # add the results to the existing email campaign
+                await Helpers.add_results_to_email_campaign(ec_to_send, result)
+                
+                # after sending successfully, update the scheduled service to executed
+                await Helpers.set_scheduled_service_executed(service_id)
+                
+                #TODO: THEN SCHEDULE THE NEXT OCCURRENCE IN THE CAMPAIGN
+                await ServiceScheduler.schedule_next_campaign_occurrence('email', ec_to_send)
+                
+            except Exception as ex:
+                print('ex', ex)
+                # If an error happens while dispatching the email campaign, set email campaign status to 'error'
+                await Helpers.set_email_campaign_error(target_id, ex)
+                
+                # If an error happens while dispatching the scheduled email campaign, set scheduled service status to 'error'
+                await Helpers.set_scheduled_service_error(service_id, ex)
+            
 
         else:
             return 'This should never fire'
