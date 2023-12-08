@@ -49,12 +49,10 @@ class Helpers:
     async def add_results_to_email_campaign(email_campaign, occurrence_results):
         #TODO: RESUME HERE: ADD RESULTS TO EMAIL CAMPAIGN
         edited = email_campaign.__dict__
-        print('edited', edited)
         edited['status']['title'] = 'active' # ensure campaign is now set to active
         existing_results = edited['status'].get('occurrence_results', [])
         existing_results.append(occurrence_results)
         edited['status']['occurrence_results'] = existing_results
-        print('edited', edited)
         await EmailCampaignOperations.update_email_campaign_data(email_campaign.id, edited)
         
         

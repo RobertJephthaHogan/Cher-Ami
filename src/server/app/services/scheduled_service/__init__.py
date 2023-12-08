@@ -73,10 +73,6 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
                 # If an error happens while dispatching the scheduled email campaign, set scheduled service status to 'error'
                 await Helpers.set_scheduled_service_error(service_id, ex)
             
-            
-            # Set executed to true for the executed scheduled service
-            # schedule the next instance of the campaign if before the campaign end date
-            pass
 
         else:
             return 'This should never fire'
