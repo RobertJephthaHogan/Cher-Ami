@@ -24,7 +24,7 @@ export default function ContactLists() {
         setComponentData()
     }, [])
 
-    useMemo(() => {
+    useEffect(() => {
 
         const formattedTableData = userContactLists?.map((row: any, i: any) => {
             return (
