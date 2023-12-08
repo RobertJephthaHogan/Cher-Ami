@@ -29,8 +29,7 @@ export default function Email() {
         store.dispatch(contactListActions.setContactLists(currentUser?._id))
     }
 
-
-    useMemo(() => {
+    useEffect(() => {
         const formattedTableData = userEmailCampaigns?.map((ec: any, i: any) => {
 
             return (
