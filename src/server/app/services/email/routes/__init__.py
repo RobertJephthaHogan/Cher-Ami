@@ -15,7 +15,6 @@ hash_helper = CryptContext(schemes=["bcrypt"])
 class EmailRouter:
     
     
-    
     @router.get("/test", response_description="Test sending and email", response_model=Response)
     async def testEmail():
         
@@ -39,22 +38,15 @@ class EmailRouter:
             }
         
     
-    
     @router.post("/send", response_model=Response)
     async def send_email(email: Email = Body(...)):
-        
-        print('email', email)
-                
+                        
         result = EmailService(**vars(email)).sendEmail()
         
-        # TODO: Encrypt password
-        # email.password = hash_helper.encrypt(email.password)
-        # new_email = await DatabaseOperations.EmailOperations.add_email(email)
-        # print('new_email', new_email)
-        # return new_email
+        # TODO: decrypt password once encryption implemented
         
         if not result:
-            print("Dictionary is empty.")
+            # If there are no errors, the dictionary should be empty
             return {
                 "status_code": 200,
                 "response_type": "success",
@@ -62,7 +54,7 @@ class EmailRouter:
                 "data": result
             }
         else:
-            print("Dictionary is not empty.")
+            # result will contain error data if errors are present
             return {
                 "status_code": 500,
                 "response_type": "error",
