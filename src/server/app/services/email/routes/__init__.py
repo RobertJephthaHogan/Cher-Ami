@@ -41,7 +41,7 @@ class EmailRouter:
     @router.post("/send", response_model=Response)
     async def send_email(email: Email = Body(...)):
                         
-        result = EmailService(**vars(email)).sendEmail()
+        result = await EmailService(**vars(email)).sendEmail()
         
         # TODO: decrypt password once encryption implemented
         
