@@ -36,7 +36,8 @@
 }
 
 .dbic-left {
-    background-color: #ECF6FD;
+    background-color: #F6F6F6;
+    border-radius: 10px 0px 0px 10px;
     width: 30%;
     display: flex;
     justify-content: center;

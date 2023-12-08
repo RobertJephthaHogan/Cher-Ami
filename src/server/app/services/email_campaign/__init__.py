@@ -178,7 +178,7 @@ class EmailCampaignService:
                 "time": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             }
             
-            result = EmailService(**email_data).sendEmail()
+            result = await EmailService(**email_data).sendEmail()
             results.append(result)
             
         # store dispatch results in the campaigns status object
