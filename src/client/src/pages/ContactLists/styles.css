@@ -3,6 +3,7 @@
 
 
 .contact-lists-component {
+    box-sizing: border-box;
     width: 100%;
     padding: 20px;
 }
