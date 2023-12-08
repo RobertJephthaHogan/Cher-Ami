@@ -164,7 +164,7 @@ export default function Email() {
                                     Total Email Campaigns
                                 </span>
                                 <span className='dbic-sub-text'>
-                                    14
+                                    {userEmailCampaigns?.length}
                                 </span>
                             </div>
                         </div>
