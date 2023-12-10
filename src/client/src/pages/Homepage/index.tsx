@@ -157,6 +157,38 @@ export default function Homepage() {
                     </div>
                 </div>
             </div>
+            <div className='get-started-section'>
+                <div className='get-started-info-section'>
+                    <div className='gsis-content'>
+                        <div className='gsis-text-container'>
+                            <span className='gsis-title-text'>
+                                Get started in minutes.
+                            </span>
+                        </div>
+                        <div className='gsis-text-container gsis-tcb'>
+                            <span className='gsis-description-text'>
+                                Integrate your accounts with our platform to start sending messages today. 
+                            </span>
+                        </div>
+                        <div className='gsis-text-container gsis-tcb'>
+                            <span className='gsis-guide-text'>
+                                Check out our quick-start guide here.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div className='get-started-cards-section'>
+                    <div className='gs-card'>
+                        card
+                    </div>
+                    <div className='gs-card'>
+                        card
+                    </div>
+                    <div className='gs-card'>
+                        card
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

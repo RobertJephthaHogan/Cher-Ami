@@ -185,3 +185,45 @@
 .email-section-sub-text {
     font-size: 16px;
 }
+
+.get-started-section {
+    min-height: 200px;
+}
+
+.get-started-info-section {
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.gsis-content {
+
+}
+
+.gsis-text-container {
+    display: flex;
+    justify-content: center;
+}
+
+.gsis-title-text {
+    font-size: 50px;
+    font-weight: 300;
+}
+
+.gsis-tcb {
+    margin-top: 10px;
+}
+
+.gsis-description-text {
+    color: #676767;
+}
+
+.gsis-guide-text {
+    color: #1890FF;
+}
+
+.get-started-cards-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
