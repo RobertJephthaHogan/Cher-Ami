@@ -25,6 +25,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-right: 50px;
 }
 
 .landing-section-information {
@@ -72,16 +73,19 @@
 }
 
 .landing-img {
-    width: 575px;
-    height: 575px;
-    background-image: url('../../assets/images/carrier_pigeon_2_silhouette.jpeg'); 
+    width: 800px;
+    height: 550px;
+    background-image: url('../../assets/images/desktop_email_campaign_w_text_message.png'); 
     background-size: cover;
+    background-color: #a6cff628;
+    border-radius: 20px;
 }
 
 .text-msg-section {
     min-height: 500px;
     display: flex;
     width: 100%;
+    margin-top: 50px
 }
 
 .text-msg-section-left {
@@ -142,8 +146,22 @@
 .text-msg-right-panel {
     height: 450px;
     width: 450px;
-    background-color: #188fff22;
+    background-color: #188fff22;    
+    position: relative;
 }
+
+.text-msg-right-panel-img {
+    height: 400px;
+    width: 350px;
+    background-image: url('../../assets/images/iphone_frame_1_transp_bg_white_fill_w_basic_messages.png'); 
+    background-size: cover;
+    background-position: center top;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 
 .email-section {
     min-height: 500px;
@@ -167,7 +185,19 @@
 .email-left-panel {
     height: 450px;
     width: 450px;
-    background-color: #15ff0023;
+    background-color: #188fff22;
+    overflow: hidden;
+}
+
+.email-left-panel-img {
+    height: 475px;
+    width: 475px;
+    background-image: url('../../assets/images/desktop_email_campaign_form_w_table_snippet_2.png'); 
+    background-size: cover;
+    /* position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); */
 }
 
 .email-section-right-content {

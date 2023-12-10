@@ -107,14 +107,18 @@ export default function Homepage() {
                 </div>
                 <div className='text-msg-section-right'>
                     <div className='text-msg-right-panel'>
+                        <div className='text-msg-right-panel-img'>
 
+                        </div>
                     </div>
                 </div>
             </div>
             <div className='email-section'>
                 <div className='email-section-left'>
                     <div className='email-left-panel'>
+                        <div className='email-left-panel-img'>
 
+                        </div>
                     </div>
                 </div>
                 <div className='email-section-right'>
