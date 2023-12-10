@@ -60,6 +60,7 @@
 .landing-section-info-container {
     margin-top: 40px;
     display: flex;
+    max-width: 600px;
 }
 
 .landing-info-text {
