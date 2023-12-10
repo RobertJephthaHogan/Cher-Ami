@@ -21,7 +21,7 @@ class EmailRouter:
         result = EmailService.testSendEmail()
         
         if not result:
-            print("Dictionary is empty.")
+            # If there are no errors, the dictionary should be empty
             return {
                 "status_code": 200,
                 "response_type": "success",
@@ -29,7 +29,7 @@ class EmailRouter:
                 "data": result
             }
         else:
-            print("Dictionary is not empty.")
+            # result will contain error data if errors are present
             return {
                 "status_code": 500,
                 "response_type": "error",

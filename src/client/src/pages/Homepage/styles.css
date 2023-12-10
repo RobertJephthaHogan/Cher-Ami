@@ -60,6 +60,7 @@
 .landing-section-info-container {
     margin-top: 40px;
     display: flex;
+    max-width: 600px;
 }
 
 .landing-info-text {
@@ -183,4 +184,76 @@
 
 .email-section-sub-text {
     font-size: 16px;
+}
+
+.get-started-section {
+    min-height: 200px;
+    margin-bottom: 100px;
+}
+
+.get-started-info-section {
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.gsis-content {
+
+}
+
+.gsis-text-container {
+    display: flex;
+    justify-content: center;
+}
+
+.gsis-title-text {
+    font-size: 50px;
+    font-weight: 300;
+}
+
+.gsis-tcb {
+    margin-top: 10px;
+}
+
+.gsis-description-text {
+    color: #676767;
+}
+
+.gsis-guide-text {
+    color: #1890FF;
+}
+
+.get-started-cards-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 100px;
+    margin: 0px 50px;
+    margin-top: 100px !important;
+}
+
+.gs-card {
+    background-color: #F5F5F5;
+    border-radius: 20px;
+    min-height: 200px;
+}
+
+.gs-card-text {
+    margin-top: 10px
+}
+
+.gs-card-text-row {
+    display: flex;
+    justify-content: center;
+}
+
+.gs-card-title {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.gs-card-subtitle {
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: 300;
+    text-align: center;
 }
