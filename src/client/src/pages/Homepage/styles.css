@@ -150,7 +150,7 @@
 }
 
 .text-msg-right-panel-img {
-    height: 350px;
+    height: 400px;
     width: 350px;
     background-image: url('../../assets/images/iphone_frame_1_transp_bg_white_fill_w_basic_messages.png'); 
     background-size: cover;
@@ -160,6 +160,7 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
 
 .email-section {
     min-height: 500px;
@@ -184,6 +185,18 @@
     height: 450px;
     width: 450px;
     background-color: #15ff0023;
+    overflow: hidden;
+}
+
+.email-left-panel-img {
+    height: 475px;
+    width: 475px;
+    background-image: url('../../assets/images/desktop_email_campaign_form_w_table_snippet_2.png'); 
+    background-size: cover;
+    /* position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); */
 }
 
 .email-section-right-content {
