@@ -179,13 +179,47 @@ export default function Homepage() {
                 </div>
                 <div className='get-started-cards-section'>
                     <div className='gs-card'>
-                        card
+                        <div className='gs-card-text'>
+                            <div className='gs-card-text-row'>
+                                <span className='gs-card-title'>
+                                    Connect your Accounts
+                                </span>
+                            </div>
+                            <div className='gs-card-text-row'>
+                                <span className='gs-card-subtitle'>
+                                    Add your account details
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div className='gs-card'>
-                        card
+                    <div className='gs-card-text'>
+                        <div className='gs-card-text-row'>
+                            <span className='gs-card-title'>
+                                Upload your contacts
+                            </span>
+                        </div>
+                        <div className='gs-card-text-row'>
+                            <span className='gs-card-subtitle'>
+                                Upload you contact lists with a few easy clicks
+                            </span>
+                        </div>
+                    </div>
                     </div>
                     <div className='gs-card'>
-                        card
+                    <div className='gs-card-text'>
+                        <div className='gs-card-text-row'>
+                            <span className='gs-card-title'>
+                                Contact your customers
+                            </span>
+                        </div>
+                        <div className='gs-card-text-row'>
+                            <span className='gs-card-subtitle'>
+                                Send or schedule messages <br/>
+                                with our platform
+                            </span>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
