@@ -17,18 +17,12 @@ from app.services.scheduled_service.scheduler import ServiceScheduler
 class EmailCampaignService:
     
     
-    
-    
     async def create_email_campaign(self, campaign_data):
         
         # Create the emailCampaign entry in db no matter what, then change status accordingly
         new_email_campaign = await EmailCampaignOperations.add_email_campaign(campaign_data)
-        
-        print('campaign_data', campaign_data)
-        
+                
         campaign_frequency_type = campaign_data.frequency.get('frequencyType')
-        print('campaign_frequency_type', campaign_frequency_type)
-        
         
         if campaign_frequency_type == 'oneTime':
             
@@ -50,13 +44,10 @@ class EmailCampaignService:
                 scheduled_campaign = await self.scheduleEmailCampaign(campaign_data)
             
             
-            
-            
         
         if campaign_frequency_type == 'recurring':
             
             shouldSendInitial = campaign_data.frequency['recurrence']['sendRecInitial']
-            print('shouldSendInitial', shouldSendInitial)
             
             if shouldSendInitial:
                 
@@ -71,14 +62,12 @@ class EmailCampaignService:
                     await ServiceScheduler.schedule_next_campaign_occurrence('email', campaign_data)
                     
                     
-                    
                 except Exception as ex:
                     print('ex', ex)
                     # If an error happens while dispatching the email campaign, set status to 'error'
                     await Helpers.set_email_campaign_error(campaign_data.id, ex)
                 
                 # then schedule the next occurrence of the campaign
-                
                 
             
             if not shouldSendInitial:
@@ -92,11 +81,7 @@ class EmailCampaignService:
                     print('ex', ex)
                     # If an error happens while scheduling the initial the email campaign, set status to 'error'
                     await Helpers.set_email_campaign_error(campaign_data.id, ex)
-            
-            
-            pass
-        
-        
+                    
         
         return new_email_campaign
     
@@ -123,10 +108,7 @@ class EmailCampaignService:
         scheduled_campaign = await ScheduledServiceOperations.add_scheduled_service(ss_instance)
         
         # update the campaign status to 'scheduled' once scheduled
-        db_campaign = await EmailCampaignOperations.retrieve_email_campaign(campaign_data.id)   
-        edited = db_campaign.__dict__
-        edited['status']['title'] = 'scheduled'
-        updated_campaign = await EmailCampaignOperations.update_email_campaign_data(campaign_data.id, edited)
+        await Helpers.set_email_campaign_scheduled(campaign_data.id)
                 
         return {}
     
