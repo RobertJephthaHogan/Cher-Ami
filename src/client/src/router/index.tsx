@@ -15,6 +15,7 @@ import Settings from "../pages/Settings";
 import ContactLists from "../pages/ContactLists";
 import TextMessage from "../pages/TextMessage";
 import PhoneCall from "../pages/PhoneCall";
+import AboutUs from "../pages/AboutUs";
 
 
 
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
         {
             path: "/",
             element: <Homepage />,
+        },
+		{
+            path: "/about",
+            element: <AboutUs />,
         },
         {
             path: "/login",

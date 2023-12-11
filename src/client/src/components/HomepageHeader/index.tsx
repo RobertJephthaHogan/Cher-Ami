@@ -42,7 +42,10 @@ export default function HomepageHeader() {
                         Pricing
                     </span>
                 </div>
-                <div className='header-item-container h-item'>
+                <div 
+                    className='header-item-container h-item'
+                    onClick={() => navigate('/about')}
+                >
                     <span className='header-item-text'>
                         About Us
                     </span>
