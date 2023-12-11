@@ -25,6 +25,18 @@ export default function TwilioLoginForm() {
         twilioService.connectTwilioAccount(formValues)
         .then((resp: any) => {
             console.log('resp', resp)
+
+            const statusCode = resp.data.status_code
+            console.log('statusCode', statusCode)
+
+            if (statusCode === 401) {
+                // TODO: Invalid Credential Handling
+            }
+
+            if (statusCode === 200) {
+                // TODO: Add Credentials to User Data
+            }
+
         })
         .catch((error: any) => {
             console.error('error', error)
