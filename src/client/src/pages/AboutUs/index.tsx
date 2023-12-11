@@ -71,7 +71,7 @@ export default function AboutUs() {
                                 of all sizes level up their customer engagement. We believe
                                 companies of all sizes should be able to provide high quality
                                 email, text, and voice experience for their customers, without
-                                breaking the bank. 
+                                breaking the bank, or needing in-house developers. 
                             </span>
                         </div>
                         <div className='aub-info-content'>
