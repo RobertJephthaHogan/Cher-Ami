@@ -1,47 +1,96 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './styles.css'
-import { Button, Input } from 'antd'
+import { Button, Form, Input } from 'antd'
+import { useSelector } from 'react-redux'
 
 
 export default function TwilioLoginForm() {
 
+    const currentUser = useSelector((state: any) => state.user?.data ?? {})
+    const [formValues, setFormValues] = useState<any>({})
+
+
+    function onFieldChange(field: string, value: any) {
+        const workingObj = {...formValues}
+        workingObj[field] = value
+        setFormValues(workingObj)
+        console.log(workingObj)
+    }
+
+    function onFinish() {
+
+        const workingUser = {...currentUser}
+
+        console.log('formValues', formValues)
+        setFormValues({})
+
+    }
+
     return (
         <div className='twilio-login-form'>
-            <div className='twilio-logo-wrapper'>
-                <div className='twilio-logo'>
-                    
+            <Form 
+                className='twilio-form'
+                onFinish={onFinish}
+            >
+                <div className='twilio-logo-wrapper'>
+                    <div className='twilio-logo'>
+                        
+                    </div>
                 </div>
-            </div>
-            <div className='enter-details-wrapper'>
-                <span className='enter-details-text'>
-                    Enter Your Twilio Account Details
-                </span>
-            </div>
-            <div className='input-row'>
-                <div>
-                    <span className='input-label-text'>
-                        Account SID
+                <div className='enter-details-wrapper'>
+                    <span className='enter-details-text'>
+                        Enter Your Twilio Account Details
                     </span>
                 </div>
-                <div>
-                    <Input/>
+                <div className='input-row'>
+                    <div>
+                        <span className='input-label-text'>
+                            Account SID
+                        </span>
+                    </div>
+                    <Form.Item
+                        name="account_sid"
+                        rules={[{ required: true }]}
+                        className='twilio-form-item'
+                    >
+                        <div>
+                            <Input
+                                name='account_sid'
+                                onChange={(e) => onFieldChange('account_sid', e?.target?.value)}
+                                value={formValues?.account_sid}
+                            />
+                        </div>
+                    </Form.Item>
                 </div>
-            </div>
-            <div className='input-row'>
-                <div>
-                    <span className='input-label-text'>
-                        Account Auth Token
-                    </span>
+                <div className='input-row'>
+                    <div>
+                        <span className='input-label-text'>
+                            Account Auth Token
+                        </span>
+                    </div>
+                    <Form.Item
+                        name="account_auth_token"
+                        rules={[{ required: true }]}
+                        className='twilio-form-item'
+                    >
+                        <div>
+                            <Input
+                                name='account_auth_token'
+                                onChange={(e) => onFieldChange('account_auth_token', e?.target?.value)}
+                                value={formValues?.account_auth_token}
+                            />
+                        </div>
+                    </Form.Item>
                 </div>
-                <div>
-                    <Input/>
+                <div className='connect-btn-row'>
+                    <Button 
+                        type='primary'
+                        htmlType='submit'
+                    >
+                        Connect
+                    </Button>
                 </div>
-            </div>
-            <div className='connect-btn-row'>
-                <Button type='primary'>
-                    Connect
-                </Button>
-            </div>
+            </Form>
         </div>
     )
 }
