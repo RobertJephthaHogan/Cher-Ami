@@ -10,7 +10,45 @@ export default function AboutUs() {
             <HomepageHeader/>
             <div className='about-us-banner'/>
             <div className='about-us-body'>
-                About Us
+                <div className='aub-info-wrapper'>
+                    <div className='aub-info'>
+                        <div  className='about-us-title-wrapper'>
+                            <span className='about-us-title'>
+                                About Us
+                            </span>
+                        </div>
+                        <div className='aub-info-content'>
+                            <span className='about-us-info'>
+                                We’re building an omnichannel communication 
+                                platform to help businesses of all sizes level up their 
+                                customer engagement.
+                            </span>
+                        </div>
+                        <div className='aub-info-content'>
+                            <span className='about-us-info'>
+                                At Cher-Ami Technologies, our mission is to provide a cutting
+                                edge omnichannel communication platform to help businesses
+                                of all sizes level up their customer engagement. We believe
+                                companies of all sizes should be able to provide high quality
+                                email, text, and voice experience for their customers, without
+                                breaking the bank. 
+                            </span>
+                        </div>
+                        <div className='aub-info-content'>
+                            <span className='about-us-info'>
+                                During World War I, the lost battalion was 
+                                surrounded by German soldiers in the Battle of
+                                Argonne. Every carrier pigeon they sent out for help
+                                was killed. Cher Ami was their last one. The lost battalion watched
+                                him get shot down. All hope was lost. But somehow,
+                                he took flight again and reached his destination. 
+                                Saved 200 lives and was awarded the Croix de 
+                                Guerre. Cher Ami means "dear friend".
+
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

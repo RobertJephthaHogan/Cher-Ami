@@ -8,4 +8,38 @@
     min-height: 200px;
     background-image: url('../../assets/images/bird-flock-banner.jpg'); 
     background-size: cover;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.about-us-body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.aub-info-wrapper {
+    width: 100%;
+    
+}
+
+.aub-info-wrapper {
+    max-width: 700px;
+}
+
+.about-us-title-wrapper {
+    margin-top : 40px
+}
+
+.about-us-title {
+    font-size: 50px;
+}
+
+.aub-info-content {
+    margin-top: 20px;
+}
+
+.about-us-info {
+    font-size: 30px;
+    color: #828282;
+    font-weight: 300;
 }
