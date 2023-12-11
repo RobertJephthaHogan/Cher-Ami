@@ -128,6 +128,7 @@
     margin-top: 20px;
     background-color: #F3F3F3;
     padding: 5px;
+    border-radius: 20px;
 }
 
 .start-for-free-text-container {
@@ -148,6 +149,7 @@
     width: 450px;
     background-color: #188fff22;    
     position: relative;
+    border-radius: 20px;
 }
 
 .text-msg-right-panel-img {
@@ -186,6 +188,7 @@
     height: 450px;
     width: 450px;
     background-color: #188fff22;
+    border-radius: 20px;
     overflow: hidden;
 }
 
