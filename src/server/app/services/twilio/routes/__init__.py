@@ -1,3 +1,4 @@
+from typing import Any
 from fastapi import Body, APIRouter, HTTPException
 from passlib.context import CryptContext
 from beanie import PydanticObjectId
@@ -57,3 +58,15 @@ class TwilioRouter:
                 "description": "Email sent successfully",
                 "data": sub_accounts
             }
+        
+    @router.post("/connect_account", response_description="Connect to Twilio Account", response_model=Response)
+    async def connect_twilio_account(login_data: Any = Body(...)):
+        
+        print('login_data', login_data)
+        
+        return {
+            "status_code": 200,
+            "response_type": "success",
+            "description": "Contact created successfully",
+            "data": login_data
+        }

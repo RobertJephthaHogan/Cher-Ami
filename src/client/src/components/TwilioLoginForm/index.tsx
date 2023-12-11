@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './styles.css'
 import { Button, Form, Input } from 'antd'
 import { useSelector } from 'react-redux'
+import { twilioService } from '../../services/twilio.service'
 
 
 export default function TwilioLoginForm() {
@@ -20,6 +21,14 @@ export default function TwilioLoginForm() {
     function onFinish() {
 
         const workingUser = {...currentUser}
+
+        twilioService.connectTwilioAccount(formValues)
+        .then((resp: any) => {
+            console.log('resp', resp)
+        })
+        .catch((error: any) => {
+            console.error('error', error)
+        })
 
         console.log('formValues', formValues)
         setFormValues({})
