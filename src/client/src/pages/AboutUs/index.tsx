@@ -1,9 +1,49 @@
 import React from 'react'
 import HomepageHeader from '../../components/HomepageHeader'
+import { Chrono } from "react-chrono";
 import './styles.css'
 
 
 export default function AboutUs() {
+
+
+    const timelineItems = [
+        {
+            title: "May 1940",
+            cardTitle: "Dunkirk",
+            //url: "http://www.history.com",
+            cardSubtitle:"Men of the British Expeditionary Force (BEF) wade out to..",
+            cardDetailedText: "Men of the British Expeditionary Force (BEF) wade out to..",
+        }, 
+        {
+            title: "May 1940",
+            cardTitle: "Dunkirk",
+            //url: "http://www.history.com",
+            cardSubtitle:"Men of the British Expeditionary Force (BEF) wade out to..",
+            cardDetailedText: "Men of the British Expeditionary Force (BEF) wade out to..",
+        }, 
+        {
+            title: "May 1940",
+            cardTitle: "Dunkirk",
+            url: "http://www.history.com",
+            cardSubtitle:"Men of the British Expeditionary Force (BEF) wade out to..",
+            cardDetailedText: "Men of the British Expeditionary Force (BEF) wade out to..",
+        }, 
+        {
+            title: "May 1940",
+            cardTitle: "Dunkirk",
+            url: "http://www.history.com",
+            cardSubtitle:"Men of the British Expeditionary Force (BEF) wade out to..",
+            cardDetailedText: "Men of the British Expeditionary Force (BEF) wade out to..",
+        }, 
+        {
+            title: "May 1940",
+            cardTitle: "Dunkirk",
+            url: "http://www.history.com",
+            cardSubtitle:"Men of the British Expeditionary Force (BEF) wade out to..",
+            cardDetailedText: "Men of the British Expeditionary Force (BEF) wade out to..",
+        }, 
+    ];
 
     return (
         <div className='about-us'>
@@ -48,6 +88,35 @@ export default function AboutUs() {
                             </span>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className='about-us-body'>
+                <div className='aub-info-wrapper'>
+                    <div className='aub-info'>
+                        <div  className='about-us-title-wrapper'>
+                            <span className='about-us-title'>
+                                Timeline
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className='about-us-timeline-section'>
+                <div style={{ width: '800px', height: '950px' }}>
+                    <Chrono 
+                        items={timelineItems} 
+                        mode="VERTICAL_ALTERNATING" 
+                        itemWidth={800}
+                        theme={{
+                            //primary: 'red',
+                            //secondary: 'blue',
+                            //cardBgColor: 'yellow',
+                            //titleColor: 'black',
+                            //titleColorActive: 'red',
+                        }}
+                    >
+                        
+                    </Chrono>
                 </div>
             </div>
         </div>

@@ -43,3 +43,9 @@
     color: #828282;
     font-weight: 300;
 }
+
+.about-us-timeline-section {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
