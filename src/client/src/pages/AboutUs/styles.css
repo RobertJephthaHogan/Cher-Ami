@@ -1,0 +1,11 @@
+
+
+.about-us {
+
+}
+
+.about-us-banner {
+    min-height: 200px;
+    background-image: url('../../assets/images/bird-flock-banner.jpg'); 
+    background-size: cover;
+}
