@@ -8,3 +8,4 @@ pydantic-settings
 pyjwt
 python-multipart
 apscheduler
+twilio
