@@ -1,4 +1,4 @@
-from typing import Any, Optional, Union
+from typing import Any, Dict, Optional, Union
 from beanie import Document
 from fastapi.security import HTTPBasicCredentials
 from pydantic import BaseModel, EmailStr, Field
@@ -12,6 +12,7 @@ class User(Document):
     receiveToPhone: str = Field(...)
     sendFromEmailAddresses: list = Field(...)
     sendFromPhoneNumbers: list = Field(...)
+    twilioCredentials: Union[str, Dict[Any, Any]] = Field(...)
     password: str = Field(...)
     role: str = Field(...)
 
@@ -28,6 +29,7 @@ class User(Document):
                 "receiveToPhone": "4042222222",
                 "sendFromEmailAddresses": [],
                 "sendFromPhoneNumbers": [],
+                "twilioCredentials": {},
                 "password": "password",
                 "role": "user"
             }
@@ -52,6 +54,7 @@ class UserData(BaseModel):
     receiveToPhone: str = Field(...)
     sendFromEmailAddresses: list = Field(...)
     sendFromPhoneNumbers: list = Field(...)
+    twilioCredentials: Optional[Union[str, Dict[Any, Any]]]
     password: str = Field(...)
     role: str = Field(...)
 
@@ -65,6 +68,7 @@ class UserData(BaseModel):
                 "receiveToPhone": "4042222222",
                 "sendFromEmailAddresses": [],
                 "sendFromPhoneNumbers": [],
+                "twilioCredentials": {},
                 "password": "password",
                 "role": "user"
             }
