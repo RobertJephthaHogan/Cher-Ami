@@ -1,0 +1,52 @@
+
+
+
+.twilio-login-form {
+    border: 1px solid #000000;
+    width: 300px;
+    background-color: #efefef;
+    border-radius: 10px;
+}
+
+.twilio-logo-wrapper {
+    padding: 10px
+}
+
+.twilio-logo {
+    background-image: url('../../assets/images/twilio_logo.png'); 
+    background-size: cover;
+    width: 100px;
+    height: 30px;
+}
+
+.enter-details-wrapper {
+    margin: 10px 0px
+}
+
+.enter-details-text {
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.input-row {
+    padding: 5px 10px
+}
+
+.connect-btn-row {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px
+}
+
+.input-label-text {
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.twilio-form {
+    all: unset
+}
+
+.twilio-form-item {
+    all: unset
+}

@@ -10,6 +10,7 @@ import userActions from '../../redux/actions/user'
 import { store } from '../../redux/store'
 import { openNotification } from '../../helpers/notifications'
 import SFEmailAddressForm from '../../features/settings/SFEmailAddressForm'
+import TwilioLoginForm from '../../components/TwilioLoginForm'
 
 
 export default function Settings() {
@@ -291,6 +292,9 @@ export default function Settings() {
                         The email and phone number you list in this section are the email and phone number your emails, text <br/>
                         messages, and phone calls will be sent from. 
                     </span>
+                </div>
+                <div className='twilio-connect-wrapper'>
+                    <TwilioLoginForm/>
                 </div>
                 <div className='ci-sf-section-subtitle-container'>
                     <span>

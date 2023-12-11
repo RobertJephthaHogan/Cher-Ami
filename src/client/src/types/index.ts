@@ -11,6 +11,7 @@ export type User = {
     receiveToPhone: string
     sendFromEmailAddresses: any
     sendFromPhoneNumbers: any
+    twilioCredentials: any
     password: string
     role: string
 }
