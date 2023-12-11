@@ -30,6 +30,7 @@ export default function SignUp() {
             receiveToPhone: '',
             sendFromEmailAddresses: [],
             sendFromPhoneNumbers: [],
+            twilioCredentials: {},
             password: data?.password,
             role: 'user',
         }
