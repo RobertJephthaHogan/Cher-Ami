@@ -57,8 +57,9 @@ class EmailService:
         email_sender = self.kwargs['emailSender']
         email_password = self.kwargs['emailPassword']
         email_receiver = self.kwargs['emailRecipient']
+        email_subject = self.kwargs['emailSubject']
         created_by_user_id = self.kwargs['createdByUserId']
-        subject = 'This is the email subject'
+        #subject = 'This is the email subject'
         body = self.kwargs['body']
         time = self.kwargs['time']
         
@@ -66,7 +67,7 @@ class EmailService:
         em = EmailMessage()
         em['From'] = email_sender
         em['To'] = email_receiver
-        em['Subject'] = subject
+        em['Subject'] = email_subject
         em.set_content(body)
         
         context = ssl.create_default_context()

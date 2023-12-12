@@ -54,6 +54,11 @@ export default function Email() {
             key: 'title',
         },
         {
+            title: 'Subject',
+            dataIndex: 'emailSubject',
+            key: 'emailSubject',
+        },
+        {
             title: 'Send From Email',
             dataIndex: 'sendFromEmail',
             key: 'sendFromEmail',

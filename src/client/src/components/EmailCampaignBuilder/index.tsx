@@ -69,6 +69,7 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
     function requiredFieldVerifier(formData: any) {
 
         const title = fieldChecker(formData?.title)
+        const emailSubject = fieldChecker(formData?.emailSubject)
         const sendFromEmail = fieldChecker(formData?.sendFromEmail)
         const emailBody = fieldChecker(formData?.emailBody)
         const recipientContactLists = formData?.recipientContactLists?.length ? formData?.recipientContactLists : 'error'
@@ -77,6 +78,7 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
         let status = 'success'
         if (
             title === 'error'
+            || emailSubject === 'error'
             || sendFromEmail === 'error'
             || emailBody === 'error'
             || recipientContactLists === 'error'
@@ -88,6 +90,7 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
             status,
             data: {
                 title,
+                emailSubject,
                 sendFromEmail,
                 emailBody,
                 recipientContactLists,
@@ -210,7 +213,6 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
             
             emailCampaignService?.createEmailCampaign(dto)
                 .then((resp: any) => {
-                    console.log('resp')
                     openNotification(
                         resp?.data?.response_type,
                         `Email Campaign Created Successfully`
@@ -266,6 +268,30 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
                         placeholder='Title...'
                         onChange={(e) => onChange('title', e?.target?.value)}
                         value={fieldValues?.title}
+                    />
+                </div>
+            </div>
+
+            <div className='campaign-input-row'>
+                <div>
+                    <span className='input-label'>
+                        Email Subject
+                    </span>
+                    {
+                        (submissionAttempted && (verificationData?.data?.emailSubject === 'error'))
+                        ? (
+                            <span className='required-field-error'>
+                                * An email subject is required
+                            </span>
+                        )
+                        : null
+                    }
+                </div>
+                <div>
+                    <Input
+                        placeholder='Title...'
+                        onChange={(e) => onChange('emailSubject', e?.target?.value)}
+                        value={fieldValues?.emailSubject}
                     />
                 </div>
             </div>
