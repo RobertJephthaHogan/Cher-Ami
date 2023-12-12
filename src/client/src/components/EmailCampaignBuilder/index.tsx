@@ -213,7 +213,6 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
             
             emailCampaignService?.createEmailCampaign(dto)
                 .then((resp: any) => {
-                    console.log('resp')
                     openNotification(
                         resp?.data?.response_type,
                         `Email Campaign Created Successfully`

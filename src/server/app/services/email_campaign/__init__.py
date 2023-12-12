@@ -35,6 +35,7 @@ class EmailCampaignService:
                     # Once the Campaign is sent to recipients, set status to 'sent'
                     await Helpers.set_email_campaign_sent(campaign_data.id, result)
                 except Exception as ex:
+                    print('ex', ex)
                     # If an error happens while dispatching the email campaign, set status to 'error'
                     await Helpers.set_email_campaign_error(campaign_data.id, ex)
                 
@@ -115,7 +116,7 @@ class EmailCampaignService:
     
     
     async def dispatchEmailCampaign(self, campaign_data):
-        
+                
         # get all of the contactListIDs from the campaign_data
         contact_list_ids = campaign_data.recipientContactLists
         
@@ -139,7 +140,8 @@ class EmailCampaignService:
         user_data = await UserOperations.retrieve_user(campaign_data.createdByUserId)        
         
         emailSender = campaign_data.sendFromEmail
-        emailPassword = 'None'
+        emailSubject = campaign_data.emailSubject
+        emailPassword = None
         emailBody = campaign_data.emailBody
         createdByUserId = campaign_data.createdByUserId
         
@@ -153,6 +155,7 @@ class EmailCampaignService:
             email_data = {
                 #id: null,
                 "emailSender": emailSender,
+                "emailSubject": emailSubject,
                 "emailRecipient": recipient['email'],
                 "emailPassword": emailPassword,
                 "body": emailBody,
