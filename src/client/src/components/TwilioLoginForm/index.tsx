@@ -30,10 +30,8 @@ export default function TwilioLoginForm() {
 
         twilioService.connectTwilioAccount(formValues)
         .then((resp: any) => {
-            console.log('resp', resp)
 
             const statusCode = resp.data.status_code
-            console.log('statusCode', statusCode)
 
             if (statusCode === 401) {
                 openNotification(
@@ -52,7 +50,7 @@ export default function TwilioLoginForm() {
             }
 
             if (statusCode === 200) {
-                // TODO: Add Credentials to User Data
+
                 openNotification(
                     'Success',
                     `Twilio Account Connection Verified. Adding Credentials to account...`
