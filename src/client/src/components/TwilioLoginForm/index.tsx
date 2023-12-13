@@ -16,6 +16,7 @@ export default function TwilioLoginForm() {
     const currentUser = useSelector((state: any) => state.user?.data ?? {})
     const [formValues, setFormValues] = useState<any>({})
 
+    console.log('currentUser', currentUser)
 
     function onFieldChange(field: string, value: any) {
         const workingObj = {...formValues}
@@ -26,7 +27,7 @@ export default function TwilioLoginForm() {
 
     function onFinish() {
 
-        const workingUser = {...currentUser}
+        
 
         twilioService.connectTwilioAccount(formValues)
         .then((resp: any) => {
@@ -55,8 +56,8 @@ export default function TwilioLoginForm() {
                     'Success',
                     `Twilio Account Connection Verified. Adding Credentials to account...`
                 )
-
-                const workingCredentialData = {...workingUser?.twilioCredentials}
+                const workingUser = {...currentUser}
+                const workingCredentialData = {...currentUser?.twilioCredentials}
                 workingCredentialData['account_sid'] = formValues?.account_sid
                 workingCredentialData['account_auth_token'] = formValues?.account_auth_token
                 workingUser['twilioCredentials'] = workingCredentialData
