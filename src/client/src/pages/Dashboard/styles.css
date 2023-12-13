@@ -64,3 +64,26 @@
     font-size: 16px;
     font-weight: 500;
 }
+
+.actions-title-container {
+    margin-top: 50px;
+    margin-left: 20px
+}
+
+.actions-title {
+    font-size: 25px
+}
+
+.action-card-container {
+    margin: 0px 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 30px;
+    row-gap: 30px;
+}
+
+.action-card {
+    background-color: #F6F6F6;
+    min-height: 100px;
+    border-radius: 10px;
+}

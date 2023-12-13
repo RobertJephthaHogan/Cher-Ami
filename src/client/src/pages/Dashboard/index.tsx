@@ -125,6 +125,33 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
+
+            <div className='actions-title-container'>
+                <span className='actions-title'>
+                    Actions
+                </span>
+            </div>
+            <div className='action-card-container'>
+                <div className='action-card'>
+                    card
+                </div>
+                <div className='action-card'>
+                    card
+                </div>
+                <div className='action-card'>
+                    card
+                </div>
+                <div className='action-card'>
+                    card
+                </div>
+                <div className='action-card'>
+                    card
+                </div>
+                <div className='action-card'>
+                    card
+                </div>
+            </div>
+
         </div>
     )
 }
