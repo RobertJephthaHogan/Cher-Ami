@@ -1,0 +1,66 @@
+
+
+
+.dashboard-title {
+    font-size: 25px;
+}
+
+.dashboard-greeting {
+    font-size: 20px;
+}
+
+.dashboard-top-text-container {
+    margin-top: 20px;
+    margin-left: 20px
+}
+
+.card-row {
+    margin: 0px 20px;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 30px;
+}
+
+.dashboard-info-card {
+    background-color: #F6F6F6;
+    display: flex;
+    min-height: 130px;
+    border-radius: 10px;
+}
+
+.dic-left {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dic-right {
+    width: 60%;
+    display: flex;
+    align-items: center;
+}
+
+.dic-circle {
+    width: 70px;
+    height: 70px;
+    background-color: #ffffff; /* You can change the background color as desired */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dic-circle-logo {
+    font-size: 40px;
+}
+
+.dic-title-text {
+    font-size: 18px;
+}
+
+.dic-value-text {
+    font-size: 16px;
+    font-weight: 500;
+}
