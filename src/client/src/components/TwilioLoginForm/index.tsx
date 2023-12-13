@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles.css'
 import { Button, Form, Input } from 'antd'
 import { useSelector } from 'react-redux'
@@ -15,18 +15,26 @@ export default function TwilioLoginForm() {
     const [form] = useForm();
     const currentUser = useSelector((state: any) => state.user?.data ?? {})
     const [formValues, setFormValues] = useState<any>({})
+    const [isUserConnected, setIsUserConnected] = useState<boolean>(false)
 
+
+    useEffect(() => {
+        const existingCredentials = currentUser?.twilioCredentials
+        const authToken = existingCredentials?.account_auth_token
+        const accountSID = existingCredentials?.account_sid
+
+        if (authToken && accountSID) {
+            setIsUserConnected(true)
+        }
+    })
 
     function onFieldChange(field: string, value: any) {
         const workingObj = {...formValues}
         workingObj[field] = value
         setFormValues(workingObj)
-        console.log(workingObj)
     }
 
     function onFinish() {
-
-        const workingUser = {...currentUser}
 
         twilioService.connectTwilioAccount(formValues)
         .then((resp: any) => {
@@ -55,8 +63,8 @@ export default function TwilioLoginForm() {
                     'Success',
                     `Twilio Account Connection Verified. Adding Credentials to account...`
                 )
-
-                const workingCredentialData = {...workingUser?.twilioCredentials}
+                const workingUser = {...currentUser}
+                const workingCredentialData = {...currentUser?.twilioCredentials}
                 workingCredentialData['account_sid'] = formValues?.account_sid
                 workingCredentialData['account_auth_token'] = formValues?.account_auth_token
                 workingUser['twilioCredentials'] = workingCredentialData
@@ -71,6 +79,7 @@ export default function TwilioLoginForm() {
                         )
                         setFormValues({})
                         form.resetFields();
+                        setIsUserConnected(true)
                     })
                     .catch((error: any) => {
                         console.error('error', error)
@@ -86,6 +95,28 @@ export default function TwilioLoginForm() {
                 Please enter valid credentials and try again`
             )
         })
+
+    }
+
+    function onDisconnect() {
+        const workingUser = {...currentUser}
+        workingUser['twilioCredentials'] = {}
+
+        userService
+            .updateUser(workingUser?._id, workingUser)
+            .then((resp:any) => {
+                store.dispatch(userActions.updateUserData(resp?.data?.data))
+                openNotification(
+                    resp?.data?.response_type,
+                    `Disconnected From Twilio Successfully`
+                )
+                setFormValues({})
+                form.resetFields();
+                setIsUserConnected(false)
+            })
+            .catch((error: any) => {
+                console.error('error', error)
+            })
 
     }
 
@@ -122,6 +153,8 @@ export default function TwilioLoginForm() {
                                 name='account_sid'
                                 onChange={(e) => onFieldChange('account_sid', e?.target?.value)}
                                 value={formValues?.account_sid}
+                                disabled={isUserConnected}
+                                placeholder={isUserConnected ? '****************' : undefined}
                             />
                         </div>
                     </Form.Item>
@@ -142,17 +175,32 @@ export default function TwilioLoginForm() {
                                 name='account_auth_token'
                                 onChange={(e) => onFieldChange('account_auth_token', e?.target?.value)}
                                 value={formValues?.account_auth_token}
+                                disabled={isUserConnected}
+                                placeholder={isUserConnected ? '****************' : undefined}
                             />
                         </div>
                     </Form.Item>
                 </div>
                 <div className='connect-btn-row'>
-                    <Button 
-                        type='primary'
-                        htmlType='submit'
-                    >
-                        Connect
-                    </Button>
+                    {
+                        isUserConnected
+                        ? (
+                            <Button 
+                                onClick={() => onDisconnect()}
+                            >
+                                Disconnect
+                            </Button>
+                        )
+                        : (
+                            <Button 
+                                type='primary'
+                                htmlType='submit'
+                            >
+                                Connect
+                            </Button>
+                        )
+                    }
+                    
                 </div>
             </Form>
         </div>

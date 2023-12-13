@@ -83,6 +83,7 @@ class UpdateUserModel(BaseModel):
     receiveToPhone: Optional[str]
     sendFromEmailAddresses: Optional[list]
     sendFromPhoneNumbers: Optional[list]
+    twilioCredentials: Optional[Union[str, Dict[Any, Any]]]
     password: Optional[str]
     role: Optional[str]
 
@@ -96,6 +97,7 @@ class UpdateUserModel(BaseModel):
                 "receiveToPhone": "4042222222",
                 "sendFromEmailAddresses": [],
                 "sendFromPhoneNumbers": [],
+                "twilioCredentials": {},
                 "password": "password",
                 "role": "user"
             }
