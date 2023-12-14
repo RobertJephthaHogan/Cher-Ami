@@ -61,7 +61,7 @@
 }
 
 .dic-value-text {
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 500;
 }
 
@@ -88,6 +88,7 @@
     min-height: 100px;
     border-radius: 10px;
     display: flex;
+    border: 1px solid transparent;
 }
 
 .ac-left {
@@ -128,13 +129,28 @@
 
 .action-card:hover {
     cursor: pointer;
-}
-
-.action-card .ac-value-text {
-    text-decoration: none; /* Initially, set text-decoration to none */
-    transition: text-decoration 0.9s ease !important; /* Add a transition property */
+    border: 1px solid #000;
 }
 
 .action-card:hover .ac-value-text {
     text-decoration: underline;
-  }
+}
+
+.message-bar {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dicm {
+    border: 1px solid transparent;
+}
+
+.dicm:hover {
+    cursor: pointer;
+    border: 1px solid #000;
+}
+
+.dicm:hover .dvtl {
+    text-decoration: underline;
+}

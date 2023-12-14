@@ -107,7 +107,10 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className='dashboard-info-card'>
+                <div 
+                    className='dashboard-info-card dicm'
+                    onClick={() => navigate('/inbox')}
+                >
                     <div className='dic-left'>
                         <div className='dic-circle'>
                             <MailOutlined
@@ -122,9 +125,12 @@ export default function Dashboard() {
                                     New Messages
                                 </span>
                             </div>
-                            <div>
+                            <div className='message-bar'>
                                 <span className='dic-value-text'>
                                     14
+                                </span>
+                                <span className='dic-value-text dvtl'>
+                                    See Messages {'>'}
                                 </span>
                             </div>
                         </div>
