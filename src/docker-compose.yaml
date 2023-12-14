@@ -1,0 +1,15 @@
+version: '3'
+services:
+  gateway_fitness_server:
+    build:
+      context: ./server
+    ports:
+      - "8005:8005"
+    container_name: cher_ami_server
+
+  gateway_fitness_client:
+    build:
+      context: ./client
+    ports:
+      - "3005:3005"
+    container_name: cher_ami_client
