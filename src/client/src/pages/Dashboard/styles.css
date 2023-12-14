@@ -1,0 +1,156 @@
+
+
+
+.dashboard-title {
+    font-size: 25px;
+}
+
+.dashboard-greeting {
+    font-size: 20px;
+}
+
+.dashboard-top-text-container {
+    margin-top: 20px;
+    margin-left: 20px
+}
+
+.card-row {
+    margin: 0px 20px;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 30px;
+}
+
+.dashboard-info-card {
+    background-color: #F6F6F6;
+    display: flex;
+    min-height: 130px;
+    border-radius: 10px;
+}
+
+.dic-left {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dic-right {
+    width: 60%;
+    display: flex;
+    align-items: center;
+}
+
+.dic-circle {
+    width: 70px;
+    height: 70px;
+    background-color: #ffffff; /* You can change the background color as desired */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dic-circle-logo {
+    font-size: 40px;
+}
+
+.dic-title-text {
+    font-size: 18px;
+}
+
+.dic-value-text {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.actions-title-container {
+    margin-top: 50px;
+    margin-left: 20px
+}
+
+.actions-title {
+    font-size: 25px
+}
+
+.action-card-container {
+    margin: 0px 20px;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 30px;
+    row-gap: 30px;
+}
+
+.action-card {
+    background-color: #F6F6F6;
+    min-height: 100px;
+    border-radius: 10px;
+    display: flex;
+    border: 1px solid transparent;
+}
+
+.ac-left {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ac-right {
+    width: 60%;
+    display: flex;
+    align-items: center;
+}
+
+.ac-circle {
+    width: 70px;
+    height: 70px;
+    background-color: #ffffff; /* You can change the background color as desired */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ac-circle-logo {
+    font-size: 40px;
+}
+
+.ac-title-text {
+    font-size: 18px;
+}
+
+.ac-value-text {
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.action-card:hover {
+    cursor: pointer;
+    border: 1px solid #000;
+}
+
+.action-card:hover .ac-value-text {
+    text-decoration: underline;
+}
+
+.message-bar {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dicm {
+    border: 1px solid transparent;
+}
+
+.dicm:hover {
+    cursor: pointer;
+    border: 1px solid #000;
+}
+
+.dicm:hover .dvtl {
+    text-decoration: underline;
+}
