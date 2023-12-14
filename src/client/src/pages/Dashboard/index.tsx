@@ -5,6 +5,11 @@ import NotificationOutlined from '@ant-design/icons/NotificationOutlined'
 import UserOutlined from '@ant-design/icons/UserOutlined'
 import SendOutlined from '@ant-design/icons/SendOutlined'
 import MailOutlined from '@ant-design/icons/MailOutlined'
+import MessageOutlined from '@ant-design/icons/MessageOutlined'
+import PhoneOutlined from '@ant-design/icons/PhoneOutlined'
+import TeamOutlined from '@ant-design/icons/TeamOutlined'
+import SettingOutlined from '@ant-design/icons/SettingOutlined'
+
 import { useNavigate } from 'react-router-dom'
 
 
@@ -165,7 +170,7 @@ export default function Dashboard() {
                 >
                     <div className='ac-left'>
                         <div className='ac-circle'>
-                            <MailOutlined
+                            <MessageOutlined
                                 className='ac-circle-logo'
                             />
                         </div>
@@ -191,7 +196,7 @@ export default function Dashboard() {
                 >
                     <div className='ac-left'>
                         <div className='ac-circle'>
-                            <MailOutlined
+                            <PhoneOutlined
                                 className='ac-circle-logo'
                             />
                         </div>
@@ -217,7 +222,7 @@ export default function Dashboard() {
                 >
                     <div className='ac-left'>
                         <div className='ac-circle'>
-                            <MailOutlined
+                            <TeamOutlined
                                 className='ac-circle-logo'
                             />
                         </div>
@@ -243,7 +248,7 @@ export default function Dashboard() {
                 >
                     <div className='ac-left'>
                         <div className='ac-circle'>
-                            <MailOutlined
+                            <UserOutlined
                                 className='ac-circle-logo'
                             />
                         </div>
@@ -269,7 +274,7 @@ export default function Dashboard() {
                 >
                     <div className='ac-left'>
                         <div className='ac-circle'>
-                            <MailOutlined
+                            <SettingOutlined
                                 className='ac-circle-logo'
                             />
                         </div>
