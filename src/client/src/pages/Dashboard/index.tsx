@@ -5,13 +5,14 @@ import NotificationOutlined from '@ant-design/icons/NotificationOutlined'
 import UserOutlined from '@ant-design/icons/UserOutlined'
 import SendOutlined from '@ant-design/icons/SendOutlined'
 import MailOutlined from '@ant-design/icons/MailOutlined'
+import { useNavigate } from 'react-router-dom'
 
 
 
 export default function Dashboard() {
     
     const currentUser = useSelector((state: any) => state.user?.data ?? {})
-
+    const navigate = useNavigate()
 
     return (
         <div>
@@ -132,7 +133,10 @@ export default function Dashboard() {
                 </span>
             </div>
             <div className='action-card-container'>
-                <div className='action-card'>
+                <div 
+                    className='action-card'
+                    onClick={() => navigate('/email')}
+                >
                     <div className='ac-left'>
                         <div className='ac-circle'>
                             <MailOutlined
@@ -155,7 +159,10 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className='action-card'>
+                <div 
+                    className='action-card'
+                    onClick={() => navigate('/text')}
+                >
                     <div className='ac-left'>
                         <div className='ac-circle'>
                             <MailOutlined
@@ -178,7 +185,10 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className='action-card'>
+                <div 
+                    className='action-card'
+                    onClick={() => navigate('/call')}
+                >
                     <div className='ac-left'>
                         <div className='ac-circle'>
                             <MailOutlined
@@ -201,7 +211,10 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className='action-card'>
+                <div 
+                    className='action-card'
+                    onClick={() => navigate('/contact-lists')}
+                >
                     <div className='ac-left'>
                         <div className='ac-circle'>
                             <MailOutlined
@@ -224,7 +237,10 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className='action-card'>
+                <div 
+                    className='action-card'
+                    onClick={() => navigate('/contacts')}
+                >
                     <div className='ac-left'>
                         <div className='ac-circle'>
                             <MailOutlined
@@ -247,7 +263,10 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className='action-card'>
+                <div 
+                    className='action-card'
+                    onClick={() => navigate('/settings')}
+                >
                     <div className='ac-left'>
                         <div className='ac-circle'>
                             <MailOutlined
