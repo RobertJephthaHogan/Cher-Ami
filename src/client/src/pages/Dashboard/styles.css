@@ -76,6 +76,7 @@
 
 .action-card-container {
     margin: 0px 20px;
+    margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: 30px;
@@ -86,4 +87,54 @@
     background-color: #F6F6F6;
     min-height: 100px;
     border-radius: 10px;
+    display: flex;
 }
+
+.ac-left {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ac-right {
+    width: 60%;
+    display: flex;
+    align-items: center;
+}
+
+.ac-circle {
+    width: 70px;
+    height: 70px;
+    background-color: #ffffff; /* You can change the background color as desired */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ac-circle-logo {
+    font-size: 40px;
+}
+
+.ac-title-text {
+    font-size: 18px;
+}
+
+.ac-value-text {
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.action-card:hover {
+    cursor: pointer;
+}
+
+.action-card .ac-value-text {
+    text-decoration: none; /* Initially, set text-decoration to none */
+    transition: text-decoration 0.9s ease !important; /* Add a transition property */
+}
+
+.action-card:hover .ac-value-text {
+    text-decoration: underline;
+  }

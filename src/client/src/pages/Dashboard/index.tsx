@@ -133,22 +133,142 @@ export default function Dashboard() {
             </div>
             <div className='action-card-container'>
                 <div className='action-card'>
-                    card
+                    <div className='ac-left'>
+                        <div className='ac-circle'>
+                            <MailOutlined
+                                className='ac-circle-logo'
+                            />
+                        </div>
+                    </div>
+                    <div className='ac-right'>
+                        <div>
+                            <div>
+                                <span className='ac-title-text'>
+                                    Email Campaigns
+                                </span>
+                            </div>
+                            <div>
+                                <span className='ac-value-text'>
+                                    Go To Email Campaigns {'>'}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className='action-card'>
-                    card
+                    <div className='ac-left'>
+                        <div className='ac-circle'>
+                            <MailOutlined
+                                className='ac-circle-logo'
+                            />
+                        </div>
+                    </div>
+                    <div className='ac-right'>
+                        <div>
+                            <div>
+                                <span className='ac-title-text'>
+                                    Text Campaigns
+                                </span>
+                            </div>
+                            <div>
+                                <span className='ac-value-text'>
+                                    Go To Text Campaigns {'>'}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className='action-card'>
-                    card
+                    <div className='ac-left'>
+                        <div className='ac-circle'>
+                            <MailOutlined
+                                className='ac-circle-logo'
+                            />
+                        </div>
+                    </div>
+                    <div className='ac-right'>
+                        <div>
+                            <div>
+                                <span className='ac-title-text'>
+                                    Voice Campaigns
+                                </span>
+                            </div>
+                            <div>
+                                <span className='ac-value-text'>
+                                    Go To Voice Campaigns {'>'}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className='action-card'>
-                    card
+                    <div className='ac-left'>
+                        <div className='ac-circle'>
+                            <MailOutlined
+                                className='ac-circle-logo'
+                            />
+                        </div>
+                    </div>
+                    <div className='ac-right'>
+                        <div>
+                            <div>
+                                <span className='ac-title-text'>
+                                    Contact Lists
+                                </span>
+                            </div>
+                            <div>
+                                <span className='ac-value-text'>
+                                    Go To Contact Lists {'>'}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className='action-card'>
-                    card
+                    <div className='ac-left'>
+                        <div className='ac-circle'>
+                            <MailOutlined
+                                className='ac-circle-logo'
+                            />
+                        </div>
+                    </div>
+                    <div className='ac-right'>
+                        <div>
+                            <div>
+                                <span className='ac-title-text'>
+                                    Contacts
+                                </span>
+                            </div>
+                            <div>
+                                <span className='ac-value-text'>
+                                    Go To Contacts {'>'}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className='action-card'>
-                    card
+                    <div className='ac-left'>
+                        <div className='ac-circle'>
+                            <MailOutlined
+                                className='ac-circle-logo'
+                            />
+                        </div>
+                    </div>
+                    <div className='ac-right'>
+                        <div>
+                            <div>
+                                <span className='ac-title-text'>
+                                    Settings
+                                </span>
+                            </div>
+                            <div>
+                                <span className='ac-value-text'>
+                                    Go To User Settings {'>'}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
