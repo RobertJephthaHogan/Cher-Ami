@@ -292,7 +292,8 @@
 }
 
 .pricing-section {
-    margin-top: 30px
+    margin-top: 50px;
+    margin-bottom: 100px;
 }
 
 .pricing-info-text-container {
@@ -321,4 +322,45 @@
 
 .pdtc {
     margin-top: 10px
+}
+
+.pricing-card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+    margin: 50px 100px
+}
+
+.pricing-card {
+    border: 1px solid #dfdfdf;
+    min-height: 150px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pc-top {
+    padding: 10px
+}
+
+.tier-title-text {
+    font-size: 25px;
+}
+
+.tier-contact-limit-text {
+    color: #777777
+}
+
+.pc-bottom {
+    padding: 10px
+}
+
+.amount-text {
+   font-size: 30px 
+}
+
+.a-month-text {
+    margin-left: 3px;
+    color: #999999;
 }

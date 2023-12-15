@@ -248,6 +248,96 @@ export default function Homepage() {
                         </div>
                     </div>
                 </div>
+                <div className='pricing-card-container'>
+                    <div className='pricing-card'>
+                        <div className='pc-top'>
+                            <div>
+                                <span className='tier-title-text'>
+                                    Free
+                                </span>
+                            </div>
+                            <div>
+                                <span className='tier-contact-limit-text'>
+                                    Up to 25 contacts
+                                </span>
+                            </div>
+                        </div>
+                        <div className='pc-bottom'>
+                            <span className='amount-text'>
+                                $0
+                            </span>
+                            <span className='a-month-text'>
+                                /month
+                            </span>
+                        </div>
+                    </div>
+                    <div className='pricing-card'>
+                        <div className='pc-top'>
+                            <div>
+                                <span className='tier-title-text'>
+                                    Starter
+                                </span>
+                            </div>
+                            <div>
+                                <span className='tier-contact-limit-text'>
+                                    Up to 5,000 contacts
+                                </span>
+                            </div>
+                        </div>
+                        <div className='pc-bottom'>
+                            <span className='amount-text'>
+                                $49
+                            </span>
+                            <span className='a-month-text'>
+                                /month
+                            </span>
+                        </div>
+                    </div>
+                    <div className='pricing-card'>
+                        <div className='pc-top'>
+                            <div>
+                                <span className='tier-title-text'>
+                                    Pro
+                                </span>
+                            </div>
+                            <div>
+                                <span className='tier-contact-limit-text'>
+                                    Up to 25,000 contacts
+                                </span>
+                            </div>
+                        </div>
+                        <div className='pc-bottom'>
+                            <span className='amount-text'>
+                                $99
+                            </span>
+                            <span className='a-month-text'>
+                                /month
+                            </span>
+                        </div>
+                    </div>
+                    <div className='pricing-card'>
+                        <div className='pc-top'>
+                            <div>
+                                <span className='tier-title-text'>
+                                    Ultimate
+                                </span>
+                            </div>
+                            <div>
+                                <span className='tier-contact-limit-text'>
+                                    Unlimited Contacts
+                                </span>
+                            </div>
+                        </div>
+                        <div className='pc-bottom'>
+                            <span className='amount-text'>
+                                $0
+                            </span>
+                            <span className='a-month-text'>
+                                /month
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
