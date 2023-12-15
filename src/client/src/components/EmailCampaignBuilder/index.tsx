@@ -10,6 +10,8 @@ import { emailCampaignService } from '../../services/emailCampaign.service';
 import dayjs from 'dayjs';
 import { store } from '../../redux/store';
 import emailCampaignActions from '../../redux/actions/emailCampaign';
+import ExclamationOutlined from '@ant-design/icons/ExclamationOutlined'
+import { useNavigate } from 'react-router-dom';
 
 
 const { TextArea } = Input;
@@ -30,6 +32,7 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
     const [verificationData, setVerificationData] = useState<any>()
     const [frequencyVerificationData, setFrequencyVerificationData] = useState<any>()
     const [resetMode, setResetMode] = useState<boolean>(false)
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -244,6 +247,14 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
         
     }
 
+        
+    function goToSettingSendFromEmails() {
+        navigate('/settings')
+        setTimeout(function() {
+            document?.getElementById('sf-emails-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }, 25);
+    }
+
 
     return (
         <div className='email-campaign-builder'>
@@ -311,7 +322,7 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
                         : null
                     }
                 </div>
-                <div>
+                <div className='select-row'>
                     <Select
                         showSearch
                         placeholder="Select a 'send from' email"
@@ -322,6 +333,32 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
                         filterOption={filterOption}
                         options={sendFromEmailOptions}
                     />
+                    {
+                        !sendFromEmailOptions?.length
+                        ? (
+                            <div className='no-sf-emails-alert-container'>
+                                <div>
+                                    <div className='error-icon'>
+                                        <ExclamationOutlined className='error-excla'/>
+                                    </div>
+                                </div>
+                                <div className='sf-email-error-text-container'>
+                                    <span className='sf-email-error-text'>
+                                        You have not added any 'send from' email addresses to you account. 
+                                        <span 
+                                            className='sp-nav'
+                                            onClick={() => goToSettingSendFromEmails()}
+                                        >
+                                            Navigate to the settings page
+                                        </span>
+                                        , and add your 'send from' email address credentials
+                                    </span>
+                                </div>
+                            </div>
+                        )
+                        : null
+                    }
+                    
                 </div>
             </div>
 

@@ -296,7 +296,10 @@ export default function Settings() {
                 <div className='twilio-connect-wrapper'>
                     <TwilioLoginForm/>
                 </div>
-                <div className='ci-sf-section-subtitle-container'>
+                <div 
+                    className='ci-sf-section-subtitle-container'
+                    id='sf-emails-section'
+                >
                     <span>
                         Email Addresses
                     </span>
