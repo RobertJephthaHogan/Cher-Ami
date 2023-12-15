@@ -290,3 +290,35 @@
     font-weight: 300;
     text-align: center;
 }
+
+.pricing-section {
+    margin-top: 30px
+}
+
+.pricing-info-text-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.simple-pricing-text {
+    font-size: 50px;
+}
+
+.sp-row {
+    display: flex;
+    justify-content: center;
+}
+
+.pricing-description {
+    display: flex;
+    text-align: center;
+}
+
+.twi-txt {
+    margin-top: 20px;
+}
+
+.pdtc {
+    margin-top: 10px
+}

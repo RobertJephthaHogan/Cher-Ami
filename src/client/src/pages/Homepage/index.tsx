@@ -227,6 +227,28 @@ export default function Homepage() {
                     </div>
                 </div>
             </div>
+            <div className='pricing-section'>
+                <div className='pricing-info-text-container'>
+                    <div>
+                        <div className='sp-row'>
+                            <span className='simple-pricing-text'>
+                                Simple Pricing
+                            </span>
+                        </div>
+                        <div className='pdtc'>
+                            <span className='pricing-description'>
+                                Dont be forced to renegotiate rates as you grow. We provide simple, <br/>
+                                scalable pricing to make things simple for you. 
+                            </span>
+                        </div>
+                        <div className='sp-row'>
+                            <span className='pricing-description twi-txt'>
+                                *Does not include the Twilio per message cost of $.0079
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
