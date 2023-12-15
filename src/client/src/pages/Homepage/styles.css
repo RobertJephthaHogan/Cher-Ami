@@ -254,6 +254,7 @@
 
 .gsis-guide-text {
     color: #1890FF;
+    cursor: pointer;
 }
 
 .get-started-cards-section {
@@ -289,4 +290,83 @@
     font-size: 16px;
     font-weight: 300;
     text-align: center;
+}
+
+.pricing-section {
+    margin-top: 200px;
+    margin-bottom: 300px;
+}
+
+.pricing-info-text-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.simple-pricing-text {
+    font-size: 50px;
+    font-weight: 300;
+}
+
+.sp-row {
+    display: flex;
+    justify-content: center;
+}
+
+.pricing-description {
+    display: flex;
+    text-align: center;
+}
+
+.twi-txt {
+    margin-top: 20px;
+}
+
+.pdtc {
+    margin-top: 30px
+}
+
+.pricing-card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+    margin: 50px 100px
+}
+
+.pricing-card {
+    border: 1px solid #dfdfdf;
+    min-height: 150px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pc-top {
+    padding: 10px
+}
+
+.tier-title-text {
+    font-size: 25px;
+}
+
+.tier-contact-limit-text {
+    color: #777777
+}
+
+.pc-bottom {
+    padding: 10px
+}
+
+.amount-text {
+   font-size: 30px 
+}
+
+.a-month-text {
+    margin-left: 3px;
+    color: #999999;
+}
+
+.guide-link {
+    text-decoration: underline;
 }

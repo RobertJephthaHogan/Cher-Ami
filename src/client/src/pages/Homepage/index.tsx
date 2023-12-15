@@ -175,8 +175,11 @@ export default function Homepage() {
                             </span>
                         </div>
                         <div className='gsis-text-container gsis-tcb'>
-                            <span className='gsis-guide-text'>
-                                Check out our quick-start guide here.
+                            <span 
+                                className='gsis-guide-text'
+                                onClick={() => navigate('/quick-start-guide')}
+                            >
+                                Check out our quick-start guide here {'>'}
                             </span>
                         </div>
                     </div>
@@ -224,6 +227,121 @@ export default function Homepage() {
                             </span>
                         </div>
                     </div>
+                    </div>
+                </div>
+            </div>
+            <div 
+                className='pricing-section'
+                id='pricing-section'
+            >
+                <div className='pricing-info-text-container'>
+                    <div>
+                        <div className='sp-row'>
+                            <span className='simple-pricing-text'>
+                                Simple Pricing
+                            </span>
+                        </div>
+                        <div className='pdtc'>
+                            <span className='pricing-description'>
+                                Dont be forced to renegotiate rates as you grow. We provide simple, <br/>
+                                scalable pricing to make things simple for you. 
+                            </span>
+                        </div>
+                        <div className='sp-row'>
+                            <span className='pricing-description twi-txt'>
+                                *Does not include the Twilio per message cost of $.0079
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div className='pricing-card-container'>
+                    <div className='pricing-card'>
+                        <div className='pc-top'>
+                            <div>
+                                <span className='tier-title-text'>
+                                    Free
+                                </span>
+                            </div>
+                            <div>
+                                <span className='tier-contact-limit-text'>
+                                    Up to 25 contacts
+                                </span>
+                            </div>
+                        </div>
+                        <div className='pc-bottom'>
+                            <span className='amount-text'>
+                                $0
+                            </span>
+                            <span className='a-month-text'>
+                                /month
+                            </span>
+                        </div>
+                    </div>
+                    <div className='pricing-card'>
+                        <div className='pc-top'>
+                            <div>
+                                <span className='tier-title-text'>
+                                    Starter
+                                </span>
+                            </div>
+                            <div>
+                                <span className='tier-contact-limit-text'>
+                                    Up to 5,000 contacts
+                                </span>
+                            </div>
+                        </div>
+                        <div className='pc-bottom'>
+                            <span className='amount-text'>
+                                $49
+                            </span>
+                            <span className='a-month-text'>
+                                /month
+                            </span>
+                        </div>
+                    </div>
+                    <div className='pricing-card'>
+                        <div className='pc-top'>
+                            <div>
+                                <span className='tier-title-text'>
+                                    Pro
+                                </span>
+                            </div>
+                            <div>
+                                <span className='tier-contact-limit-text'>
+                                    Up to 25,000 contacts
+                                </span>
+                            </div>
+                        </div>
+                        <div className='pc-bottom'>
+                            <span className='amount-text'>
+                                $99
+                            </span>
+                            <span className='a-month-text'>
+                                /month
+                            </span>
+                        </div>
+                    </div>
+                    <div className='pricing-card'>
+                        <div className='pc-top'>
+                            <div>
+                                <span className='tier-title-text'>
+                                    Ultimate
+                                </span>
+                            </div>
+                            <div>
+                                <span className='tier-contact-limit-text'>
+                                    Unlimited Contacts
+                                </span>
+                            </div>
+                        </div>
+                        <div className='pc-bottom'>
+                            <span className='amount-text'>
+                                $0
+                            </span>
+                            <span className='a-month-text'>
+                                /month
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>

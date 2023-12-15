@@ -7,6 +7,14 @@ export default function HomepageHeader() {
 
     const navigate = useNavigate()
 
+    
+    function goToPricing() {
+        navigate('/')
+        setTimeout(function() {
+            document?.getElementById('pricing-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }, 25);
+    }
+
     return (
         <div className='hp-header'>
             <div className='hp-header-left'>
@@ -37,7 +45,10 @@ export default function HomepageHeader() {
 
             </div>
             <div className='hp-header-right'>
-                <div className='header-item-container h-item'>
+                <div 
+                    className='header-item-container h-item'
+                    onClick={goToPricing}
+                >
                     <span className='header-item-text'>
                         Pricing
                     </span>
