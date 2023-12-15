@@ -254,6 +254,7 @@
 
 .gsis-guide-text {
     color: #1890FF;
+    cursor: pointer;
 }
 
 .get-started-cards-section {
@@ -364,4 +365,8 @@
 .a-month-text {
     margin-left: 3px;
     color: #999999;
+}
+
+.guide-link {
+    text-decoration: underline;
 }

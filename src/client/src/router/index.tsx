@@ -17,6 +17,7 @@ import TextMessage from "../pages/TextMessage";
 import PhoneCall from "../pages/PhoneCall";
 import AboutUs from "../pages/AboutUs";
 import Welcome from "../pages/Welcome";
+import QuickStartGuide from "../pages/QuickStartGuide";
 
 
 
@@ -29,7 +30,7 @@ export const router = createBrowserRouter([
             path: "/",
             element: <Homepage />,
         },
-		{
+		    {
             path: "/about",
             element: <AboutUs />,
         },
@@ -41,10 +42,14 @@ export const router = createBrowserRouter([
             path: "/signup",
             element: <SignUp />,
         },
-		{
+		    {
             path: "/welcome",
             element: <Welcome />,
         },
+        {
+          path: "/quick-start-guide",
+          element: <QuickStartGuide />,
+      },
       ],
     },
     {

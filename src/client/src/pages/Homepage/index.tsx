@@ -175,8 +175,11 @@ export default function Homepage() {
                             </span>
                         </div>
                         <div className='gsis-text-container gsis-tcb'>
-                            <span className='gsis-guide-text'>
-                                Check out our quick-start guide here.
+                            <span 
+                                className='gsis-guide-text'
+                                onClick={() => navigate('/quick-start-guide')}
+                            >
+                                Check out our quick-start guide here {'>'}
                             </span>
                         </div>
                     </div>
