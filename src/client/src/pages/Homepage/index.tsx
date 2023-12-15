@@ -227,7 +227,10 @@ export default function Homepage() {
                     </div>
                 </div>
             </div>
-            <div className='pricing-section'>
+            <div 
+                className='pricing-section'
+                id='pricing-section'
+            >
                 <div className='pricing-info-text-container'>
                     <div>
                         <div className='sp-row'>

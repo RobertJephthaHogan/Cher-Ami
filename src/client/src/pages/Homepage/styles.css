@@ -292,8 +292,8 @@
 }
 
 .pricing-section {
-    margin-top: 50px;
-    margin-bottom: 100px;
+    margin-top: 200px;
+    margin-bottom: 300px;
 }
 
 .pricing-info-text-container {
@@ -304,6 +304,7 @@
 
 .simple-pricing-text {
     font-size: 50px;
+    font-weight: 300;
 }
 
 .sp-row {
@@ -321,7 +322,7 @@
 }
 
 .pdtc {
-    margin-top: 10px
+    margin-top: 30px
 }
 
 .pricing-card-container {
