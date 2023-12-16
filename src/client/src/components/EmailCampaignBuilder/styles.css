@@ -63,3 +63,8 @@
     cursor: pointer;
     padding-left: 5px
 }
+
+.no-contact-lists-alert-container {
+    display: flex;
+    margin-top: 10px
+}
