@@ -10,6 +10,9 @@ import { emailCampaignService } from '../../services/emailCampaign.service';
 import dayjs from 'dayjs';
 import { store } from '../../redux/store';
 import emailCampaignActions from '../../redux/actions/emailCampaign';
+import ExclamationOutlined from '@ant-design/icons/ExclamationOutlined'
+import { useNavigate } from 'react-router-dom';
+import contactListActions from '../../redux/actions/contactList';
 
 
 const { TextArea } = Input;
@@ -22,6 +25,7 @@ interface EmailCampaignBuilderProps {
 export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
+    const userContactLists = useSelector((state: any) => state.contactLists?.queryResult ?? [])
     const [sendFromEmailOptions, setSendFromEmailOptions] = useState<any>([])
     const [fieldValues, setFieldValues] = useState<any>({
         recipientContactLists: []
@@ -30,7 +34,16 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
     const [verificationData, setVerificationData] = useState<any>()
     const [frequencyVerificationData, setFrequencyVerificationData] = useState<any>()
     const [resetMode, setResetMode] = useState<boolean>(false)
+    const navigate = useNavigate()
 
+    
+    useEffect(() => {
+        setComponentData()
+    }, [])
+
+    function setComponentData() {
+        store.dispatch(contactListActions.setContactLists(currentUser?._id))
+    }
 
     useEffect(() => {
 
@@ -244,6 +257,14 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
         
     }
 
+        
+    function goToSettingSendFromEmails() {
+        navigate('/settings')
+        setTimeout(function() {
+            document?.getElementById('sf-emails-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }, 25);
+    }
+
 
     return (
         <div className='email-campaign-builder'>
@@ -311,7 +332,7 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
                         : null
                     }
                 </div>
-                <div>
+                <div className='select-row'>
                     <Select
                         showSearch
                         placeholder="Select a 'send from' email"
@@ -322,6 +343,32 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
                         filterOption={filterOption}
                         options={sendFromEmailOptions}
                     />
+                    {
+                        !sendFromEmailOptions?.length
+                        ? (
+                            <div className='no-sf-emails-alert-container'>
+                                <div>
+                                    <div className='error-icon'>
+                                        <ExclamationOutlined className='error-excla'/>
+                                    </div>
+                                </div>
+                                <div className='sf-email-error-text-container'>
+                                    <span className='sf-email-error-text'>
+                                        You have not added any 'send from' email addresses to you account. 
+                                        <span 
+                                            className='sp-nav'
+                                            onClick={() => goToSettingSendFromEmails()}
+                                        >
+                                            Navigate to the settings page
+                                        </span>
+                                        , and add your 'send from' email address credentials
+                                    </span>
+                                </div>
+                            </div>
+                        )
+                        : null
+                    }
+                    
                 </div>
             </div>
 
@@ -371,6 +418,31 @@ export default function EmailCampaignBuilder(props: EmailCampaignBuilderProps) {
                         selected={fieldValues?.recipientContactLists}
                     />
                 </div>
+                {
+                    !userContactLists?.length
+                    ? (
+                        <div className='no-contact-lists-alert-container'>
+                            <div>
+                                <div className='error-icon'>
+                                    <ExclamationOutlined className='error-excla'/>
+                                </div>
+                            </div>
+                            <div className='sf-email-error-text-container'>
+                                <span className='sf-email-error-text'>
+                                    You have not added any contact lists to you account. 
+                                    <span 
+                                        className='sp-nav'
+                                        onClick={() => navigate('/contact-lists')}
+                                    >
+                                        Navigate to the contact list page
+                                    </span>
+                                    , and add a contact list to send your campaigns to.
+                                </span>
+                            </div>
+                        </div>
+                    )
+                    : null
+                }
             </div>
 
             <div className='campaign-input-row'>
