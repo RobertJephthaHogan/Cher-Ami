@@ -300,7 +300,7 @@ export default function Settings() {
                     className='ci-sf-section-subtitle-container'
                     id='sf-emails-section'
                 >
-                    <span>
+                    <span className='sf-email-address-section-title'>
                         Email Addresses
                     </span>
                 </div>
@@ -323,7 +323,7 @@ export default function Settings() {
                         columns={emailAddressesColumns} 
                     />
                 </div>
-                <div className='ci-sf-section-subtitle-container'>
+                {/* <div className='ci-sf-section-subtitle-container'>
                     <span>
                         Phone Numbers
                     </span>
@@ -339,7 +339,7 @@ export default function Settings() {
                         dataSource={dataSource} 
                         columns={columns} 
                     />
-                </div>
+                </div> */}
             </div>
 
 

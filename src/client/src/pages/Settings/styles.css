@@ -3,6 +3,7 @@
 
 .settings-page {
     width: 100%;
+    padding-bottom: 500px;
 }
 
 .settings-topbar {
@@ -125,7 +126,7 @@
 
 .ci-sf-section-subtitle-container {
     margin: 10px 0px;
-    margin-top: 50px;
+    margin-top: 100px;
 }
 
 .ci-sf-btn-container {
@@ -134,4 +135,9 @@
 
 .twilio-connect-wrapper {
     margin-top: 50px;
+}
+
+.sf-email-address-section-title {
+    font-size: 20px;
+    font-weight: 500;
 }
