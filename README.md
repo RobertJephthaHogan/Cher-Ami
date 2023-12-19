@@ -6,9 +6,9 @@
 
 
 # Table of Contents
-1. [Overview](https://github.com/RobertJephthaHogan/Cher-Ami/edit/main/README.md#overview)
-2. [Running Development Environment](https://github.com/RobertJephthaHogan/Cher-Ami/edit/main/README.md#development-environment)
-3. [Running Production Environment](https://github.com/RobertJephthaHogan/Cher-Ami/edit/main/README.md#production-environment)
+1. [Overview](https://github.com/RobertJephthaHogan/Cher-Ami/blob/main/README.md#overview)
+2. [Running Development Environment](https://github.com/RobertJephthaHogan/Cher-Ami/blob/main/README.md#development-environment)
+3. [Running Production Environment](https://github.com/RobertJephthaHogan/Cher-Ami/blob/main/README.md#production-environment)
 
 
 
