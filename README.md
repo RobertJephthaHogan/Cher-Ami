@@ -83,7 +83,16 @@ npm start
 <br/>
 
 # Production Environment
-Coming soon
+To run the application for prod, you will need Docker and Docker Compose installed on your machine <br/>
+Once you have Docker and Docker compose installed <br/>
+Navigate to the /src directory and run docker-compose up:
+```
+cd src
+```
+```
+docker-compose up
+```
+
 <br/>
 <br/>
 <br/>
