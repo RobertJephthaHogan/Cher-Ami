@@ -28,22 +28,23 @@ Coming soon
 
 # Development Environment
 Instructions for running your development environment:
+
 ## Running the Server
-navigate to the /src/server direcory of the application
+navigate to the /src/server direcory of the application:
 ```
 cd src
 cd server
 ```
-create your python environment
+create your python environment:
 ```
 python -m venv <environment_name>
 ```
-activate your environment
+activate your environment:
 ```
 source <environment_name>/scripts/activate
 ```
 
-install the requirements 
+install the requirements:
 ```
 pip install -r requirements.txt
 ```
@@ -52,6 +53,24 @@ after installation is complete, run the server by running
 ```
 python main.py
 ```
+
+## Running the Client
+navigate to the /src/client direcory of the application
+```
+cd src
+cd client
+```
+
+install the required packages:
+```
+npm install
+```
+
+after installation is complete, run the client 
+```
+npm start
+```
+
 <br/>
 <br/>
 <br/>
