@@ -2,7 +2,7 @@
 
 #### Omnichannel communication platform  
 - Custom SMTP service for sending emails given SMTP username and password
-- Twilio integration for sending text emails and voice campiagns
+- Twilio integration for sending text and voice campiagns given twilio credentials
 
 
 # Table of Contents
