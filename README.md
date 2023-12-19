@@ -27,7 +27,31 @@ Coming soon
 <br/>
 
 # Development Environment
-Coming soon
+Instructions for running your development environment:
+## Running the Server
+navigate to the /src/server direcory of the application
+```
+cd src
+cd server
+```
+create your python environment
+```
+python -m venv <environment_name>
+```
+activate your environment
+```
+source <environment_name>/scripts/activate
+```
+
+install the requirements 
+```
+pip install -r requirements.txt
+```
+
+after installation is complete, run the server by running
+```
+python main.py
+```
 <br/>
 <br/>
 <br/>
