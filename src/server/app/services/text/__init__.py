@@ -1,6 +1,7 @@
 import os
 import json
 from dotenv import load_dotenv
+from app.helpers.encoders import DateTimeEncoder
 from twilio.rest import Client
 
 
@@ -35,11 +36,11 @@ class TextService:
         
         message_info = message.__dict__
         message_info.pop("_version", None)
-        print('message_info', json.dumps(message_info, indent=4))
+        print('message_info', json.dumps(message_info, indent=4, cls=DateTimeEncoder))
         
         
         #print(json.dumps(message.__dict__, indent=4))
-        return {'data': 'data'}
+        return {'data': message_info}
         
 
         
