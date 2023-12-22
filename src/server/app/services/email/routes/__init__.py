@@ -15,7 +15,7 @@ hash_helper = CryptContext(schemes=["bcrypt"])
 class EmailRouter:
     
     
-    @router.get("/test", response_description="Test sending and email", response_model=Response)
+    @router.get("/test", response_description="Test sending email", response_model=Response)
     async def testEmail():
         
         result = EmailService.testSendEmail()
