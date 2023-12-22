@@ -4,6 +4,8 @@ from beanie import Document
 from pydantic import BaseModel, EmailStr, Field
 
 
+# TODO: ADD SUBJECT FIELD
+
 class Email(Document):
     id: Optional[str] = Field(...)
     emailSender: Optional[str] = Field(...)
