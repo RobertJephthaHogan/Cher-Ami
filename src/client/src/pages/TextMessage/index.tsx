@@ -4,10 +4,44 @@ import './styles.css'
 import NotificationOutlined from '@ant-design/icons/NotificationOutlined'
 import SendOutlined from '@ant-design/icons/SendOutlined'
 import MailOutlined from '@ant-design/icons/MailOutlined'
-import { Button } from 'antd'
+import { Button, Table } from 'antd'
 
 
 export default function TextMessage() {
+
+
+    const dataSource = [
+        {
+          key: '1',
+          name: 'Mike',
+          age: 32,
+          address: '10 Downing Street',
+        },
+        {
+          key: '2',
+          name: 'John',
+          age: 42,
+          address: '10 Downing Street',
+        },
+    ];
+    
+    const columns = [
+        {
+            title: 'Name',
+            dataIndex: 'name',
+            key: 'name',
+        },
+        {
+            title: 'Age',
+            dataIndex: 'age',
+            key: 'age',
+        },
+        {
+            title: 'Address',
+            dataIndex: 'address',
+            key: 'address',
+        },
+    ];
 
     return (
         <div className='text-message-component'>
@@ -91,10 +125,10 @@ export default function TextMessage() {
 
             <div className='text-component-body'>
                 <div className='text-component-table-container'>
-                    {/* <Table 
-                        dataSource={tableData} 
+                    <Table 
+                        dataSource={dataSource} 
                         columns={columns} 
-                    /> */}
+                    />
                 </div>
             </div>
         </div>
