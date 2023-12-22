@@ -11,6 +11,7 @@ from app.services.contact_list.routes import router as ContactListRouter
 from app.services.email_campaign.routes import router as EmailCampaignRouter
 from app.services.scheduled_service.routes import router as ScheduledServiceRouter
 from app.services.twilio.routes import router as TwilioRouter
+from app.services.text.routes import router as TextRouter
 
 
 # Create the App
@@ -62,3 +63,4 @@ app.include_router(ContactListRouter, tags=["Contact List"], prefix="/contact_li
 app.include_router(EmailCampaignRouter, tags=["Email Campaign"], prefix="/email_campaign")
 app.include_router(ScheduledServiceRouter, tags=["Scheduled Service"], prefix="/scheduled_service")
 app.include_router(TwilioRouter, tags=["Twilio Router"], prefix="/twilio")
+app.include_router(TextRouter, tags=["Text Router"], prefix="/text")
