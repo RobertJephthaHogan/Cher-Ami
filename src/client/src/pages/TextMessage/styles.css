@@ -3,7 +3,61 @@
 
 
 .text-message-component {
+    width: 100%
+}
+
+.text-message-title-bar {
+    margin: 20px 50px;
+}
+
+.text-message-title {
+    font-size: 25px;
+}
+
+.text-data-bar {
+    display: flex;
+    padding: 0px 50px;
+}
+
+.text-data-bar-info-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 40px; 
+    width: 80%;
+}
+
+.text-data-bar-info-card {
+    border: 1px solid #dfdfdf;
+    display: flex;
+    min-height: 100px;
+    border-radius: 10px;
+}
+
+.text-dbic-left {
+    background-color: #F6F6F6;
+    border-radius: 10px 0px 0px 10px;
+    width: 30%;
     display: flex;
     justify-content: center;
-    margin-top: 100px;
+    align-items: center;
+}
+
+.text-dbic-right {
+    width: 70%;
+    display: flex;
+    align-items: center;
+}
+
+.text-dbic-right-content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.text-dbic-logo {
+    font-size: 50px;
+}
+
+.text-component-body {
+    margin: 50px 50px; 
 }
