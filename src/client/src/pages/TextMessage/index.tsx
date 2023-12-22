@@ -3,7 +3,7 @@ import ComingSoon from '../../components/ComingSoon'
 import './styles.css'
 import NotificationOutlined from '@ant-design/icons/NotificationOutlined'
 import SendOutlined from '@ant-design/icons/SendOutlined'
-import MailOutlined from '@ant-design/icons/MailOutlined'
+import MessageOutlined from '@ant-design/icons/MessageOutlined'
 import { Button, Table } from 'antd'
 
 
@@ -82,7 +82,7 @@ export default function TextMessage() {
                         <div className='text-dbic-right'>
                             <div className='text-dbic-right-content'>
                                 <span className='dbic-main-text'>
-                                    Emails Sent
+                                    Texts Sent
                                 </span>
                                 <span className='dbic-sub-text'>
                                     124,031
@@ -93,7 +93,7 @@ export default function TextMessage() {
                     <div className='text-data-bar-info-card'>
                         <div className='text-dbic-left'>
                             <span>
-                                <MailOutlined
+                                <MessageOutlined
                                     className='text-dbic-logo'
                                 />
                             </span>
