@@ -104,6 +104,12 @@ class Helpers:
             result_dates.append(next_date.strftime('%Y-%m-%d'))
             #next_date += timedelta(days=7)
             
+        # if result_dates is only 1 long, add date one week from first to prevent date of removal err
+        if len(result_dates) == 1:
+            first_date = datetime.strptime(result_dates[0], '%Y-%m-%d')
+            second_date = first_date + timedelta(weeks=1) # Add one week to the first date
+            result_dates.append(second_date.strftime('%Y-%m-%d'))      
+        
         sorted_dates = sorted(result_dates, key=lambda x: datetime.strptime(x, '%Y-%m-%d'))
 
         # Get today's date
