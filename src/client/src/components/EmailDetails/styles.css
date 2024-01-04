@@ -68,15 +68,17 @@
 }
 
 .ed-gi-body {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
 }
 
 .ed-gi-body-left {
-    width: 50%;
+    width: 100%;
 }
 
 .ed-gi-body-right {
-    width: 50%;
+    width: 100%;
 }
 
 .ed-body {

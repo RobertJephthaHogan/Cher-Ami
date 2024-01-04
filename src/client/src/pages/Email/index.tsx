@@ -268,7 +268,9 @@ export default function Email() {
                 footer={null}
                 //height={500}
             >
-                <EmailDetails/>
+                <EmailDetails
+                    emailData={selectedDetails}
+                />
             </Modal>
 
         </div>

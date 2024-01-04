@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles.css'
 import { HistoryOutlined, SnippetsOutlined } from '@ant-design/icons'
 
 
 
-export default function EmailDetails() {
+interface EmailDetailProps {
+    emailData?: any
+}
+
+export default function EmailDetails(props: EmailDetailProps) {
 
     const [selectedView, setSelectedView] = useState<string>("general-info")
-
-
 
     return (
         <div className='email-details-component'>
@@ -18,6 +20,7 @@ export default function EmailDetails() {
             />
             <EmailDetailPanels
                 selectedView={selectedView}
+                emailData={props.emailData}
             />
         </div>
     )
@@ -26,9 +29,26 @@ export default function EmailDetails() {
 
 interface EmailDetailPanelsProps {
     selectedView?: string
+    emailData?: any
 }
 
 function EmailDetailPanels(props: EmailDetailPanelsProps) {
+
+    const [numTotalRecipients, setNumTotalRecipients] = useState<null | number>(null)
+
+    function calculateTotalRecipients() {
+        console.log('calculateTotalRecipients', props.emailData)
+
+        const recipientContactLists = props.emailData?.recipientContactLists
+
+        // go through recipient contact lists
+        // add their lengths
+        // set value to 
+    }
+
+    useEffect(() =>{
+        calculateTotalRecipients()
+    }, [props.emailData])
 
     return (
         <div className='ed-body'>
@@ -51,7 +71,7 @@ function EmailDetailPanels(props: EmailDetailPanelsProps) {
                                     </div>
                                     <div>
                                         <span className='info-row-data'>
-                                            adTut67Dasgq212bmkjha97bs
+                                            {props.emailData?.id}
                                         </span>
                                     </div>
                                 </div>
@@ -63,7 +83,7 @@ function EmailDetailPanels(props: EmailDetailPanelsProps) {
                                     </div>
                                     <div>
                                         <span className='info-row-data'>
-                                            Spring Apparel Now In Stock - Broadcast
+                                            {props.emailData?.title}
                                         </span>
                                     </div>
                                 </div>
@@ -75,7 +95,7 @@ function EmailDetailPanels(props: EmailDetailPanelsProps) {
                                     </div>
                                     <div>
                                         <span className='info-row-data'>
-                                            Limited Edition Spring Apparel Now In Stock!
+                                            {props.emailData?.emailSubject}
                                         </span>
                                     </div>
                                 </div>
@@ -87,7 +107,7 @@ function EmailDetailPanels(props: EmailDetailPanelsProps) {
                                     </div>
                                     <div>
                                         <span className='info-row-data'>
-                                            cher.ami.sender.1@gmail.com
+                                            {props.emailData?.sendFromEmail}
                                         </span>
                                     </div>
                                 </div>
@@ -99,7 +119,7 @@ function EmailDetailPanels(props: EmailDetailPanelsProps) {
                                     </div>
                                     <div>
                                         <span className='info-row-data'>
-                                            *Time Here*
+                                            {new Date(props.emailData?.creationTime)?.toLocaleString()}
                                         </span>
                                     </div>
                                 </div>
