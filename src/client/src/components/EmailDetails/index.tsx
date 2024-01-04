@@ -14,10 +14,41 @@ export default function EmailDetails(props: EmailDetailProps) {
 
     return (
         <div className='email-details-component'>
-            <EmailDetailsSidebar
-                setSelectedView={setSelectedView}
-                selectedView={selectedView}
-            />
+            <div className='ed-sidebar'>
+                <div className='ed-sidebar-top'>
+                    <span className='ed-sb-top-title'>
+                        Email Details
+                    </span>
+                </div>
+                <div className='ed-sidebar-menu'>
+                    <div 
+                        className={`ed-sb-menu-item ${selectedView === 'general-info' ? 'ed-smi': ''}`}
+                        onClick={() => setSelectedView("general-info")}
+                    >
+                        <div>
+                            <SnippetsOutlined/>
+                        </div>
+                        <div className='gi-text-container'>
+                            <span className='gi-text'>
+                                General Information
+                            </span>
+                        </div>
+                    </div>
+                    <div 
+                        className={`ed-sb-menu-item ${selectedView === 'history' ? 'ed-smi': ''}`}
+                        onClick={() => setSelectedView("history")}
+                    >
+                        <div>
+                            <HistoryOutlined/>
+                        </div>
+                        <div className='gi-text-container'>
+                            <span className='gi-text'>
+                                History
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <EmailDetailPanels
                 selectedView={selectedView}
                 emailData={props.emailData}
@@ -218,49 +249,3 @@ function EmailDetailPanels(props: EmailDetailPanelsProps) {
 }
 
 
-
-interface EmailDetailsSidebarProps {
-    setSelectedView?: any
-    selectedView?: string
-}
-
-function EmailDetailsSidebar(props: EmailDetailsSidebarProps) {
-
-    return (
-        <div className='ed-sidebar'>
-            <div className='ed-sidebar-top'>
-                <span className='ed-sb-top-title'>
-                    Email Details
-                </span>
-            </div>
-            <div className='ed-sidebar-menu'>
-                <div 
-                    className={`ed-sb-menu-item ${props.selectedView === 'general-info' ? 'ed-smi': ''}`}
-                    onClick={() => props.setSelectedView("general-info")}
-                >
-                    <div>
-                        <SnippetsOutlined/>
-                    </div>
-                    <div className='gi-text-container'>
-                        <span className='gi-text'>
-                            General Information
-                        </span>
-                    </div>
-                </div>
-                <div 
-                    className={`ed-sb-menu-item ${props.selectedView === 'history' ? 'ed-smi': ''}`}
-                    onClick={() => props.setSelectedView("history")}
-                >
-                    <div>
-                        <HistoryOutlined/>
-                    </div>
-                    <div className='gi-text-container'>
-                        <span className='gi-text'>
-                            History
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
