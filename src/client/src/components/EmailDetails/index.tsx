@@ -105,7 +105,81 @@ function EmailDetailPanels(props: EmailDetailPanelsProps) {
                                 </div>
                             </div>
                             <div className='ed-gi-body-right'>
-                                right
+                                <div className='info-row'>
+                                    <div>
+                                        <span className='info-row-title'>
+                                            Total Recipients:
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className='info-row-data'>
+                                            10,123
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className='info-row'>
+                                    <div>
+                                        <span className='info-row-title'>
+                                            Recipient Contact Lists:
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className='info-row-data'>
+                                            Customer List
+                                        </span>
+                                        <span className='info-row-data'>
+                                            Marketing List
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className='info-row'>
+                                    <div>
+                                        <span className='info-row-title'>
+                                            Frequency Interval:
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className='info-row-data'>
+                                            Weekly
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className='info-row'>
+                                    <div>
+                                        <span className='info-row-title'>
+                                            Interval Send Days:
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className='info-row-data'>
+                                            * Add interval send days chips *
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className='info-row'>
+                                    <div>
+                                        <span className='info-row-title'>
+                                            Send Time:
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className='info-row-data'>
+                                            * Add Send Time *
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className='info-row'>
+                                    <div>
+                                        <span className='info-row-title'>
+                                            Status:
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className='info-row-data'>
+                                            * Add status chips *
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
