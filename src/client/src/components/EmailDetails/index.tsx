@@ -35,8 +35,79 @@ function EmailDetailPanels(props: EmailDetailPanelsProps) {
             {
                 props.selectedView === 'general-info' 
                 ? (
-                    <div>
-                        General Info
+                    <div className='ed-general-info'>
+                        <div className='ed-gi-top'>
+                            <span className='ed-gi-text'>
+                                General Information
+                            </span>
+                        </div>
+                        <div className='ed-gi-body'>
+                            <div className='ed-gi-body-left'>
+                                <div className='info-row'>
+                                    <div>
+                                        <span className='info-row-title'>
+                                            Campaign ID:
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className='info-row-data'>
+                                            adTut67Dasgq212bmkjha97bs
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className='info-row'>
+                                    <div>
+                                        <span className='info-row-title'>
+                                            Campaign Title:
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className='info-row-data'>
+                                            Spring Apparel Now In Stock - Broadcast
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className='info-row'>
+                                    <div>
+                                        <span className='info-row-title'>
+                                            Email Subject:
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className='info-row-data'>
+                                            Limited Edition Spring Apparel Now In Stock!
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className='info-row'>
+                                    <div>
+                                        <span className='info-row-title'>
+                                            Email Sent From:
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className='info-row-data'>
+                                            cher.ami.sender.1@gmail.com
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className='info-row'>
+                                    <div>
+                                        <span className='info-row-title'>
+                                            Campaign Creation Time:
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className='info-row-data'>
+                                            *Time Here*
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='ed-gi-body-right'>
+                                right
+                            </div>
+                        </div>
                     </div>
                 ): null
             }
