@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import './styles.css'
 import { HistoryOutlined, SnippetsOutlined } from '@ant-design/icons'
+import { store } from '../../redux/store'
+import contactListActions from '../../redux/actions/contactList'
+import { useSelector } from 'react-redux'
 
 
 
@@ -12,21 +15,32 @@ export default function EmailDetails(props: EmailDetailProps) {
 
     const [selectedView, setSelectedView] = useState<string>("general-info")
     const [numTotalRecipients, setNumTotalRecipients] = useState<null | number>(null)
+    const currentUser = useSelector((state: any) => state.user?.data ?? [])
+    const userContactLists = useSelector((state: any) => state.contactLists?.queryResult ?? [])
 
-
-    function calculateTotalRecipients() {
-        console.log('calculateTotalRecipients', props.emailData)
-
-        const recipientContactLists = props.emailData?.recipientContactLists
-
-        // go through recipient contact lists
-        // add their lengths
-        // set value to 
-    }
 
     useEffect(() =>{
         calculateTotalRecipients()
     }, [props.emailData])
+
+    function setComponentData() {
+        store.dispatch(contactListActions.setContactLists(currentUser?._id))
+    }
+
+    function calculateTotalRecipients() {
+        let numTotal = 0
+        const recipientContactLists = props.emailData?.recipientContactLists
+        let rclData : any[] = []
+        recipientContactLists.forEach((list: any) => {
+            const targetLists = userContactLists.filter((cl: any) => cl.id === list)
+            rclData = targetLists
+        })
+
+        rclData.forEach((list: any) => {
+            numTotal = numTotal + list?.file?.length
+        })
+        setNumTotalRecipients(numTotal)
+    }
 
 
     return (
@@ -148,7 +162,7 @@ export default function EmailDetails(props: EmailDetailProps) {
                                         </div>
                                         <div>
                                             <span className='info-row-data'>
-                                                10,123
+                                                {numTotalRecipients}
                                             </span>
                                         </div>
                                     </div>
@@ -158,13 +172,16 @@ export default function EmailDetails(props: EmailDetailProps) {
                                                 Recipient Contact Lists:
                                             </span>
                                         </div>
-                                        <div>
-                                            <span className='info-row-data'>
-                                                Customer List
-                                            </span>
-                                            <span className='info-row-data'>
-                                                Marketing List
-                                            </span>
+                                        <div className='ir-rcl-container'>
+                                            {
+                                                props.emailData.recipientContactLists.map((rcl: any) => {
+                                                    return (
+                                                        <span className='info-row-data'>
+                                                            {(userContactLists.find((cl: any) => cl.id === rcl))?.name}
+                                                        </span>
+                                                    )
+                                                }) || []
+                                            }
                                         </div>
                                     </div>
                                     <div className='info-row'>
