@@ -32,6 +32,7 @@
 .ed-sb-menu-item {
     display: flex;
     padding: 5px;
+    margin-bottom: 5px;
     border-radius: 10px;
 }
 
@@ -45,6 +46,10 @@
 }
 
 .ed-sb-menu-item:hover {
-    background-color: #fff;
+    background-color: #ffffff79;
     cursor: pointer;
+}
+
+.ed-smi {
+    background-color: #fff;
 }
