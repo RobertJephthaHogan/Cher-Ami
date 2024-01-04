@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
 import emailCampaignActions from '../../redux/actions/emailCampaign'
 import contactListActions from '../../redux/actions/contactList'
+import EmailDetails from '../../components/EmailDetails'
 
 
 export default function Email() {
@@ -267,7 +268,7 @@ export default function Email() {
                 footer={null}
                 //height={500}
             >
-                Details Modal
+                <EmailDetails/>
             </Modal>
 
         </div>

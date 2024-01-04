@@ -1,0 +1,50 @@
+
+
+
+
+
+.email-details-component {
+    width: 750px;
+    height: 500px;
+    display: flex;
+    border-radius: 10px;
+}
+
+.ed-sidebar {
+    width: 200px;
+    background-color: #f1f1f1;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.ed-sidebar-top {
+    padding: 15px;
+}
+
+.ed-sidebar-menu {
+    padding: 15px;
+}
+
+.ed-sb-top-title {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.ed-sb-menu-item {
+    display: flex;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.gi-text-container {
+    padding-left: 8px
+}
+
+.gi-text {
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.ed-sb-menu-item:hover {
+    background-color: #fff;
+    cursor: pointer;
+}
