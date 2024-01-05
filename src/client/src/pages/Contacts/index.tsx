@@ -145,7 +145,9 @@ export default function Contacts() {
                         Filters
                     </span>
                 </div>
-                left
+                <div className='cp-lp-header'>
+                    Coming Soon!
+                </div>
             </div>
             <div className='cp-right-panel'>
                 <div className='cp-rp-header'>
@@ -155,12 +157,12 @@ export default function Contacts() {
                         </span>
                     </div>
                     <div>
-                        <Button 
+                        {/* <Button 
                             className='upload-button'
                             onClick={() => setBatchAddModalOpen(true)}
                         >
                             <UploadOutlined/>
-                        </Button>
+                        </Button> */}
                         <Button 
                             type='primary'
                             onClick={() => setSingleAddModalOpen(true)}
