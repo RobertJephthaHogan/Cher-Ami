@@ -38,3 +38,8 @@ export function datesMatch(date1: any, date2: any) {
     && date1.getMonth() === date2.getMonth() 
     && date1.getDate() === date2.getDate();
 }
+
+export function capitalizeFirstLetter(str: string) {
+  if (str.length === 0) return str; // Check if the string is empty
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}

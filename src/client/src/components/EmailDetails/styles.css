@@ -104,3 +104,21 @@
     display: flex;
     flex-direction: column;
 }
+
+.isd-chip-container {
+    display: flex;
+}
+
+.isd-chip {
+    background-color: #dfdfdf;
+    min-width: 10px;
+    padding: 0px 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.isd-chip-text {
+    color: #000;
+}

@@ -4,6 +4,7 @@ import { HistoryOutlined, SnippetsOutlined } from '@ant-design/icons'
 import { store } from '../../redux/store'
 import contactListActions from '../../redux/actions/contactList'
 import { useSelector } from 'react-redux'
+import { capitalizeFirstLetter } from '../../helpers'
 
 
 
@@ -176,7 +177,10 @@ export default function EmailDetails(props: EmailDetailProps) {
                                             {
                                                 props.emailData.recipientContactLists.map((rcl: any) => {
                                                     return (
-                                                        <span className='info-row-data'>
+                                                        <span
+                                                            className='info-row-data'
+                                                            key={`ir-${rcl}`}
+                                                        >
                                                             {(userContactLists.find((cl: any) => cl.id === rcl))?.name}
                                                         </span>
                                                     )
@@ -192,7 +196,7 @@ export default function EmailDetails(props: EmailDetailProps) {
                                         </div>
                                         <div>
                                             <span className='info-row-data'>
-                                                Weekly
+                                                {capitalizeFirstLetter(props.emailData?.frequency?.recurrence?.frequencyInterval)}
                                             </span>
                                         </div>
                                     </div>
@@ -204,7 +208,18 @@ export default function EmailDetails(props: EmailDetailProps) {
                                         </div>
                                         <div>
                                             <span className='info-row-data'>
-                                                * Add interval send days chips *
+                                                <div className='isd-chip-container'>
+                                                    {props.emailData?.frequency?.recurrence?.intervalSendDays?.map((day: any) => {
+                                                        return (
+                                                            <div className='isd-chip'>
+                                                                <span className='isd-chip-text'>
+                                                                    {day}
+                                                                </span>
+                                                            </div>
+                                                        )
+                                                    })|| []}
+                                                </div>
+                                                
                                             </span>
                                         </div>
                                     </div>
@@ -216,7 +231,7 @@ export default function EmailDetails(props: EmailDetailProps) {
                                         </div>
                                         <div>
                                             <span className='info-row-data'>
-                                                * Add Send Time *
+                                                {new Date(capitalizeFirstLetter(props.emailData?.frequency?.recurrence?.sendTime))?.toLocaleTimeString()}
                                             </span>
                                         </div>
                                     </div>
@@ -228,7 +243,7 @@ export default function EmailDetails(props: EmailDetailProps) {
                                         </div>
                                         <div>
                                             <span className='info-row-data'>
-                                                * Add status chips *
+                                                {props.emailData?.status?.title}
                                             </span>
                                         </div>
                                     </div>
