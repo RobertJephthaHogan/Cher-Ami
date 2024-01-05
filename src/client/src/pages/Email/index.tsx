@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
 import emailCampaignActions from '../../redux/actions/emailCampaign'
 import contactListActions from '../../redux/actions/contactList'
+import EmailDetails from '../../components/EmailDetails'
 
 
 export default function Email() {
@@ -18,6 +19,8 @@ export default function Email() {
     const userEmailCampaigns = useSelector((state: any) => state.emailCampaigns?.queryResult ?? [])
     const [cnecModalOpen, setCnecModalOpen] = useState<any>()
     const [tableData, setTableData] = useState<any>([])
+    const [isDetailsModalOpen, setIsDetailsModalOpen] = useState<boolean>(false)
+    const [selectedDetails, setSelectedDetails] = useState<any>()
 
     
     useEffect(() => {
@@ -41,6 +44,11 @@ export default function Email() {
         }) || []
         setTableData(formattedTableData)
     }, [userEmailCampaigns])
+
+    function viewEmailDetails(emailDetails: any) {
+        setIsDetailsModalOpen(true)
+        setSelectedDetails(emailDetails)
+    }
 
     const columns: any = [
         // {
@@ -123,7 +131,7 @@ export default function Email() {
             key: 'action',
             render: (_: any, record: any) => (
                 <Space size="middle">
-                    <a>Details</a>
+                    <a onClick={() => viewEmailDetails(record)}>Details</a>
                     <a>Use as Template</a>
                 </Space>
             ),
@@ -251,6 +259,20 @@ export default function Email() {
                     closeParent={() => setCnecModalOpen(false)}
                 />
             </Modal>
+
+            <Modal
+                open={isDetailsModalOpen}
+                onCancel={() => setIsDetailsModalOpen(false)}
+                width={750}
+                wrapClassName="no-padding-modal"
+                footer={null}
+                //height={500}
+            >
+                <EmailDetails
+                    emailData={selectedDetails}
+                />
+            </Modal>
+
         </div>
     )
 }

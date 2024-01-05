@@ -1,0 +1,124 @@
+
+
+
+
+
+.email-details-component {
+    width: 750px;
+    height: 500px;
+    display: flex;
+    border-radius: 10px;
+}
+
+.ed-sidebar {
+    width: 200px;
+    background-color: #f1f1f1;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.ed-sidebar-top {
+    padding: 15px;
+}
+
+.ed-sidebar-menu {
+    padding: 15px;
+}
+
+.ed-sb-top-title {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.ed-sb-menu-item {
+    display: flex;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+
+.gi-text-container {
+    padding-left: 8px
+}
+
+.gi-text {
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.ed-sb-menu-item:hover {
+    background-color: #ffffff79;
+    cursor: pointer;
+}
+
+.ed-smi {
+    background-color: #fff;
+}
+
+.ed-general-info {
+    padding: 20px 75px
+}
+
+.ed-gi-top {
+    margin-bottom: 30px
+}
+
+.ed-gi-text {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.ed-gi-body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
+}
+
+.ed-gi-body-left {
+    width: 100%;
+}
+
+.ed-gi-body-right {
+    width: 100%;
+}
+
+.ed-body {
+    width: 550px;
+}
+
+.info-row {
+    margin-bottom: 10px
+}
+
+.info-row-title {
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.info-row-data {
+    font-weight: 500;
+    font-size: 12px;
+    color: #949494;
+}
+
+.ir-rcl-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.isd-chip-container {
+    display: flex;
+}
+
+.isd-chip {
+    background-color: #dfdfdf;
+    min-width: 10px;
+    padding: 0px 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.isd-chip-text {
+    color: #000;
+}
