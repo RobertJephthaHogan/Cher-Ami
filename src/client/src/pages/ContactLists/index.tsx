@@ -119,12 +119,12 @@ export default function ContactLists() {
                     >
                         Create New Contact List
                     </Button>
-                    <Button 
+                    {/* <Button 
                         type='primary'
                         onClick={() => setUpdateCLModalOpen(true)}
                     >
                         Add Contact To Existing List
-                    </Button>
+                    </Button> */}
                 </div>
             </div>
 

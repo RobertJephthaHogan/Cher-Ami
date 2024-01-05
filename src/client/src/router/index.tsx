@@ -18,6 +18,7 @@ import PhoneCall from "../pages/PhoneCall";
 import AboutUs from "../pages/AboutUs";
 import Welcome from "../pages/Welcome";
 import QuickStartGuide from "../pages/QuickStartGuide";
+import ComingSoonPage from "../pages/ComingSoonPage";
 
 
 
@@ -80,7 +81,8 @@ export const router = createBrowserRouter([
 				},
         {
 					path: "/text",
-					element: <TextMessage />,
+					// element: <TextMessage />,
+          element: <ComingSoonPage/>
 				},
         {
 					path: "/call",
