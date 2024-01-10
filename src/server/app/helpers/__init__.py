@@ -179,8 +179,14 @@ class Helpers:
 
 
             result_dates.append(target_date)
+            
+        # Get today's date
+        today = datetime.now().date()
+        
+        # Filter out today's date and find the soonest upcoming date (prevents infinite same day schedule loop)
+        upcoming_dates = [date for date in result_dates if datetime.strptime(str(date.date()), '%Y-%m-%d').date() > today]
 
-        return min(result_dates)
+        return min(upcoming_dates)
     
     def find_initial_monthly_series_occurrence(start_date, series_days):
         result_dates = []
