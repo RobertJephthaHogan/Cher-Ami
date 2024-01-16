@@ -6,8 +6,8 @@
     height: 65px;
     background-color: #000000;
     display: flex;
-    box-shadow: 0px 16px 16px 0px rgba(0, 0, 0, 0.179);
-
+    box-shadow: 0px 16px 16px 0px rgba(0, 0, 0, 0.179) !important;
+    z-index: 50;
 }
 
 .hp-header-left {
