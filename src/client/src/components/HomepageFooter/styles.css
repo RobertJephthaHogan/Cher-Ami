@@ -18,8 +18,30 @@
 
 .footer-bottom {
     height: 20%;
+    display: flex;
+    justify-content: space-between;
 }
 
-.white {
-    color: #fff
+.footer-bottom-left {
+    display: flex;
+    align-items: center;
+}
+
+.footer-bottom-right {
+    display: flex;
+    align-items: center;
+}
+
+.footer-bottom-right {
+    
+}
+
+.fbl-cr-text {
+    color: #bebebe;
+    font-size: 16px;
+}
+
+.fbl-pp-text {
+    color: #bebebe;
+    font-size: 16px;
 }
