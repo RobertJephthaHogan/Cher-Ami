@@ -1,0 +1,115 @@
+
+
+
+
+.homepage-footer {
+    height: 300px;
+    background-color: #000;
+    padding: 0 6em;
+}
+
+.footer-divider {
+    border-bottom: 1px solid #616161
+}
+
+.footer-top {
+    height: calc(80% - 1px); /* -1px for divider height */
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.footer-top-content-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.ft-left {
+    width: 20%;
+}
+
+.ft-right {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.logo-container {
+    display: flex;
+    cursor: pointer;
+}
+
+.logo-img {
+    width: 45px;
+    height: 45px;
+    background-image: url('../../assets/images/inverted_carrier_pigeon_2.jpg'); 
+    background-size: cover;
+}
+
+
+.logo-title-container {
+    margin-left: 10px;
+}
+
+.title-text-top {
+    color: #ffffff
+}
+
+.title-text-bottom {
+    color: #ffffff
+}
+
+
+.footer-bottom {
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-bottom-left {
+    display: flex;
+    align-items: center;
+}
+
+.footer-bottom-right {
+    display: flex;
+    align-items: center;
+}
+
+.footer-bottom-right {
+    
+}
+
+.fbl-cr-text {
+    color: #838383;
+    font-size: 16px;
+}
+
+.fbl-pp-text {
+    color: #838383;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.ft-menu-option-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ft-menu-option {
+    font-size: 16px;
+    color: #838383;
+    margin: 3px 0;
+    cursor: pointer;
+}
+
+.ft-menu-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff
+}
+
+.white {
+    color: #fff
+}
