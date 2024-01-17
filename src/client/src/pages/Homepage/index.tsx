@@ -199,35 +199,50 @@ export default function Homepage() {
                                 </span>
                             </div>
                         </div>
+                        <div className='gs-card-media-container'>
+                            <div className='twilio-connect-img'>
+
+                            </div>
+                        </div>
                     </div>
                     <div className='gs-card'>
-                    <div className='gs-card-text'>
-                        <div className='gs-card-text-row'>
-                            <span className='gs-card-title'>
-                                Upload your contacts
-                            </span>
+                        <div className='gs-card-text'>
+                            <div className='gs-card-text-row'>
+                                <span className='gs-card-title'>
+                                    Upload your contacts
+                                </span>
+                            </div>
+                            <div className='gs-card-text-row'>
+                                <span className='gs-card-subtitle'>
+                                    Upload you contact lists with a few easy clicks
+                                </span>
+                            </div>
                         </div>
-                        <div className='gs-card-text-row'>
-                            <span className='gs-card-subtitle'>
-                                Upload you contact lists with a few easy clicks
-                            </span>
+                        <div className='gs-card-media-container'>
+                            <div className='upload-contacts-img'>
+
+                            </div>
                         </div>
-                    </div>
                     </div>
                     <div className='gs-card'>
-                    <div className='gs-card-text'>
-                        <div className='gs-card-text-row'>
-                            <span className='gs-card-title'>
-                                Contact your customers
-                            </span>
+                        <div className='gs-card-text'>
+                            <div className='gs-card-text-row'>
+                                <span className='gs-card-title'>
+                                    Contact your customers
+                                </span>
+                            </div>
+                            <div className='gs-card-text-row'>
+                                <span className='gs-card-subtitle'>
+                                    Send or schedule messages <br/>
+                                    with our platform
+                                </span>
+                            </div>
                         </div>
-                        <div className='gs-card-text-row'>
-                            <span className='gs-card-subtitle'>
-                                Send or schedule messages <br/>
-                                with our platform
-                            </span>
+                        <div className='gs-card-media-container'>
+                            <div className='contact-customers-img'>
+
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
