@@ -14,10 +14,12 @@ export default function Footer() {
 
     const handleAboutSectionNavigation = (section: string) => {
         navigate('/about');
-        const s = document.getElementById(section);
-        if (s) {
-            s.scrollIntoView({ behavior: 'auto' });
-        }
+        setTimeout(function() {
+            const s = document.getElementById(section);
+            if (s) {
+                s.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 25)
     };
 
     return (
