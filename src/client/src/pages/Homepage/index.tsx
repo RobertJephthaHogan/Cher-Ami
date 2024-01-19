@@ -7,7 +7,7 @@ import ClusterOutlined from '@ant-design/icons/ClusterOutlined'
 import TagOutlined from '@ant-design/icons/TagOutlined'
 import RightOutlined from '@ant-design/icons/RightOutlined'
 import { useNavigate } from 'react-router-dom'
-import HomepageFooter from '../../components/HomepageFooter'
+import Footer from '../../components/Footer'
 
 
 export default function Homepage() {
@@ -361,7 +361,7 @@ export default function Homepage() {
                     </div>
                 </div>
             </div>
-            <HomepageFooter/>
+            <Footer/>
         </div>
     )
 }
