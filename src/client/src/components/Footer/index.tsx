@@ -12,6 +12,14 @@ export default function Footer() {
         window.scrollTo(0, 0);
     };
 
+    const handleAboutSectionNavigation = (section: string) => {
+        navigate('/about');
+        const s = document.getElementById(section);
+        if (s) {
+            s.scrollIntoView({ behavior: 'auto' });
+        }
+    };
+
     return (
         <div className='homepage-footer'>
             <div className='footer-top white'>
@@ -48,13 +56,22 @@ export default function Footer() {
                                 </span>
                             </div>
                             <div className='ft-menu-option-container'>
-                                <span className='ft-menu-option'>
+                                <span 
+                                    className='ft-menu-option'
+                                    onClick={() => handleAboutSectionNavigation('inbox')}
+                                >
                                     Inbox
                                 </span>
-                                <span className='ft-menu-option'>
+                                <span 
+                                    className='ft-menu-option'
+                                    onClick={() => handleAboutSectionNavigation('contacts')}
+                                >
                                     Contacts
                                 </span>
-                                <span className='ft-menu-option'>
+                                <span 
+                                    className='ft-menu-option'
+                                    onClick={() => handleAboutSectionNavigation('campaigns')}
+                                >
                                     Campaigns
                                 </span>
                             </div>
@@ -66,13 +83,22 @@ export default function Footer() {
                                 </span>
                             </div>
                             <div className='ft-menu-option-container'>
-                                <span className='ft-menu-option'>
+                                <span 
+                                    className='ft-menu-option'
+                                    onClick={() => handleAboutSectionNavigation('email')}
+                                >
                                     Email
                                 </span>
-                                <span className='ft-menu-option'>
+                                <span 
+                                    className='ft-menu-option'
+                                    onClick={() => handleAboutSectionNavigation('sms')}
+                                >
                                     SMS
                                 </span>
-                                <span className='ft-menu-option'>
+                                <span 
+                                    className='ft-menu-option'
+                                    onClick={() => handleAboutSectionNavigation('voice')}
+                                >
                                     Voice
                                 </span>
                             </div>

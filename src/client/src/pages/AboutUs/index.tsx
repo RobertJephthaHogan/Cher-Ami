@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import HomepageHeader from '../../components/HomepageHeader'
 import { Chrono } from "react-chrono";
 import './styles.css'
@@ -6,7 +6,6 @@ import Footer from '../../components/Footer';
 
 
 export default function AboutUs() {
-
 
     return (
         <div className='about-us'>
@@ -65,7 +64,10 @@ export default function AboutUs() {
 
                     <div className='platform-section-rows'>
 
-                        <div className='ps-row'>
+                        <div 
+                            className='ps-row'
+                            id='inbox'
+                        >
                             <div className='ps-row-left'>
                                 <div className='oci-info-container-l'>
                                     <span className='oci-pre-info'>
@@ -100,7 +102,10 @@ export default function AboutUs() {
                             </div>
                         </div>
 
-                        <div className='ps-row'>
+                        <div 
+                            className='ps-row'
+                            id='contacts'
+                        >
                             <div className='ps-row-left'>
                                 <div 
                                     className='oci-image-container'
@@ -137,7 +142,10 @@ export default function AboutUs() {
                             </div>
                         </div>
 
-                        <div className='ps-row'>
+                        <div 
+                            className='ps-row'
+                            id='campaigns'
+                        >
                             <div className='ps-row-left'>
                                 <div className='oci-info-container-l'>
                                     <span className='oci-pre-info'>
@@ -187,7 +195,10 @@ export default function AboutUs() {
                         </div>
                     </div>
 
-                    <div className='cs-row'>
+                    <div 
+                        className='cs-row'
+                        id='email'
+                    >
                         <div className='cs-row-left'>
                             <div className='oci-info-container-l'>
                                 <span className='oci-pre-info'>
@@ -223,7 +234,10 @@ export default function AboutUs() {
                         </div>
                     </div>
 
-                    <div className='cs-row'>
+                    <div 
+                        className='cs-row'
+                        id='sms'
+                    >
                         <div className='cs-row-left'>
                             <div 
                                 className='oci-image-container'
@@ -259,7 +273,10 @@ export default function AboutUs() {
                         </div>
                     </div>
 
-                    <div className='cs-row'>
+                    <div 
+                        className='cs-row'
+                        id='voice'
+                    >
                         <div className='cs-row-left'>
                             <div className='oci-info-container-l'>
                                 <span className='oci-pre-info'>
