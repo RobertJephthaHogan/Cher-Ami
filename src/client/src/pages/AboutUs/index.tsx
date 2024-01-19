@@ -2,6 +2,7 @@ import React from 'react'
 import HomepageHeader from '../../components/HomepageHeader'
 import { Chrono } from "react-chrono";
 import './styles.css'
+import Footer from '../../components/Footer';
 
 
 export default function AboutUs() {
@@ -53,6 +54,7 @@ export default function AboutUs() {
 
             <div className='platform-section'>
                 <div className='ps-info-wrapper'>
+
                     <div className='ps-info'>
                         <div className='platform-section-title-wrapper'>
                             <span className='platform-section-title'>
@@ -60,6 +62,7 @@ export default function AboutUs() {
                             </span>
                         </div>
                     </div>
+
                     <div className='platform-section-rows'>
 
                         <div className='ps-row'>
@@ -91,7 +94,7 @@ export default function AboutUs() {
                                         
                                     }}
                                 >
-                                    Image Design <br/> 
+                                    Image design <br/> 
                                     in progress!
                                 </div>
                             </div>
@@ -110,7 +113,7 @@ export default function AboutUs() {
                                         
                                     }}
                                 >
-                                    Image Design <br/> 
+                                    Image design <br/> 
                                     in progress!
                                 </div>
                             </div>
@@ -163,7 +166,7 @@ export default function AboutUs() {
                                         
                                     }}
                                 >
-                                    Image Design <br/> 
+                                    Image design <br/> 
                                     in progress!
                                 </div>
                             </div>
@@ -172,13 +175,136 @@ export default function AboutUs() {
                     </div>
                 </div>
             </div>
+
+            <div className='channels-section'>
+                <div className='cs-info-wrapper'>
+
+                    <div className='cs-info'>
+                        <div className='cs-title-wrapper'>
+                            <span className='cs-title'>
+                                Channels
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className='cs-row'>
+                        <div className='cs-row-left'>
+                            <div className='oci-info-container-l'>
+                                <span className='oci-pre-info'>
+                                    Email
+                                </span>
+                                <span className='oci-title-info'>
+                                    Engage With Your Contacts 
+                                    via Email
+                                </span>
+                                <span className='oci-sub-info'>
+                                    Easily send email campaigns to your contacts with 
+                                    our ergonomic email campaign builder. Complete 
+                                    with custom design templates, and advanced 
+                                    scheduling.
+                                </span>
+                            </div>   
+                        </div>
+                        <div className='cs-row-right'>
+                            <div 
+                                className='oci-image-container'
+                                //temporary styles below (remove when adding img)
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    textAlign: 'center'
+                                    
+                                }}
+                            >
+                                Image design <br/> 
+                                in progress!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className='cs-row'>
+                        <div className='cs-row-left'>
+                            <div 
+                                className='oci-image-container'
+                                //temporary styles below (remove when adding img)
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    textAlign: 'center'
+                                    
+                                }}
+                            >
+                                Image design <br/> 
+                                in progress!
+                            </div>
+                        </div>
+                        <div className='cs-row-right'>
+                            <div className='oci-info-container-r'>
+                                <span className='oci-pre-info'>
+                                    SMS
+                                </span>
+                                <span className='oci-title-info'>
+                                    Engage With Your Contacts via SMS
+                                </span>
+                                <span className='oci-sub-info'>
+                                    Easily send sms campaigns to your contacts with our 
+                                    ergonomic sms campaign builder. Complete with 
+                                    advanced scheduling, and messaging features for 
+                                    when a response is needed.
+                                </span>
+                            </div>   
+                            
+                        </div>
+                    </div>
+
+                    <div className='cs-row'>
+                        <div className='cs-row-left'>
+                            <div className='oci-info-container-l'>
+                                <span className='oci-pre-info'>
+                                    Voice 
+                                </span>
+                                <span className='oci-title-info'>
+                                    Engage With Your Contacts via Voice Call
+                                </span>
+                                <span className='oci-sub-info'>
+                                    Easily send voice campaigns to your contacts with 
+                                    our ergonomic email campaign builder. 
+                                    Complete with pre built voice templates and 
+                                    advanced scheduling.
+                                </span>
+                            </div>   
+                        </div>
+                        <div className='cs-row-right'>
+                            <div 
+                                className='oci-image-container'
+                                //temporary styles below (remove when adding img)
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    textAlign: 'center'
+                                    
+                                }}
+                            >
+                                Image design <br/> 
+                                in progress!
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
             <div
                 style={{
-                    height: '1000px'
+                    height: '200px'
                 }}
             >
 
             </div>
+            <Footer/>
         </div>
     )
 }

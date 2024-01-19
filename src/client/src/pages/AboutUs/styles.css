@@ -129,3 +129,48 @@
     height: 100%;
     border-radius: 20px;
 }
+
+
+.channels-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.cs-info-wrapper {
+    width: 70em;
+    max-width: 70em;
+}
+
+.cs-info {
+
+}
+
+.cs-title-wrapper {
+    margin-top : 150px
+}
+
+.cs-title {
+    font-size: 50px;
+}
+
+.cs-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 3em;
+    width: 100%;
+    min-height: 400px;
+    margin-top: 3em;
+}
+
+.cs-row-left {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.cs-row-right {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
