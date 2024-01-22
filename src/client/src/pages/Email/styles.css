@@ -36,12 +36,48 @@
     border: 1px solid #dfdfdf;
     border-radius: 10px;
     min-height: 140px;
-    display: flex;
-    justify-content: center;
+}
+
+.actions-title-wrapper {
+    padding: 0.5em;
+}
+
+.actions-title {
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.action-btn-logo {
+    font-size: 12px;
+    color: #000;
+}
+
+.action-btn-txt {
+    margin-left: 0.5em;
+    font-size: 12px;
+    color: #000;
+}
+
+.actions-btn-container {
+    padding: 0 1em;
 }
 
 .cnec-btn {
-    margin-top: 10px
+    border: unset;
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+    padding: 0.5em;
+    border-radius: 6px;
+    margin-top: 10px;
+    background-color: #F6F7F9;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.cnec-btn:hover {
+    cursor: pointer;
+    background-color: #ececec;
 }
 
 .email-component-body {
