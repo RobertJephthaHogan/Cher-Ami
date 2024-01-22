@@ -2,6 +2,8 @@ import React, { useEffect, useMemo, useState } from 'react'
 import NotificationOutlined from '@ant-design/icons/NotificationOutlined'
 import SendOutlined from '@ant-design/icons/SendOutlined'
 import MailOutlined from '@ant-design/icons/MailOutlined'
+import RightOutlined from '@ant-design/icons/RightOutlined'
+import UserOutlined from '@ant-design/icons/UserOutlined'
 import './styles.css'
 import { Button, Modal, Space, Table, Tag } from 'antd'
 import EmailCampaignBuilder from '../../components/EmailCampaignBuilder'
@@ -163,7 +165,122 @@ export default function Email() {
             </div>
             <div className='email-data-bar'>
                 <div className='data-bar-info-container'>
-                    <div className='data-bar-info-card'>
+
+                    <div className='dbi-card'>
+                        <div className='dbic-top'>
+                            <div className='dbic-top-l'>
+                                <div className='dbic-top-hero'>
+                                    <span className='dbic-top-hero-text'>
+                                        {userEmailCampaigns?.length}
+                                    </span>
+                                </div>
+                                <div className='dbic-top-sub'>
+                                    <span className='dbic-top-sub-text'>
+                                        Total Email Campaigns
+                                    </span>
+                                </div>
+                            </div>
+                            <div className='dbic-top-r'>
+                                <div className='dbic-r-container'>
+                                    <MailOutlined
+                                        className='dbic-r-logo'
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className='dbic-bottom'>
+                            <div className='dbic-b-l'>
+                                <span className='dbic-b-l-text'>
+                                    See More
+                                </span>
+                            </div>
+                            <div className='dbic-b-r'>
+                                <div className='dbic-b-r-chip'>
+                                    <RightOutlined
+                                        className='dbic-b-r-ar'
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className='dbi-card'>
+                        <div className='dbic-top'>
+                            <div className='dbic-top-l'>
+                                <div className='dbic-top-hero'>
+                                    <span className='dbic-top-hero-text'>
+                                        124,031
+                                    </span>
+                                </div>
+                                <div className='dbic-top-sub'>
+                                    <span className='dbic-top-sub-text'>
+                                        Total Emails Sent
+                                    </span>
+                                </div>
+                            </div>
+                            <div className='dbic-top-r'>
+                                <div className='dbic-r-container'>
+                                    <SendOutlined
+                                        className='dbic-r-logo'
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className='dbic-bottom'>
+                            <div className='dbic-b-l'>
+                                <span className='dbic-b-l-text'>
+                                    See More
+                                </span>
+                            </div>
+                            <div className='dbic-b-r'>
+                                <div className='dbic-b-r-chip'>
+                                    <RightOutlined
+                                        className='dbic-b-r-ar'
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className='dbi-card'>
+                        <div className='dbic-top'>
+                            <div className='dbic-top-l'>
+                                <div className='dbic-top-hero'>
+                                    <span className='dbic-top-hero-text'>
+                                        18,213
+                                    </span>
+                                </div>
+                                <div className='dbic-top-sub'>
+                                    <span className='dbic-top-sub-text'>
+                                        Contacts Accessible Via Email
+                                    </span>
+                                </div>
+                            </div>
+                            <div className='dbic-top-r'>
+                                <div className='dbic-r-container'>
+                                    <UserOutlined
+                                        className='dbic-r-logo'
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className='dbic-bottom'>
+                            <div className='dbic-b-l'>
+                                <span className='dbic-b-l-text'>
+                                    See More
+                                </span>
+                            </div>
+                            <div className='dbic-b-r'>
+                                <div className='dbic-b-r-chip'>
+                                    <RightOutlined
+                                        className='dbic-b-r-ar'
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* <div className='data-bar-info-card'>
                         <div className='dbic-left'>
                             <span>
                                 <NotificationOutlined
@@ -181,45 +298,9 @@ export default function Email() {
                                 </span>
                             </div>
                         </div>
-                    </div>
-                    <div className='data-bar-info-card'>
-                        <div className='dbic-left'>
-                            <span>
-                                <SendOutlined
-                                    className='dbic-logo'
-                                />
-                            </span>
-                        </div>
-                        <div className='dbic-right'>
-                            <div className='dbic-right-content'>
-                                <span className='dbic-main-text'>
-                                    Emails Sent
-                                </span>
-                                <span className='dbic-sub-text'>
-                                    124,031
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='data-bar-info-card'>
-                        <div className='dbic-left'>
-                            <span>
-                                <MailOutlined
-                                    className='dbic-logo'
-                                />
-                            </span>
-                        </div>
-                        <div className='dbic-right'>
-                            <div className='dbic-right-content'>
-                                <span className='dbic-main-text'>
-                                    Contacts Accessible Via Email
-                                </span>
-                                <span className='dbic-sub-text'>
-                                    18,213
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                    </div> */}
+
+
                 </div>
                 <div className='data-bar-actions-container'>
                     <div className='data-bar-actions-card'>
