@@ -31,7 +31,7 @@ class EmailCampaignService:
             if shouldSendInitial:
                 # send the one time email campaign immediately
                 try:
-                    result = await self.dispatchEmailCampaign(campaign_data)
+                    result = await self.dispatch_email_campaign(campaign_data)
                     # Once the Campaign is sent to recipients, set status to 'sent'
                     await Helpers.set_email_campaign_sent(campaign_data.id, result)
                 except Exception as ex:
@@ -42,7 +42,7 @@ class EmailCampaignService:
             
             if not shouldSendInitial:
                 # Schedule the one time email campaign
-                scheduled_campaign = await self.scheduleEmailCampaign(campaign_data)
+                scheduled_campaign = await self.schedule_email_campaign(campaign_data)
             
             
         
@@ -54,7 +54,7 @@ class EmailCampaignService:
                 
                 try:
                     # send the one time email campaign immediately
-                    result = await self.dispatchEmailCampaign(campaign_data)
+                    result = await self.dispatch_email_campaign(campaign_data)
 
                     # set the campaign status to 'active'
                     await Helpers.set_email_campaign_active(campaign_data.id, result)
@@ -87,7 +87,7 @@ class EmailCampaignService:
         return new_email_campaign
     
     
-    async def scheduleEmailCampaign(self, campaign_data):
+    async def schedule_email_campaign(self, campaign_data):
 
         service_time = datetime.fromisoformat(campaign_data.frequency.get('sendDate')).astimezone(timezone.utc)
         
@@ -115,7 +115,7 @@ class EmailCampaignService:
     
     
     
-    async def dispatchEmailCampaign(self, campaign_data):
+    async def dispatch_email_campaign(self, campaign_data):
                 
         # get all of the contactListIDs from the campaign_data
         contact_list_ids = campaign_data.recipientContactLists
@@ -191,5 +191,7 @@ class EmailCampaignService:
     
     
     
-    pass
+    async def get_email_campaign_history(campaign_id):
+        print('campaign_id', campaign_id)
+        pass
     

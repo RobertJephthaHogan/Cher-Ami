@@ -30,7 +30,7 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
             
             # send the campaign
             try:
-                result = await EmailCampaignService().dispatchEmailCampaign(ec_to_send)
+                result = await EmailCampaignService().dispatch_email_campaign(ec_to_send)
                 # Once the Campaign is sent to recipients, set status to 'sent'
                 await Helpers.set_email_campaign_sent(ec_to_send.id, result)
                 # after sending successfully, update the scheduled service to executed
@@ -53,7 +53,7 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
              
             # send the campaign
             try:
-                result = await EmailCampaignService().dispatchEmailCampaign(ec_to_send)
+                result = await EmailCampaignService().dispatch_email_campaign(ec_to_send)
                 
                 # add the results to the existing email campaign
                 await Helpers.add_results_to_email_campaign(ec_to_send, result)
