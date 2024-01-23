@@ -47,7 +47,6 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
             
         
         elif action == 'send-recurring-email-campaign':
-            # TODO: Send recurring email campaign instance, 
             
             # get email campaign data from db using target_id
             ec_to_send = await EmailCampaignOperations.retrieve_email_campaign(target_id)
@@ -62,7 +61,6 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
                 # after sending successfully, update the scheduled service to executed
                 await Helpers.set_scheduled_service_executed(service_id)
                 
-                #TODO: THEN SCHEDULE THE NEXT OCCURRENCE IN THE CAMPAIGN
                 await ServiceScheduler.schedule_next_campaign_occurrence('email', ec_to_send)
                 
             except Exception as ex:
