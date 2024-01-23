@@ -6,6 +6,7 @@ import contactListActions from '../../redux/actions/contactList'
 import { useSelector } from 'react-redux'
 import { capitalizeFirstLetter } from '../../helpers'
 import { emailCampaignService } from '../../services/emailCampaign.service'
+import { Table, Tooltip } from 'antd'
 
 
 
@@ -36,8 +37,7 @@ export default function EmailDetails(props: EmailDetailProps) {
     function fetchCampaignHistory(campaignID: string) {
         emailCampaignService.getEmailCampaignHistory(campaignID)
             .then((resp: any) => {
-                console.log('resp', resp)
-                //setCampaignHistory(resp?.data)
+                setCampaignHistory(resp?.data?.data)
             })
             .catch((error: any) => {
                 console.log('error', error)
@@ -58,6 +58,31 @@ export default function EmailDetails(props: EmailDetailProps) {
         })
         setNumTotalRecipients(numTotal)
     }
+
+
+    const historyTableColumns = [
+        {
+            title: 'Time',
+            dataIndex: 'time',
+            key: 'time',
+            render: (time: any) => new Date(time.endsWith('Z') ? time : `${time}Z`).toLocaleString(),
+        },
+        {
+            title: 'Executed',
+            dataIndex: 'executed',
+            key: 'executed',
+            render: (executed: boolean) => executed ? 'Yes' : 'No',
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (_: any, record: any) => (
+              <Tooltip title='Coming Soon!'>
+                <a>Results </a>
+              </Tooltip>
+            ),
+          },
+    ]
 
 
     return (
@@ -225,9 +250,12 @@ export default function EmailDetails(props: EmailDetailProps) {
                                         <div>
                                             <span className='info-row-data'>
                                                 <div className='isd-chip-container'>
-                                                    {props.emailData?.frequency?.recurrence?.intervalSendDays?.map((day: any) => {
+                                                    {props.emailData?.frequency?.recurrence?.intervalSendDays?.map((day: any, i: number) => {
                                                         return (
-                                                            <div className='isd-chip'>
+                                                            <div 
+                                                                className='isd-chip'
+                                                                key={`isd-chip-${i}`}
+                                                            >
                                                                 <span className='isd-chip-text'>
                                                                     {day}
                                                                 </span>
@@ -271,8 +299,23 @@ export default function EmailDetails(props: EmailDetailProps) {
                 {
                     selectedView === 'history' 
                     ? (
-                        <div>
-                            History
+                        <div className='ed-history'>
+                            <div className='ed-history-top'>
+                                <span className='ed-history-text'>
+                                    History
+                                </span>
+                            </div>
+                            <div>
+                                <Table 
+                                    dataSource={
+                                        campaignHistory.map((ss: any) => {
+                                            return { ...ss, key: ss._id };
+                                        })
+                                    } 
+                                    columns={historyTableColumns} 
+                                    size='small'
+                                />
+                            </div>
                         </div>
                     ): null
                 }
