@@ -7,7 +7,7 @@ import UserOutlined from '@ant-design/icons/UserOutlined'
 import PlusOutlined from '@ant-design/icons/PlusOutlined'
 import SnippetsOutlined from '@ant-design/icons/SnippetsOutlined'
 import './styles.css'
-import { Button, Modal, Space, Table, Tag } from 'antd'
+import { Button, Modal, Space, Table, Tag, Tooltip } from 'antd'
 import EmailCampaignBuilder from '../../components/EmailCampaignBuilder'
 import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
@@ -141,7 +141,10 @@ export default function Email() {
             render: (_: any, record: any) => (
                 <Space size="middle">
                     <a onClick={() => viewEmailDetails(record)}>Details</a>
-                    <a>Use as Template</a>
+                    {/* <a>Use as Template</a> */}
+                    <Tooltip title='Coming Soon!'>
+                        <span className='disabled-action'>Use as Template</span>
+                    </Tooltip>
                 </Space>
             ),
         },

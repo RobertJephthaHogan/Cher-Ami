@@ -169,3 +169,8 @@
     font-weight: 500;
     color: #9a9a9a;
 }
+
+.disabled-action {
+    color: #b1b1b1;
+    cursor: pointer;
+}
