@@ -4,14 +4,17 @@ import SendOutlined from '@ant-design/icons/SendOutlined'
 import MailOutlined from '@ant-design/icons/MailOutlined'
 import RightOutlined from '@ant-design/icons/RightOutlined'
 import UserOutlined from '@ant-design/icons/UserOutlined'
+import PlusOutlined from '@ant-design/icons/PlusOutlined'
+import SnippetsOutlined from '@ant-design/icons/SnippetsOutlined'
 import './styles.css'
-import { Button, Modal, Space, Table, Tag } from 'antd'
+import { Button, Modal, Space, Table, Tag, Tooltip } from 'antd'
 import EmailCampaignBuilder from '../../components/EmailCampaignBuilder'
 import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
 import emailCampaignActions from '../../redux/actions/emailCampaign'
 import contactListActions from '../../redux/actions/contactList'
 import EmailDetails from '../../components/EmailDetails'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function Email() {
@@ -22,7 +25,11 @@ export default function Email() {
     const [cnecModalOpen, setCnecModalOpen] = useState<any>()
     const [tableData, setTableData] = useState<any>([])
     const [isDetailsModalOpen, setIsDetailsModalOpen] = useState<boolean>(false)
+    const [isTemplateModalOpen, setIsTemplateModalOpen] = useState<boolean>(false)
+    const [ecdModalOpen, setEcdModalOpen] = useState<boolean>(false)
+    const [totalEmailsModalOpen, setTotalEmailsModalOpen] = useState<boolean>(false)
     const [selectedDetails, setSelectedDetails] = useState<any>()
+    const navigate = useNavigate()
 
     
     useEffect(() => {
@@ -134,7 +141,10 @@ export default function Email() {
             render: (_: any, record: any) => (
                 <Space size="middle">
                     <a onClick={() => viewEmailDetails(record)}>Details</a>
-                    <a>Use as Template</a>
+                    {/* <a>Use as Template</a> */}
+                    <Tooltip title='Coming Soon!'>
+                        <span className='disabled-action'>Use as Template</span>
+                    </Tooltip>
                 </Space>
             ),
         },
@@ -190,12 +200,18 @@ export default function Email() {
                         </div>
                         <div className='dbic-bottom'>
                             <div className='dbic-b-l'>
-                                <span className='dbic-b-l-text'>
+                                <span 
+                                    className='dbic-b-l-text'
+                                    onClick={() => setEcdModalOpen(true)}
+                                >
                                     See More
                                 </span>
                             </div>
                             <div className='dbic-b-r'>
-                                <div className='dbic-b-r-chip'>
+                                <div 
+                                    className='dbic-b-r-chip'
+                                    onClick={() => setEcdModalOpen(true)}
+                                >
                                     <RightOutlined
                                         className='dbic-b-r-ar'
                                     />
@@ -228,12 +244,18 @@ export default function Email() {
                         </div>
                         <div className='dbic-bottom'>
                             <div className='dbic-b-l'>
-                                <span className='dbic-b-l-text'>
+                                <span 
+                                    className='dbic-b-l-text'
+                                    onClick={() => setTotalEmailsModalOpen(true)}
+                                >
                                     See More
                                 </span>
                             </div>
                             <div className='dbic-b-r'>
-                                <div className='dbic-b-r-chip'>
+                                <div 
+                                    className='dbic-b-r-chip'
+                                    onClick={() => setTotalEmailsModalOpen(true)}
+                                >
                                     <RightOutlined
                                         className='dbic-b-r-ar'
                                     />
@@ -266,7 +288,10 @@ export default function Email() {
                         </div>
                         <div className='dbic-bottom'>
                             <div className='dbic-b-l'>
-                                <span className='dbic-b-l-text'>
+                                <span 
+                                    className='dbic-b-l-text'
+                                    onClick={() => navigate('/contact-lists')}
+                                >
                                     See More
                                 </span>
                             </div>
@@ -280,37 +305,38 @@ export default function Email() {
                         </div>
                     </div>
 
-                    {/* <div className='data-bar-info-card'>
-                        <div className='dbic-left'>
-                            <span>
-                                <NotificationOutlined
-                                    className='dbic-logo'
-                                />
-                            </span>
-                        </div>
-                        <div className='dbic-right'>
-                            <div className='dbic-right-content'>
-                                <span className='dbic-main-text'>
-                                    Total Email Campaigns
-                                </span>
-                                <span className='dbic-sub-text'>
-                                    {userEmailCampaigns?.length}
-                                </span>
-                            </div>
-                        </div>
-                    </div> */}
-
-
                 </div>
                 <div className='data-bar-actions-container'>
                     <div className='data-bar-actions-card'>
-                        <Button 
-                            type='primary' 
-                            className='cnec-btn'
-                            onClick={() => setCnecModalOpen(true)}
-                        >
-                            Create New Email Campaign
-                        </Button>
+                        <div className='actions-title-wrapper'>
+                            <span className='actions-title'>
+                                Actions
+                            </span>
+                        </div>
+                        <div className='actions-btn-container'>
+                            <Button 
+                                className='cnec-btn'
+                                onClick={() => setCnecModalOpen(true)}
+                            >
+                                <div>
+                                    <PlusOutlined className='action-btn-logo'/>
+                                    <span className='action-btn-txt'>
+                                        Create New Email Campaign
+                                    </span>
+                                </div>
+                            </Button>
+                            <Button 
+                                className='cnec-btn'
+                                onClick={() => setIsTemplateModalOpen(true)}
+                            >
+                                <div>
+                                    <SnippetsOutlined className='action-btn-logo'/>
+                                    <span className='action-btn-txt'>
+                                        View Campaign Templates
+                                    </span>
+                                </div>
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -352,6 +378,30 @@ export default function Email() {
                 <EmailDetails
                     emailData={selectedDetails}
                 />
+            </Modal>
+            <Modal
+                open={isTemplateModalOpen}
+                onCancel={() => setIsTemplateModalOpen(false)}
+                //wrapClassName="no-padding-modal"
+                footer={null}
+            >
+                TODO: Campaign Templates Modal
+            </Modal>
+            <Modal
+                open={ecdModalOpen}
+                onCancel={() => setEcdModalOpen(false)}
+                //wrapClassName="no-padding-modal"
+                footer={null}
+            >
+                TODO: All Email Campaigns Overview
+            </Modal>
+            <Modal
+                open={totalEmailsModalOpen}
+                onCancel={() => setTotalEmailsModalOpen(false)}
+                //wrapClassName="no-padding-modal"
+                footer={null}
+            >
+                TODO: Total Emails Overview modal
             </Modal>
 
         </div>
