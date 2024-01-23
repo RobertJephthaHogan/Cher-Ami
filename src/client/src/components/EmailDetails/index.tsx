@@ -5,6 +5,7 @@ import { store } from '../../redux/store'
 import contactListActions from '../../redux/actions/contactList'
 import { useSelector } from 'react-redux'
 import { capitalizeFirstLetter } from '../../helpers'
+import { emailCampaignService } from '../../services/emailCampaign.service'
 
 
 
@@ -18,14 +19,29 @@ export default function EmailDetails(props: EmailDetailProps) {
     const [numTotalRecipients, setNumTotalRecipients] = useState<null | number>(null)
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const userContactLists = useSelector((state: any) => state.contactLists?.queryResult ?? [])
+    const [campaignHistory, setCampaignHistory] = useState<any>([])
+
 
 
     useEffect(() =>{
         calculateTotalRecipients()
+        setComponentData()
+        fetchCampaignHistory(props.emailData?.id)
     }, [props.emailData])
 
     function setComponentData() {
         store.dispatch(contactListActions.setContactLists(currentUser?._id))
+    }
+
+    function fetchCampaignHistory(campaignID: string) {
+        emailCampaignService.getEmailCampaignHistory(campaignID)
+            .then((resp: any) => {
+                console.log('resp', resp)
+                //setCampaignHistory(resp?.data)
+            })
+            .catch((error: any) => {
+                console.log('error', error)
+            })
     }
 
     function calculateTotalRecipients() {

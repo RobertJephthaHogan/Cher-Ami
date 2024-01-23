@@ -1,5 +1,5 @@
-const API_BASE_URL = 'https://api.cher-ami.roberthogan.io'
-// const API_BASE_URL = 'http://localhost:8005/'
+// const API_BASE_URL = 'https://api.cher-ami.roberthogan.io'
+const API_BASE_URL = 'http://localhost:8005/'
 
 
 export function getConfig() {

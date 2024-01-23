@@ -115,26 +115,21 @@ async def update_email_campaign(id: PydanticObjectId, req: UpdateEmailCampaignMo
     }
 
 @router.get("/history/{id}", response_description="Email Campaign history retrieved", response_model=Response)
-async def get_email_campaign_history(id: PydanticObjectId):
+async def get_email_campaign_history(id: str):
+        
+    # return all scheduled services where target_id = id
+    associated_services = await ScheduledServiceOperations.retrieve_services_by_target_id(id)
     
-    associated_services = None
-    
-    # search all scheduled services who's target_id is = id
-    
-    associated_services = ScheduledServiceOperations.retrieve_services_by_target_id(id)
-    print('associated_services', associated_services)
-    
-    email_campaign = await EmailCampaignOperations.retrieve_email_campaign(id)
     
     if associated_services:
         return {
             "status_code": 200,
             "response_type": "success",
-            "description": "Email Campaign data retrieved successfully",
+            "description": "Campaign history retrieved successfully",
             "data": associated_services
         }
     return {
         "status_code": 404,
         "response_type": "error",
-        "description": "Email Campaign doesn't exist",
+        "description": "No Associated Services Found",
     }
