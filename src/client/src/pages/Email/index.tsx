@@ -370,7 +370,7 @@ export default function Email() {
             <Modal
                 open={isDetailsModalOpen}
                 onCancel={() => setIsDetailsModalOpen(false)}
-                width={750}
+                width={850}
                 wrapClassName="no-padding-modal"
                 footer={null}
                 //height={500}

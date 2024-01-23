@@ -18,7 +18,8 @@ export const emailCampaignService = {
     createEmailCampaign,
     getAEmailCampaign,
     updateEmailCampaign, 
-    deleteEmailCampaign
+    deleteEmailCampaign,
+    getEmailCampaignHistory
 }
 
 
@@ -107,3 +108,16 @@ async function deleteEmailCampaign(emailCampaignID) {
     })
 }
 
+async function getEmailCampaignHistory(campaignID) {
+    return new Promise((resolve, reject) => {
+        apiInstance
+            .get(`/email_campaign/history/${campaignID}`)
+            .then((response) => {
+                return resolve(response)
+            })
+            .catch((error) => {
+                console.error(error)
+                reject(error)
+            })
+    })
+}

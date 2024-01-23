@@ -4,8 +4,8 @@
 
 
 .email-details-component {
-    width: 750px;
-    height: 500px;
+    width: 100%;
+    min-height: 500px;
     display: flex;
     border-radius: 10px;
 }
@@ -82,7 +82,7 @@
 }
 
 .ed-body {
-    width: 550px;
+    flex-grow: 1;
 }
 
 .info-row {
@@ -117,8 +117,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 4px;
 }
 
 .isd-chip-text {
     color: #000;
+}
+
+.ed-history {
+    padding: 20px 75px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.ed-history-top {
+    margin-bottom: 30px
+}
+
+.ed-history-text {
+    font-size: 20px;
+    font-weight: 700;
 }

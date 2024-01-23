@@ -59,7 +59,6 @@ class EmailService:
         email_receiver = self.kwargs['emailRecipient']
         email_subject = self.kwargs['emailSubject']
         created_by_user_id = self.kwargs['createdByUserId']
-        #subject = 'This is the email subject'
         body = self.kwargs['body']
         time = self.kwargs['time']
         

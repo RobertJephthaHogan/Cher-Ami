@@ -5,6 +5,7 @@ from app.models.Response import Response
 from app.database.email_campaign_operations import EmailCampaignOperations
 from app.models.EmailCampaign import EmailCampaign, UpdateEmailCampaignModel
 from app.models.Response import Response200, Response404
+from app.database.scheduled_service_operations import ScheduledServiceOperations
 from .. import EmailCampaignService
 
 
@@ -111,4 +112,24 @@ async def update_email_campaign(id: PydanticObjectId, req: UpdateEmailCampaignMo
         "response_type": "error",
         "description": "An error occurred. Email Campaign with ID: {} not found".format(id),
         "data": False
+    }
+
+@router.get("/history/{id}", response_description="Email Campaign history retrieved", response_model=Response)
+async def get_email_campaign_history(id: str):
+        
+    # return all scheduled services where target_id = id
+    associated_services = await ScheduledServiceOperations.retrieve_services_by_target_id(id)
+    
+    
+    if associated_services:
+        return {
+            "status_code": 200,
+            "response_type": "success",
+            "description": "Campaign history retrieved successfully",
+            "data": associated_services
+        }
+    return {
+        "status_code": 404,
+        "response_type": "error",
+        "description": "No Associated Services Found",
     }
